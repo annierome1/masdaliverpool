@@ -1,0 +1,83 @@
+.mainContent {
+    background-color: #111;
+    color: #fff;
+    min-height: 100vh;
+    padding: 2rem;
+  }
+  
+  .heading {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+  }
+  
+  /* Info Section */
+  .infoSection {
+    display: grid;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+  
+  @media (min-width: 768px) {
+    .infoSection {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  .infoBlock {
+    background-color: #222;
+    border: 1px solid #333;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+  }
+  
+  .infoBlock h2 {
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  
+  .infoBlock p {
+    margin: 0.25rem 0;
+    color: #ccc;
+  }
+  
+  /* Form Section */
+  .formSection {
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+  
+  .formSection h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .contactForm {
+    max-width: 600px;
+    margin: 0 auto;
+    display: grid;
+    gap: 1rem;
+  }
+  
+  .formRow,
+  .formRowFull {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .formRow label,
+  .formRowFull label {
+    margin-bottom: 0.25rem;
+    color: #ccc;
+    font-weight: 500;
+  }
+  
+  .formRow input,
+  .formRow select,
+  .formRowFull textarea {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid #444;
+  }  

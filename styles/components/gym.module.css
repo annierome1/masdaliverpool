@@ -1,0 +1,150 @@
+/* Hero Section */
+.heroSection {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    background: url('/thegym/hero-bg.jpg') center center / cover no-repeat;
+  }
+  
+  .heroOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+  }
+  
+  .heroTitle {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.2rem;
+    max-width: 600px;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .heroButton {
+    background-color: #e53e3e;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.2s;
+  }
+  
+  .heroButton:hover {
+    background-color: #c53030;
+  }
+  
+  /* Main Content */
+  .mainContent {
+    background-color: #111;
+    color: #fff;
+    padding: 2rem;
+  }
+  
+  .facilitySection,
+  .equipmentSection {
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+  
+  .facilitySection h2,
+  .equipmentSection h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .facilityGrid,
+  .equipmentGrid {
+    display: grid;
+    gap: 2rem;
+    margin-top: 1.5rem;
+  }
+  
+  @media (min-width: 768px) {
+    .facilityGrid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .equipmentGrid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  .facilityCard,
+  .equipmentCard {
+    background-color: #222;
+    border: 1px solid #333;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .cardImage {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 0.25rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .facilityCard h3,
+  .equipmentCard h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  
+  .facilityCard p {
+    color: #ccc;
+    font-size: 0.95rem;
+  }
+  
+  /* CTA Section */
+  .ctaSection {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .ctaSection h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .ctaSection p {
+    max-width: 600px;
+    margin: 0 auto 1.5rem;
+    color: #ccc;
+  }
+  
+  .ctaButtons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .ctaButton {
+    background-color: #e53e3e;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.2s;
+  }
+  
+  .ctaButton:hover {
+    background-color: #c53030;
+  }
+  
