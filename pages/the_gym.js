@@ -10,7 +10,7 @@ export default function TheGymPage() {
         <title>The Gym | Masda Liverpool</title>
         <meta
           name="description"
-          content="Explore our state-of-the-art MMA facility designed for fighters of all levels."
+          content="Explore our state-of-the-art facility designed for fighters of all levels."
         />
       </Head>
 
@@ -19,11 +19,11 @@ export default function TheGymPage() {
       {/* Hero Section */}
       <div className={styles.heroSection}>
         <div className={styles.heroOverlay}>
-          <h1 className={styles.heroTitle}>Welcome to Our World-Class MMA Facility</h1>
+          <h1 className={styles.heroTitle}>Welcome to Our World-Class Facility</h1>
           <p className={styles.heroSubtitle}>
             Experience training in a state-of-the-art facility designed for fighters of all levels.
           </p>
-          <a href="#" className={styles.heroButton}>Start Your Journey</a>
+          <a href="/classes" className={styles.heroButton}>Start Your Journey</a>
         </div>
       </div>
 
@@ -123,7 +123,7 @@ export default function TheGymPage() {
         <section className={styles.ctaSection}>
           <h2>Ready to Start Training?</h2>
           <p>
-            Join our community of fighters and start your martial arts journey today.
+            Join our community of fighters and start your journey today.
           </p>
           <div className={styles.ctaButtons}>
             <a href="/classes" className={styles.ctaButton}>View Membership Plans</a>
@@ -131,7 +131,6 @@ export default function TheGymPage() {
           </div>
         </section>
       </main>
-
       <Footer />
     </>
   );

@@ -12,7 +12,7 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={styles.footerContent}>
         <div>
-          <Image src="/masda_logo.png" alt="Logo" width={160} height={80} />
+          <Image src="/masda_logo.png" alt="Logo" width={180} height={80} />
           <p className="mt-4 text-gray-400">Train Hard. Fight Smart. Elevate.</p>
         </div>
         <div className={styles.column}>
@@ -22,15 +22,6 @@ export default function Footer() {
             <li><a href="#">Events</a></li>
             <li><a href="#">Pricing</a></li>
             <li><a href="#">Contact</a></li>
-          </ul>
-        </div>
-        <div className={styles.column}>
-          <h3>Training Programs</h3>
-          <ul className={styles.linkList}>
-            <li><a href="#">MMA Training</a></li>
-            <li><a href="#">Brazilian Jiu-Jitsu</a></li>
-            <li><a href="#">Kickboxing</a></li>
-            <li><a href="#">Personal Training</a></li>
           </ul>
         </div>
         <div className={styles.column}>
@@ -44,7 +35,7 @@ export default function Footer() {
         </div>
       </div>
       <div className={styles.footerBottom}>
-        © 2025 FightZone MMA Gym. All rights reserved.
+        © 2025 Masda Liverpool. All rights reserved.
       </div>
     </footer>
   );

@@ -7,14 +7,14 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Masda Liverpool – MMA Gym</title>
+        <title>MASDA LIVERPOOL</title>
         <meta name="description" content="Train hard, fight smart, and elevate at Masda Liverpool." />
       </Head>
 
       <Header />
 
       <main className={styles.main}>
-        <h1>Masda Liverpool</h1>
+        <h1>MASDA LIVERPOOL</h1>
         <p>
           Train Hard. Fight Smart. Elevate.
         </p>

@@ -1,45 +1,57 @@
 import styles from '../styles/components/header.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export default function Header() {
+  const router = useRouter();
+  const currentPath = router.pathname;
+
   return (
     <header className={styles.header}>
       {/* Logo */}
-      
-      
       <Link href="/" className={styles.logoBox}>
         <Image
-          src="/masda_logo.png"      // Make sure this file is in /public
+          src="/masda_logo_color_wt.png"
           alt="Masda Liverpool Logo"
-          width={180}                // Adjust as needed
-          height={80}                // Adjust as needed
-          style={{ objectFit: 'contain' }} // Prevent squishing
+          width={200}
+          height={100}
+          style={{ objectFit: 'contain' }}
         />
-        </Link>
-      
+      </Link>
 
       {/* Navigation */}
       <nav className={styles.nav}>
         <ul className={styles.navList}>
           <li>
-            {/* Modern Next.js usage (no <a> inside) */}
-            <Link href="/classes" className={styles.link}>
+            <Link
+              href="/classes"
+              className={`${styles.link} ${currentPath === '/classes' ? styles.active : ''}`}
+            >
               Classes
             </Link>
           </li>
           <li>
-            <Link href="/events" className={styles.link}>
+            <Link
+              href="/events"
+              className={`${styles.link} ${currentPath === '/events' ? styles.active : ''}`}
+            >
               Events
             </Link>
           </li>
           <li>
-            <Link href="/the_gym" className={styles.link}>
+            <Link
+              href="/the_gym"
+              className={`${styles.link} ${currentPath === '/the_gym' ? styles.active : ''}`}
+            >
               The Gym
             </Link>
           </li>
           <li>
-            <Link href="/contact" className={styles.link}>
+            <Link
+              href="/contact"
+              className={`${styles.link} ${currentPath === '/contact' ? styles.active : ''}`}
+            >
               Contact Us
             </Link>
           </li>

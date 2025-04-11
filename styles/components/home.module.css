@@ -8,22 +8,28 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+    
   }
   
   .main h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
+    font-family: var(--font-logo); /* This is your Cinzel font */
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 200;
   }
   
   .main p {
     max-width: 600px;
-    color: #a0aec0;
+    color: white;
     margin-bottom: 2rem;
+    font-size: 1.5rem;
   }
   
   .ctaButton {
-    background-color: #dc2626;
-    color: white;
+    background-color: var(--blue);
+    color: white;;
     padding: 0.75rem 2rem;
     border-radius: 0.5rem;
     text-decoration: none;

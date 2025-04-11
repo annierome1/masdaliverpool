@@ -1,83 +1,171 @@
+/* Main Container */
 .mainContent {
-    background-color: #111;
-    color: #fff;
-    min-height: 100vh;
-    padding: 2rem;
-  }
-  
-  .heading {
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 2rem;
-  }
-  
-  /* Info Section */
+  background-color: #111; /* Dark background */
+  color: #fff;            /* White text */
+  min-height: 100vh;
+  padding: 2rem;
+  font-family: var(--font-cinzel);
+
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Info Section: 3 Cards */
+.infoSection {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
   .infoSection {
-    display: grid;
-    gap: 2rem;
-    margin-bottom: 3rem;
-    text-align: center;
+    grid-template-columns: repeat(3, 1fr);
   }
-  
-  @media (min-width: 768px) {
-    .infoSection {
-      grid-template-columns: repeat(3, 1fr);
-    }
+}
+
+.infoBlock {
+  background-color: #1a1a1a;
+  border-radius: 6px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.infoBlock:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.infoBlock h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.infoBlock p {
+  margin: 0.2rem 0;
+  color: #ccc;
+}
+
+/* Form Section */
+.formSection {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.formSection h2 {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.contactForm {
+  max-width: 600px;
+  margin: 0 auto;
+  display: grid;
+  gap: 1.2rem;
+  text-align: left; /* Align form fields to the left for clarity */
+}
+
+/* Two-column row for first & last name */
+.twoColRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+
+
+@media (min-width: 768px) {
+  .twoColRow {
+    flex-direction: row;
   }
-  
-  .infoBlock {
-    background-color: #222;
-    border: 1px solid #333;
-    border-radius: 0.5rem;
-    padding: 1.5rem;
+  .twoColRow > div {
+    flex: 1;
   }
-  
-  .infoBlock h2 {
-    margin-bottom: 0.5rem;
-    font-size: 1.25rem;
-    font-weight: 600;
+  .twoColRow > div:not(:last-child) {
+    margin-right: 0.5rem;
   }
-  
-  .infoBlock p {
-    margin: 0.25rem 0;
-    color: #ccc;
-  }
-  
-  /* Form Section */
-  .formSection {
-    margin-bottom: 3rem;
-    text-align: center;
-  }
-  
-  .formSection h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  .contactForm {
-    max-width: 600px;
-    margin: 0 auto;
-    display: grid;
-    gap: 1rem;
-  }
-  
-  .formRow,
-  .formRowFull {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .formRow label,
-  .formRowFull label {
-    margin-bottom: 0.25rem;
-    color: #ccc;
-    font-weight: 500;
-  }
-  
-  .formRow input,
-  .formRow select,
-  .formRowFull textarea {
-    padding: 0.5rem;
-    border-radius: 0.25rem;
-    border: 1px solid #444;
-  }  
+}
+
+.formRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem; /* small gap between label and input */
+}
+
+.formRowFull {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+/* Input Styles */
+.inputField {
+  padding: 0.75rem;
+  border-radius: 4px;
+  border: 1px solid #444;
+  background-color: #222;
+  color: #fff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-size: 0.95rem;
+}
+
+
+
+.inputField::placeholder {
+  color: #666;
+}
+
+.inputField:focus {
+  outline: none;
+  border-color: #e53e3e;
+  box-shadow: 0 0 0 2px rgba(229, 62, 62, 0.3);
+}
+
+/* Buttons */
+.sendButton {
+  background-color: #e53e3e;
+  color: #fff;
+  border: none;
+  padding: 0.9rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+  margin-top: 0.5rem;
+  font-family: var(--font-cinzel);
+}
+
+.sendButton:hover {
+  background-color: #c53030;
+}
+
+/* Map Section */
+.mapSection {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.mapWrapper {
+  max-width: 700px;
+  margin: 0 auto;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.mapEmbed {
+  width: 100%;
+  height: 350px;
+  border: none;
+}

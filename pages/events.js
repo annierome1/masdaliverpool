@@ -33,7 +33,7 @@ export default function EventsPage() {
             {/* Event Card 1 */}
             <div className={styles.eventCard}>
               <img
-                src="/events/spring-fighter-series.jpg"
+                src="/events/fighting.jpeg"
                 alt="Spring Fighter Series"
                 className={styles.eventImage}
               />

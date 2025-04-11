@@ -3,3 +3,18 @@ body {
     background-color: #000;
     color: #fff;
   }
+
+  :root {
+
+    /* colors */
+
+    --red: #e53e3e;
+    --red-hiver: #c53030;
+    --blue: #313493;
+    --light-text: #fff;
+    --secondary-text: #ccc;
+    
+    /* fonts */
+    --font-primary: var(--font-roboto), sans-serif;
+    --font-logo: var(--font-cinzel), serif;
+  }
