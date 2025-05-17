@@ -41,10 +41,26 @@ export default function Header() {
           </li>
           <li>
             <Link
+              href="/fightnight"
+              className={`${styles.link} ${currentPath === '/fightnight' ? styles.active : ''}`}
+            >
+              Fight Night
+            </Link>
+          </li>
+          <li>
+            <Link
               href="/the_gym"
               className={`${styles.link} ${currentPath === '/the_gym' ? styles.active : ''}`}
             >
               The Gym
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/sponsors"
+              className={`${styles.link} ${currentPath === '/sponsors' ? styles.active : ''}`}
+            >
+              Sponsors
             </Link>
           </li>
           <li>

@@ -27,11 +27,17 @@ export default function Footer() {
         <div className={styles.column}>
           <h3>Follow Us</h3>
           <div className={styles.socialIcons}>
-            <a href="#"><FaInstagram /></a>
-            <a href="#"><FaFacebookF /></a>
-            <a href="#"><FaTwitter /></a>
-            <a href="#"><FaYoutube /></a>
-          </div>
+            <a href="https://www.instagram.com/masdagym/?hl=en" target="_blank" rel="noopener noreferrer">
+                <FaInstagram />
+            </a>
+            <a href="https://www.facebook.com/masdagym/" target="_blank" rel="noopener noreferrer">
+                <FaFacebookF />
+            </a>
+            <a href="https://www.youtube.com/c/MasdaGymLiverpool" target="_blank" rel="noopener noreferrer">
+                <FaYoutube />
+            </a>
+            </div>
+
         </div>
       </div>
       <div className={styles.footerBottom}>

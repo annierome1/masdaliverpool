@@ -122,13 +122,6 @@ export default function TheGymPage() {
         {/* Final CTA Section */}
         <section className={styles.ctaSection}>
           <h2>Ready to Start Training?</h2>
-          <p>
-            Join our community of fighters and start your journey today.
-          </p>
-          <div className={styles.ctaButtons}>
-            <a href="/classes" className={styles.ctaButton}>View Membership Plans</a>
-            <a href="/contact" className={styles.ctaButton}>Book a Session</a>
-          </div>
         </section>
       </main>
       <Footer />

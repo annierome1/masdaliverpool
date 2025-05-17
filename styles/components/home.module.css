@@ -8,13 +8,14 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+    font-family: var(--font-cinzel);
     
   }
   
   .main h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
-    font-family: var(--font-logo); /* This is your Cinzel font */
+    font-family: var(--font-cinzel); 
     letter-spacing: 1px;
     text-transform: uppercase;
     font-weight: 200;

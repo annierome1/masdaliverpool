@@ -4,6 +4,7 @@
     width: 100%;
     height: 600px;
     background: url('/events/fight.jpg');
+    font-family: var(--font-cinzel);
   }
   
   .heroOverlay {
@@ -49,6 +50,7 @@
     background-color: #111;
     color: #fff;
     padding: 2rem;
+    font-family: var(--font-cinzel);
   }
   
   .upcomingEvents,

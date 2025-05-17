@@ -10,7 +10,7 @@ export default function EventsPage() {
         <title>Events | Masda Liverpool</title>
         <meta
           name="description"
-          content="Explore upcoming MMA events and past highlights at Masda Liverpool."
+          content="Explore upcoming events, past highlights, and livestreams of Masda Fight Nights."
         />
       </Head>
 
@@ -19,16 +19,14 @@ export default function EventsPage() {
       {/* Hero Section */}
       <div className={styles.heroSection}>
         <div className={styles.heroOverlay}>
-          <h1 className={styles.heroTitle}>Championship Night 2025</h1>
-          <p className={styles.heroDate}>March 15, 2025 – 7:00 PM EST</p>
-          <a href="#" className={styles.heroButton}>Get Tickets</a>
+          <h1 className={styles.heroTitle}>Fights</h1>
         </div>
       </div>
 
       <main className={styles.mainContent}>
         {/* Upcoming Events */}
         <section className={styles.upcomingEvents}>
-          <h2>Upcoming Events</h2>
+          <h2>Upcoming Fights</h2>
           <div className={styles.eventsGrid}>
             {/* Event Card 1 */}
             <div className={styles.eventCard}>
@@ -42,7 +40,7 @@ export default function EventsPage() {
                 <p>
                   Join us for a thrilling day of matches featuring up-and-coming fighters.
                 </p>
-                <a href="#" className={styles.eventButton}>Learn More</a>
+                <a href="#" className={styles.eventButton}>Get Tickets</a>
               </div>
             </div>
 
@@ -58,7 +56,7 @@ export default function EventsPage() {
                 <p>
                   A special evening showcasing the top female MMA fighters.
                 </p>
-                <a href="#" className={styles.eventButton}>Learn More</a>
+                <a href="#" className={styles.eventButton}>Get Tickets</a>
               </div>
             </div>
 
@@ -74,7 +72,7 @@ export default function EventsPage() {
                 <p>
                   Elite grapplers compete for the championship title.
                 </p>
-                <a href="#" className={styles.eventButton}>Learn More</a>
+                <a href="#" className={styles.eventButton}>Get Tickets</a>
               </div>
             </div>
           </div>

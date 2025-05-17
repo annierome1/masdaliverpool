@@ -14,7 +14,7 @@ export default function Home() {
       <Header />
 
       <main className={styles.main}>
-        <h1>MASDA LIVERPOOL</h1>
+        <h1>MASDA GYM LIVERPOOL</h1>
         <p>
           Train Hard. Fight Smart. Elevate.
         </p>

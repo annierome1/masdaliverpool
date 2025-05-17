@@ -5,7 +5,8 @@
     background-color: black;
     color: white;
     padding: 1rem 2rem;
-;
+    font-family: var(--font-cinzel);
+
   }
   .link {
     color: white;
