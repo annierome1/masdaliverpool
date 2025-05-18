@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import scheduleData from '../lib/scheduleData';
@@ -38,9 +39,9 @@ export default function ClassesPage() {
               <li>3 classes per day</li>
               <li>1 free uniform</li>
             </ul>
-            <a href="#" className={styles.planButton}>
+            <Link href="#" className={styles.planButton}>
               Choose Plan
-            </a>
+            </Link>
           </div>
 
           {/* Plan 2: Gym Access */}
@@ -55,9 +56,9 @@ export default function ClassesPage() {
               <li>24/7</li>
               <li>Fitness suite access</li>
             </ul>
-            <a href="#" className={styles.planButton}>
+            <Link href="#" className={styles.planButton}>
               Choose Plan
-            </a>
+            </Link>
           </div>
 
           {/* Plan 3: Private Sessions */}
@@ -72,9 +73,9 @@ export default function ClassesPage() {
               <li>Available 7 days/week</li>
               <li>24hr cancellation policy</li>
             </ul>
-            <a href="#" className={styles.planButton}>
+            <Link href="#" className={styles.planButton}>
               Book Session
-            </a>
+            </Link>
           </div>
         </section>
 

@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import styles from '../styles/components/home.module.css'; 
@@ -19,9 +20,9 @@ export default function Home() {
         <p>
           Train Hard. Fight Smart. Elevate.
         </p>
-       <a href="/team" className={buttonStyles.rbutton}>
+       <Link href="/team" className={buttonStyles.rbutton}>
           Meet the team
-        </a>
+        </Link>
       </main>
 
       <Footer />

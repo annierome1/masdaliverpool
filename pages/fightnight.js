@@ -2,6 +2,7 @@
 import fs from 'fs';
 import path from 'path';
 import Head from 'next/head';
+import Link from 'next/link';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useEffect, useRef, useState } from 'react';
@@ -108,9 +109,9 @@ export default function EventsPage({ eventsData, eventHighlights }) {
                 <div className={styles.eventInfo}>
                   <h3>{event.date} – {event.title}</h3>
                   <p>{event.description}</p>
-                  <a href={event.link} className={styles.eventButton}>
+                  <Link href={event.link} className={styles.eventButton}>
                     {event.buttonText}
-                  </a>
+                  </Link>
                 </div>
               </div>
             ))}

@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import styles from '../styles/components/events.module.css';
@@ -40,7 +41,7 @@ export default function EventsPage() {
                 <p>
                   Join us for a thrilling day of matches featuring up-and-coming fighters.
                 </p>
-                <a href="#" className={styles.eventButton}>Get Tickets</a>
+                <Link href="#" className={styles.eventButton}>Get Tickets</Link>
               </div>
             </div>
 
@@ -56,7 +57,7 @@ export default function EventsPage() {
                 <p>
                   A special evening showcasing the top female MMA fighters.
                 </p>
-                <a href="#" className={styles.eventButton}>Get Tickets</a>
+                <Link href="#" className={styles.eventButton}>Get Tickets</Link>
               </div>
             </div>
 
@@ -72,7 +73,7 @@ export default function EventsPage() {
                 <p>
                   Elite grapplers compete for the championship title.
                 </p>
-                <a href="#" className={styles.eventButton}>Get Tickets</a>
+                <Link href="#" className={styles.eventButton}>Get Tickets</Link>
               </div>
             </div>
           </div>
@@ -92,7 +93,7 @@ export default function EventsPage() {
               <div className={styles.eventInfo}>
                 <h3>Winter War 2025</h3>
                 <p>Relive the intense battles from our January event.</p>
-                <a href="#" className={styles.eventButton}>Watch Replay</a>
+                <Link href="#" className={styles.eventButton}>Watch Replay</Link>
               </div>
             </div>
 
@@ -106,7 +107,7 @@ export default function EventsPage() {
               <div className={styles.eventInfo}>
                 <h3>Championship Finals 2024</h3>
                 <p>Catch up on the biggest matches of the year.</p>
-                <a href="#" className={styles.eventButton}>Watch Replay</a>
+                <Link href="#" className={styles.eventButton}>Watch Replay</Link>
               </div>
             </div>
           </div>
