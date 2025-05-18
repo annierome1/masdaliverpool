@@ -2,7 +2,6 @@ import styles from '../styles/components/footer.module.css';
 import {
   FaInstagram,
   FaFacebookF,
-  FaTwitter,
   FaYoutube,
 } from 'react-icons/fa';
 import Image from 'next/image';

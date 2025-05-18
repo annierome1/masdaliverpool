@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import styles from '../styles/components/gym.module.css';
@@ -23,7 +24,7 @@ export default function TheGymPage() {
           <p className={styles.heroSubtitle}>
             Experience training in a state-of-the-art facility designed for fighters of all levels.
           </p>
-          <a href="/classes" className={styles.heroButton}>Start Your Journey</a>
+          <Link  href="/classes" className={styles.heroButton}>Start Your Journey</Link>
         </div>
       </div>
 
