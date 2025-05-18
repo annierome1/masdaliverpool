@@ -1,7 +1,8 @@
 import Head from 'next/head';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import styles from '../styles/components/home.module.css'; // optional for home-specific styles
+import styles from '../styles/components/home.module.css'; 
+import buttonStyles from '../styles/components/buttons.module.scss';
 
 export default function Home() {
   return (
@@ -18,7 +19,7 @@ export default function Home() {
         <p>
           Train Hard. Fight Smart. Elevate.
         </p>
-        <a href="/team" className={styles.ctaButton}>
+       <a href="/team" className={buttonStyles.rbutton}>
           Meet the team
         </a>
       </main>

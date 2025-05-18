@@ -134,42 +134,82 @@
     margin-bottom: 1.5rem;
     text-align: center;
   }
+
+.carouselWrapper {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;          /* enable snap */
+  -webkit-overflow-scrolling: touch;       /* smooth on iOS */
+  gap: 1.5rem;
+  padding: 0.5rem 0;
+}
+.videoCard {
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+  width: 250px;
+  opacity: 0.7;
+  transform: scale(0.9);
+}
+
+.videoCard.active {
+  width: 300px;
+  opacity: 1;
+  transform: scale(1.0);
+  z-index: 1.8;
+}
+
+.videoWrapper {
+  width: 100%;
+  height: auto;
+  
+  background-color: black;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.videoPlayer {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: none;
+  border-radius: 0.5rem;
+}
+
+.videoCard h3 {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #ddd;
+}
+.carouselContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+}
+.arrowButton {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #e53e3e;
+  cursor: pointer;
+  padding: 0 0.5rem;
+}
+.arrowButton:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+@media (min-width: 768px) {
   .videosGrid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
   }
-  .videoPlayer {
-    width: 100%;
-    max-width: 400px;  /* or whatever smaller width you prefer */
-    height: auto;
-    border-radius: 0.5rem;
-    background: #000;
-  }
-  
-  
-  @media (min-width: 768px) {
-    .videosGrid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  .videoCard {
-    background-color: #222;
-    border: 1px solid #333;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    text-align: center;
-    padding-bottom: 1rem;
-  }
-  .videoThumbnail {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-  }
-  .videoCard h3 {
-    margin: 0.75rem 0;
-    font-size: 1.1rem;
-    color: #fff;
-  }
-  
-  
+}
+
+.videoCard h3 {
+  margin-top: 0.75rem;
+  font-size: 1.2rem;
+  color: #ddd;
+}

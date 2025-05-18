@@ -25,14 +25,38 @@ export default function SponsorsPage() {
         <section className={styles.sponsorGrid}>
           {/* Repeat this card for each sponsor */}
           <div className={styles.sponsorCard}>
-            <img src="/sponsors/B&B_logo.png" alt="Brick & Barn" />
+            <img
+              src="/sponsors/B&B_logo.png"
+              alt="Brick & Barn"
+              style={{
+                width: '300px',
+                height: 'auto',
+                objectFit: 'contain',
+                marginBottom: '3rem',
+                marginTop: '4rem'
+              }}
+            />
             <h3>Brick & Barn | Compass</h3>
             <p>Helping us lay the foundation for future champions.</p>
           </div>
 
           <div className={styles.sponsorCard}>
-            <img src="/sponsors/concordia_clinic.png" alt="Concordia Clinic" />
+            <img src="/sponsors/concordia_banner.jpg" alt="Concordia Clinic" />
             <h3>Concordia Clinic</h3>
+            <p>Providing health and recovery support for our athletes.</p>
+          </div>
+          <div className={styles.sponsorCard}>
+            <img 
+              src="/sponsors/primo_white.png" 
+              alt="Primo Fightwear" 
+              style={{
+                width: '300px',
+                height: 'auto',
+                objectFit: 'contain',
+                marginBottom: '3rem',
+                marginTop: '4rem'
+              }}/>
+            <h3>Primo Fightwear</h3>
             <p>Providing health and recovery support for our athletes.</p>
           </div>
 

@@ -31,6 +31,7 @@ export default function Header() {
               Classes
             </Link>
           </li>
+         { /*
           <li>
             <Link
               href="/events"
@@ -39,6 +40,7 @@ export default function Header() {
               Events
             </Link>
           </li>
+          */}
           <li>
             <Link
               href="/fightnight"

@@ -28,12 +28,28 @@
     font-size: 1.5rem;
   }
   
-  .ctaButton {
-    background-color: var(--blue);
-    color: white;;
-    padding: 0.75rem 2rem;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    font-weight: 500;
-  }
-  
+
+  /*
+
+  .flipButton {
+  background-color:  #2f3490;
+  color: white;
+  border: 2px solid  #2f3490;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+.flipButton:hover {
+  background-color: #ed1c28;
+  color: white;
+  border: 2px solid #ed1c28;
+}
+*/
+

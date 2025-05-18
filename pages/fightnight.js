@@ -4,50 +4,77 @@ import path from 'path';
 import Head from 'next/head';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from '../styles/components/fightnight.module.css';
+import Mux from '@mux/mux-node';
+import '@mux/mux-player';
 
-// Load upcoming events at build time
+
 export async function getStaticProps() {
   const filePath = path.join(process.cwd(), 'public', 'data', 'events.json');
   const raw = fs.readFileSync(filePath, 'utf8');
   const eventsData = JSON.parse(raw);
-  return { props: { eventsData } };
+
+  // ─── new: fetch your top-4 highlight assets from Mux ─────────
+ const mux = new Mux({
+      tokenId: process.env.MUX_TOKEN_ID,
+    tokenSecret: process.env.MUX_TOKEN_SECRET,
+  });
+  // grab your latest 4 assets (you can filter/tag however you like)
+  const assets = await mux.video.assets.list({ limit: 4 });
+  
+  const eventHighlights = assets.data.map((asset) => ({
+    id: asset.id,
+    // pick the first public playback ID
+    playbackId: asset.playback_ids[0].id,
+  }));
+
+  return {
+    props: {
+      eventsData,
+      eventHighlights,
+    },
+  };
 }
 
-// Static highlights
-const eventHighlights = [
-  {
-    id: 'highlight1',
-    title: 'Winter War 2025 Highlights',
-    videoSrc: '/videos/highlight1.mp4',
-    thumbnail: '/videos/thumbnails/winter-war-2025.jpg',
-  },
-];
 
-export default function EventsPage({ eventsData }) {
-  const videoRefs = useRef({});
+
+
+
+
+export default function EventsPage({ eventsData, eventHighlights }) {
+  const videoRefs = useRef([])
+  const wrapperRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    const observers = [];
-    Object.entries(videoRefs.current).forEach(([id, video]) => {
+    videoRefs.current.forEach((video, idx) => {
       if (!video) return;
-      video.pause();
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            video.play();
-          } else {
-            video.pause();
-          }
-        },
-        { threshold: 0.5 }
-      );
-      observer.observe(video);
-      observers.push(observer);
+      if (idx === activeIndex) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+        video.currentTime = 0;
+      }
     });
-    return () => observers.forEach((obs) => obs.disconnect());
-  }, []);
+  }, [activeIndex]);
+
+    useEffect(() => {
+    videoRefs.current.forEach((video, idx) => {
+      if (!video) return;
+      if (idx === activeIndex) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+        video.currentTime = 0;
+      }
+    });
+  }, [activeIndex]);
+
+    const prev = () => setActiveIndex((i) => Math.max(0, i - 1));
+  const next = () => setActiveIndex((i) => Math.min(eventHighlights.length - 1, i + 1));
+
+
 
   return (
     <>
@@ -91,24 +118,44 @@ export default function EventsPage({ eventsData }) {
         </section>
 
         {/* Event Highlights (autoplay on scroll) */}
-        <section className={styles.eventHighlights}>
-          <h2>Event Highlights</h2>
-          <div className={styles.videosGrid}>
-            {eventHighlights.map(({ id, title, videoSrc, thumbnail }) => (
-              <div key={id} className={styles.videoCard}>
-                <video
-                  ref={(el) => (videoRefs.current[id] = el)}
-                  src={videoSrc}
-                  poster={thumbnail}
-                  controls
-                  preload="metadata"
-                  className={styles.videoPlayer}
-                />
-                <h3>{title}</h3>
-              </div>
-            ))}
+<section className={styles.eventHighlights}>
+          <h2>Highlight Reel</h2>
+
+          <div className={styles.carouselContainer}>
+            <button onClick={prev} className={styles.arrowButton}>
+              &lsaquo;
+            </button>
+
+            <div ref={wrapperRef} className={styles.carouselWrapper}>
+              {eventHighlights.map((highlight, index) => (
+                <div
+                  key={highlight.id}
+                  className={`${styles.videoCard} ${
+                    index === activeIndex ? styles.active : ''
+                  }`}
+                  onClick={() => setActiveIndex(index)}
+                >
+                  <div className={styles.videoWrapper}>
+                    {/* just swapped in your Mux HLS URL here */}
+                    <mux-player
+                      ref={(el) => (videoRefs.current[index] = el)}
+                      src={`https://stream.mux.com/${highlight.playbackId}.m3u8`}
+                      controls
+                      preload="metadata"
+                      muted
+                      className={styles.videoPlayer}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <button onClick={next} className={styles.arrowButton}>
+              &rsaquo;
+            </button>
           </div>
         </section>
+
       </main>
 
       <Footer />

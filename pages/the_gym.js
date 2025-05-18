@@ -34,11 +34,13 @@ export default function TheGymPage() {
           <div className={styles.facilityGrid}>
             {/* Card 1 */}
             <div className={styles.facilityCard}>
+              <div className={styles.cardImageWrapper}>
               <img
-                src="/thegym/spacious-arena.jpg"
+                src="/thegym/masda_mat.jpg"
                 alt="Spacious Arena"
                 className={styles.cardImage}
               />
+              </div>
               <h3>Spacious Arena</h3>
               <p>
                 Ample space to train, spar, and hone your skills.
@@ -47,11 +49,13 @@ export default function TheGymPage() {
 
             {/* Card 2 */}
             <div className={styles.facilityCard}>
+              <div className={styles.cardImageWrapper}>
               <img
-                src="/thegym/modern-amenities.jpg"
+                src="/thegym/gym_machines.jpg"
                 alt="Modern Amenities"
                 className={styles.cardImage}
               />
+              </div>
               <h3>Modern Amenities</h3>
               <p>
                 Fully equipped locker rooms, showers, and relaxation areas.
@@ -60,11 +64,19 @@ export default function TheGymPage() {
 
             {/* Card 3 */}
             <div className={styles.facilityCard}>
+              <div className={styles.cardImageWrapper}>
               <img
                 src="/thegym/clinic.png"
                 alt="Concordia Clinic"
-                className={styles.cardImage}
+                 style={{
+                  width: '300px',
+                  height: 'auto',
+                  objectFit: 'contain',
+                  marginBottom: '3rem',
+                  marginTop: '4rem'
+                }}
               />
+              </div>
               <h3>Therapy Clinic & Recover Center</h3>
               <p>
               The Clinic aims to help and guide those looking for better health and wellbeing, and we have a broad range of treatment options to assist in most conditions.
@@ -119,10 +131,11 @@ export default function TheGymPage() {
           </div>
         </section>
 
-        {/* Final CTA Section */}
+        {/* Final CTA Section 
         <section className={styles.ctaSection}>
           <h2>Ready to Start Training?</h2>
         </section>
+        */}
       </main>
       <Footer />
     </>

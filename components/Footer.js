@@ -19,7 +19,7 @@ export default function Footer() {
           <h3>Quick Links</h3>
           <ul className={styles.linkList}>
             <li><a href="#">Classes</a></li>
-            <li><a href="#">Events</a></li>
+           {/* <li><a href="#">Events</a></li>*/}
             <li><a href="#">Pricing</a></li>
             <li><a href="#">Contact</a></li>
           </ul>
