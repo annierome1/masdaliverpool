@@ -12,21 +12,18 @@ export default function Footer() {
         <div className={styles.column}>
           <h3>Quick Links</h3>
           <ul className={styles.linkList}>
-            <li>
+            
               <Link href="/classes" className={styles.link}>
                 Classes
               </Link>
-            </li>
-            <li>
+
               <Link href="/pricing" className={styles.link}>
                 Pricing
               </Link>
-            </li>
-            <li>
+
               <Link href="/contact" className={styles.link}>
                 Contact
               </Link>
-            </li>
           </ul>
         </div>
 
