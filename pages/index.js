@@ -29,31 +29,39 @@ export default function Home({ homepagePlaybackId }) {
   const playerRef = useRef(null)
   const [showVideo, setShowVideo] = useState(false)
 
-  // after 1 second, reveal the video
+  // 1️⃣ Reveal video after 1s
   useEffect(() => {
-    const t = setTimeout(() => setShowVideo(true), 400)
+    const t = setTimeout(() => setShowVideo(true), 1000)
     return () => clearTimeout(t)
   }, [])
 
-  // when it’s time to show it, start playback
+  // 2️⃣ Auto-play when revealed
   useEffect(() => {
     if (showVideo && playerRef.current) {
       playerRef.current.play().catch(() => {})
     }
   }, [showVideo])
 
-  // space bar toggles play/pause
+  // 3️⃣ Space bar toggles play/pause
   useEffect(() => {
     const onKey = (e) => {
       if (e.code === 'Space') {
         e.preventDefault()
         const p = playerRef.current
-        if (p) p.paused ? p.play() : p.pause()
-      }
-    }
+        if (p) {
+          if (p.paused) {
+            p.play()
+          } else {
+            p.pause()
+          }
+        }
+       }
+     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [])
+
+
   return (
     <>
       <Head>
