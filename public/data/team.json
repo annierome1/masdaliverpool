@@ -1,0 +1,26 @@
+
+[
+  {
+    "id": 1,
+    "name": "Alfie",
+    "role": "Lightweight Fighter",
+    "image": "/team/alfie_pic.jpg",
+    "bio": "BIO",
+    "social": {
+      "facebook": "https://facebook.com/alfie.smith",
+      "instagram": "https://instagram.com/thehammer_alfie",
+      "twitter": "https://twitter.com/alfie_hammer"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Owen Gillis",
+    "role": "Welterweight Fighter",
+    "image": "/team/owen_gillis.jpeg",
+    "bio": "Bio.",
+    "social": {
+      "instagram": "https://instagram.com/sarah.strikes",
+      "twitter": "https://twitter.com/sarah_martinez"
+    }
+  }
+]

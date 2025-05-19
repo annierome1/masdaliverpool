@@ -31,7 +31,7 @@ export default function ContactPage() {
       <main className={styles.mainContent}>
         <h1 className={styles.heading}>Contact Us</h1>
         <p className={styles.subtitle}>
-          Questions? Ready to book a session? Get in touch with us!
+          Questions? Get in touch with us!
         </p>
 
         <div className={styles.contactGrid}>
@@ -100,22 +100,19 @@ export default function ContactPage() {
               </li>
               <li>
                 <FaMapMarkerAlt />
-                <span>123 Liverpool St, Liverpool, UK</span>
+                <span>MASDA Gym Liverpool, Nexum Centre 64 St Anne Street, Liverpool L3 3DY</span>
               </li>
             </ul>
 
             <h3>Connect With Us</h3>
             <div className={styles.socialLinks}>
-              <Link href="#" aria-label="Facebook">
+              <Link href="https://www.facebook.com/masdagym/" aria-label="Facebook">
                 <FaFacebookF />
               </Link>
-              <Link href="#" aria-label="Instagram">
+              <Link href="https://www.instagram.com/masdagym/?hl=en" aria-label="Instagram">
                 <FaInstagram />
               </Link>
-              <Link href="#" aria-label="TikTok">
-                <FaTiktok />
-              </Link>
-              <Link href="#" aria-label="YouTube">
+              <Link href="https://www.youtube.com/c/MasdaGymLiverpool" aria-label="YouTube">
                 <FaYoutube />
               </Link>
             </div>
