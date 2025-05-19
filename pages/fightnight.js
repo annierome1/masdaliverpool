@@ -7,36 +7,60 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useEffect, useRef, useState } from 'react';
 import styles from '../styles/components/fightnight.module.css';
-import Mux from '@mux/mux-node';
 import '@mux/mux-player';
 
 
-export async function getStaticProps() {
-  const filePath = path.join(process.cwd(), 'public', 'data', 'events.json');
-  const raw = fs.readFileSync(filePath, 'utf8');
-  const eventsData = JSON.parse(raw);
 
-  // ─── new: fetch your top-4 highlight assets from Mux ─────────
- const mux = new Mux({
-      tokenId: process.env.MUX_TOKEN_ID,
-    tokenSecret: process.env.MUX_TOKEN_SECRET,
-  });
-  // grab your latest 4 assets (you can filter/tag however you like)
-  const assets = await mux.video.assets.list({ limit: 4 });
-  
-  const eventHighlights = assets.data.map((asset) => ({
-    id: asset.id,
-    // pick the first public playback ID
-    playbackId: asset.playback_ids[0].id,
-  }));
+export async function getStaticProps() {
+  // --- 1) Load your local events JSON ---
+  const filePath = path.join(process.cwd(), 'public', 'data', 'events.json')
+  const raw       = fs.readFileSync(filePath, 'utf8')
+  const eventsData = JSON.parse(raw)
+
+  // --- 2) The exact Asset IDs you want in your carousel ---
+  const ASSET_IDS = [
+    'zhS01F02IEgn0002lrF02teN49RClPKmZE352k6uF194b02hs',
+    'sfQUYGzTA1ZM4SExer1JehNBb2HIENyoClS1Tvj1sYM',
+    'XGNhVi7vjJIUdnSJCRgLg01zLniRPXZD5jwI4zC02YZ900',
+  ]
+
+  // --- 3) Build a Basic Auth header from your env vars ---
+  const token = Buffer.from(
+    `${process.env.MUX_TOKEN_ID}:${process.env.MUX_TOKEN_SECRET}`
+  ).toString('base64')
+
+  // --- 4) Fetch each asset → extract its public playback ID ---
+  const eventHighlights = await Promise.all(
+    ASSET_IDS.map(async (assetId) => {
+      const res = await fetch(
+        `https://api.mux.com/video/v1/assets/${assetId}`,
+        {
+          headers: {
+            Authorization: `Basic ${token}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+      const { data: asset } = await res.json()
+      // find the public playback ID
+      const playback = asset.playback_ids.find(p => p.policy === 'public')
+      return {
+        id: asset.id,
+        playbackId: playback.id,
+      }
+    })
+  )
 
   return {
     props: {
       eventsData,
       eventHighlights,
     },
-  };
+  }
 }
+
+
+
 
 
 
