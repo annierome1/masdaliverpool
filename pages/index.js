@@ -7,7 +7,7 @@ import Footer from '../components/Footer'
 import styles from '../styles/components/home.module.css'
 import buttonStyles from '../styles/components/buttons.module.scss'
 import '@mux/mux-player'              
-import Mux from '@mux/mux-node'
+
 
 export async function getStaticProps() {
   // build a Basic Auth header
