@@ -1,6 +1,7 @@
 import { Roboto } from 'next/font/google';
 import { Cinzel } from 'next/font/google';
 import "../styles/global.css"
+import '@mux/mux-player' 
 
 const roboto = Roboto({
   subsets: ['latin'],
