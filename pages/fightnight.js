@@ -67,34 +67,31 @@ export default function EventsPage({ eventsData, eventHighlights }) {
   const videoRefs = useRef([])
   const wrapperRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(false)
+ 
+    useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.5 }
+    )
+    if (wrapperRef.current) observer.observe(wrapperRef.current)
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
     videoRefs.current.forEach((video, idx) => {
-      if (!video) return;
-      if (idx === activeIndex) {
-        video.play().catch(() => {});
+      if (!video) return
+      if (idx === activeIndex && isVisible) {
+        video.play().catch(() => {})
       } else {
-        video.pause();
-        video.currentTime = 0;
+        video.pause()
+        video.currentTime = 0
       }
-    });
-  }, [activeIndex]);
+    })
+  }, [activeIndex, isVisible])
 
-    useEffect(() => {
-    videoRefs.current.forEach((video, idx) => {
-      if (!video) return;
-      if (idx === activeIndex) {
-        video.play().catch(() => {});
-      } else {
-        video.pause();
-        video.currentTime = 0;
-      }
-    });
-  }, [activeIndex]);
-
-    const prev = () => setActiveIndex((i) => Math.max(0, i - 1));
-  const next = () => setActiveIndex((i) => Math.min(eventHighlights.length - 1, i + 1));
-
+  const prev = () => setActiveIndex((i) => Math.max(0, i - 1))
+  const next = () => setActiveIndex((i) => Math.min(eventHighlights.length - 1, i + 1))
 
 
   return (
