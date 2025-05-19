@@ -1,10 +1,66 @@
-import Head from 'next/head';
-import Link from 'next/link';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import styles from '../styles/components/gym.module.css';
+// pages/thegym.js
+import '@mux/mux-player'                  // register the web component
+import Head from 'next/head'
+import Link from 'next/link'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
+import React, { useEffect, useRef, useState } from 'react'
+import styles from '../styles/components/gym.module.css'
 
-export default function TheGymPage() {
+
+export async function getStaticProps() {
+  // 1) Either read from an env var, or hard-code your list:
+  const ASSET_IDS = [
+        'slNSLju6YFQUrh019BadGqmq5ZcQZIugLRLUJilmUt300',
+        'sIK02GZv4y3IzniD7tgQnFvt02rmh5GSjsohjRwPM00DKg',
+        'EKoDKeX93015Yz2kVAXPc79vpB5u4IsvH7KKRMLDdvGk',
+        'hUZ9j63tBx902zfab6CeDiQmDlh014CPOv00HxmwbzvG2g',
+        'cdE8f2ePjFpH00OlYasnegJaFUl9uS019zYfchd1oioHE',
+
+      ];
+
+ 
+  // 2) Build your Basic Auth header
+  const auth = Buffer.from(
+    `${process.env.MUX_TOKEN_ID}:${process.env.MUX_TOKEN_SECRET}`
+  ).toString('base64')
+// 3) Fetch each asset’s public playback ID
+  const gymPlaybackIds = await Promise.all(
+    ASSET_IDS.map(async (assetId) => {
+      const res = await fetch(
+        `https://api.mux.com/video/v1/assets/${assetId}`,
+        {
+          headers: {
+            Authorization: `Basic ${auth}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+      if (!res.ok) return null
+      const { data: asset } = await res.json()
+      const pub = Array.isArray(asset.playback_ids)
+        ? asset.playback_ids.find((p) => p.policy === 'public')
+        : null
+      return pub?.id ?? null
+    })
+  ).then((ids) => ids.filter(Boolean)) // drop any nulls
+
+  return {
+    props: { gymPlaybackIds },
+    revalidate: 60,
+  }
+}
+
+export default function TheGymPage({ gymPlaybackIds }) {
+  const playersRef = useRef([])
+  const [ready, setReady] = useState(false)
+
+  // once mounted, mark videos ready and start playback
+  useEffect(() => {
+    setReady(true)
+    playersRef.current.forEach((p) => p?.play().catch(() => {}))
+  }, [])
+
   return (
     <>
       <Head>
@@ -19,15 +75,36 @@ export default function TheGymPage() {
 
       {/* Hero Section */}
       <div className={styles.heroSection}>
+        <div className={styles.videoContainer}>
+          {gymPlaybackIds.map((pid, idx) => (
+            <mux-player
+              key={pid}
+              ref={(el) => (playersRef.current[idx] = el)}
+              className={`${styles.videoBg} ${ready ? styles.videoVisible : ''}`}
+              playback-id={pid}
+              stream-type="on-demand"
+              autoplay
+              loop
+              muted
+              playsinline
+              controls={false}
+              preload="metadata"
+            />
+          ))}
+        </div>
+
         <div className={styles.heroOverlay}>
-          <h1 className={styles.heroTitle}>Welcome to Our World-Class Facility</h1>
+          <h1 className={styles.heroTitle}>
+            Welcome to Our World-Class Facility
+          </h1>
           <p className={styles.heroSubtitle}>
             Experience training in a state-of-the-art facility designed for fighters of all levels.
           </p>
-          <Link  href="/classes" className={styles.heroButton}>Start Your Journey</Link>
+          <Link href="/classes" className={styles.ctaButton}>
+            Start Your Journey
+          </Link>
         </div>
       </div>
-
       <main className={styles.mainContent}>
         {/* Facility Section */}
         <section className={styles.facilitySection}>
@@ -82,52 +159,6 @@ export default function TheGymPage() {
               <p>
               The Clinic aims to help and guide those looking for better health and wellbeing, and we have a broad range of treatment options to assist in most conditions.
               </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Equipment Section */}
-        <section className={styles.equipmentSection}>
-          <h2>Our Equipment</h2>
-          <div className={styles.equipmentGrid}>
-            {/* Card 1 */}
-            <div className={styles.equipmentCard}>
-              <img
-                src="/thegym/professional-ring.jpg"
-                alt="Professional Ring"
-                className={styles.cardImage}
-              />
-              <h3>Professional Ring</h3>
-            </div>
-
-            {/* Card 2 */}
-            <div className={styles.equipmentCard}>
-              <img
-                src="/thegym/heavy-bags.jpg"
-                alt="Heavy Bags"
-                className={styles.cardImage}
-              />
-              <h3>Heavy Bags</h3>
-            </div>
-
-            {/* Card 3 */}
-            <div className={styles.equipmentCard}>
-              <img
-                src="/thegym/full-size-cage.jpg"
-                alt="Full-Size Cage"
-                className={styles.cardImage}
-              />
-              <h3>Full-Size Cage</h3>
-            </div>
-
-            {/* Card 4 */}
-            <div className={styles.equipmentCard}>
-              <img
-                src="/thegym/pad-station.jpg"
-                alt="Pad Station"
-                className={styles.cardImage}
-              />
-              <h3>Pad Station</h3>
             </div>
           </div>
         </section>

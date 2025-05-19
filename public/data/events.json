@@ -11,10 +11,10 @@
       },
       {
         "id": "event2",
-        "title": "Women's Fight Night",
+        "title": "Masda Fight Night",
         "date": "June 10",
         "description": "A special evening showcasing the top female MMA fighters.",
-        "image": "/events/womens-fight-night.jpg",
+        "image": "/events/fightnight_1.jpg",
         "link": "#",
         "buttonText": "Get Tickets"
       }

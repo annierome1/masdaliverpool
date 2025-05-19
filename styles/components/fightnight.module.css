@@ -138,8 +138,8 @@
 .carouselWrapper {
   display: flex;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;          /* enable snap */
-  -webkit-overflow-scrolling: touch;       /* smooth on iOS */
+  scroll-snap-type: x mandatory;          
+  -webkit-overflow-scrolling: touch;       
   gap: 1.5rem;
   padding: 0.5rem 0;
 }
@@ -192,7 +192,7 @@
 .arrowButton {
   background: none;
   border: none;
-  font-size: 2rem;
+  font-size: 4rem;
   color: #e53e3e;
   cursor: pointer;
   padding: 0 0.5rem;
