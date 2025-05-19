@@ -9,7 +9,6 @@ import {
   FaMapMarkerAlt,
   FaFacebookF,
   FaInstagram,
-  FaTiktok,
   FaYoutube,
   FaPaperPlane
 } from 'react-icons/fa'
