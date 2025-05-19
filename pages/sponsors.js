@@ -60,7 +60,6 @@ export default function SponsorsPage() {
             <p>Providing health and recovery support for our athletes.</p>
           </div>
 
-          {/* Add more sponsors below as needed */}
         </section>
       </main>
 

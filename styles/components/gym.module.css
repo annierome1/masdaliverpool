@@ -197,14 +197,3 @@
     background-color: #c53030;
   }
   
-mux-player::part(control-bar),
-mux-player::part(control-overlay),
-mux-player::part(play-control),
-mux-player::part(time-range),
-mux-player::part(progress-bar),
-mux-player::part(fullscreen-control),
-mux-player::part(mute-control),
-mux-player::part(captions-control),
-mux-player::part(volume-control) {
-  display: none !important;
-}

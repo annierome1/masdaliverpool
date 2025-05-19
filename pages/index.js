@@ -29,20 +29,17 @@ export default function Home({ homepagePlaybackId }) {
   const playerRef = useRef(null)
   const [showVideo, setShowVideo] = useState(false)
 
-  // 1️⃣ Reveal video after 1s
   useEffect(() => {
     const t = setTimeout(() => setShowVideo(true), 1000)
     return () => clearTimeout(t)
   }, [])
 
-  // 2️⃣ Auto-play when revealed
   useEffect(() => {
     if (showVideo && playerRef.current) {
       playerRef.current.play().catch(() => {})
     }
   }, [showVideo])
 
-  // 3️⃣ Space bar toggles play/pause
   useEffect(() => {
     const onKey = (e) => {
       if (e.code === 'Space') {
@@ -88,7 +85,6 @@ export default function Home({ homepagePlaybackId }) {
           />
 
         <div className={styles.overlay} />
-        {/* your content goes on top */}
         <div className={styles.content}>
           <h1>MASDA GYM LIVERPOOL</h1>
           <p>Train Hard. Fight Smart. Elevate.</p>

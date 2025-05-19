@@ -1,5 +1,5 @@
 // pages/thegym.js
-import '@mux/mux-player'                  // register the web component
+import '@mux/mux-player'            
 import Head from 'next/head'
 import Link from 'next/link'
 import Header from '../components/Header'
@@ -9,7 +9,7 @@ import styles from '../styles/components/gym.module.css'
 
 
 export async function getStaticProps() {
-  // 1) Either read from an env var, or hard-code your list:
+
   const ASSET_IDS = [
         'slNSLju6YFQUrh019BadGqmq5ZcQZIugLRLUJilmUt300',
         'sIK02GZv4y3IzniD7tgQnFvt02rmh5GSjsohjRwPM00DKg',
@@ -20,11 +20,11 @@ export async function getStaticProps() {
       ];
 
  
-  // 2) Build your Basic Auth header
+
   const auth = Buffer.from(
     `${process.env.MUX_TOKEN_ID}:${process.env.MUX_TOKEN_SECRET}`
   ).toString('base64')
-// 3) Fetch each asset’s public playback ID
+
   const gymPlaybackIds = await Promise.all(
     ASSET_IDS.map(async (assetId) => {
       const res = await fetch(

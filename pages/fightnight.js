@@ -12,24 +12,20 @@ import '@mux/mux-player';
 
 
 export async function getStaticProps() {
-  // --- 1) Load your local events JSON ---
   const filePath = path.join(process.cwd(), 'public', 'data', 'events.json')
   const raw       = fs.readFileSync(filePath, 'utf8')
   const eventsData = JSON.parse(raw)
 
-  // --- 2) The exact Asset IDs you want in your carousel ---
   const ASSET_IDS = [
     'zhS01F02IEgn0002lrF02teN49RClPKmZE352k6uF194b02hs',
     'sfQUYGzTA1ZM4SExer1JehNBb2HIENyoClS1Tvj1sYM',
     'XGNhVi7vjJIUdnSJCRgLg01zLniRPXZD5jwI4zC02YZ900',
   ]
 
-  // --- 3) Build a Basic Auth header from your env vars ---
   const token = Buffer.from(
     `${process.env.MUX_TOKEN_ID}:${process.env.MUX_TOKEN_SECRET}`
   ).toString('base64')
 
-  // --- 4) Fetch each asset → extract its public playback ID ---
   const eventHighlights = await Promise.all(
     ASSET_IDS.map(async (assetId) => {
       const res = await fetch(
@@ -142,8 +138,8 @@ export default function EventsPage({ eventsData, eventHighlights }) {
           </div>
         </section>
 
-        {/* Event Highlights (autoplay on scroll) */}
-<section className={styles.eventHighlights}>
+
+    <section className={styles.eventHighlights}>
           <h2>Highlight Reel</h2>
 
           <div className={styles.carouselContainer}>
@@ -161,13 +157,11 @@ export default function EventsPage({ eventsData, eventHighlights }) {
                   onClick={() => setActiveIndex(index)}
                 >
                   <div className={styles.videoWrapper}>
-                    {/* just swapped in your Mux HLS URL here */}
                     <mux-player
                       ref={(el) => (videoRefs.current[index] = el)}
                       src={`https://stream.mux.com/${highlight.playbackId}.m3u8`}
                       controls
                       preload="metadata"
-                      muted
                       className={styles.videoPlayer}
                     />
                   </div>
