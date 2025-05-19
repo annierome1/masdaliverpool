@@ -1,6 +1,6 @@
 // pages/index.js
 import Head from 'next/head'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -10,48 +10,49 @@ import '@mux/mux-player'
 
 
 export async function getStaticProps() {
-  // build a Basic Auth header
   const auth = Buffer.from(
     `${process.env.MUX_TOKEN_ID}:${process.env.MUX_TOKEN_SECRET}`
   ).toString('base64')
 
-  // call the Mux Assets API directly
   const res = await fetch(
     `https://api.mux.com/video/v1/assets/${process.env.ASSET_ID}`,
     { headers: { Authorization: `Basic ${auth}` } }
   )
   const { data: asset } = await res.json()
-  const homepagePlaybackId = asset.playback_ids[0].id
-
   return {
-    props: { homepagePlaybackId },
+    props: { homepagePlaybackId: asset.playback_ids[0].id },
     revalidate: 60,
   }
 }
+
 export default function Home({ homepagePlaybackId }) {
   const playerRef = useRef(null)
+  const [showVideo, setShowVideo] = useState(false)
 
+  // after 1 second, reveal the video
   useEffect(() => {
-    const player = playerRef.current
-    if (player) {
-      // ensure the player starts immediately
-      player.autoplay = true
-      player.play().catch(() => {
-        /* play might be blocked until user gesture; error is expected */
-      })
-    }
+    const t = setTimeout(() => setShowVideo(true), 400)
+    return () => clearTimeout(t)
+  }, [])
 
-    const handleKey = (e) => {
+  // when it’s time to show it, start playback
+  useEffect(() => {
+    if (showVideo && playerRef.current) {
+      playerRef.current.play().catch(() => {})
+    }
+  }, [showVideo])
+
+  // space bar toggles play/pause
+  useEffect(() => {
+    const onKey = (e) => {
       if (e.code === 'Space') {
         e.preventDefault()
-        if (player) {
-          if (player.paused) player.play()
-          else player.pause()
-        }
+        const p = playerRef.current
+        if (p) p.paused ? p.play() : p.pause()
       }
     }
-    window.addEventListener('keydown', handleKey)
-    return () => window.removeEventListener('keydown', handleKey)
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
   }, [])
   return (
     <>
@@ -68,15 +69,16 @@ export default function Home({ homepagePlaybackId }) {
       <main className={styles.main}>
         {/* video background */}
           <mux-player
-          ref={playerRef}
-          class={styles.videoBg}
-          playback-id={homepagePlaybackId}
-          stream-type="on-demand"
-          autoplay
-          loop
-          muted
-          playsinline
-        />
+            ref={playerRef}
+            className={`${styles.videoBg} ${showVideo ? styles.videoVisible : ''}`}
+            playback-id={homepagePlaybackId}
+            stream-type="on-demand"
+            autoplay
+            loop
+            muted
+            playsinline
+          />
+
         <div className={styles.overlay} />
         {/* your content goes on top */}
         <div className={styles.content}>

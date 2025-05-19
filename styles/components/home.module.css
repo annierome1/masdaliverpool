@@ -16,8 +16,22 @@
   min-height: 100%;
   transform: translate(-50%, -50%);
   object-fit: cover;  
-  z-index: -1;       
+  z-index: -1;  
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;  
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;   
 }
+
+
+.videoVisible {
+  opacity: 1;
+}
+
+.videoHidden {
+  opacity: 0;
+}
+
 .overlay {
   position: absolute;
   top: 0; left: 0;
