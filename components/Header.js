@@ -31,16 +31,6 @@ export default function Header() {
               Classes
             </Link>
           </li>
-         { /*
-          <li>
-            <Link
-              href="/events"
-              className={`${styles.link} ${currentPath === '/events' ? styles.active : ''}`}
-            >
-              Events
-            </Link>
-          </li>
-          */}
           <li>
             <Link
               href="/fightnight"
@@ -63,6 +53,14 @@ export default function Header() {
               className={`${styles.link} ${currentPath === '/sponsors' ? styles.active : ''}`}
             >
               Sponsors
+            </Link>
+          </li>
+                    <li>
+            <Link
+              href="/foundation"
+              className={`${styles.link} ${currentPath === '/foundation' ? styles.active : ''}`}
+            >
+              Fighter Foundation
             </Link>
           </li>
           <li>

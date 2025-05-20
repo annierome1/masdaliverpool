@@ -1,6 +1,18 @@
 
 [
   {
+    "id": 0,
+    "name": "Alex",
+    "role": "Head Coach",
+    "image": "/team/alex.jpeg",
+    "bio": "BIO",
+    "social": {
+
+      "instagram": "https://www.instagram.com/masdagym/",
+        "tikotk": " "
+    }
+  },
+  {
     "id": 1,
     "name": "Alfie",
     "role": "Lightweight Fighter",

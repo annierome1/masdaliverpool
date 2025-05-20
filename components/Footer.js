@@ -37,14 +37,6 @@ export default function Footer() {
           <p className={styles.tagline}>
             Train Hard. Fight Smart. Elevate.
           </p>
-          <Link
-            href="/masdabrouchurerev4.pdf"
-            className={styles.foundationLink}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            A Fighter Foundation
-          </Link>
         </div>
 
         {/* Social Icons */}
