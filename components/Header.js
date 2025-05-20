@@ -57,11 +57,13 @@ export default function Header() {
           </li>
                     <li>
             <Link
-              href="/foundation"
-              className={`${styles.link} ${currentPath === '/foundation' ? styles.active : ''}`}
-            >
-              Fighter Foundation
-            </Link>
+            href="https://pdfwebsite.s3.us-east-2.amazonaws.com/masdabrouchurer.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Fighter Foundation
+          </Link>
+
           </li>
           <li>
             <Link
