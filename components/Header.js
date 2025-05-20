@@ -59,6 +59,7 @@ export default function Header() {
             <Link
             href="https://pdfwebsite.s3.us-east-2.amazonaws.com/masdabrouchurer.pdf"
             target="_blank"
+            className={styles.nav}
             rel="noopener noreferrer"
           >
             Fighter Foundation
