@@ -48,7 +48,6 @@ export default function TeamPage() {
 
           <h3>{member.name}</h3>
           <p className={styles.indivRole}>{member.role}</p>
-          <p className={styles.indivBio}>{member.bio}</p>
 
                 {/* Social icons */}
                 <div className={styles.socialIcons}>

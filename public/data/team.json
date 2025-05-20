@@ -7,9 +7,9 @@
     "image": "/team/alfie_pic.jpg",
     "bio": "BIO",
     "social": {
-      "facebook": "https://facebook.com/alfie.smith",
-      "instagram": "https://instagram.com/thehammer_alfie",
-      "twitter": "https://twitter.com/alfie_hammer"
+
+      "instagram": "https://www.instagram.com/alfiepono_masda/",
+        "tikotk": " "
     }
   },
   {
@@ -19,8 +19,119 @@
     "image": "/team/owen_gillis.jpeg",
     "bio": "Bio.",
     "social": {
-      "instagram": "https://instagram.com/sarah.strikes",
-      "twitter": "https://twitter.com/sarah_martinez"
+      "instagram": "https://www.instagram.com/owengillis_masda/",
+       "tikotk": " "
+      
+    }
+  },
+  {
+    "id": 3,
+    "name": "Marc Campbell",
+    "role": "Weight Class",
+    "image": "/team/marc_campbell.jpg",
+    "bio": "Bio.",
+    "social": {
+      "instagram": "https://www.instagram.com/marccampbell_masda/",
+       "tikotk": " "
+      
+    }
+  },
+  {
+    "id": 4,
+    "name": "Hassan Imran",
+    "role": "Weight Class",
+    "image": "/team/hassan_I.jpg",
+    "bio": "Bio.",
+    "social": {
+      "instagram": "https://www.instagram.com/hassanimran_masda/",
+       "tikotk": " "
+      
+    }
+  },
+   {
+    "id": 5,
+    "name": "Josh Duncan",
+    "role": "Weight Class",
+    "image": "/team/josh_duncan.jpeg",
+    "bio": "Bio.",
+    "social": {
+      "instagram": "https://www.instagram.com/joshduncan44_masda/",
+       "tikotk": " "
+      
+    }
+  },
+     {
+    "id": 6,
+    "name": "Kenny Carey",
+    "role": "Weight Class",
+    "image": "/team/kenny.jpg",
+    "bio": "Bio.",
+    "social": {
+      "instagram": "https://www.instagram.com/kennycarey_masda/",
+       "tikotk": " "
+      
+    }
+  },
+  {
+    "id": 7,
+    "name": "Jack Garcia",
+    "role": "Weight Class",
+    "image": "/team/jack_garcia.jpeg",
+    "bio": "Bio.",
+    "social": {
+      "instagram": "https://www.instagram.com/jackgarcia_masda/",
+       "tikotk": " "
+      
+    }
+  },
+  {
+    "id": 7,
+    "name": "Lennon Goldby",
+    "role": "Weight Class",
+    "image": "/team/lennon.jpg",
+    "bio": "Bio.",
+    "social": {
+      "instagram": "https://www.instagram.com/lennongoldby_masda/",
+       "tikotk": " "
+      
+    }
+  },
+  {
+    "id": 8,
+    "name": "Jacob Charnock",
+    "role": "Weight Class",
+    "image": "/team/jacob_char.jpg",
+    "bio": "Bio.",
+    "social": {
+      "instagram": "https://www.instagram.com/jacobcharnock_masda/",
+       "tikotk": " "
+      
+    }
+  },
+  {
+    "id": 9,
+    "name": "Harrison Caldwell",
+    "role": "Weight Class",
+    "image": "/team/harrison_cald.jpg",
+    "bio": "Bio.",
+    "social": {
+      "instagram": "https://www.instagram.com/hcaldwell_masda/",
+       "tikotk": " "
+      
+    }
+  },
+    {
+    "id": 10,
+    "name": "Jackson Brennan",
+    "role": "Weight Class",
+    "image": "/team/jbrennan.jpg",
+    "bio": "Bio.",
+    "social": {
+      "instagram": "https://www.instagram.com/jbrennan_masda/",
+       "tikotk": " "
+      
     }
   }
+
+
 ]

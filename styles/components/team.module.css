@@ -135,14 +135,15 @@
 .socialIcons {
   display: flex;
   gap: 0.75rem;
-  margin-top: 0.75rem;
+  margin-top: 1.5rem;
   justify-content: center; 
 }
 
 .socialIcons a {
-  font-size: 1.2rem;
+  font-size: 1.75rem;
   color: #fff;
   transition: color 0.2s;
+  margin-bottom: 0rem;
 }
 
 .socialIcons a:hover {
