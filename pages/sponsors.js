@@ -26,7 +26,7 @@ export default function SponsorsPage() {
           {/* Repeat this card for each sponsor */}
           <div className={styles.sponsorCard}>
             <img
-              src="/sponsors/B&B_logo.png"
+              src="/sponsors/brick_barn.png"
               alt="Brick & Barn"
               style={{
                 width: '300px',

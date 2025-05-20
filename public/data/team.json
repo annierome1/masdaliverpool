@@ -131,6 +131,30 @@
        "tikotk": " "
       
     }
+  },
+     {
+    "id": 11,
+    "name": "Michael Lynch",
+    "role": "Weight Class",
+    "image": "/team/michael_lynch.jpg",
+    "bio": "Bio.",
+    "social": {
+      "instagram": "https://www.instagram.com/lynch_masda/",
+       "tikotk": " "
+      
+    }
+  },
+     {
+    "id": 12,
+    "name": "Fin Mueller",
+    "role": "Weight Class",
+    "image": "/team/finn.jpg",
+    "bio": "Bio.",
+    "social": {
+      "instagram": "https://www.instagram.com/finmueller_/",
+       "tikotk": " "
+      
+    }
   }
 
 
