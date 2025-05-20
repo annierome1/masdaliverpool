@@ -2,7 +2,7 @@
 [
   {
     "id": 0,
-    "name": "Alex",
+    "name": "Alex Forman",
     "role": "Head Coach",
     "image": "/team/alex.jpeg",
     "bio": "BIO",
@@ -14,7 +14,7 @@
   },
   {
     "id": 1,
-    "name": "Alfie",
+    "name": "Alfie Ponting",
     "role": "Lightweight Fighter",
     "image": "/team/alfie_pic.jpg",
     "bio": "BIO",
