@@ -55,16 +55,15 @@ export default function Header() {
               Sponsors
             </Link>
           </li>
-                    <li>
+           <li>
             <Link
             href="https://pdfwebsite.s3.us-east-2.amazonaws.com/masdabrouchurer.pdf"
             target="_blank"
-            className={styles.nav}
+            className={styles.link}
             rel="noopener noreferrer"
           >
             Fighter Foundation
           </Link>
-
           </li>
           <li>
             <Link
