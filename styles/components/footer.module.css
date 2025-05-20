@@ -89,14 +89,17 @@
 .foundationLink {
   margin-top: 0.5rem;
   display: inline-block;
-  color: #a0aec0;
+  color: #fff;
   text-decoration: none;
-  font-size: 0.95rem;
+  font-size: 1.25rem;
+  font-weight: bold;
   transition: color 0.2s ease;
+  margin-top: 2rem;
 }
 
+
 .foundationLink:hover {
-  color: #fff;
+  color: #a0aec0;
 }
 /* Bottom Bar */
 .footerBottom {
