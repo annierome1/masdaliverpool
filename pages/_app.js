@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { Roboto } from 'next/font/google';
 import { Cinzel } from 'next/font/google';
 import "../styles/global.css"
@@ -17,8 +18,19 @@ const cinzel = Cinzel({
 
 export default function App({ Component, pageProps }) {
   return (
-    <div className={`${roboto.variable} ${cinzel.variable}`}>
-      <Component {...pageProps} />
-    </div>
-  );
+    <>
+      <Head>
+        <link
+          rel="prefetch"
+          href="https://pdfwebsite.s3.us-east-2.amazonaws.com/masdabrouchurer.pdf"
+          as="document"
+          crossOrigin="anonymous"
+        />
+      </Head>
+
+      <div className={`${roboto.variable} ${cinzel.variable}`}>
+        <Component {...pageProps} />
+      </div>
+    </>
+  )
 }
