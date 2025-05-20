@@ -13,16 +13,20 @@ export default function Footer() {
           <h3>Quick Links</h3>
           <ul className={styles.linkList}>
             
+              <Link href="/team" className={styles.link}>
+                Team
+              </Link>
+
               <Link href="/classes" className={styles.link}>
                 Classes
               </Link>
 
-              <Link href="/pricing" className={styles.link}>
-                Pricing
+              <Link href="/sponsors" className={styles.link}>
+                Sponsors
               </Link>
 
-              <Link href="/contact" className={styles.link}>
-                Contact
+              <Link href="/Contact Us" className={styles.link}>
+                Contact Us
               </Link>
           </ul>
         </div>
