@@ -43,9 +43,7 @@
     transition: transform 0.2s;
   }
   
-  .sponsorCard:hover {
-    transform: translateY(-4px);
-  }
+
   
   .sponsorCard img {
     width: 100%;

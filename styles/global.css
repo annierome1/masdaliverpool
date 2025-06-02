@@ -3,6 +3,7 @@ body {
     background-color: #000;
     color: #fff;
     font-family: var(--font-cinzel);
+    overflow-x: hidden;
   }
 
   :root {

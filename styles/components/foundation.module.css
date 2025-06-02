@@ -1,0 +1,84 @@
+/* styles/components/foundation.module.css */
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: sans-serif;
+}
+
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.nav {
+  margin-bottom: 2rem;
+}
+
+.navList {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navItem {
+  /* empty on purpose—hook for future */
+}
+
+.navLink {
+  text-decoration: none;
+  color: #0070f3;
+}
+
+.navLink:hover {
+  text-decoration: underline;
+}
+
+.section {
+  margin-bottom: 2rem;
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.sectionSubtitle {
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.article {
+  margin-bottom: 1rem;
+}
+
+.articleTitle {
+  font-size: 1.25rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.text {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.list {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.footerText {
+  font-size: 0.9rem;
+  color: #666;
+}

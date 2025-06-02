@@ -2,14 +2,14 @@
 .heroSection {
   position: relative;
   width: 100%;
-  height: 400px;          
-  background: url('/team/masda_team.jpg') no-repeat center top;
+  height: 550px;          
+  background: url('/team/team_wide.jpg') no-repeat center;
   background-size: cover;             
   font-family: var(--font-cinzel);
 }
 
 .heroWrapper {
-  width: 60%;                     
+  width: 100%;                     
   height: 100%;                      
   margin: 0 auto;                
 }
@@ -20,7 +20,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.4);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -40,7 +40,7 @@
   .heroSubtitle {
     font-size: 1.2rem;
     max-width: 600px;
-    margin-bottom: 13rem;
+    margin-bottom: 7rem;
     text-align: center;
     
   }
@@ -93,7 +93,14 @@
     padding: 1rem;
     text-align: center;
     height: 550px;
+    transition: transform 0.3s, box-shadow 0.2s;
+    cursor: pointer;
   }
+
+  .teamCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
   
  .imageWrapper {
   position: relative;
@@ -135,7 +142,7 @@
 .socialIcons {
   display: flex;
   gap: 0.75rem;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   justify-content: center; 
 }
 
@@ -148,4 +155,16 @@
 
 .socialIcons a:hover {
   color: #e53e3e;
+}
+.blurBackground {
+  filter: blur(4px);
+  pointer-events: none;
+  user-select: none;
+}
+
+.moreInfo {
+  margin-top: 0rem;
+  font-size: 0.85rem;
+  color: #777;
+  font-style: italic;
 }

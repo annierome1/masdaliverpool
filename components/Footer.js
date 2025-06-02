@@ -24,9 +24,13 @@ export default function Footer() {
               <Link href="/sponsors" className={styles.link}>
                 Sponsors
               </Link>
+             
 
               <Link href="/Contact Us" className={styles.link}>
                 Contact Us
+              </Link>
+               <Link href="/news_social" className={styles.link}>
+                News & Social
               </Link>
           </ul>
         </div>

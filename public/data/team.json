@@ -18,8 +18,19 @@
     "role": "Lightweight Fighter",
     "image": "/team/alfie_pic.jpg",
     "bio": "BIO",
+    "gallery": [
+    "/team/alfie/alfie_gal_1.jpg",
+    "/team/alfie/alfie_gal_2.jpg",
+    "/team/alfie/alfie_gal_3.jpg",
+    "/team/alfie/alfie_gal_4.jpg"
+  ],
+  "accomplishments": [
+    "WBC Muay Thai National Champion",
+    "Trained 3 amateur champions",
+    "Over 50 fights professionally",
+    "Cornered fighters in Lumpinee Stadium"
+  ],
     "social": {
-
       "instagram": "https://www.instagram.com/alfiepono_masda/",
         "tikotk": " "
     }
@@ -40,7 +51,7 @@
     "id": 3,
     "name": "Marc Campbell",
     "role": "Weight Class",
-    "image": "/team/marc_campbell.jpg",
+    "image": "/team/marc_new.jpeg",
     "bio": "Bio.",
     "social": {
       "instagram": "https://www.instagram.com/marccampbell_masda/",
@@ -76,7 +87,7 @@
     "id": 6,
     "name": "Kenny Carey",
     "role": "Weight Class",
-    "image": "/team/kenny.jpg",
+    "image": "/team/kenny_new.jpeg",
     "bio": "Bio.",
     "social": {
       "instagram": "https://www.instagram.com/kennycarey_masda/",
