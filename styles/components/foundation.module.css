@@ -1,84 +1,162 @@
-/* styles/components/foundation.module.css */
+/* foundation.module.css */
 
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-family: sans-serif;
+.main {
+  background-color: #222;
+  color: #222;
+  font-family: var(--font-cinzel);
+  line-height: 1.6;
 }
 
-.title {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.nav {
-  margin-bottom: 2rem;
-}
-
-.navList {
+/* ── Hero Section ── */
+.heroSection {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  background: url('/foundation/hero-bg.jpg') center/cover no-repeat;
   display: flex;
-  gap: 1rem;
-  list-style: none;
-  padding: 0;
+  align-items: center;
+  justify-content: center;
+}
+.heroOverlay {
+  text-align: center;
+  border-radius: 8px;
+}
+.heroTitle {
+  color: #fff;
+  font-size: 2.5rem;
   margin: 0;
 }
-
-.navItem {
-  /* empty on purpose—hook for future */
+.heroSubtitle {
+  color: #e53e3e; /* gold accent */
+  font-size: 1.25rem;
+  margin-top: 0.5rem;
 }
 
-.navLink {
-  text-decoration: none;
-  color: #0070f3;
-}
-
-.navLink:hover {
-  text-decoration: underline;
-}
-
+/* Common Section Styles */
 .section {
-  margin-bottom: 2rem;
+  padding: 1rem 1rem;
+  color: #e53e3e;
 }
-
-.sectionTitle {
+.sectionAlt {
+  background-color: #333;
+  padding: 4rem 1rem;
+}
+.sectionHeading {
+  text-align: center;
   font-size: 2rem;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  position: relative;
+  color: white;
+}
+.sectionHeading::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #e53e3e;
+  margin: 0.5rem auto 0;
 }
 
-.sectionSubtitle {
+/* Text Blocks */
+.textBlock {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.textBlock h3 {
   font-size: 1.5rem;
   margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: #e53e3e;
+}
+.textBlock p {
+  margin-bottom: 1rem;
+  color: white;
+}
+.bulletList {
+  list-style: disc inside;
+  margin-left: 1rem;
+  color: white;
+}
+.bulletList li {
   margin-bottom: 0.5rem;
 }
 
-.article {
-  margin-bottom: 1rem;
+
+/* Two-Column Layout with Image */
+.textAndImage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+@media (min-width: 768px) {
+  .textAndImage {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+  }
+}
+.imageWrapper {
+  margin-right: 5rem;
+  flex: 1;
+  max-width: 400px;
+}
+.imageWrapperCP{
+  flex: 1;
+  max-width: 400px;
+  margin-left: 8rem;
+
+}
+.sectionImage {
+  width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
 }
 
-.articleTitle {
-  font-size: 1.25rem;
-  margin-top: 1rem;
+/* Programs Grid */
+.programsGrid {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+@media (min-width: 640px) {
+  .programsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 1024px) {
+  .programsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.programCard {
+  background: #333;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.25rem;
+}
+.programCard h4 {
+  margin-top: 0;
   margin-bottom: 0.5rem;
+  color: #e53e3e;
+}
+.programCard p {
+  color: white;
 }
 
-.text {
-  line-height: 1.6;
-  margin-bottom: 1rem;
+/* Layout for Community & Partnerships */
+.sectionAlt .textAndImage .textBlock {
+  max-width: 500px;
 }
-
-.list {
-  margin-left: 1.5rem;
-  margin-bottom: 1rem;
+.sectionAlt .textAndImage .imageWrapper {
+  max-width: 450px;
 }
-
+.coreObjectives h3 {
+  color: #e53e3e;
+  margin-left: 3rem;
+}
+/* Footer spacing */
 .footer {
-  text-align: center;
   margin-top: 3rem;
-}
-
-.footerText {
-  font-size: 0.9rem;
-  color: #666;
 }
