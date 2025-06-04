@@ -34,13 +34,7 @@ const newsItems = [
     author: 'Liverpool Echo',
     url: 'https://www.liverpoolecho.co.uk/news/liverpool-news/teen-destined-household-name-after-29243895',
   },
-  {
-    id: 4,
-    title: 'Fighter Spotlight: Jason “The Jet” Nguyen',
-    text:
-      'Get to know our rising star Jason—his journey and upcoming bouts. You won’t want to miss his story.',
-    author: 'Gym Team',
-  },
+
 ]
 
 const instaPosts = [

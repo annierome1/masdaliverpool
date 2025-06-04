@@ -52,16 +52,17 @@
   display: block;
   width: 30%;
   height: 3px;
-  background: #4650DC;
+  background: white;
+  /* background: #4650DC; */
   margin: 0.5rem auto 0;
   border-radius: 2px;
 }
 .role {
   text-align: center;
   margin-bottom: 1.5rem;
-  color: white;
+  color: #ed1c28;
   font-size: 1.2rem;
-  font-weight: bold;
+  font-weight: semi-bold;
 }
 
 .gallery {
@@ -73,8 +74,8 @@
 }
 
 .galleryImage {
-  width: 200px;
-  height: 200px;
+  width: 275px;
+  height: 225px;
   object-fit: cover;
   border-radius: 8px;
   cursor: pointer;
@@ -82,7 +83,7 @@
 }
 
 .galleryImage:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
