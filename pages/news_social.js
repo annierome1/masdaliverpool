@@ -4,7 +4,6 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import {
   FaInstagram,
-  FaCalendarAlt,
   FaUserCircle,
 } from 'react-icons/fa'
 import styles from '../styles/components/news.module.css'
