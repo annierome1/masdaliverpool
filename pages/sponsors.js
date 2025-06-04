@@ -38,12 +38,28 @@ export default function SponsorsPage() {
             />
             <h3>Brick & Barn | Compass</h3>
             <p>Helping us lay the foundation for future champions.</p>
+             <a
+      href="https://brickandbarngroup.com/agents/scott-rome"
+      target="_blank"
+      rel="noreferrer"
+      className={styles.learnMore}
+    >
+      Learn More 
+    </a>
           </div>
 
           <div className={styles.sponsorCard}>
             <img src="/sponsors/concordia_banner.jpg" alt="Concordia Clinic" />
             <h3>Concordia Clinic</h3>
             <p>Providing health and recovery support for our athletes.</p>
+            <a
+      href="https://concordiaclinic.com/"
+      target="_blank"
+      rel="noreferrer"
+      className={styles.learnMore}
+    >
+      Learn More 
+    </a>
           </div>
           <div className={styles.sponsorCard}>
             <img 
@@ -58,6 +74,14 @@ export default function SponsorsPage() {
               }}/>
             <h3>Primo Fightwear</h3>
             <p>Providing health and recovery support for our athletes.</p>
+            <a
+      href="https://www.primofightwear.com/"
+      target="_blank"
+      rel="noreferrer"
+      className={styles.learnMore}
+    >
+      Learn More 
+    </a>
           </div>
 
         </section>

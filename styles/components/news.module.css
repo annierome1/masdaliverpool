@@ -8,7 +8,7 @@
 
 /* Section titles */
 .sectionTitle {
-  font-size: 2rem;
+  font-size: 1.75rem;
   margin-bottom: 1.5rem;
   text-align: center;
 }
@@ -91,6 +91,18 @@
   font-size: 1.2rem;
   color: #48bb78;
 }
+.newsTitle a {
+  color: #fff; 
+  text-decoration: none;
+   transition: color 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+}
+
+.newsTitle a:hover {
+  color: #ed1c28; 
+  transform: scale(1.02);
+}
+
 
 /* ── Instagram Grid ── */
 .instaSection {

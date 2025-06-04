@@ -17,7 +17,7 @@
     "name": "Alfie Ponting",
     "role": "Lightweight Fighter",
     "image": "/team/alfie_pic.jpg",
-    "bio": "BIO",
+    "bio": "Sam “The Phoenix” Turner is a relentless Muay Thai fighter hailing from Liverpool, known for his lightning-fast elbows and indomitable spirit in the ring. Trained under the Masda Gym team, he has earned multiple regional titles and never shies away from a challenging opponent. Off the mats, Sam mentors young athletes and advocates for mental toughness, believing true champions rise from perseverance and passion.",
     "gallery": [
     "/team/alfie/alfie_gal_1.jpg",
     "/team/alfie/alfie_gal_2.jpg",
@@ -108,7 +108,7 @@
     }
   },
   {
-    "id": 7,
+    "id": 8,
     "name": "Lennon Goldby",
     "role": "Weight Class",
     "image": "/team/lennon.jpg",
@@ -120,7 +120,7 @@
     }
   },
   {
-    "id": 8,
+    "id": 9,
     "name": "Jacob Charnock",
     "role": "Weight Class",
     "image": "/team/jacob_char.jpg",
@@ -132,7 +132,7 @@
     }
   },
   {
-    "id": 9,
+    "id": 10,
     "name": "Harrison Caldwell",
     "role": "Weight Class",
     "image": "/team/harrison_cald.jpg",
@@ -144,7 +144,7 @@
     }
   },
     {
-    "id": 10,
+    "id": 11,
     "name": "Jackson Brennan",
     "role": "Weight Class",
     "image": "/team/jbrennan.jpg",
@@ -156,7 +156,7 @@
     }
   },
      {
-    "id": 11,
+    "id": 12,
     "name": "Michael Lynch",
     "role": "Weight Class",
     "image": "/team/michael_lynch.jpg",
@@ -168,7 +168,7 @@
     }
   },
      {
-    "id": 12,
+    "id": 13,
     "name": "Fin Mueller",
     "role": "Weight Class",
     "image": "/team/finn.jpg",

@@ -61,3 +61,17 @@
     font-size: 0.95rem;
   }
   
+.learnMore {
+  margin-top: 1rem;
+  display: inline-block;
+  color: #f5f5f5; /* or any color that fits your theme */
+  font-size: 0.95rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.learnMore:hover {
+  color: #ed1c28; /* highlight color */
+  transform: translateX(3px); /* subtle motion */
+}

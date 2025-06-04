@@ -24,60 +24,90 @@ export default function ClassesPage() {
       <Header />
 
       <div className={styles.pageContainer}>
-        {/* Membership Plans */}
-        <h1 className={styles.heading}>Membership Plans</h1>
-        <section className={styles.membershipPlans}>
-          {/* Plan 1: Class Memberships */}
-          <div className={styles.planCard}>
-            <h2 className={styles.planTitle}>Class Memberships</h2>
-            <div className={styles.subHeading}>
-              <p>Kids Membership – £40/month</p>
-              <p>Adult Membership – £60/month</p>
-            </div>
-            <ul className={styles.planFeatures}>
-              <li>Unlimited classes</li>
-              <li>3 classes per day</li>
-              <li>1 free uniform</li>
-            </ul>
-            <Link href="#" className={styles.planButton}>
-              Choose Plan
-            </Link>
-          </div>
+       <h1 className={styles.heading}>Membership Plans</h1>
+<section className={styles.membershipPlans}>
+  {/* Plan 1: Junior Membership */}
+  <div className={styles.planCard}>
+    <h2 className={styles.planTitle}>Junior Membership</h2>
+    <div className={styles.subHeading}>
+      <p>£45.00 per month</p>
+      <p>Monthly - Direct Debit</p>
+    </div>
+    <ul className={styles.planFeatures}>
+      <li>Includes 1 secondary customer (2 total)</li>
+      <li>3-month minimum commitment</li>
+      <li>1-month notice to cancel after initial 2 months</li>
+    </ul>
+    <Link href="https://simplyjoin.uk/?id=masda.membershippackagesonlinesignup" className={styles.planButton}>
+      Choose Plan
+    </Link>
+  </div>
 
-          {/* Plan 2: Gym Access */}
-          <div className={styles.planCard}>
-            <h2 className={styles.planTitle}>Gym Access</h2>
-            <div className={styles.subHeading}>
-              <p>Monthly Access</p>
-              <p>£20 / month</p>
-            </div>
-            <ul className={styles.planFeatures}>
-              <li>Full gym access</li>
-              <li>24/7</li>
-              <li>Fitness suite access</li>
-            </ul>
-            <Link href="#" className={styles.planButton}>
-              Choose Plan
-            </Link>
-          </div>
+  {/* Plan 2: Student Membership (Under 18) */}
+  <div className={styles.planCard}>
+    <h2 className={styles.planTitle}>Student Membership (Under 18)</h2>
+    <div className={styles.subHeading}>
+      <p>£60.00 per month</p>
+      <p>Monthly - Direct Debit</p>
+    </div>
+    <ul className={styles.planFeatures}>
+      <li>Includes 1 secondary customer (2 total)</li>
+      <li>3-month minimum commitment</li>
+      <li>1-month notice to cancel after initial 2 months</li>
+    </ul>
+    <Link href="https://simplyjoin.uk/?id=masda.membershippackagesonlinesignup" className={styles.planButton}>
+      Choose Plan
+    </Link>
+  </div>
 
-          {/* Plan 3: Private Sessions */}
-          <div className={styles.planCard}>
-            <h2 className={styles.planTitle}>Private Sessions</h2>
-            <div className={styles.subHeading}>
-              <p>60 Minutes</p>
-              <p>£30</p>
-            </div>
-            <ul className={styles.planFeatures}>
-              <li>One-on-one training</li>
-              <li>Available 7 days/week</li>
-              <li>24hr cancellation policy</li>
-            </ul>
-            <Link href="#" className={styles.planButton}>
-              Book Session
-            </Link>
-          </div>
-        </section>
+  {/* Plan 3: Student Membership (Over 18) */}
+  <div className={styles.planCard}>
+    <h2 className={styles.planTitle}>Student Membership (Over 18)</h2>
+    <div className={styles.subHeading}>
+      <p>£60.00 per month</p>
+      <p>Full - Card Payment</p>
+    </div>
+    <ul className={styles.planFeatures}>
+      <li>3-month minimum commitment</li>
+      <li>1-month notice to cancel after initial 2 months</li>
+    </ul>
+    <Link href="https://simplyjoin.uk/?id=masda.membershippackagesonlinesignup" className={styles.planButton}>
+      Choose Plan
+    </Link>
+  </div>
+
+  {/* Plan 4: Adult Membership */}
+  <div className={styles.planCard}>
+    <h2 className={styles.planTitle}>Adult Membership</h2>
+    <div className={styles.subHeading}>
+      <p>£70.00 per month</p>
+      <p>Monthly - Direct Debit</p>
+    </div>
+    <ul className={styles.planFeatures}>
+      <li>3-month minimum commitment</li>
+      <li>1-month notice to cancel after initial 2 months</li>
+    </ul>
+    <Link href="https://simplyjoin.uk/?id=masda.membershippackagesonlinesignup" className={styles.planButton}>
+      Choose Plan
+    </Link>
+  </div>
+
+  {/* Plan 5: Annual Membership */}
+  <div className={styles.planCard}>
+    <h2 className={styles.planTitle}>Fully Paid Annual</h2>
+    <div className={styles.subHeading}>
+      <p>£600.00 up front</p>
+      <p>12 months of adult membership</p>
+    </div>
+    <ul className={styles.planFeatures}>
+      <li>Includes 2 months discount</li>
+      <li>No recurring payments</li>
+    </ul>
+    <Link href="https://simplyjoin.uk/?id=masda.membershippackagesonlinesignup" className={styles.planButton}>
+      Choose Plan
+    </Link>
+  </div>
+</section>
 
         {/* Schedule Section */}
         <h1 className={styles.heading}>Weekly Class Schedule</h1>

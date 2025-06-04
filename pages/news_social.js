@@ -10,33 +10,33 @@ import {
 import styles from '../styles/components/news.module.css'
 
 const newsItems = [
-  {
+    {
     id: 1,
-    date: 'May 19, 2025',
-    title: 'MASDA Gym Fighters Take Over Bangkok’s Biggest Stages in Historic Week for UK Muay Thai',
+    title: 'MASDA Gym Liverpool Awarded Thai Fighter UK’s Gym of the Year 2024',
     text:
-      "MASDA Gym in Liverpool is set to make history this May, as eight of its fighters compete across the sport’s biggest global arenas in just eight days",
+      'MASDA Gym Liverpool has been awarded the prestigious UK Gym of the Year 2024 by Thai Fighter UK. Their success across such a wide range of platforms has set a new standard for excellence in the sport.',
     author: 'Fight Record',
+    url: 'https://fightrecord.co.uk/news/masda-gym-liverpool-awarded-thai-fighter-uks-gym-of-the-year-2024/',
   },
   {
     id: 2,
-    date: 'May 15, 2025',
-    title: 'New Training Gear Arrived!',
+    title: 'MASDA Gym Fighters Take Over Bangkok’s Biggest Stages in Historic Week for UK Muay Thai',
     text:
-      'Fresh gloves, pads, and wraps are now available for all members. Check out the pro shop before your next session!',
-    author: 'Sara Lee',
+      "MASDA Gym in Liverpool is set to make history, as eight of its fighters compete across the sport’s biggest global arenas in just eight days",
+    author: 'Fight Record',
+    url: 'https://fightrecord.co.uk/news/masda-gym-fighters-take-over-bangkoks-biggest-stages-in-historic-week-for-uk-muay-thai/',
   },
+
   {
     id: 3,
-    date: 'May 10, 2025',
-    title: 'Kids Muay Thai Classes Every Saturday',
+    title: 'Teen destined to be \'household name\' after becoming youngest champion',
     text:
-      'Sign up your little ones for our fun-focused, safe, and high-energy classes every Saturday 10AM!',
-    author: 'Coach May',
+      'Alfie Ponting, A passionate fighter who got off to a flying start in the art of Muay Thai boxing has become the youngest ever world champion at just 18-years-old.',
+    author: 'Liverpool Echo',
+    url: 'https://www.liverpoolecho.co.uk/news/liverpool-news/teen-destined-household-name-after-29243895',
   },
   {
     id: 4,
-    date: 'May 5, 2025',
     title: 'Fighter Spotlight: Jason “The Jet” Nguyen',
     text:
       'Get to know our rising star Jason—his journey and upcoming bouts. You won’t want to miss his story.',
@@ -98,10 +98,12 @@ export default function NewsPage() {
             {newsItems.map((item) => (
               <div key={item.id} className={styles.newsCard}>
                 <div className={styles.meta}>
-                  <FaCalendarAlt className={styles.icon} />
-                  <time>{item.date}</time>
                 </div>
-                <h3>{item.title}</h3>
+                <h3 className={styles.newsTitle}>
+                <a href={item.url} target="_blank" rel="noreferrer">
+                  {item.title}
+                </a>
+              </h3>
                 <p>{item.text}</p>
                 <div className={styles.author}>
                   <FaUserCircle className={styles.icon} />

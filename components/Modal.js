@@ -5,7 +5,8 @@ export default function Modal({ member, onClose }) {
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <button className={styles.closeButton} onClick={onClose}>✕</button>
-        <h2>{member.name}</h2>
+        <div className={styles.name}><h2>{member.name}</h2></div>
+        <div className={styles.roleWrapper}> <p className={styles.role}>{member.role}</p></div>
         <div className={styles.gallery}>
           {member.gallery?.map((img, index) => (
             <img
@@ -16,11 +17,11 @@ export default function Modal({ member, onClose }) {
             />
           ))}
         </div>
-        <p className={styles.role}>{member.role}</p>
-        <p className={styles.bio}>{member.bio}</p>
-        
+         <div className={styles.bioAccomplishmentsContainer}>
+        <div className={styles.bioWrapper}>
+        <p className={styles.bio}>{member.bio}</p></div>
           {member.accomplishments?.length > 0 && (
-            <div className={styles.accomplishmentsWrapper}>
+        <div className={styles.accomplishmentsWrapper}>
         <div className={styles.accomplishments}>
       <h3>Accomplishments</h3>
       <ul>
@@ -34,7 +35,7 @@ export default function Modal({ member, onClose }) {
   )}
 
         </div>
-      
+      </div>
     </div>
   );
 }

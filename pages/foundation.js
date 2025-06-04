@@ -28,6 +28,13 @@ export default function FoundationPage() {
           </div>
         </section>
 
+      <div className={styles.logoWrapper}>
+          <img
+            src="/masdaff_transparent.png" 
+            alt="Masda Fighter Foundation Logo"
+            className={styles.foundationLogo}
+          />
+        </div>
         {/* Mission & Vision */}
         <section className={styles.section}>
           <h2 className={styles.sectionHeading}>Mission &amp; Vision</h2>
