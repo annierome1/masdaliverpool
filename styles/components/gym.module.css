@@ -197,3 +197,70 @@
     background-color: #c53030;
   }
   
+.modalOverlay {
+  position: fixed;
+  inset: 0; /* top:0; right:0; bottom:0; left:0; */
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* ----------------------------------------
+   Modal Inner Container
+---------------------------------------- */
+.modalContent {
+  background: #222; /* match your site’s panels */
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Close Button (×) in top-right corner */
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.closeButton:hover {
+  color: #ed1c28; /* accent on hover */
+}
+
+/* Modal Image */
+.modalImageWrapper {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.modalImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Modal Title & Text */
+.modalTitle {
+  font-family: var(--font-cinzel); /* use Cinzel if you’re loading it globally */
+  font-size: 1.5rem;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.modalDesc {
+  font-size: 1rem;
+  color: #ddd;
+  line-height: 1.5;
+}

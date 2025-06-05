@@ -2,19 +2,10 @@
     "upcoming": [
       {
         "id": "event1",
-        "title": "Spring Fighter Series",
-        "date": "May 15",
-        "description": "Join us for a thrilling day of matches featuring up-and-coming fighters.",
-        "image": "/events/fighting.jpeg",
-        "link": "#",
-        "buttonText": "Get Tickets"
-      },
-      {
-        "id": "event2",
-        "title": "Masda Fight Night",
-        "date": "June 10",
-        "description": "A special evening showcasing the top female MMA fighters.",
-        "image": "/events/fightnight_1.jpg",
+        "title": "WMO SUper Lightweight British Title",
+        "date": "August 2",
+        "description": "Karl Ryan vs Rio Johsnon",
+        "image": "/events/karl_rio.jpeg",
         "link": "#",
         "buttonText": "Get Tickets"
       }
