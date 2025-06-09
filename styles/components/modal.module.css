@@ -117,20 +117,31 @@ display: flex;
   gap: 1.5rem;
 }
 
-@media (min-width: 768px) {
-  .bioAccomplishmentsContainer {
-    flex-direction: row;
-    align-items: flex-start;
-  }
 
-  .recordWrapper,
+
+
+
+/* ---------- card row ---------- */
+.record {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* (keep your existing .stat, .value, .label rules) */
+
+
+
   .accomplishmentsWrapper {
     flex: 1;
     background-color: #1a1a1a;
   border-radius: 8px;
   padding: 1.5rem;
+  width: 80%;
+  align-self: center
   }
-}
+
 
 
 
@@ -140,15 +151,6 @@ display: flex;
   line-height: 1.7;
 }
 
-.record h3 {
-    margin-top: 0rem;
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
-  color: #ccc;
-  text-align: center;
-
-
-}
 .accomplishments h3 {
     margin-top: 0rem;
   margin-bottom: 1rem;
@@ -157,8 +159,7 @@ display: flex;
   text-align: center;
 
 }
-.accomplishments h3::after,
-.record h3::after {
+.accomplishments h3::after{
   content: '';
   display: block;
   margin: 0.5rem auto 0;
@@ -168,7 +169,6 @@ display: flex;
   transition: width 0.4s ease;
 }
 
-.recordWrapper:hover h3::after,
 .accomplishmentsWrapper:hover h3::after {
   width: 50%;
 }
@@ -185,9 +185,75 @@ display: flex;
   padding: 0;
 }
 
+.recordWrapper {
+  background: #1a1a1a;
+  border-radius: 8px;
+  padding: 1.5rem;
+  width: 100%;          /* full width of modal */
+  max-width: 600px;     /* optional */
+  margin: 0 auto 2rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.recordTitle {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #ccc;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-align: center;
+}
 
 
-.record li, .accomplishments li {
+.record {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: nowrap;    /* keep them side by side */
+  width: 50%;
+}
+
+/* individual stat card */
+.stat {
+  list-style: none;
+  flex: 0 1 110px;
+  text-align: center;
+  background: #2b2b2b;
+  border-radius: 8px;
+  padding: 1rem 0.75rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease;
+}
+
+.stat:hover { transform: translateY(-4px); }
+
+/* red swipe bar */
+.stat::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #ed1c28;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+  z-index: 0;
+}
+
+.stat:hover::before { transform: scaleX(1); }
+
+/* text layers */
+.value, .label { position: relative; z-index: 1; }
+.value  { display: block; font: 700 1.9rem/1.2 var(--font-cinzel, sans-serif); color: #ccc; }
+.label  { font-size: 0.85rem; text-transform: uppercase; letter-spacing: .03em; color: #888; }
+
+
+.accomplishments li {
   position: relative; 
   background: #2b2b2b;
   border-left: 3px solid #ed1c28;
@@ -205,14 +271,8 @@ list-style: none;
   height: 1rem;
 }
 
-.record li::before {
-  content: url('/icons/medal.svg'); 
-  position: absolute;
-  left: 0.75rem;
-  top: 0.6rem;
-  width: 1rem;
-  height: 1rem;
-}
+
+
 
 
 .modal {
