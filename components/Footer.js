@@ -1,6 +1,6 @@
 // components/Footer.jsx
 import styles from '../styles/components/footer.module.css'
-import { FaInstagram, FaFacebookF, FaYoutube } from 'react-icons/fa'
+import { FaInstagram, FaFacebookF, FaYoutube, FaTiktok } from 'react-icons/fa'
 import Image from 'next/image'
 import Link from 'next/link';
 
@@ -55,6 +55,9 @@ export default function Footer() {
             </Link>
             <Link href="https://www.youtube.com/c/MasdaGymLiverpool" target="_blank" rel="noopener noreferrer">
               <FaYoutube />
+            </Link>
+            <Link href="https://www.tiktok.com/@masdagym" target="_blank" rel="noopener noreferrer">
+              <FaTiktok />
             </Link>
           </div>
         </div>

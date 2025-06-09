@@ -177,3 +177,24 @@
 .footer {
   margin-top: 3rem;
 }
+
+ .downloadWrapper {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.downloadButton {
+  background-color: #2f3490;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.downloadButton:hover {
+  background-color: #e53e3e;
+}

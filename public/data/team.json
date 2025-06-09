@@ -15,14 +15,20 @@
   {
     "id": 1,
     "name": "Alfie Ponting",
-    "role": "Lightweight Fighter",
+    "role": "Lightweight",
+    "weight": "135lbs / 61.2kg",
     "image": "/team/alfie_pic.jpg",
-    "bio": "Alfie Ponting is a rising talent at Masda Liverpool, known for his sharp technique and relentless work ethic in the ring. With a background in competitive fighting from a young age, he continues to impress coaches and spectators alike with his discipline and composure. Alfie is dedicated to pushing his limits and representing Masda with pride at every opportunity.",
     "gallery": [
       "/team/alfie/alfie_gal_2.jpg",
     "/team/alfie/alfie_gal_1.jpg",
     "/team/alfie/alfie_fight.jpeg",
     "/team/alfie/alfie_gal_4.jpg"
+  ],
+  "record": [
+    "WBC Muay Thai National Champion",
+    "Trained 3 amateur champions",
+    "Over 50 fights professionally",
+    "Cornered fighters in Lumpinee Stadium"
   ],
   "accomplishments": [
     "WBC Muay Thai National Champion",
@@ -38,9 +44,28 @@
   {
     "id": 2,
     "name": "Owen Gillis",
-    "role": "Welterweight Fighter",
+    "role": "Featherweight",
+    "weight": "126lbs / 57.1kg",
     "image": "/team/owen_gillis.jpeg",
-    "bio": "Bio.",
+    "gallery": [
+      "/team/owen/owen_fight2.jpg",
+      "/team/owen/owen_fight.jpeg",
+    "/team/owen/owen_fight1.jpeg",
+    "/team/owen/owen_fight3.jpeg"
+  ],
+    "record": [
+  "WBC Muay Thai National Title Holder",
+  "Mentored three amateur fighters to championship victories",
+  "Competed in over 50 professional Muay Thai bouts",
+  "Served as a corner coach at Lumpinee Stadium in Bangkok"
+],
+"accomplishments": [
+  "National Champion – WBC Muay Thai",
+  "Developed multiple amateur champions from the ground up",
+  "Fought professionally more than 50 times worldwide",
+  "Selected to corner athletes at the iconic Lumpinee Stadium"
+],
+
     "social": {
       "instagram": "https://www.instagram.com/owengillis_masda/",
        "tikotk": " "
@@ -50,9 +75,27 @@
   {
     "id": 3,
     "name": "Marc Campbell",
-    "role": "Weight Class",
+    "role": "Bantamweight",
+    "weight": "118lbs / 53.5kg",
     "image": "/team/marc_new.jpeg",
-    "bio": "Bio.",
+    "gallery": [
+      "/team/marc/marc_fight.jpg",
+      "/team/marc/marc_fight1.jpg",
+    "/team/marc/marc_fight2.jpg",
+    "/team/marc/marc_fight3.jpeg"
+  ],
+    "record": [
+  "WBC Muay Thai National Title Holder",
+  "Mentored three amateur fighters to championship victories",
+  "Competed in over 50 professional Muay Thai bouts",
+  "Served as a corner coach at Lumpinee Stadium in Bangkok"
+],
+"accomplishments": [
+  "National Champion – WBC Muay Thai",
+  "Developed multiple amateur champions from the ground up",
+  "Fought professionally more than 50 times worldwide",
+  "Selected to corner athletes at the iconic Lumpinee Stadium"
+],
     "social": {
       "instagram": "https://www.instagram.com/marccampbell_masda/",
        "tikotk": " "
@@ -62,9 +105,28 @@
   {
     "id": 4,
     "name": "Hassan Imran",
-    "role": "Weight Class",
+    "role": "Super Lightweight",
+    "weight": "140lbs / 63.5kg",
     "image": "/team/hassan_I.jpg",
-    "bio": "Bio.",
+    "gallery": [
+      "/team/hassan/hassan_fight5.jpg",
+      "/team/hassan/hassan_fight1.jpg",
+      "/team/hassan/hassan_fight4.jpg",
+    "/team/hassan/hassan_fight2.jpg"
+    
+  ],
+    "record": [
+  "WBC Muay Thai National Title Holder",
+  "Mentored three amateur fighters to championship victories",
+  "Competed in over 50 professional Muay Thai bouts",
+  "Served as a corner coach at Lumpinee Stadium in Bangkok"
+],
+"accomplishments": [
+  "National Champion – WBC Muay Thai",
+  "Developed multiple amateur champions from the ground up",
+  "Fought professionally more than 50 times worldwide",
+  "Selected to corner athletes at the iconic Lumpinee Stadium"
+],
     "social": {
       "instagram": "https://www.instagram.com/hassanimran_masda/",
        "tikotk": " "
@@ -74,9 +136,28 @@
    {
     "id": 5,
     "name": "Josh Duncan",
-    "role": "Weight Class",
+    "role": "Featherweight",
+    "weight": "126lbs / 57.1kg",
     "image": "/team/josh_duncan.jpeg",
-    "bio": "Bio.",
+    "gallery": [
+      "/team/josh/josh_fight.jpeg",
+       "/team/josh/josh_fight1.jpeg",
+      "/team/josh/josh_fight2.jpeg",
+     "/team/josh/josh_fight3.jpg"
+    
+  ],
+    "record": [
+  "WBC Muay Thai National Title Holder",
+  "Mentored three amateur fighters to championship victories",
+  "Competed in over 50 professional Muay Thai bouts",
+  "Served as a corner coach at Lumpinee Stadium in Bangkok"
+],
+"accomplishments": [
+  "National Champion – WBC Muay Thai",
+  "Developed multiple amateur champions from the ground up",
+  "Fought professionally more than 50 times worldwide",
+  "Selected to corner athletes at the iconic Lumpinee Stadium"
+],
     "social": {
       "instagram": "https://www.instagram.com/joshduncan44_masda/",
        "tikotk": " "
@@ -86,9 +167,28 @@
      {
     "id": 6,
     "name": "Kenny Carey",
-    "role": "Weight Class",
+    "role": "Super Welterweight",
+    "weight": "154lbs / 69.8kg",
     "image": "/team/kenny_new.jpeg",
-    "bio": "Bio.",
+    "gallery": [
+      "/team/kenny/kenny_fight.jpg.jpeg",
+       "/team/kenny/kenny_fight1.jpeg",
+      "/team/kenny/kenny_fight2.jpg",
+     "/team/kenny/kenny_fight3.jpg"
+    
+  ],
+    "record": [
+  "WBC Muay Thai National Title Holder",
+  "Mentored three amateur fighters to championship victories",
+  "Competed in over 50 professional Muay Thai bouts",
+  "Served as a corner coach at Lumpinee Stadium in Bangkok"
+],
+"accomplishments": [
+  "National Champion – WBC Muay Thai",
+  "Developed multiple amateur champions from the ground up",
+  "Fought professionally more than 50 times worldwide",
+  "Selected to corner athletes at the iconic Lumpinee Stadium"
+],
     "social": {
       "instagram": "https://www.instagram.com/kennycarey_masda/",
        "tikotk": " "
@@ -98,9 +198,28 @@
   {
     "id": 7,
     "name": "Jack Garcia",
-    "role": "Weight Class",
+    "role": "Super Lightweight",
+    "weight": "140lbs / 63.5kg",
     "image": "/team/jack_garcia.jpeg",
-    "bio": "Bio.",
+     "gallery": [
+       "/team/jack/jack_fight4.jpg",
+       "/team/jack/jack_fight.jpeg",
+      "/team/jack/jack_fight5.jpeg",
+     "/team/jack/jack_fight3.jpg.jpeg"
+    
+  ],
+    "record": [
+  "WBC Muay Thai National Title Holder",
+  "Mentored three amateur fighters to championship victories",
+  "Competed in over 50 professional Muay Thai bouts",
+  "Served as a corner coach at Lumpinee Stadium in Bangkok"
+],
+"accomplishments": [
+  "National Champion – WBC Muay Thai",
+  "Developed multiple amateur champions from the ground up",
+  "Fought professionally more than 50 times worldwide",
+  "Selected to corner athletes at the iconic Lumpinee Stadium"
+],
     "social": {
       "instagram": "https://www.instagram.com/jackgarcia_masda/",
        "tikotk": " "
@@ -110,9 +229,30 @@
   {
     "id": 8,
     "name": "Lennon Goldby",
-    "role": "Weight Class",
+    "role": "Bantamweight",
+    "weight": "118lbs / 53.5kg",
     "image": "/team/lennon.jpg",
-    "bio": "Bio.",
+    "gallery": [
+       
+       "/team/lennon/lennon_fight1.jpg",
+       "/team/lennon/lennon_fight3.jpg",
+       "/team/lennon/lennon_fight4.jpg",
+      "/team/lennon/lennon_fight2.jpg"
+     
+    
+  ],
+    "record": [
+  "WBC Muay Thai National Title Holder",
+  "Mentored three amateur fighters to championship victories",
+  "Competed in over 50 professional Muay Thai bouts",
+  "Served as a corner coach at Lumpinee Stadium in Bangkok"
+],
+"accomplishments": [
+  "National Champion – WBC Muay Thai",
+  "Developed multiple amateur champions from the ground up",
+  "Fought professionally more than 50 times worldwide",
+  "Selected to corner athletes at the iconic Lumpinee Stadium"
+],
     "social": {
       "instagram": "https://www.instagram.com/lennongoldby_masda/",
        "tikotk": " "
@@ -122,9 +262,28 @@
   {
     "id": 9,
     "name": "Jacob Charnock",
-    "role": "Weight Class",
+    "role": "Featherweight",
+    "weight": "126lbs / 57.1kg",
     "image": "/team/jacob_char.jpg",
-    "bio": "Bio.",
+    "gallery": [
+       "/team/jacob/jacob_fight.jpg",
+       "/team/jacob/jacob_fight1.jpg",
+      "/team/jacob/jacob_fight2.jpg",
+     "/team/jacob/jacob_fight3.jpg"
+    
+  ],
+    "record": [
+  "WBC Muay Thai National Title Holder",
+  "Mentored three amateur fighters to championship victories",
+  "Competed in over 50 professional Muay Thai bouts",
+  "Served as a corner coach at Lumpinee Stadium in Bangkok"
+],
+"accomplishments": [
+  "National Champion – WBC Muay Thai",
+  "Developed multiple amateur champions from the ground up",
+  "Fought professionally more than 50 times worldwide",
+  "Selected to corner athletes at the iconic Lumpinee Stadium"
+],
     "social": {
       "instagram": "https://www.instagram.com/jacobcharnock_masda/",
        "tikotk": " "
@@ -134,9 +293,28 @@
   {
     "id": 10,
     "name": "Harrison Caldwell",
-    "role": "Weight Class",
+    "role": "Super Bantamweight",
+    "weight": "122lbs / 55.3kg",
     "image": "/team/harrison_cald.jpg",
-    "bio": "Bio.",
+    "gallery": [
+      "/team/harisson/hari_fight2.jpg",
+      "/team/harisson/hari_fight1.jpg",
+      "/team/harisson/hari_fight.jpg",
+     "/team/harisson/hari_fight3.jpg"
+    
+  ],
+    "record": [
+  "WBC Muay Thai National Title Holder",
+  "Mentored three amateur fighters to championship victories",
+  "Competed in over 50 professional Muay Thai bouts",
+  "Served as a corner coach at Lumpinee Stadium in Bangkok"
+],
+"accomplishments": [
+  "National Champion – WBC Muay Thai",
+  "Developed multiple amateur champions from the ground up",
+  "Fought professionally more than 50 times worldwide",
+  "Selected to corner athletes at the iconic Lumpinee Stadium"
+],
     "social": {
       "instagram": "https://www.instagram.com/hcaldwell_masda/",
        "tikotk": " "
@@ -146,9 +324,28 @@
     {
     "id": 11,
     "name": "Jackson Brennan",
-    "role": "Weight Class",
+    "role": "Featherweight",
+    "weight": "126lbs / 57.1kg",
     "image": "/team/jbrennan.jpg",
-    "bio": "Bio.",
+    "gallery": [
+      "/team/jackson/jackson_fight.jpg",
+      "/team/jackson/jackson_fight4.jpg",
+      "/team/jackson/jackson_fight5.jpg",
+      "/team/jackson/jackson_fight1.jpg"
+  
+  ],
+    "record": [
+  "WBC Muay Thai National Title Holder",
+  "Mentored three amateur fighters to championship victories",
+  "Competed in over 50 professional Muay Thai bouts",
+  "Served as a corner coach at Lumpinee Stadium in Bangkok"
+],
+"accomplishments": [
+  "National Champion – WBC Muay Thai",
+  "Developed multiple amateur champions from the ground up",
+  "Fought professionally more than 50 times worldwide",
+  "Selected to corner athletes at the iconic Lumpinee Stadium"
+],
     "social": {
       "instagram": "https://www.instagram.com/jbrennan_masda/",
        "tikotk": " "
@@ -158,9 +355,28 @@
      {
     "id": 12,
     "name": "Michael Lynch",
-    "role": "Weight Class",
+    "role": "Super Welterweight",
+    "weight": "154lbs / 69.8kg",
     "image": "/team/michael_lynch.jpg",
-    "bio": "Bio.",
+    "gallery": [
+      "/team/michael/lynch_fight.jpg",
+      "/team/michael/lynch_fight1.jpg",
+      "/team/michael/lynch_fight2.jpg",
+      "/team/michael/lynch_fight3.jpg"
+  
+  ],
+    "record": [
+  "WBC Muay Thai National Title Holder",
+  "Mentored three amateur fighters to championship victories",
+  "Competed in over 50 professional Muay Thai bouts",
+  "Served as a corner coach at Lumpinee Stadium in Bangkok"
+],
+"accomplishments": [
+  "National Champion – WBC Muay Thai",
+  "Developed multiple amateur champions from the ground up",
+  "Fought professionally more than 50 times worldwide",
+  "Selected to corner athletes at the iconic Lumpinee Stadium"
+],
     "social": {
       "instagram": "https://www.instagram.com/lynch_masda/",
        "tikotk": " "
@@ -170,11 +386,63 @@
      {
     "id": 13,
     "name": "Fin Mueller",
-    "role": "Weight Class",
+    "role": "Super Welterweight",
+    "weight": "154lbs / 69.8kg",
     "image": "/team/finn.jpg",
-    "bio": "Bio.",
+    "gallery": [
+      "/team/finn/finn_fight4.jpg",
+      "/team/finn/finn_fight1.jpg",
+      "/team/finn/finn_fight3.jpg",
+      "/team/finn/finn_fight2.jpg"
+      
+  
+  ],
+    "record": [
+  "WBC Muay Thai National Title Holder",
+  "Mentored three amateur fighters to championship victories",
+  "Competed in over 50 professional Muay Thai bouts",
+  "Served as a corner coach at Lumpinee Stadium in Bangkok"
+],
+"accomplishments": [
+  "National Champion – WBC Muay Thai",
+  "Developed multiple amateur champions from the ground up",
+  "Fought professionally more than 50 times worldwide",
+  "Selected to corner athletes at the iconic Lumpinee Stadium"
+],
     "social": {
       "instagram": "https://www.instagram.com/finmueller_/",
+       "tikotk": " "
+      
+    }
+  },
+  {
+    "id": 13,
+    "name": "Juan Inseto",
+    "role": "Middleweight",
+    "weight": "160lbs / 72.5kg",
+    "image": "/team/jaun.jpg",
+    "gallery": [
+      "/team/juan/juan_fight.jpg.jpeg",
+      "/team/juan/juann_fight1.jpg",
+      "/team/juan/juan_fight2.jpg",
+      "/team/juan/juan_fight3.jpg"
+      
+  
+  ],
+    "record": [
+  "WBC Muay Thai National Title Holder",
+  "Mentored three amateur fighters to championship victories",
+  "Competed in over 50 professional Muay Thai bouts",
+  "Served as a corner coach at Lumpinee Stadium in Bangkok"
+],
+"accomplishments": [
+  "National Champion – WBC Muay Thai",
+  "Developed multiple amateur champions from the ground up",
+  "Fought professionally more than 50 times worldwide",
+  "Selected to corner athletes at the iconic Lumpinee Stadium"
+],
+    "social": {
+      "instagram": "https://www.instagram.com/juan.inseto_masda/",
        "tikotk": " "
       
     }

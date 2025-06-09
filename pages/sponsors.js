@@ -17,7 +17,7 @@ export default function SponsorsPage() {
       <Header />
 
       <main className={styles.mainContent}>
-        <h1 className={styles.heading}>Our Sponsors</h1>
+        <h1 className={styles.heading}>Our Official Partners</h1>
         <p className={styles.subheading}>
           We’re proud to be backed by a network of amazing partners who support our fighters, community, and vision.
         </p>
@@ -36,7 +36,7 @@ export default function SponsorsPage() {
                 marginTop: '4rem'
               }}
             />
-            <h3>Brick & Barn | Compass</h3>
+            <h3>Brick & Barn</h3>
             <p>Helping us lay the foundation for future champions.</p>
              <a
       href="https://brickandbarngroup.com/agents/scott-rome"

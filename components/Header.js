@@ -36,7 +36,7 @@ export default function Header() {
               href="/fightnight"
               className={`${styles.link} ${currentPath === '/fightnight' ? styles.active : ''}`}
             >
-              Fight Night
+              Events
             </Link>
           </li>
           <li>

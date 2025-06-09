@@ -10,7 +10,8 @@ import {
   FaFacebookF,
   FaInstagram,
   FaYoutube,
-  FaPaperPlane
+  FaPaperPlane,
+  FaTiktok
 } from 'react-icons/fa'
 import styles from '../styles/components/contact.module.css'
 
@@ -114,6 +115,9 @@ export default function ContactPage() {
               <Link href="https://www.youtube.com/c/MasdaGymLiverpool" aria-label="YouTube">
                 <FaYoutube />
               </Link>
+              <Link href="https://www.tiktok.com/@masdagym" target="_blank" rel="noopener noreferrer">
+              <FaTiktok />
+            </Link>
             </div>
           </div>
         </div>

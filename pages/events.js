@@ -1,120 +1,167 @@
-import Head from 'next/head';
-import Link from 'next/link';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import styles from '../styles/components/events.module.css';
+import fs from 'fs'
+import path from 'path'
+import Head from 'next/head'
+import Link from 'next/link'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
+import { useEffect, useRef, useState } from 'react'
+import styles from '../styles/components/fightnight.module.css'
+import AWS from 'aws-sdk'
 
-export default function EventsPage() {
+// Server-side function to fetch event data and videos
+export async function getStaticProps() {
+  // Read event data from local JSON
+  const filePath = path.join(process.cwd(), 'public', 'data', 'events.json')
+  const raw = fs.readFileSync(filePath, 'utf8')
+  const eventsData = JSON.parse(raw)
+
+  // Configure AWS SDK
+  const s3 = new AWS.S3({
+    region: process.env.AWS_REGION,
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  })
+
+  const Bucket = process.env.AWS_S3_BUCKET_NAME
+  const Folder = 'videos/'
+
+  // Fetch video files from the specified S3 folder
+  const { Contents } = await s3
+    .listObjectsV2({
+      Bucket,
+      Prefix: Folder,
+    })
+    .promise()
+
+  // Filter for video files and construct full URLs
+  const eventHighlights = Contents
+    .filter((file) => file.Key.endsWith('.mp4') || file.Key.endsWith('.mov'))
+    .map((file, i) => ({
+      id: `video-${i}`,
+      url: `https://${Bucket}.s3.${process.env.AWS_REGION}.amazonaws.com/${file.Key}`,
+    }))
+
+  return {
+    props: {
+      eventsData,
+      eventHighlights,
+    },
+  }
+}
+
+// Main page component
+export default function EventsPage({ eventsData, eventHighlights }) {
+  const videoRefs = useRef([])
+  const wrapperRef = useRef(null)
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.5 }
+    )
+    if (wrapperRef.current) observer.observe(wrapperRef.current)
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    videoRefs.current.forEach((video, idx) => {
+      if (!video) return
+      if (idx === activeIndex && isVisible) {
+        video.play().catch(() => {})
+      } else {
+        video.pause()
+        video.currentTime = 0
+      }
+    })
+  }, [activeIndex, isVisible])
+
+  const prev = () => setActiveIndex((i) => Math.max(0, i - 1))
+  const next = () => setActiveIndex((i) => Math.min(eventHighlights.length - 1, i + 1))
+
   return (
     <>
       <Head>
         <title>Events | Masda Liverpool</title>
         <meta
           name="description"
-          content="Explore upcoming events, past highlights, and livestreams of Masda Fight Nights."
+          content="Explore upcoming events and highlights from Masda Fight Nights."
         />
       </Head>
 
       <Header />
 
-      {/* Hero Section */}
       <div className={styles.heroSection}>
         <div className={styles.heroOverlay}>
-          <h1 className={styles.heroTitle}>Fights</h1>
+          <h1 className={styles.heroTitle}>Masda Fight Nights</h1>
         </div>
       </div>
 
       <main className={styles.mainContent}>
         {/* Upcoming Events */}
         <section className={styles.upcomingEvents}>
-          <h2>Upcoming Fights</h2>
+          <h2>Upcoming Events</h2>
           <div className={styles.eventsGrid}>
-            {/* Event Card 1 */}
-            <div className={styles.eventCard}>
-              <img
-                src="/events/fighting.jpeg"
-                alt="Spring Fighter Series"
-                className={styles.eventImage}
-              />
-              <div className={styles.eventInfo}>
-                <h3>May 15 – Spring Fighter Series</h3>
-                <p>
-                  Join us for a thrilling day of matches featuring up-and-coming fighters.
-                </p>
-                <Link href="#" className={styles.eventButton}>Get Tickets</Link>
+            {eventsData.upcoming.map((event) => (
+              <div key={event.id} className={styles.eventCard}>
+                <img
+                  src={event.image}
+                  alt={event.title}
+                  className={styles.eventImage}
+                />
+                <div className={styles.eventInfo}>
+                  <h3>{event.date} – {event.title}</h3>
+                  <p>{event.description}</p>
+                  <Link href={event.link} className={styles.eventButton}>
+                    {event.buttonText}
+                  </Link>
+                </div>
               </div>
-            </div>
-
-            {/* Event Card 2 */}
-            <div className={styles.eventCard}>
-              <img
-                src="/events/womens-fight-night.jpg"
-                alt="Women's Fight Night"
-                className={styles.eventImage}
-              />
-              <div className={styles.eventInfo}>
-                <h3>June 10 – Women&apos;s Fight Night</h3>
-                <p>
-                  A special evening showcasing the top female MMA fighters.
-                </p>
-                <Link href="#" className={styles.eventButton}>Get Tickets</Link>
-              </div>
-            </div>
-
-            {/* Event Card 3 */}
-            <div className={styles.eventCard}>
-              <img
-                src="/events/grappling-championship.jpg"
-                alt="Grappling Championship"
-                className={styles.eventImage}
-              />
-              <div className={styles.eventInfo}>
-                <h3>June 30 – Grappling Championship</h3>
-                <p>
-                  Elite grapplers compete for the championship title.
-                </p>
-                <Link href="#" className={styles.eventButton}>Get Tickets</Link>
-              </div>
-            </div>
+            ))}
           </div>
         </section>
 
-        {/* Past Events Highlights */}
-        <section className={styles.pastEvents}>
-          <h2>Past Events Highlights</h2>
-          <div className={styles.eventsGrid}>
-            {/* Past Event 1 */}
-            <div className={styles.eventCard}>
-              <img
-                src="/events/winter-war-2025.jpg"
-                alt="Winter War 2025"
-                className={styles.eventImage}
-              />
-              <div className={styles.eventInfo}>
-                <h3>Winter War 2025</h3>
-                <p>Relive the intense battles from our January event.</p>
-                <Link href="#" className={styles.eventButton}>Watch Replay</Link>
-              </div>
+        {/* Highlight Reel */}
+        <section className={styles.eventHighlights}>
+          <h2>Highlight Reel</h2>
+
+          <div className={styles.carouselContainer}>
+            <button onClick={prev} className={styles.arrowButton}>
+              &lsaquo;
+            </button>
+
+            <div ref={wrapperRef} className={styles.carouselWrapper}>
+              {eventHighlights.map((highlight, index) => (
+                <div
+                  key={highlight.id}
+                  className={`${styles.videoCard} ${
+                    index === activeIndex ? styles.active : ''
+                  }`}
+                  onClick={() => setActiveIndex(index)}
+                >
+                  <div className={styles.videoWrapper}>
+                    <video
+                      ref={(el) => (videoRefs.current[index] = el)}
+                      src={highlight.url}
+                      controls
+                      preload="metadata"
+                      muted
+                      className={styles.videoPlayer}
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
 
-            {/* Past Event 2 */}
-            <div className={styles.eventCard}>
-              <img
-                src="/events/championship-finals-2024.jpg"
-                alt="Championship Finals 2024"
-                className={styles.eventImage}
-              />
-              <div className={styles.eventInfo}>
-                <h3>Championship Finals 2024</h3>
-                <p>Catch up on the biggest matches of the year.</p>
-                <Link href="#" className={styles.eventButton}>Watch Replay</Link>
-              </div>
-            </div>
+            <button onClick={next} className={styles.arrowButton}>
+              &rsaquo;
+            </button>
           </div>
         </section>
       </main>
 
       <Footer />
     </>
-  );
+  )
 }

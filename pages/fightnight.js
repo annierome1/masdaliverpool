@@ -1,51 +1,45 @@
-// pages/events.js
-import fs from 'fs';
-import path from 'path';
-import Head from 'next/head';
-import Link from 'next/link';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import { useEffect, useRef, useState } from 'react';
-import styles from '../styles/components/fightnight.module.css';
-import '@mux/mux-player';
+import fs from 'fs'
+import path from 'path'
+import Head from 'next/head'
+import Link from 'next/link'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
+import { useEffect, useRef, useState } from 'react'
+import styles from '../styles/components/fightnight.module.css'
+import AWS from 'aws-sdk'
 
-
-
+// Server-side function to fetch event data and videos
 export async function getStaticProps() {
+  // Read event data from local JSON
   const filePath = path.join(process.cwd(), 'public', 'data', 'events.json')
-  const raw       = fs.readFileSync(filePath, 'utf8')
+  const raw = fs.readFileSync(filePath, 'utf8')
   const eventsData = JSON.parse(raw)
 
-  const ASSET_IDS = [
-    'zhS01F02IEgn0002lrF02teN49RClPKmZE352k6uF194b02hs',
-    'sfQUYGzTA1ZM4SExer1JehNBb2HIENyoClS1Tvj1sYM',
-    'XGNhVi7vjJIUdnSJCRgLg01zLniRPXZD5jwI4zC02YZ900',
-  ]
+  // Configure AWS SDK
+  const s3 = new AWS.S3({
+    region: process.env.AWS_REGION,
+    accessKeyId: process.env.AWS_KEY,
+    secretAccessKey: process.env.AWS_SECRET,
+  })
 
-  const token = Buffer.from(
-    `${process.env.MUX_TOKEN_ID}:${process.env.MUX_TOKEN_SECRET}`
-  ).toString('base64')
+  const Bucket = process.env.AWS_S3_BUCKET_NAME
+  const Folder = 'videos/fightnight/'
 
-  const eventHighlights = await Promise.all(
-    ASSET_IDS.map(async (assetId) => {
-      const res = await fetch(
-        `https://api.mux.com/video/v1/assets/${assetId}`,
-        {
-          headers: {
-            Authorization: `Basic ${token}`,
-            'Content-Type': 'application/json',
-          },
-        }
-      )
-      const { data: asset } = await res.json()
-      // find the public playback ID
-      const playback = asset.playback_ids.find(p => p.policy === 'public')
-      return {
-        id: asset.id,
-        playbackId: playback.id,
-      }
+  // Fetch video files from the specified S3 folder
+  const { Contents } = await s3
+    .listObjectsV2({
+      Bucket,
+      Prefix: Folder,
     })
-  )
+    .promise()
+
+  // Filter for video files and construct full URLs
+  const eventHighlights = Contents
+    .filter((file) => file.Key.endsWith('.mp4') || file.Key.endsWith('.mov'))
+    .map((file, i) => ({
+      id: `video-${i}`,
+      url: `https://${Bucket}.s3.${process.env.AWS_REGION}.amazonaws.com/${file.Key}`,
+    }))
 
   return {
     props: {
@@ -55,21 +49,14 @@ export async function getStaticProps() {
   }
 }
 
-
-
-
-
-
-
-
-
+// Main page component
 export default function EventsPage({ eventsData, eventHighlights }) {
   const videoRefs = useRef([])
-  const wrapperRef = useRef(null);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const wrapperRef = useRef(null)
+  const [activeIndex, setActiveIndex] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
- 
-    useEffect(() => {
+
+  useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => setIsVisible(entry.isIntersecting),
       { threshold: 0.5 }
@@ -93,7 +80,6 @@ export default function EventsPage({ eventsData, eventHighlights }) {
   const prev = () => setActiveIndex((i) => Math.max(0, i - 1))
   const next = () => setActiveIndex((i) => Math.min(eventHighlights.length - 1, i + 1))
 
-
   return (
     <>
       <Head>
@@ -105,6 +91,7 @@ export default function EventsPage({ eventsData, eventHighlights }) {
       </Head>
 
       <Header />
+
       <div className={styles.heroSection}>
         <div className={styles.heroOverlay}>
           <h1 className={styles.heroTitle}>Masda Fight Nights</h1>
@@ -135,8 +122,8 @@ export default function EventsPage({ eventsData, eventHighlights }) {
           </div>
         </section>
 
-
-    <section className={styles.eventHighlights}>
+        {/* Highlight Reel */}
+        <section className={styles.eventHighlights}>
           <h2>Highlight Reel</h2>
 
           <div className={styles.carouselContainer}>
@@ -154,11 +141,12 @@ export default function EventsPage({ eventsData, eventHighlights }) {
                   onClick={() => setActiveIndex(index)}
                 >
                   <div className={styles.videoWrapper}>
-                    <mux-player
+                    <video
                       ref={(el) => (videoRefs.current[index] = el)}
-                      src={`https://stream.mux.com/${highlight.playbackId}.m3u8`}
+                      src={highlight.url}
                       controls
                       preload="metadata"
+                      muted
                       className={styles.videoPlayer}
                     />
                   </div>
@@ -171,10 +159,9 @@ export default function EventsPage({ eventsData, eventHighlights }) {
             </button>
           </div>
         </section>
-
       </main>
 
       <Footer />
     </>
-  );
+  )
 }

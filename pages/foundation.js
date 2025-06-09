@@ -257,7 +257,20 @@ export default function FoundationPage() {
               business mentors, and former fighters who guide program
               development and ensure transparent governance.
             </p>
+            <div className={styles.downloadWrapper}>
+  <a
+    href="https://masdaliverpool.s3.us-east-2.amazonaws.com/masdabrouchurer.pdf"
+    target="_blank"
+    rel="noopener noreferrer"
+    download
+    className={styles.downloadButton}
+  >
+    Download Foundation Brochure
+  </a>
+</div>
+
           </div>
+
         </section>
       </main>
 

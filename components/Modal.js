@@ -6,7 +6,21 @@ export default function Modal({ member, onClose }) {
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <button className={styles.closeButton} onClick={onClose}>✕</button>
         <div className={styles.name}><h2>{member.name}</h2></div>
-        <div className={styles.roleWrapper}> <p className={styles.role}>{member.role}</p></div>
+
+       <div className={styles.roleWrapper}> <p className={styles.role}>{member.role}</p>
+        <p className={styles.weight}>{member.weight}</p>
+        
+
+        </div>
+       
+        {/*
+        <div className={styles.roleWrapper}> <p className={styles.role}>{member.role}</p>
+        <div className={styles.weightWrapper}>
+        <p className={styles.weight}>{member.weight}</p>
+        
+        </div>
+        </div>
+        */}
         <div className={styles.gallery}>
           {member.gallery?.map((img, index) => (
             <img
@@ -17,25 +31,35 @@ export default function Modal({ member, onClose }) {
             />
           ))}
         </div>
-         <div className={styles.bioAccomplishmentsContainer}>
-        <div className={styles.bioWrapper}>
-        <p className={styles.bio}>{member.bio}</p></div>
-          {member.accomplishments?.length > 0 && (
-        <div className={styles.accomplishmentsWrapper}>
-        <div className={styles.accomplishments}>
-      <h3>Accomplishments</h3>
-      <ul>
-        {member.accomplishments.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ul>
-      
-    </div>
-    </div>
-  )}
+            <div className={styles.bioAccomplishmentsContainer}>
+            {member.record?.length > 0 && (
+                <div className={styles.recordWrapper}>
+                <div className={styles.record}>
+                    <h3>Record</h3>
+                    <ul>
+                    {member.record.map((item, index) => (
+                        <li key={index}>{item}</li>
+                    ))}
+                    </ul>
+                </div>
+                </div>
+            )}
+            {member.accomplishments?.length > 0 && (
+                <div className={styles.accomplishmentsWrapper}>
+                <div className={styles.accomplishments}>
+                    <h3>Accomplishments</h3>
+                    <ul>
+                    {member.accomplishments.map((item, index) => (
+                        <li key={index}>{item}</li>
+                    ))}
+                    </ul>
+                </div>
+                </div>
+            )}
+            </div>
 
         </div>
       </div>
-    </div>
+
   );
 }

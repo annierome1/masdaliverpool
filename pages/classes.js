@@ -151,7 +151,17 @@ export default function ClassesPage() {
             
           </div>
         )}
-      </div>
+        <div className={styles.hours}>
+      <p>Open from 9am – 9pm private lessons and group sessions available</p></div>
+      
+        <div className={styles.contactWrapper}>
+          <Link href="/contact" className={styles.contactButton}>
+      Contact Us
+    </Link>
+        </div>
+    </div>
+
+
 
       <Footer />
     </>
