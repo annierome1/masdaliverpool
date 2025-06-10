@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import styles from '../styles/components/team.module.css';
-import { FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/fa';
+import { FaInstagram, FaTiktok } from 'react-icons/fa';
 import { useState } from 'react';
 import Select from 'react-select';
 // import your JSON data
@@ -156,14 +156,11 @@ export default function TeamPage() {
                 <h3>{member.name}</h3>
                 <p className={styles.indivRole}>{member.role}</p>
                 <div className={styles.socialIcons}>
-                  {member.social.facebook && (
-                    <a href={member.social.facebook} target="_blank" rel="noreferrer"><FaFacebookF /></a>
-                  )}
                   {member.social.instagram && (
                     <a href={member.social.instagram} target="_blank" rel="noreferrer"><FaInstagram /></a>
                   )}
-                  {member.social.twitter && (
-                    <a href={member.social.twitter} target="_blank" rel="noreferrer"><FaTwitter /></a>
+                  {member.social.tiktok && (
+                    <a href={member.social.tiktok} target="_blank" rel="noreferrer"><FaTiktok /></a>
                   )}
                 </div>
                 <p className={styles.moreInfo}>Click for more info</p>

@@ -13,6 +13,8 @@
     "@aws-sdk/s3-request-presigner": "^3.812.0",
     "@mux/mux-node": "^11.1.0",
     "@mux/mux-player": "^3.4.0",
+    "@sanity/client": "^7.5.0",
+    "@sanity/image-url": "^1.1.0",
     "aws-sdk": "^2.1692.0",
     "cheerio": "^1.0.0",
     "ffmpeg": "^0.0.4",

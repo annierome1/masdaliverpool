@@ -8,8 +8,8 @@
     "bio": "BIO",
     "social": {
 
-      "instagram": "https://www.instagram.com/masdagym/",
-        "tikotk": " "
+      "instagram": "https://www.instagram.com/masdagym/"
+
     }
   },
   {
@@ -33,8 +33,7 @@
     "Cornered fighters in Lumpinee Stadium"
   ],
     "social": {
-      "instagram": "https://www.instagram.com/alfiepono_masda/",
-        "tikotk": " "
+      "instagram": "https://www.instagram.com/alfiepono_masda/"
     }
   },
   {
@@ -59,7 +58,7 @@
 
     "social": {
       "instagram": "https://www.instagram.com/owengillis_masda/",
-       "tikotk": " "
+       "tiktok": "https://www.tiktok.com/@owengillis_masda"
       
     }
   },
@@ -84,7 +83,7 @@
 ],
     "social": {
       "instagram": "https://www.instagram.com/marccampbell_masda/",
-       "tikotk": " "
+       "tiktok": "https://www.tiktok.com/@marccampbell_masda"
       
     }
   },
@@ -110,7 +109,7 @@
 ],
     "social": {
       "instagram": "https://www.instagram.com/hassanimran_masda/",
-       "tikotk": " "
+       "tiktok": "https://www.tiktok.com/@himran_00"
       
     }
   },
@@ -135,8 +134,7 @@
   "Selected to corner athletes at the iconic Lumpinee Stadium"
 ],
     "social": {
-      "instagram": "https://www.instagram.com/joshduncan44_masda/",
-       "tikotk": " "
+      "instagram": "https://www.instagram.com/joshduncan44_masda/"
       
     }
   },
@@ -161,8 +159,7 @@
   "Selected to corner athletes at the iconic Lumpinee Stadium"
 ],
     "social": {
-      "instagram": "https://www.instagram.com/kennycarey_masda/",
-       "tikotk": " "
+      "instagram": "https://www.instagram.com/kennycarey_masda/"
       
     }
   },
@@ -188,7 +185,7 @@
 ],
     "social": {
       "instagram": "https://www.instagram.com/jackgarcia_masda/",
-       "tikotk": " "
+       "tiktok": "https://www.tiktok.com/@jackgarcia_masda"
       
     }
   },
@@ -216,7 +213,7 @@
 ],
     "social": {
       "instagram": "https://www.instagram.com/lennongoldby_masda/",
-       "tikotk": " "
+       "tiktok": "https://www.tiktok.com/@lennongoldby"
       
     }
   },
@@ -241,8 +238,7 @@
   "Selected to corner athletes at the iconic Lumpinee Stadium"
 ],
     "social": {
-      "instagram": "https://www.instagram.com/jacobcharnock_masda/",
-       "tikotk": " "
+      "instagram": "https://www.instagram.com/jacobcharnock_masda/"
       
     }
   },
@@ -320,7 +316,7 @@
 ],
     "social": {
       "instagram": "https://www.instagram.com/lynch_masda/",
-       "tikotk": " "
+       "tiktok": "https://www.tiktok.com/@michaellynch_7"
       
     }
   },
@@ -347,7 +343,7 @@
 ],
     "social": {
       "instagram": "https://www.instagram.com/finmueller_/",
-       "tikotk": " "
+       "tiktok": "https://www.tiktok.com/@finmueller22"
       
     }
   },
@@ -402,6 +398,119 @@
 ],
     "social": {
       "instagram": "https://www.instagram.com/levibailey_tsof/",
+       "tiktok": "https://www.tiktok.com/@levibailey_"
+      
+    }
+  },
+  {
+    "id": 16,
+    "name": "Mia Trevorrow",
+    "role": "Bantamweight",
+    "age": "25",
+    "weight": "118lbs / 53.5kg",
+    "image": "/team/mia/mia.jpg",
+    "gallery": [
+      "/team/mia/mia_fight.jpg",
+      "/team/mia/mia_fight1.jpg.jpeg",
+      "/team/mia/mia_fight2.jpg.jpeg",
+      "/team/mia/mia_fight3.jpg.jpeg"
+      
+  
+  ],
+    "record": "4-5-1",
+    "accomplishments": [
+  "National Champion – WBC Muay Thai",
+  "Developed multiple amateur champions from the ground up",
+  "Fought professionally more than 50 times worldwide",
+  "Selected to corner athletes at the iconic Lumpinee Stadium"
+],
+    "social": {
+      "instagram": "https://www.instagram.com/mia_trevorrow/",
+       "tikotk": " "
+      
+    }
+  },
+  {
+    "id": 17,
+    "name": "Fergal Brennan",
+    "role": "Featherweight",
+    "age": "25",
+    "weight": "126lbs / 57.1kg",
+    "image": "/team/fer/fer.jpeg",
+    "gallery": [
+      "/team/fer/fer_fight.jpg",
+      "/team/fer/fer_fight1.jpg",
+      "/team/fer/fer_fight2.jpg",
+      "/team/fer/fer_fight3.jpg"
+      
+  
+  ],
+    "record": "2-0-1",
+    "accomplishments": [
+  "National Champion – WBC Muay Thai",
+  "Developed multiple amateur champions from the ground up",
+  "Fought professionally more than 50 times worldwide",
+  "Selected to corner athletes at the iconic Lumpinee Stadium"
+],
+    "social": {
+      "instagram": "https://www.instagram.com/fergalbrennan_masda/",
+       "tikotk": " "
+      
+    }
+  },
+  {
+    "id": 18,
+    "name": "Luke Brabin",
+    "role": "Super Bantamweight",
+    "age": "20",
+    "weight": "122lbs / 55.3kg",
+    "image": "/team/luke/luke.jpg",
+    "gallery": [
+      "/team/luke/luke_fight2.jpg",
+      "/team/luke/luke_fight.jpg",
+      "/team/luke/luke_fight1.jpg",
+      "/team/luke/luke_fight3.jpg"
+      
+  
+  ],
+    "record": "2-0-1",
+    "accomplishments": [
+  "National Champion – WBC Muay Thai",
+  "Developed multiple amateur champions from the ground up",
+  "Fought professionally more than 50 times worldwide",
+  "Selected to corner athletes at the iconic Lumpinee Stadium"
+],
+    "social": {
+      "instagram": "https://www.instagram.com/lukebrabo_masda/",
+       "tikotk": " "
+      
+    }
+  },
+  {
+    "id": 19,
+    "name": "Cain Jones",
+    "role": "Featherweight",
+    "age": "20",
+    "weight": "126lbs / 57.1kg",
+    "image": "/team/cain/cain.jpg",
+    "gallery": [
+      "/team/cain/cain_fight.jpg",
+      "/team/cain/cain_fight3.jpg",
+      "/team/cain/cain_fight1.jpg",
+      "/team/cain/cain_fight2.jpg"
+      
+      
+  
+  ],
+    "record": "2-0-1",
+    "accomplishments": [
+  "National Champion – WBC Muay Thai",
+  "Developed multiple amateur champions from the ground up",
+  "Fought professionally more than 50 times worldwide",
+  "Selected to corner athletes at the iconic Lumpinee Stadium"
+],
+    "social": {
+      "instagram": "https://www.instagram.com/cainjones_masda/",
        "tikotk": " "
       
     }
