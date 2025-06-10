@@ -16,6 +16,7 @@
     "id": 1,
     "name": "Alfie Ponting",
     "role": "Lightweight",
+    "age": "20 yrs",
     "weight": "135lbs / 61.2kg",
     "image": "/team/alfie_pic.jpg",
     "gallery": [
@@ -24,7 +25,7 @@
     "/team/alfie/alfie_fight.jpeg",
     "/team/alfie/alfie_gal_4.jpg"
   ],
-  "record": "4-5-2",
+  "record": "4-3-2",
   "accomplishments": [
     "WBC Muay Thai National Champion",
     "Trained 3 amateur champions",

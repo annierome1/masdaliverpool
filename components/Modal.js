@@ -23,10 +23,11 @@ export default function Modal({ member, onClose }) {
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <button className={styles.closeButton} onClick={onClose}>✕</button>
         <div className={styles.name}><h2>{member.name}</h2></div>
+        <div className={styles.roleWrapper}>
+  <p className={styles.role}>{member.role}</p>
+  <p className={styles.ageBox}>{member.age}</p>
+  <p className={styles.weight}>{member.weight}</p>
 
-       <div className={styles.roleWrapper}> <p className={styles.role}>{member.role}</p>
-        <p className={styles.weight}>{member.weight}</p>
-        
 
         </div>
 

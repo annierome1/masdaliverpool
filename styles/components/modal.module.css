@@ -78,7 +78,7 @@ display: flex;
 
 }
 
-.weight {
+.weight, .ageBox {
   font-size: 1rem;
   background: #111;
   padding: 0.5rem 1rem;
@@ -129,7 +129,6 @@ display: flex;
   flex-wrap: wrap;
 }
 
-/* (keep your existing .stat, .value, .label rules) */
 
 
 
@@ -189,10 +188,8 @@ display: flex;
   background: #1a1a1a;
   border-radius: 8px;
   padding: 1.5rem;
-  width: 100%;          /* full width of modal */
-  max-width: 600px;     /* optional */
+  width: 40%;           
   margin: 0 auto 2rem;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -214,8 +211,9 @@ display: flex;
   display: flex;
   gap: 1rem;
   justify-content: center;
-  flex-wrap: nowrap;    /* keep them side by side */
-  width: 50%;
+  flex-wrap: nowrap;   
+  width: 80%;
+  height: 100px;
 }
 
 /* individual stat card */
