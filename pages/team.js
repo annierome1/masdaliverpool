@@ -151,7 +151,7 @@ export default function TeamPage() {
                 onClick={() => handleCardClick(member)}
               >
                 <div className={styles.imageWrapper}>
-                  <img src={member.image} alt={member.name} className={styles.indivImage} />
+                  <img src={member.image || '/team/profile_placeholder_white.png'} alt={member.name} className={styles.indivImage} />
                 </div>
                 <h3>{member.name}</h3>
                 <p className={styles.indivRole}>{member.role}</p>

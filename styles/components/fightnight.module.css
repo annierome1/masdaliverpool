@@ -1,10 +1,23 @@
-/* Hero Section */
 .heroSection {
   position: relative;
   width: 100%;
   height: 600px;
   background: url('/events/fight.jpg');
   font-family: var(--font-cinzel);
+}
+
+
+
+.eventCard,
+.videoCard {
+  scroll-snap-align: none !important;
+}
+
+
+.eventHighlights{
+
+  scroll-snap-align: none !important;
+
 }
 
 .heroOverlay {
@@ -56,11 +69,11 @@
   
   /* Upcoming Events */
   .upcomingEvents {
-    margin-bottom: 3rem;
+    margin-bottom: 0rem !important;
   }
   .upcomingEvents h2 {
     font-size: 2rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0rem;
     text-align: center;
   }
 .eventsCarouselContainer .arrowButton {
@@ -79,7 +92,6 @@
 .eventCard {
   flex: 0 0 400px;  
   height: 100%;    
-  scroll-snap-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
   border-radius: 0.75rem;
@@ -93,35 +105,37 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: transform 0.2s;
 }
 .eventCard:hover {
   box-shadow: 0 12px 24px rgba(0,0,0,0.7);
+  transform: scale(1.02);
 }
 
 .activeEvent {
   transform: scale(1.05);
   z-index: 2;
 }
+.pagination {
+  display: none;
+}
 
 .eventsCarouselContainer {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  height: 900px;
-  margin-top: 0rem; 
+  height: 600px;
+  margin-top: 0.5rem;
 }
 
 
 .eventsCarouselWrapper {
   display: flex;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
   overflow-y: visible;
   gap: 1.5rem;
   padding: 1rem 0;
   flex: 1;   
+  justify-content: center;
           
 }
 .eventHighlights{
@@ -129,9 +143,9 @@
 }
 
   .eventImage {
-    width: 400px;;
-    height: 100%;
-    object-fit: fill;
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
     object-position: top;
     
   }
@@ -191,15 +205,12 @@
 
 .carouselWrapper {
   display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;          
-  -webkit-overflow-scrolling: touch;       
+  overflow-x: auto;     
   gap: 1.5rem;
   padding: 0.5rem 0;
 }
 .videoCard {
   flex: 0 0 auto;
-  scroll-snap-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
   text-align: center;
@@ -209,7 +220,6 @@
 }
 
 .videoCard.active {
-  width: 300px;
   opacity: 1;
   transform: scale(1.0);
   z-index: 1.8;
@@ -241,7 +251,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 1rem;
 }
 .arrowButton {
   background: none;
@@ -266,4 +275,116 @@
   margin-top: 0.75rem;
   font-size: 1.2rem;
   color: #ddd;
+}
+
+  @media (max-width: 767px) {
+  .heroSection {
+  position: relative;
+  width: 100%;
+  height: 350px;                                 
+  background: url('/events/fight.jpg') center/cover no-repeat;
+  font-family: var(--font-cinzel);
+}
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem;                              
+  color: #fff;
+}
+.carouselContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  height: 700px;
+}
+.heroTitle {
+  font-size: 2rem;
+  font-weight: normal;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.heroDate {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+.eventCard {
+    flex: 0 0 90%;      /* about 90% of screen width */
+    max-width: 500px; 
+    max-height: 600px;  /* don’t get wider than this */
+  }
+
+
+  .mainContent {
+    padding: 1rem;
+  }
+
+  /* force a single column */
+  .eventsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .upcomingEvents h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0rem;
+    text-align: center;
+  }
+
+  /* cut down the padding in cards */
+  .eventInfo {
+    padding: 0.75rem;
+  }
+
+  /* buttons full-width for easy taps */
+  .eventButton,
+  .heroButton {
+    width: 100%;
+    text-align: center;
+  }
+  .eventsCarouselContainer .arrowButton {
+    display: none;
+  }
+
+    .arrowButton {
+    display: none !important;
+  }
+
+  /* Show pagination container */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5rem;
+    gap: 0.5rem;
+  }
+
+  /* Style dots as circles */
+  .pagination button {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    border-radius: 50%;
+    border: none;
+    background: #555;
+    transition: background 0.2s;
+  }
+  .pagination button.active,
+  .pagination button:hover {
+    background: #e53e3e;
+  }
+  .eventsCarouselWrapper,
+  .eventsCarouselContainer .carouselWrapper {
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .eventCard,
+  .videoCard {
+    flex: 0 0 100%;        /* fill the viewport */
+    scroll-snap-align: center;
+  }
 }

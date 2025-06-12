@@ -32,14 +32,18 @@ export default function Modal({ member, onClose }) {
         </div>
 
         <div className={styles.gallery}>
-          {member.gallery?.map((img, index) => (
-            <img
-              key={index}
-              src={img}
-              alt={`${member.name} gallery ${index + 1}`}
-              className={styles.galleryImage}
-            />
-          ))}
+          {member.gallery && member.gallery.length > 0 ? (
+            member.gallery.map((img, index) => (
+              <img
+                key={index}
+                src={img}
+                alt={`${member.name} gallery ${index + 1}`}
+                className={styles.galleryImage}
+              />
+            ))
+          ) : (
+            <p className={styles.comingSoon}> Photos Coming soon</p>
+          )}
         </div>
             <div className={styles.bioAccomplishmentsContainer}>
             <div className={styles.recordWrapper}>

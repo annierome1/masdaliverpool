@@ -2,10 +2,12 @@ import styles from '../styles/components/header.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 export default function Header() {
   const router = useRouter();
   const currentPath = router.pathname;
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <header className={styles.header}>
@@ -19,6 +21,49 @@ export default function Header() {
           style={{ objectFit: 'contain' }}
         />
       </Link>
+
+      {/* Hamburger toggle (visible <768px) */}
+      <button
+        className={`${styles.menuToggle} ${menuOpen ? styles.open : ''}`}
+        onClick={() => setMenuOpen(o => !o)}
+        aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      {/* Full-screen overlay nav */}
+      <nav
+        className={`${styles.navOverlay} ${menuOpen ? styles.open : ''}`}
+        onClick={() => setMenuOpen(false)} 
+        /* clicking backdrop closes menu */
+      >
+        <ul className={styles.navListOverlay} onClick={e => e.stopPropagation()}>
+          {[
+            ['Classes', '/classes'],
+            ['Events', '/fightnight'],
+            ['The Gym', '/the_gym'],
+            ['Sponsors', '/sponsors'],
+            ['Foundation', '/foundation'],
+            ['News & Social', '/news_social'],
+            ['Contact Us', '/contact'],
+          ].map(([label, href]) => (
+            <li key={href}>
+              <Link
+                href={href}
+                className={`${styles.link} ${
+                  currentPath === href ? styles.active : ''
+                }`}
+                onClick={() => setMenuOpen(false)}
+              >
+                {label}
+              </Link>
+            </li>
+          ))}
+          </ul>
+          </nav>
 
       {/* Navigation */}
       <nav className={styles.nav}>

@@ -96,7 +96,13 @@ display: flex;
   justify-content: center;
   margin-bottom: 2rem;
 }
-
+.comingSoon {
+  color: #ccc;
+  font-style: italic;
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 1.5rem;
+}
 .galleryImage {
   width: 275px;
   height: 250px;
