@@ -13,9 +13,9 @@ export async function getStaticProps() {
   const ASSET_IDS = [
         'slNSLju6YFQUrh019BadGqmq5ZcQZIugLRLUJilmUt300',
         'sIK02GZv4y3IzniD7tgQnFvt02rmh5GSjsohjRwPM00DKg',
-        'EKoDKeX93015Yz2kVAXPc79vpB5u4IsvH7KKRMLDdvGk',
         'hUZ9j63tBx902zfab6CeDiQmDlh014CPOv00HxmwbzvG2g',
         'cdE8f2ePjFpH00OlYasnegJaFUl9uS019zYfchd1oioHE',
+        'EKoDKeX93015Yz2kVAXPc79vpB5u4IsvH7KKRMLDdvGk',
 
       ];
 
@@ -55,11 +55,23 @@ export default function TheGymPage({ gymPlaybackIds }) {
   const playersRef = useRef([])
   const [ready, setReady] = useState(false)
 
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth < 768)
+    onResize()
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
+
   // once mounted, mark videos ready and start playback
   useEffect(() => {
     setReady(true)
     playersRef.current.forEach((p) => p?.play().catch(() => {}))
   }, [])
+
+  const vidsToShow = isMobile
+    ? gymPlaybackIds.slice(0, 4)
+    : gymPlaybackIds
 
   return (
     <>
@@ -76,10 +88,10 @@ export default function TheGymPage({ gymPlaybackIds }) {
       {/* Hero Section */}
       <div className={styles.heroSection}>
         <div className={styles.videoContainer}>
-          {gymPlaybackIds.map((pid, idx) => (
+          {vidsToShow.map((pid, idx) => (
             <mux-player
               key={pid}
-              ref={(el) => (playersRef.current[idx] = el)}
+              ref={el => (playersRef.current[idx] = el)}
               className={`${styles.videoBg} ${ready ? styles.videoVisible : ''}`}
               playback-id={pid}
               stream-type="on-demand"

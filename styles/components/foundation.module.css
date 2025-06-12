@@ -1,7 +1,7 @@
 /* foundation.module.css */
 
 .main {
-  background-color: #222;
+  background-color: #333;
   color: #222;
   font-family: var(--font-cinzel);
   line-height: 1.6;
@@ -40,6 +40,7 @@
   justify-content: center;
   align-items: center;
   margin-top: 2rem;
+  background-color: #222;
 }
 
 .foundationLogo {
@@ -55,7 +56,7 @@
   color: #e53e3e;
 }
 .sectionAlt {
-  background-color: #333;
+  background-color: #222;
   padding: 4rem 1rem;
 }
 .sectionHeading {
@@ -148,7 +149,7 @@
   }
 }
 .programCard {
-  background: #333;
+  background: #222;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   padding: 1.25rem;
@@ -197,4 +198,90 @@
 
 .downloadButton:hover {
   background-color: #e53e3e;
+}
+@media (max-width: 767px) {
+  /* Hero */
+  .heroSection {
+    height: 250px;
+    margin-bottom: -1rem;
+  }
+  .heroTitle {
+    font-size: 1.75rem;
+    margin-top: 0;
+  }
+  .heroSubtitle {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  /* Logo */
+  .logoWrapper {
+    margin-top: 1rem;
+  }
+  .foundationLogo {
+    width: 150px;
+  }
+
+  /* Sections */
+  .section,
+  .sectionAlt {
+    padding: 2rem 1rem;
+  }
+  .sectionHeading {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Text blocks */
+  .textBlock {
+    padding: 0 1rem;
+    text-align: left;
+  }
+  .textBlock h3 {
+    font-size: 1.25rem;
+    margin-top: 1rem;
+  }
+  .textBlock p,
+  .bulletList li {
+    font-size: 0. Nine rem;
+    text-align: left;
+  }
+
+  /* Two-column → one column (already default) */
+  .textAndImage {
+    margin-top: 1.5rem;
+  }
+  .imageWrapper,
+  .imageWrapperCP {
+    margin: 0 auto;
+    max-width: 100%;
+    flex: none;
+  }
+
+  /* Programs grid → single column */
+  .programsGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .programCard {
+    padding: 1rem;
+  }
+
+  /* Footer & downloads */
+  .downloadWrapper {
+    margin: 1.5rem 0;
+  }
+  .downloadButton {
+    padding: 0.5rem 1rem;
+    font-size: 0. Nine rem;
+    text-align: center;
+  }
+
+ .bulletList {
+  list-style-position: outside;  /* bullets outside the text block */
+  padding-left: 1.5rem;          /* indent the whole list */
+  margin-left: 0;                /* remove any extra left margin */
+  text-align: left;              /* force left‐alignment */
+}
 }

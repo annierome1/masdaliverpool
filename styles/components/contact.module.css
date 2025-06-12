@@ -196,3 +196,77 @@
   border: none;
   
 }
+
+@media (max-width: 767px) {
+  /* Overall padding/text */
+  .mainContent {
+    padding: 2rem 1rem;
+  }
+  .heading {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .subtitle {
+    font-size: 1rem;
+    max-width: 100%;
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+  }
+
+  /* Grid → single column */
+  .contactGrid {
+    display: grid;
+    grid-template-columns: 1fr;  /* always one column */
+    gap: 1.5rem;                 /* breathing room */
+    padding: 0 1rem;
+  }
+  
+
+  /* Card adjustments */
+  .card {
+    padding: 1rem;
+  }
+  .card h2,
+  .card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Form card & inputs */
+  .formCard {
+    width: 90%;
+    margin: 0 auto 1.5rem;
+  }
+  .contactForm {
+    gap: 1rem;
+  }
+  .inputField {
+    width: 90%;
+    padding: 0.6rem;
+  }
+  .twoColRow {
+    flex-direction: column;
+  }
+
+
+  .sendButton {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 0.95rem;
+  }
+
+
+  .infoCard {
+    width: 90%;
+    height: auto;
+    margin-bottom: 1.5rem;
+  }
+
+  .mapCard {
+    width: 100%;
+    margin-top: 2rem;
+  }
+  .mapEmbed {
+    height: 250px;
+  }
+}
