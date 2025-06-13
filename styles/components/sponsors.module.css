@@ -43,7 +43,9 @@
     transition: transform 0.2s;
   }
   
-
+.sponsorsheading{
+  margin-top: 4rem;
+}
   
   .sponsorCard img {
     width: 100%;

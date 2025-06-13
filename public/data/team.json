@@ -423,6 +423,10 @@
     "id": 17,
     "name": "Jackson Brennan",
     "role": "Featherweight",
+    "stance":"Orthodox",
+    "style": "Muay Femur/Tae",
+    "age": "18yrs",
+    "totalFights": 7,
     "weight": "126lbs / 57.1kg",
     "image": "/team/jbrennan.jpg",
     "gallery": [
@@ -431,12 +435,8 @@
       "/team/jackson/jackson_fight5.jpg",
       "/team/jackson/jackson_fight1.jpg"
     ],
-    "record": "4-5-1",
+    "record": "3-3-1",
     "accomplishments": [
-      "National Champion – WBC Muay Thai",
-      "Developed multiple amateur champions from the ground up",
-      "Fought professionally more than 50 times worldwide",
-      "Selected to corner athletes at the iconic Lumpinee Stadium"
     ],
     "social": {
       "instagram": "https://www.instagram.com/jbrennan_masda/",
