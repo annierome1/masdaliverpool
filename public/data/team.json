@@ -13,6 +13,9 @@
     "id": 1,
     "name": "Alfie Ponting",
     "role": "Lightweight",
+    "stance": "Southpaw",
+    "style": "Muay Femur",
+    "totalFights": 25,
     "age": "20 yrs",
     "weight": "135lbs / 61.2kg",
     "image": "/team/alfie_pic.jpg",
@@ -22,12 +25,17 @@
       "/team/alfie/alfie_fight.jpeg",
       "/team/alfie/alfie_gal_4.jpg"
     ],
-    "record": "4-3-2",
+    "record": "19-6-0",
     "accomplishments": [
-      "WBC Muay Thai National Champion",
-      "Trained 3 amateur champions",
-      "Over 50 fights professionally",
-      "Cornered fighters in Lumpinee Stadium"
+     "⁠2x WBC Lightweight World Champion",
+      "⁠WBC Nai Khanom Tom Winner",
+      " ⁠WBC European Super Lightweight Champion",
+      "⁠ISKA European Lightweight Champion",
+      " ⁠ISKA Lightweight English Champion",
+      " ⁠ISKA Lightweight Area Champion",
+      "⁠WBC World Championships Gold Medalist at 63kg",
+      " ⁠WBC World Championship Silver Medal at 67kg"
+
     ],
     "social": {
       "instagram": "https://www.instagram.com/alfiepono_masda/"
@@ -37,6 +45,10 @@
     "id": 2,
     "name": "Owen Gillis",
     "role": "Featherweight",
+    "age": "18yrs",
+    "style": "Muay Femur",
+    "stance": "Orthodox",
+    "totalFights": 26,
     "weight": "126lbs / 57.1kg",
     "image": "/team/owen_gillis.jpeg",
     "gallery": [
@@ -45,12 +57,13 @@
       "/team/owen/owen_fight1.jpeg",
       "/team/owen/owen_fight3.jpeg"
     ],
-    "record": "4-5-2",
+    "record": "21-5-0",
     "accomplishments": [
-      "National Champion – WBC Muay Thai",
-      "Developed multiple amateur champions from the ground up",
-      "Fought professionally more than 50 times worldwide",
-      "Selected to corner athletes at the iconic Lumpinee Stadium"
+      "WMO Super Featherweight World Champion",
+      "WMO Featherweight International Champion",
+      "⁠World Junior Muaythai Champion",
+      "⁠2 x European Champion",
+      "⁠2 x British Champion"
     ],
     "social": {
       "instagram": "https://www.instagram.com/owengillis_masda/",
@@ -60,6 +73,10 @@
   {
     "id": 3,
     "name": "Marc Campbell",
+    "style":"Muay Femur",
+    "stance": "Switch",
+    "age": "19yrs",
+    "totalFights": 57,
     "role": "Bantamweight",
     "weight": "118lbs / 53.5kg",
     "image": "/team/marc_new.jpeg",
@@ -69,12 +86,13 @@
       "/team/marc/marc_fight2.jpg",
       "/team/marc/marc_fight3.jpeg"
     ],
-    "record": "4-5-2",
+    "record": "44-12-1",
     "accomplishments": [
-      "National Champion – WBC Muay Thai",
-      "Developed multiple amateur champions from the ground up",
-      "Fought professionally more than 50 times worldwide",
-      "Selected to corner athletes at the iconic Lumpinee Stadium"
+      "WBC World #12 Bantamweight",
+      "WBC Bantamweight International Champion 2024",
+      "WMF Bantamweight European Champion 2024",
+      "WBC Super-Bantamweight British Champion 2024",
+      "WBC World Gold Medalist 2023"
     ],
     "social": {
       "instagram": "https://www.instagram.com/marccampbell_masda/",
@@ -134,25 +152,32 @@
     "id": 6,
     "name": "Ian McGowan",
     "role": "Light Heavyweight",
-    "age": "20",
+    "age": "32yrs",
+    "style": "Muay Mat",
+    "stance": "Orthodox",
+    "totalFights": 31,
     "weight": "175lbs / 79.3",
     "image": "",
     "gallery": [],
-    "record": "2-0-1",
+    "record": "22-9-0",
     "accomplishments": [
-      "National Champion – WBC Muay Thai",
-      "Developed multiple amateur champions from the ground up",
-      "Fought professionally more than 50 times worldwide",
-      "Selected to corner athletes at the iconic Lumpinee Stadium"
+      "ISKA British Champion",
+      "Nation British Champion",
+      "Golden belt British Champion",
+      " ⁠ISKA Area Champion"
     ],
     "social": {
-      "instagram": " ",
+      "instagram": "https://www.instagram.com/ianmccowan2?igsh=MWxibDVxejlpd2Q0Yw%3D%3D",
       "tikotk": " "
     }
   },
   {
     "id": 7,
     "name": "Hassan Imran",
+    "stance": "Mix/ Mainly Orthodox",
+    "style": "Muay Khao",
+    "age": "24yrs",
+    "totalFights": 18,
     "role": "Super Lightweight",
     "weight": "140lbs / 63.5kg",
     "image": "/team/hassan_I.jpg",
@@ -162,12 +187,10 @@
       "/team/hassan/hassan_fight4.jpg",
       "/team/hassan/hassan_fight2.jpg"
     ],
-    "record": "4-5-1",
+    "record": "12-6-0",
     "accomplishments": [
-      "National Champion – WBC Muay Thai",
-      "Developed multiple amateur champions from the ground up",
-      "Fought professionally more than 50 times worldwide",
-      "Selected to corner athletes at the iconic Lumpinee Stadium"
+      "ISKA Area Champion 65KG",
+      "ISKA British Champion"
     ],
     "social": {
       "instagram": "https://www.instagram.com/hassanimran_masda/",
@@ -177,6 +200,10 @@
   {
     "id": 8,
     "name": "Kenny Carey",
+    "stance": "Orthodox",
+    "style":"Muay Femur",
+    "age": "19yrs",
+    "totalFights": 14,
     "role": "Super Welterweight",
     "weight": "154lbs / 69.8kg",
     "image": "/team/kenny_new.jpeg",
@@ -186,12 +213,9 @@
       "/team/kenny/kenny_fight2.jpg",
       "/team/kenny/kenny_fight3.jpg"
     ],
-    "record": "4-5-1",
+    "record": "8-6-0",
     "accomplishments": [
-      "National Champion – WBC Muay Thai",
-      "Developed multiple amateur champions from the ground up",
-      "Fought professionally more than 50 times worldwide",
-      "Selected to corner athletes at the iconic Lumpinee Stadium"
+      "British Welterweight Championship"
     ],
     "social": {
       "instagram": "https://www.instagram.com/kennycarey_masda/"
@@ -320,6 +344,10 @@
     "id": 14,
     "name": "Jack Garcia",
     "role": "Super Lightweight",
+    "style":"Muay Femur",
+    "stance":"Orthodox",
+    "age": "17yrs",
+    "totalFights": 4,
     "weight": "140lbs / 63.5kg",
     "image": "/team/jack_garcia.jpeg",
     "gallery": [
@@ -328,12 +356,9 @@
       "/team/jack/jack_fight5.jpeg",
       "/team/jack/jack_fight3.jpg.jpeg"
     ],
-    "record": "4-5-1",
+    "record": "4-0-0",
     "accomplishments": [
-      "National Champion – WBC Muay Thai",
-      "Developed multiple amateur champions from the ground up",
-      "Fought professionally more than 50 times worldwide",
-      "Selected to corner athletes at the iconic Lumpinee Stadium"
+      "ISKA Northern Area Champion"
     ],
     "social": {
       "instagram": "https://www.instagram.com/jackgarcia_masda/",
@@ -343,7 +368,11 @@
   {
     "id": 15,
     "name": "Harrison Caldwell",
+    "age": "17yrs",
     "role": "Super Bantamweight",
+    "stance": "Orthodox",
+    "style": "Muay Femur",
+    "totalFights": 9,
     "weight": "122lbs / 55.3kg",
     "image": "/team/harrison_cald.jpg",
     "gallery": [
@@ -352,12 +381,10 @@
       "/team/harisson/hari_fight.jpg",
       "/team/harisson/hari_fight3.jpg"
     ],
-    "record": "4-5-1",
+    "record": "5-4-0",
     "accomplishments": [
-      "National Champion – WBC Muay Thai",
-      "Developed multiple amateur champions from the ground up",
-      "Fought professionally more than 50 times worldwide",
-      "Selected to corner athletes at the iconic Lumpinee Stadium"
+      "⁠ISKA English champion"
+
     ],
     "social": {
       "instagram": "https://www.instagram.com/hcaldwell_masda/",
@@ -368,6 +395,10 @@
     "id": 16,
     "name": "Lennon Goldby",
     "role": "Bantamweight",
+    "stance": "Orthodox",
+    "style":"Muay Femur",
+    "age":"17yrs",
+    "totalFights": 3,
     "weight": "118lbs / 53.5kg",
     "image": "/team/lennon.jpg",
     "gallery": [
@@ -376,7 +407,7 @@
       "/team/lennon/lennon_fight4.jpg",
       "/team/lennon/lennon_fight2.jpg"
     ],
-    "record": "4-5-1",
+    "record": "2-1-0",
     "accomplishments": [
       "National Champion – WBC Muay Thai",
       "Developed multiple amateur champions from the ground up",
@@ -416,15 +447,16 @@
     "id": 18,
     "name": "Amelie Moran",
     "role": "Lightweight",
+    "stance":"Orthodox",
+    "style":"Muay Femur",
+    "age":"19yrs",
+    "totalFights": 2,
     "weight": "135lbs / 61.2kg",
     "image": "",
     "gallery": [],
-    "record": "2-0-1",
+    "record": "2-0-0",
     "accomplishments": [
-      "National Champion – WBC Muay Thai",
-      "Developed multiple amateur champions from the ground up",
-      "Fought professionally more than 50 times worldwide",
-      "Selected to corner athletes at the iconic Lumpinee Stadium"
+
     ],
     "social": {
       "instagram": " ",
@@ -434,16 +466,17 @@
   {
     "id": 19,
     "name": "Tyler Danns",
+    "stance": "Orthodox",
+    "style":"Muay Khao",
+    "age": "19yrs",
+    "totalFights": 3,
     "role": "Featherweight",
     "weight": "126lbs / 57.1kg",
     "image": "",
     "gallery": [],
-    "record": "2-0-1",
+    "record": "1-2-0",
     "accomplishments": [
-      "National Champion – WBC Muay Thai",
-      "Developed multiple amateur champions from the ground up",
-      "Fought professionally more than 50 times worldwide",
-      "Selected to corner athletes at the iconic Lumpinee Stadium"
+
     ],
     "social": {
       "instagram": " ",
@@ -608,7 +641,7 @@
     "role": "",
     "age": "20",
     "weight": "57kg",
-    "image": "",
+    "image": "/team/oscar.jpg",
     "gallery": [],
     "record": "2-0-1",
     "accomplishments": [
@@ -618,7 +651,7 @@
       "Selected to corner athletes at the iconic Lumpinee Stadium"
     ],
     "social": {
-      "instagram": " ",
+      "instagram": "https://www.instagram.com/oscarforman_masda/",
       "tikotk": " "
     }
   },
@@ -638,7 +671,7 @@
       "Selected to corner athletes at the iconic Lumpinee Stadium"
     ],
     "social": {
-      "instagram": " ",
+      "instagram": "https://www.instagram.com/jakemac_masda?igsh=YmhmMnRnNmY1M3B5",
       "tikotk": " "
     }
   },

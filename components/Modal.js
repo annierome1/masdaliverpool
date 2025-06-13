@@ -24,12 +24,21 @@ export default function Modal({ member, onClose }) {
         <button className={styles.closeButton} onClick={onClose}>✕</button>
         <div className={styles.name}><h2>{member.name}</h2></div>
         <div className={styles.roleWrapper}>
-  <p className={styles.role}>{member.role}</p>
-  <p className={styles.ageBox}>{member.age}</p>
-  <p className={styles.weight}>{member.weight}</p>
 
+  {/* top row: role + stance */}
+  <div className={styles.topRow}>
+    <p className={styles.role}>{member.role}</p>
+    <p className={styles.stance}>{member.stance}</p>
+    <p className={styles.style}>{member.style}</p>
+  </div>
 
-        </div>
+  {/* bottom row: age + weight */}
+  <div className={styles.bottomRow}>
+    <p className={styles.ageBox}>{member.age} yrs</p>
+    <p className={styles.weight}>{member.weight}</p>
+  </div>
+
+</div>
 
         <div className={styles.gallery}>
           {member.gallery && member.gallery.length > 0 ? (
@@ -47,8 +56,10 @@ export default function Modal({ member, onClose }) {
         </div>
             <div className={styles.bioAccomplishmentsContainer}>
             <div className={styles.recordWrapper}>
-            {/* heading FIRST */}
-            <h3 className={styles.recordTitle}>Record</h3>
+
+            <h3 className={styles.recordTitle}>
+              Record <span className={styles.totalFightsInline}>({member.totalFights} fights)</span>
+            </h3>
 
             {/* cards row */}
             <ul className={styles.record}>
