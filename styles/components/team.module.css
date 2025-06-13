@@ -212,6 +212,8 @@
   /* Stack grid to one column */
   .teamGrid {
     grid-template-columns: 1fr;
+    margin-right: 2rem !important;
+    
   }
 
 
@@ -220,6 +222,7 @@
     max-width: 400px;
     height: auto;
     padding: 1rem;
+    
   }
 
   /* Shrink image wrapper */

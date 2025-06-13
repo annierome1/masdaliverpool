@@ -202,13 +202,15 @@
   .overlay {
     padding: 1rem;
     align-items: flex-start;
+    z-index: 1000;
+    
   }
 
   .modal {
-    width: 95%;
+    width: 90%;
     padding: 1rem;
-    max-height: 90vh;
-    overflow-y: auto;
+    margin-right: 2rem;
+   justify-self: center !important;
   }
 
   .closeButton {
@@ -234,6 +236,11 @@
     margin-bottom: 1rem;
   }
 
+  .stance,
+  .style
+  {
+    font-size: 0.8rem;
+  }
   .weight,
   .ageBox {
     font-size: 0.9rem;
@@ -257,21 +264,25 @@
   }
 
   .recordWrapper {
-    width: 100%;
+    width: 80% !important;
     padding: 1rem;
     margin-bottom: 1rem;
+    justify-items: center;
   }
 
   .record {
     flex-wrap: wrap;
     gap: 0.5rem;
-    justify-content: center;
+    justify-items: center !important;
     height: auto;
+    width: 250px !important;
+    margin-right: 2rem;
   }
 
   .stat {
-    flex: 0 1 80px;
+    flex: 0 1 90px;
     padding: 0.5rem 0.25rem;
+   
   }
 
   .value {
