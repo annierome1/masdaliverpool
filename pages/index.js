@@ -1,6 +1,6 @@
+// pages/index.js
 import Head from 'next/head'
 import { useState, useRef, useEffect } from 'react'
-import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -26,60 +26,10 @@ export async function getStaticProps() {
 
 export default function Home({ homepagePlaybackId }) {
   const playerRef = useRef(null)
-  const router = useRouter()
-  const mainRef = useRef(null)
-  const touchStartY = useRef(null)
 
   const [showVideo, setShowVideo] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
 
-  
 
-  // Detect mobile viewport
-  useEffect(() => {
-    const onResize = () => setIsMobile(window.innerWidth <= 768)
-    onResize()
-    window.addEventListener('resize', onResize)
-    return () => window.removeEventListener('resize', onResize)
-  }, [])
-
-  // Slide-up animation on mobile, immediate nav on desktop
-  const slideAndNavigate = () => {
-    if (!isMobile) {
-      router.push('/team')
-      return
-    }
-    if (!mainRef.current || mainRef.current.classList.contains(styles.slideUp)) {
-      router.push('/team')
-      return
-    }
-    mainRef.current.classList.add(styles.slideUp)
-    mainRef.current.addEventListener(
-      'animationend',
-      () => router.push('/team'),
-      { once: true }
-    )
-  }
-
-  // Swipe detection (mobile only)
-  useEffect(() => {
-    if (!isMobile) return
-    const onTouchStart = (e) => {
-      touchStartY.current = e.touches[0].clientY
-    }
-    const onTouchEnd = (e) => {
-      if (touchStartY.current === null) return
-      const deltaY = touchStartY.current - e.changedTouches[0].clientY
-      touchStartY.current = null
-      if (deltaY > 50) slideAndNavigate()
-    }
-    window.addEventListener('touchstart', onTouchStart)
-    window.addEventListener('touchend', onTouchEnd)
-    return () => {
-      window.removeEventListener('touchstart', onTouchStart)
-      window.removeEventListener('touchend', onTouchEnd)
-    }
-  }, [isMobile])
 
   // Video fade-in after a short delay
   useEffect(() => {
@@ -120,7 +70,7 @@ export default function Home({ homepagePlaybackId }) {
 
       <Header />
 
-      <main ref={mainRef} className={styles.main}>
+      <main className={styles.main}>
         <div className={styles.videoCropper}>
           <mux-player
             ref={playerRef}
@@ -139,14 +89,39 @@ export default function Home({ homepagePlaybackId }) {
         <div className={styles.overlay} />
         <div className={styles.content}>
           <h1>MASDA GYM LIVERPOOL</h1>
-          <p>Train Hard. Fight Smart. Elevate.</p>
+          <p>Where champions are made and lives are changed</p>
           <div className={styles.deskButton}>
             <Link href="/team" className={buttonStyles.rbutton}>
-            Meet the team
-          </Link>
+              Meet the team
+            </Link>
           </div>
         </div>
       </main>
+
+      {/* About Us Section */}
+      <section className={styles.aboutSection}>
+        <div className={styles.aboutContainer}>
+          <h2 className={styles.aboutTitle}>About Us</h2>
+          <p className={styles.aboutText}>
+            MASDA Gym, established in 2010, is a world-class combat sports academy
+            located in Liverpool, UK. Renowned for training amateur and
+            professional fighters in Muay Thai, MMA, and Boxing, as well as
+            providing expert-led strength & conditioning programs.
+          </p>
+          <p className={styles.aboutText}>
+            MASDA boasts top-tier facilities including multiple boxing rings,
+            expansive mat space, and an onsite therapy clinic. With a legacy of
+            producing champions on the world’s biggest combat stages, MASDA
+            fosters a welcoming, family-like community for all skill levels.
+          </p>
+          <p className={styles.aboutText}>
+            In 2024, MASDA Gym Liverpool was proudly awarded{' '}
+            <strong>UK Gym of the Year</strong> by Thai Fighter UK,
+            recognizing its outstanding contributions to Muay Thai and martial
+            arts excellence.
+          </p>
+        </div>
+      </section>
 
       <Footer />
     </>

@@ -157,7 +157,7 @@
     "stance": "Orthodox",
     "totalFights": 31,
     "weight": "175lbs / 79.3",
-    "image": "",
+    "image": "/team/ian.jpeg",
     "gallery": [],
     "record": "22-9-0",
     "accomplishments": [
@@ -274,6 +274,10 @@
     "id": 11,
     "name": "Jacob Charnock",
     "role": "Featherweight",
+    "age":"19yrs",
+    "stance": "Orthodox",
+    "style": "Muay Mat",
+    "totalFights": 11,
     "weight": "126lbs / 57.1kg",
     "image": "/team/jacob_char.jpg",
     "gallery": [
@@ -282,12 +286,9 @@
       "/team/jacob/jacob_fight2.jpg",
       "/team/jacob/jacob_fight3.jpg"
     ],
-    "record": "4-5-1",
+    "record": "6-5-0",
     "accomplishments": [
-      "National Champion – WBC Muay Thai",
-      "Developed multiple amateur champions from the ground up",
-      "Fought professionally more than 50 times worldwide",
-      "Selected to corner athletes at the iconic Lumpinee Stadium"
+      "ISKA English Champion"
     ],
     "social": {
       "instagram": "https://www.instagram.com/jacobcharnock_masda/"
@@ -297,6 +298,10 @@
     "id": 12,
     "name": "Josh Duncan",
     "role": "Featherweight",
+    "stance": "Orthodox",
+    "style": "Muay Femur",
+    "age": "16yrs",
+    "totalFights": 13,
     "weight": "126lbs / 57.1kg",
     "image": "/team/josh_duncan.jpeg",
     "gallery": [
@@ -305,12 +310,12 @@
       "/team/josh/josh_fight2.jpeg",
       "/team/josh/josh_fight3.jpg"
     ],
-    "record": "4-5-1",
+    "record": "9-4-0",
     "accomplishments": [
-      "National Champion – WBC Muay Thai",
-      "Developed multiple amateur champions from the ground up",
-      "Fought professionally more than 50 times worldwide",
-      "Selected to corner athletes at the iconic Lumpinee Stadium"
+      "WMO ProAm British Featherweight Champion",
+      "2 X European Muaythai Champion",
+      "⁠ISKA World Champion",
+      " ⁠3 X British Champion"
     ],
     "social": {
       "instagram": "https://www.instagram.com/joshduncan44_masda/"
@@ -320,6 +325,10 @@
     "id": 13,
     "name": "Fin Mueller",
     "role": "Super Welterweight",
+    "stance": "Orthodox",
+    "style": "Muay Femur",
+    "age": "19yrs",
+    "totalFights": 11,
     "weight": "154lbs / 69.8kg",
     "image": "/team/finn.jpg",
     "gallery": [
@@ -328,12 +337,10 @@
       "/team/finn/finn_fight3.jpg",
       "/team/finn/finn_fight2.jpg"
     ],
-    "record": "4-5-1",
+    "record": "8-3-0",
     "accomplishments": [
-      "National Champion – WBC Muay Thai",
-      "Developed multiple amateur champions from the ground up",
-      "Fought professionally more than 50 times worldwide",
-      "Selected to corner athletes at the iconic Lumpinee Stadium"
+      "ISKA Welsh champion",
+      "WKA Welsh champion"
     ],
     "social": {
       "instagram": "https://www.instagram.com/finmueller_/",
@@ -544,7 +551,10 @@
     "id": 23,
     "name": "Fergal Brennan",
     "role": "Featherweight",
-    "age": "25",
+    "style":"Muay Mat",
+    "stance": "Orthodox",
+    "totalFights": 3,
+    "age": "26yrs",
     "weight": "126lbs / 57.1kg",
     "image": "/team/fer/fer.jpeg",
     "gallery": [
@@ -555,10 +565,6 @@
     ],
     "record": "2-0-1",
     "accomplishments": [
-      "National Champion – WBC Muay Thai",
-      "Developed multiple amateur champions from the ground up",
-      "Fought professionally more than 50 times worldwide",
-      "Selected to corner athletes at the iconic Lumpinee Stadium"
     ],
     "social": {
       "instagram": "https://www.instagram.com/fergalbrennan_masda/",
@@ -672,66 +678,6 @@
     ],
     "social": {
       "instagram": "https://www.instagram.com/jakemac_masda?igsh=YmhmMnRnNmY1M3B5",
-      "tikotk": " "
-    }
-  },
-  {
-    "id": 29,
-    "name": "Terrance Wilson",
-    "role": "",
-    "age": "20",
-    "weight": "25kg",
-    "image": "",
-    "gallery": [],
-    "record": "2-0-1",
-    "accomplishments": [
-      "National Champion – WBC Muay Thai",
-      "Developed multiple amateur champions from the ground up",
-      "Fought professionally more than 50 times worldwide",
-      "Selected to corner athletes at the iconic Lumpinee Stadium"
-    ],
-    "social": {
-      "instagram": " ",
-      "tikotk": " "
-    }
-  },
-  {
-    "id": 30,
-    "name": "Hadi Hadi",
-    "role": "",
-    "age": "20",
-    "weight": "42kg",
-    "image": "",
-    "gallery": [],
-    "record": "2-0-1",
-    "accomplishments": [
-      "National Champion – WBC Muay Thai",
-      "Developed multiple amateur champions from the ground up",
-      "Fought professionally more than 50 times worldwide",
-      "Selected to corner athletes at the iconic Lumpinee Stadium"
-    ],
-    "social": {
-      "instagram": " ",
-      "tikotk": " "
-    }
-  },
-  {
-    "id": 31,
-    "name": "Madi Hadi",
-    "role": "",
-    "age": "20",
-    "weight": "48kg",
-    "image": "",
-    "gallery": [],
-    "record": "2-0-1",
-    "accomplishments": [
-      "National Champion – WBC Muay Thai",
-      "Developed multiple amateur champions from the ground up",
-      "Fought professionally more than 50 times worldwide",
-      "Selected to corner athletes at the iconic Lumpinee Stadium"
-    ],
-    "social": {
-      "instagram": " ",
       "tikotk": " "
     }
   }

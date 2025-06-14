@@ -212,14 +212,15 @@
   /* Stack grid to one column */
   .teamGrid {
     grid-template-columns: 1fr;
-    margin-right: 2rem !important;
-    
+    margin-right: 0 !important;
+    padding: 0 0.4rem;    /* optional gutter */
+    justify-items: center;
   }
 
 
   .teamCard {
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
     height: auto;
     padding: 1rem;
     

@@ -45,7 +45,7 @@ export default function Header() {
             ['Classes', '/classes'],
             ['Events', '/fightnight'],
             ['The Gym', '/the_gym'],
-            ['Sponsors', '/sponsors'],
+            ['Partners', '/sponsors'],
             ['Foundation', '/foundation'],
             ['News & Social', '/news_social'],
             ['Contact Us', '/contact'],
@@ -97,7 +97,7 @@ export default function Header() {
               href="/sponsors"
               className={`${styles.link} ${currentPath === '/sponsors' ? styles.active : ''}`}
             >
-              Sponsors
+              Partners
             </Link>
           </li>
           <li>

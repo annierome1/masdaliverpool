@@ -1,4 +1,4 @@
-import { useState } from 'react';
+
 import Head from 'next/head';
 import Link from 'next/link';
 import Header from '../components/Header';
@@ -9,7 +9,6 @@ import styles from '../styles/components/classes.module.css';
 
 
 export default function ClassesPage() {
-  const [showSchedule, setShowSchedule] = useState(false);
 
   return (
     <>
@@ -22,8 +21,45 @@ export default function ClassesPage() {
       </Head>
 
       <Header />
+      
 
       <div className={styles.pageContainer}>
+        {/* Schedule Section */}
+        <h1 className={styles.heading}>Weekly Class Schedule</h1>
+        
+          <div className={styles.scheduleWrapper}>
+            <table className={styles.scheduleTable}>
+              <thead>
+                <tr>
+                  <th>Time</th>
+                  <th>Monday</th>
+                  <th>Tuesday</th>
+                  <th>Wednesday</th>
+                  <th>Thursday</th>
+                  <th>Friday</th>
+                  <th>Saturday</th>
+                  <th>Sunday</th>
+                </tr>
+              </thead>
+              <tbody>
+                {scheduleData.map((row) => (
+                  <tr key={row.time}>
+                    <td>{row.time}</td>
+                    <td>{row.monday}</td>
+                    <td>{row.tuesday}</td>
+                    <td>{row.wednesday}</td>
+                    <td>{row.thursday}</td>
+                    <td>{row.friday}</td>
+                    <td>{row.saturday}</td>
+                    <td>{row.sunday}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            
+          </div>
+        
+
        <h1 className={styles.heading}>Membership Plans</h1>
 <section className={styles.membershipPlans}>
   {/* Plan 1: Junior Membership */}
@@ -109,48 +145,7 @@ export default function ClassesPage() {
   </div>
 </section>
 
-        {/* Schedule Section */}
-        <h1 className={styles.heading}>Weekly Class Schedule</h1>
-        <button
-          className={styles.scheduleToggle}
-          onClick={() => setShowSchedule(!showSchedule)}
-        >
-          {showSchedule ? 'Hide Schedule' : 'View Schedule'}
-        </button>
-
-        {showSchedule && (
-          <div className={styles.scheduleWrapper}>
-            <table className={styles.scheduleTable}>
-              <thead>
-                <tr>
-                  <th>Time</th>
-                  <th>Monday</th>
-                  <th>Tuesday</th>
-                  <th>Wednesday</th>
-                  <th>Thursday</th>
-                  <th>Friday</th>
-                  <th>Saturday</th>
-                  <th>Sunday</th>
-                </tr>
-              </thead>
-              <tbody>
-                {scheduleData.map((row) => (
-                  <tr key={row.time}>
-                    <td>{row.time}</td>
-                    <td>{row.monday}</td>
-                    <td>{row.tuesday}</td>
-                    <td>{row.wednesday}</td>
-                    <td>{row.thursday}</td>
-                    <td>{row.friday}</td>
-                    <td>{row.saturday}</td>
-                    <td>{row.sunday}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            
-          </div>
-        )}
+        
         <div className={styles.hours}>
       <p>Open from 9am – 9pm private lessons and group sessions available</p></div>
       

@@ -296,12 +296,17 @@
   .accomplishmentsWrapper {
     width: 100%;
     padding: 1rem;
+    margin-bottom: 2.5rem !important;
+    
   }
 
   .accomplishments h3 {
     font-size: 1.25rem;
     margin-bottom: 0.75rem;
   }
+  .closeButton {
+  font-size: 2rem;
+}
 
   .accomplishments li {
     padding: 0.5rem 1rem 0.5rem 2rem;

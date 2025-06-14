@@ -87,6 +87,7 @@ export default function TheGymPage({ gymPlaybackIds }) {
 
       {/* Hero Section */}
       <div className={styles.heroSection}>
+
         <div className={styles.videoContainer}>
           {vidsToShow.map((pid, idx) => (
             <mux-player
@@ -112,9 +113,7 @@ export default function TheGymPage({ gymPlaybackIds }) {
           <p className={styles.heroSubtitle}>
             Experience training in a state-of-the-art facility designed for fighters of all levels.
           </p>
-          <Link href="/classes" className={styles.ctaButton}>
-            Start Your Journey
-          </Link>
+          
         </div>
       </div>
       <main className={styles.mainContent}>
@@ -144,7 +143,7 @@ export default function TheGymPage({ gymPlaybackIds }) {
     <div className={styles.twoColumnReverse}>
       <ul className={styles.bulletList}>
         <li>Daily scheduled classes (AM & PM)</li>
-        <li>Children's classes (age 5+)</li>
+        <li>Children&rsquo;s classes (age 5+)</li>
         <li>Private lessons (1-on-1 or small group)</li>
         <li>Muay Thai, MMA, Boxing, Kickboxing</li>
         <li>Brazilian Jiu Jitsu & Grappling</li>
@@ -177,10 +176,17 @@ export default function TheGymPage({ gymPlaybackIds }) {
   <section className={styles.sectionAlt}>
     <h2 className={styles.sectionTitle}>Our Coaches</h2>
     <p className={styles.paragraphCenter}>
-      Whether you're a beginner or a seasoned fighter, our coaches bring diverse expertise to meet your goals—Muay Thai, BJJ, MMA, and more.
-    </p>
+  Whether you&rsquo;re a beginner or a seasoned fighter, our coaches bring diverse expertise to meet your goals—Muay Thai, BJJ, MMA, and more.
+</p>
+
   </section>
+  <div className={styles.ctaWrapper}>
+  <Link href="/classes" className={styles.ctaButton}>
+            Start Your Journey
+          </Link>
+          </div>
 </main>
+
 
 
       <Footer />

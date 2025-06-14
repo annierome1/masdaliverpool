@@ -119,6 +119,12 @@
   display: none;
 }
 
+.eventHighlights h2 {
+  margin-bottom: -2rem;
+}
+
+
+
 .eventsCarouselContainer {
   display: flex;
   align-items: center;
@@ -135,11 +141,11 @@
   gap: 1.5rem;
   padding: 1rem 0;
   flex: 1;   
-  justify-content: center;
           
 }
 .eventHighlights{
   text-align: center;
+  justify-items: center;
 }
 
   .eventImage {
@@ -350,7 +356,14 @@
   .eventsCarouselContainer .arrowButton {
     display: none;
   }
+  .eventHighlights {
+  margin-top: -2rem;
+  margin-bottom: 2rem;
 
+}
+.eventHighlights h2{
+  margin-bottom: 0.8rem;
+}
     .arrowButton {
     display: none !important;
   }

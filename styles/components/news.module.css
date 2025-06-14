@@ -16,8 +16,7 @@
 /* ── News Grid ── */
 .newsSection {
   max-width: 1200px;
-  margin: 0 auto 4rem;
-  justify-items: center;
+  justify-self: center !important;
 }
 .newsGrid {
   display: grid;

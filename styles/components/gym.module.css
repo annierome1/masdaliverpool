@@ -462,23 +462,30 @@
   z-index: 1000;
 }
   .heroSection {
-    height: 350px;
+    height: 275px;
     margin: 0;
     padding: 0;
   }
   .heroTitle {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     margin-bottom: 0rem;
-    margin-top: 4rem;
+    margin-top: 6rem;
   }
   .heroSubtitle {
-    font-size: 0.9rem;
+    font-size: 1rem;
     margin-bottom: 1rem;
     max-width: 90%;
   }
-  .ctaButton {
-    padding: 0.4rem 1rem;
-    font-size: 0.8rem !important;
+
+    .ctaButtons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .ctaWrapper{
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
   }
 
   /* Main Content Padding */
@@ -490,63 +497,28 @@
   top: 0; left: 0;
   height: 175px;
 }
-  /* Facility & Equipment Sections */
-  .facilitySection,
-  .equipmentSection {
-    margin-bottom: 2rem;
-  }
-  .facilitySection h2,
-  .equipmentSection h2 {
-    font-size: 1.5rem;
-    margin-bottom: 0.75rem;
-  }
 
-  /* Grids → one column */
-  .facilityGrid,
-  .equipmentGrid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
 
-  /* Cards fluid height */
-  .facilityCard {
-    height: auto;             /* let content dictate height */
+
+.mainContent {
     padding: 1rem;
   }
-  .cardImageWrapper {
-    height: 200px;            /* shorter image on mobile */
-    margin-bottom: 0.5rem;
-  }
-
-  /* Card Titles & Text */
-  .facilityCard h3 {
-    margin-top: 1.5rem;
-    font-size: 1rem;
-  }
-  .facilityCard p {
-    font-size: 0. nine rem;
-  }
-
-  /* CTA Section */
-  .ctaSection {
-    margin-bottom: 2rem;
-  }
+  .facilitySection h2,
+  .equipmentSection h2,
   .ctaSection h2 {
     font-size: 1.5rem;
-    margin-bottom: 0.75rem;
   }
-  .ctaSection p {
+  .ctaSection p,
+  .modalDesc,
+  .paragraph,
+  .paragraphCenter {
     font-size: 0.95rem;
-    margin-bottom: 1rem;
   }
-  .ctaButtons {
-    flex-direction: column;
-    gap: 0.75rem;
+.sectionTitle {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
   }
-  .ctaButton {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-  }
+
 
   /* Modal tweaks */
   .modalContent {
@@ -557,12 +529,5 @@
     top: 0.5rem;
     right: 0.5rem;
   }
-  .modalTitle {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-  }
-  .modalDesc {
-    font-size: 0. nine rem;
-    line-height: 1.4;
-  }
+
 }
