@@ -1,8 +1,8 @@
 /* foundation.module.css */
 
 .main {
-  background-color: #333;
-  color: #222;
+  background-color: #222;
+  color: #111111;
   font-family: var(--font-cinzel);
   line-height: 1.6;
 }
@@ -40,7 +40,7 @@
   justify-content: center;
   align-items: center;
   margin-top: 2rem;
-  background-color: #222;
+  background-color: #111111;
 }
 
 .foundationLogo {
@@ -56,7 +56,7 @@
   color: #e53e3e;
 }
 .sectionAlt {
-  background-color: #222;
+  background-color: #111111;
   padding: 4rem 1rem;
 }
 .sectionHeading {
@@ -149,7 +149,7 @@
   }
 }
 .programCard {
-  background: #222;
+  background: #111111;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   padding: 1.25rem;
