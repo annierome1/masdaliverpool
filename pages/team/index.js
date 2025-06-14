@@ -1,13 +1,14 @@
-import Modal from '../components/Modal';
+import Modal from '../../components/Modal';
 import Head from 'next/head';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import styles from '../styles/components/team.module.css';
+import { useRouter } from 'next/router'
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import styles from '../../styles/components/team.module.css';
 import { FaInstagram, FaTiktok } from 'react-icons/fa';
-import { useState } from 'react';
+import { useState, useEffect } from 'react'
 import Select from 'react-select';
 // import your JSON data
-import teamData from '../public/data/team.json';
+import teamData from '../../public/data/team.json';
 
 const names = [...new Set(teamData.map(member => member.name))].sort();
 const weightClasses = [...new Set(teamData.map(member => member.role))].sort();
@@ -57,23 +58,45 @@ const customSelectStyles = {
 };
 
 export default function TeamPage() {
+  const router = useRouter()
+  const { slug } = router.query
+
   const [selectedMember, setSelectedMember] = useState(null);
   const [selectedName, setSelectedName] = useState('');
   const [selectedWeightClass, setSelectedWeightClass] = useState('');
 
-  const handleCardClick = (member) => {
-    setSelectedMember(member);
-  };
 
-  const closeModal = () => {
-    setSelectedMember(null);
-  };
+  useEffect(() => {
+    if (!router.isReady) return     // wait until Next has hydrated the query
+    if (!slug) return                // nothing to do if no slug
 
+    // convert “Owen_Gillis” → “Owen Gillis”
+    const name = slug.replace(/_/g, ' ')
+    const member = teamData.find(m => m.name === name)
+    if (member) {
+      setSelectedMember(member)
+    }
+  }, [router.isReady, slug])
   const filteredFighters = selectedName
     ? teamData.filter(member => member.name === selectedName)
     : selectedWeightClass
     ? teamData.filter(member => member.role === selectedWeightClass)
     : teamData;
+
+    
+
+  // 2️⃣ Clicking a card pushes `/team/Slug_Name`
+  const handleCardClick = (member) => {
+    const slugged = member.name.replace(/ /g, '_')
+    setSelectedMember(member)
+    router.push(`/team/${slugged}`, undefined, { shallow: true })
+  }
+
+  // 3️⃣ Closing returns to `/team`
+  const closeModal = () => {
+    setSelectedMember(null)
+    router.push('/team', undefined, { shallow: true })
+  }
 
   return (
     <>
