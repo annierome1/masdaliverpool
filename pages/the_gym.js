@@ -118,69 +118,71 @@ export default function TheGymPage({ gymPlaybackIds }) {
         </div>
       </div>
       <main className={styles.mainContent}>
-        {/* Facility Section */}
-        <section className={styles.facilitySection}>
-          <h2>Our World-Class Facility</h2>
-          <div className={styles.facilityGrid}>
-            {/* Card 1 */}
-            <div className={styles.facilityCard}>
-              <div className={styles.cardImageWrapper}>
-              <img
-                src="/thegym/masda_mat.jpg"
-                alt="Spacious Arena"
-                className={styles.cardImage}
-              />
-              </div>
-              <h3>Spacious Arena</h3>
-              <p>
-                Ample space to train, spar, and hone your skills.
-              </p>
-            </div>
+  {/* Facilities */}
+  <section className={styles.section}>
+    <h2 className={styles.sectionTitle}>Facilities</h2>
+    <div className={styles.twoColumn}>
+      <ul className={styles.bulletList}>
+        <li><strong>3000 ft²</strong> of training mat</li>
+        <li><strong>3</strong> boxing rings</li>
+        <li>Male & female changing areas</li>
+        <li>Private shower & wet room</li>
+        <li><strong>10</strong> bag stations</li>
+        <li>Cardio & free weights area</li>
+      </ul>
+      <img
+        src="/thegym/gym_machines.jpg"
+        alt="Training Mat Area"
+        className={styles.sectionImage}
+      />
+    </div>
+  </section>
 
-            {/* Card 2 */}
-            <div className={styles.facilityCard}>
-              <div className={styles.cardImageWrapper}>
-              <img
-                src="/thegym/gym_machines.jpg"
-                alt="Modern Amenities"
-                className={styles.cardImage}
-              />
-              </div>
-              <h3>Modern Amenities</h3>
-              <p>
-                Fully equipped locker rooms, showers, and relaxation areas.
-              </p>
-            </div>
+  {/* Services */}
+  <section className={styles.sectionAlt}>
+    <h2 className={styles.sectionTitle}>Services</h2>
+    <div className={styles.twoColumnReverse}>
+      <ul className={styles.bulletList}>
+        <li>Daily scheduled classes (AM & PM)</li>
+        <li>Children's classes (age 5+)</li>
+        <li>Private lessons (1-on-1 or small group)</li>
+        <li>Muay Thai, MMA, Boxing, Kickboxing</li>
+        <li>Brazilian Jiu Jitsu & Grappling</li>
+        <li>Fitness & Conditioning</li>
+      </ul>
+      <img
+        src="/thegym/masda_mat.jpg"
+        alt="Training Equipment"
+        className={styles.sectionImage}
+      />
+    </div>
+  </section>
 
-            {/* Card 3 */}
-            <div className={styles.facilityCard}>
-              <div className={styles.cardImageWrapper}>
-              <img
-                src="/thegym/clinic.png"
-                alt="Concordia Clinic"
-                 style={{
-                  width: '300px',
-                  height: 'auto',
-                  objectFit: 'contain',
-                  marginBottom: '3rem',
-                  marginTop: '4rem'
-                }}
-              />
-              </div>
-              <h3>Therapy Clinic & Recover Center</h3>
-              <p>
-              The Clinic aims to help and guide those looking for better health and wellbeing, and we have a broad range of treatment options to assist in most conditions.
-              </p>
-            </div>
-          </div>
-        </section>
+  {/* Therapy Clinic */}
+  <section className={styles.section}>
+    <h2 className={styles.sectionTitle}>Therapy Clinic & Recovery</h2>
+    <div className={styles.twoColumn}>
+      <p className={styles.paragraph}>
+        The clinic supports your health journey with a range of recovery treatments for physical therapy, injury prevention, and holistic wellbeing.
+      </p>
+      <img
+        src="/thegym/clinic.png"
+        alt="Clinic"
+        className={styles.sectionImage}
+      />
+    </div>
+  </section>
 
-        {/* Final CTA Section 
-        <section className={styles.ctaSection}>
-          <h2>Ready to Start Training?</h2>
-        </section>
-        */}
-      </main>
+  {/* Coaches */}
+  <section className={styles.sectionAlt}>
+    <h2 className={styles.sectionTitle}>Our Coaches</h2>
+    <p className={styles.paragraphCenter}>
+      Whether you're a beginner or a seasoned fighter, our coaches bring diverse expertise to meet your goals—Muay Thai, BJJ, MMA, and more.
+    </p>
+  </section>
+</main>
+
+
       <Footer />
     </>
   );

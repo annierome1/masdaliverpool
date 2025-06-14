@@ -33,6 +33,8 @@ export default function Home({ homepagePlaybackId }) {
   const [showVideo, setShowVideo] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
 
+  
+
   // Detect mobile viewport
   useEffect(() => {
     const onResize = () => setIsMobile(window.innerWidth <= 768)

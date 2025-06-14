@@ -265,6 +265,192 @@
   line-height: 1.5;
 }
 
+.gymSection {
+  padding: 3rem 1rem;
+  background-color: #111;
+  color: #f4f4f4;
+  font-family: var(--font-cinzel);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.sectionTitle::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: #ed1c28;
+  /* background: #4650DC; */
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+}
+
+.featureList,
+.serviceList {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 2rem;
+}
+
+.featureItem,
+.serviceItem {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  transition: transform 0.3s ease;
+}
+
+.featureItem:hover,
+.serviceItem:hover {
+  transform: translateX(5px);
+  color: #ed1c28;
+}
+
+.collapsible {
+  margin-bottom: 2rem;
+}
+
+.collapsible input {
+  display: none;
+}
+
+.toggleLabel {
+  display: block;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #fff;
+  background: #222;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+  transition: background 0.3s;
+}
+
+.toggleLabel:hover {
+  background: #333;
+}
+
+.toggleContent {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.6s ease;
+}
+
+.collapsible input:checked ~ .toggleContent {
+  max-height: 1500px; /* adjust as needed */
+}
+
+.coachesCard {
+  background: #1a1a1a;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+  text-align: center;
+}
+
+.coachesCard h2 {
+  font-size: 1.7rem;
+  margin-bottom: 0.75rem;
+}
+.section,
+.sectionAlt {
+  padding: 4rem 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  border-bottom: 1px solid #333;
+  justify-items: center;
+}
+
+.sectionAlt {
+  background-color: #111;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  margin-top: 0rem;
+  color: #ccc;
+  text-align: center;
+  margin-bottom: 4rem;
+  text-transform: uppercase;
+  font-family: var(--font-cinzel);
+  letter-spacing: 1px;
+}
+
+.bulletList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: #ccc;
+}
+
+.bulletList li {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  position: relative;
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+.bulletList li::before {
+  content: '•';
+  color: #ed1c28;
+  position: absolute;
+  left: 0;
+  font-size: 1.5rem;
+  top: 0.1rem;
+}
+
+
+.bulletList li:hover {
+  transform: translateX(5px);
+  color: #ed1c28;
+}
+.twoColumn,
+.twoColumnReverse {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.twoColumnReverse {
+  flex-direction: row-reverse;
+}
+
+.sectionImage {
+  width: 100%;
+  max-width: 450px;
+  border-radius: 1rem;
+  object-fit: cover;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.paragraph {
+  color: #ccc;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  flex: 1;
+}
+
+.paragraphCenter {
+  color: #ccc;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+
 @media (max-width: 767px) {
   /* Hero */
   .header-module__header {
