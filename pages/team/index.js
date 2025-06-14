@@ -67,10 +67,9 @@ export default function TeamPage() {
 
 
   useEffect(() => {
-    if (!router.isReady) return     // wait until Next has hydrated the query
-    if (!slug) return                // nothing to do if no slug
+    if (!router.isReady) return    
+    if (!slug) return              
 
-    // convert “Owen_Gillis” → “Owen Gillis”
     const name = slug.replace(/_/g, ' ')
     const member = teamData.find(m => m.name === name)
     if (member) {
@@ -85,14 +84,13 @@ export default function TeamPage() {
 
     
 
-  // 2️⃣ Clicking a card pushes `/team/Slug_Name`
   const handleCardClick = (member) => {
     const slugged = member.name.replace(/ /g, '_')
     setSelectedMember(member)
     router.push(`/team/${slugged}`, undefined, { shallow: true })
   }
 
-  // 3️⃣ Closing returns to `/team`
+
   const closeModal = () => {
     setSelectedMember(null)
     router.push('/team', undefined, { shallow: true })
@@ -111,7 +109,7 @@ export default function TeamPage() {
         <div className={styles.heroSection}>
           <div className={styles.heroOverlay}>
             <h1 className={styles.heroTitle}>Meet Our Team</h1>
-            <p className={styles.heroSubtitle}>One Team, One Family</p>
+            <p className={styles.heroSubtitle}>Train Hard.  Fight Smart.  Elevate</p>
           </div>
         </div>
       </div>
