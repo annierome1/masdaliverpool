@@ -261,6 +261,8 @@
 
   .bioAccomplishmentsContainer {
     gap: 1rem;
+    margin-right: -1.5rem;
+    margin-left: -1.5rem;
   }
 
   .recordWrapper {
@@ -311,6 +313,18 @@
   .accomplishments li {
     padding: 0.5rem 1rem 0.5rem 2rem;
     font-size: 0.9rem;
+  }
+  .bioWrapper {
+    width: 340px !important;
+    padding: 1rem;
+    max-width: 100%;
+  }
+  .bioWrapper .bioTitle {
+    font-size: 1rem;
+  }
+  .bioWrapper .bioText {
+    font-size: 0.97rem;
+    padding: 1rem !important;
   }
 }
 
