@@ -66,6 +66,7 @@ export default function EventsPage({ eventsData, eventHighlights }) {
 
   const [activeVideoIndex, setActiveVideoIndex] = useState(0)
 
+
   // Handle mobile/desktop and overflow checks
   useEffect(() => {
     const recalc = () => {
@@ -75,9 +76,6 @@ export default function EventsPage({ eventsData, eventHighlights }) {
       const eventsEl = eventsWrapperRef.current
       setHasEventOverflow(eventsEl ? eventsEl.scrollWidth > eventsEl.clientWidth : false)
 
-      // Videos
-      const videosEl = videoWrapperRef.current
-      setHasVideoOverflow(videosEl ? videosEl.scrollWidth > videosEl.clientWidth : false)
     }
     recalc()
     window.addEventListener('resize', recalc)
