@@ -26,6 +26,9 @@ export default function ClassesPage() {
       <div className={styles.pageContainer}>
         {/* Schedule Section */}
         <h1 className={styles.heading}>Weekly Class Schedule</h1>
+        <p className={styles.subheading}>
+          The gym is where excuses go to die
+        </p>
         
           <div className={styles.scheduleWrapper}>
             <table className={styles.scheduleTable}>
