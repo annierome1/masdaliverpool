@@ -1,5 +1,3 @@
-// pages/fightnight.js
-
 import Head from 'next/head'
 import Link from 'next/link'
 import Header from '../components/Header'
@@ -9,8 +7,7 @@ import styles from '../styles/components/fightnight.module.css'
 import AWS from 'aws-sdk'
 import { client, urlFor } from '../lib/sanity'
 
-
-
+// --- DATA FETCHING ---
 export async function getStaticProps() {
   const upcoming = await client.fetch(`
     *[_type == "upcomingEvent"]
@@ -52,52 +49,56 @@ export async function getStaticProps() {
 export default function EventsPage({ eventsData, eventHighlights }) {
   const { upcoming } = eventsData
 
-  // Events carousel
+  // Carousels
   const eventsWrapperRef = useRef(null)
   const eventCardRefs = useRef([])
-
-  // Video carousel
   const videoWrapperRef = useRef(null)
   const videoRefs = useRef([])
 
   const [isMobile, setIsMobile] = useState(false)
   const [hasEventOverflow, setHasEventOverflow] = useState(false)
   const [activeEventIndex, setActiveEventIndex] = useState(0)
-
   const [activeVideoIndex, setActiveVideoIndex] = useState(0)
-  //const [hasVideoOverflow, setHasVideoOverflow] = useState(false)
 
-  // Handle mobile/desktop and overflow checks
+  const [userInteracted, setUserInteracted] = useState(false);
+  const [userInteractedVideo, setUserInteractedVideo] = useState(false);
+
+
+
+  // --- Handle mobile/desktop and overflow checks ---
   useEffect(() => {
     const recalc = () => {
       setIsMobile(window.innerWidth < 768)
-
-      // Events
+      // Events overflow
       const eventsEl = eventsWrapperRef.current
       setHasEventOverflow(eventsEl ? eventsEl.scrollWidth > eventsEl.clientWidth : false)
-
-     {/*  // Videos
-      const videosEl = videoWrapperRef.current
-      setHasVideoOverflow(videosEl ? videosEl.scrollWidth > videosEl.clientWidth : false) */}
-    } 
-
-    
+      // If you want to check for video overflow, add logic here!
+    }
     recalc()
     window.addEventListener('resize', recalc)
     return () => window.removeEventListener('resize', recalc)
   }, [])
 
-  // EVENTS: Scroll to active event card when activeEventIndex changes
-  useEffect(() => {
-    const card = eventCardRefs.current[activeEventIndex]
-    if (card) card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' })
-  }, [activeEventIndex, upcoming])
 
-  // EVENTS: Arrows
-  const prevEvent = () => setActiveEventIndex(i => Math.max(0, i - 1))
-  const nextEvent = () => setActiveEventIndex(i => Math.min(upcoming.length - 1, i + 1))
+  // --- EVENTS: Arrows ---
+  const prevEvent = () => {
+  setUserInteracted(true); // Track interaction
+  setActiveEventIndex(i => Math.max(0, i - 1));
+};
+const nextEvent = () => {
+  setUserInteracted(true); // Track interaction
+  setActiveEventIndex(i => Math.min(upcoming.length - 1, i + 1));
+};
 
-  // VIDEOS: Play/pause logic
+useEffect(() => {
+  if (!userInteracted) return; 
+  const card = eventCardRefs.current[activeEventIndex];
+  if (card) card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+}, [activeEventIndex, upcoming, userInteracted]);
+
+
+
+  // --- VIDEOS: Play/pause logic ---
   useEffect(() => {
     videoRefs.current.forEach((vid, idx) => {
       if (!vid) return
@@ -109,23 +110,15 @@ export default function EventsPage({ eventsData, eventHighlights }) {
     })
   }, [activeVideoIndex])
 
-  // VIDEOS: Scroll to active video card on desktop
-  useEffect(() => {
-    if (isMobile) return
-    const wr = videoWrapperRef.current
-    if (!wr) return
-    const card = wr.children[activeVideoIndex]
-    if (card) card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' })
-  }, [activeVideoIndex, isMobile])
 
-  // VIDEOS: Snap to closest video on mobile scroll
+
+  // --- VIDEOS: Snap to closest video on mobile scroll ---
   const handleVideosScroll = useCallback(() => {
     if (!isMobile) return
     const wr = videoWrapperRef.current
     if (!wr) return
     const { scrollLeft, children } = wr
-    let closest = 0,
-      minDiff = Infinity
+    let closest = 0, minDiff = Infinity
     Array.from(children).forEach((child, i) => {
       const diff = Math.abs(child.offsetLeft - scrollLeft)
       if (diff < minDiff) {
@@ -142,14 +135,30 @@ export default function EventsPage({ eventsData, eventHighlights }) {
     return () => wr && wr.removeEventListener('scroll', handleVideosScroll)
   }, [handleVideosScroll])
 
-  // VIDEOS: Arrows
-  const prevVideo = () => setActiveVideoIndex(i => Math.max(0, i - 1))
-  const nextVideo = () => setActiveVideoIndex(i => Math.min(eventHighlights.length - 1, i + 1))
+  // --- VIDEOS: Arrows ---
+  const prevVideo = () => {
+  setUserInteractedVideo(true);
+  setActiveVideoIndex(i => Math.max(0, i - 1));
+};
+const nextVideo = () => {
+  setUserInteractedVideo(true);
+  setActiveVideoIndex(i => Math.min(eventHighlights.length - 1, i + 1));
+};
+
   
   const onVideoEnded = () => {
     if (!isMobile) return
     setActiveVideoIndex(i => Math.min(eventHighlights.length - 1, i + 1))
   }
+  useEffect(() => {
+  if (isMobile) return;
+  if (!userInteractedVideo) return;
+  const wr = videoWrapperRef.current;
+  if (!wr) return;
+  const card = wr.children[activeVideoIndex];
+  if (card) card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+}, [activeVideoIndex, isMobile, userInteractedVideo]);
+
 
   return (
     <>
@@ -163,7 +172,6 @@ export default function EventsPage({ eventsData, eventHighlights }) {
           <div className={styles.heroOverlay}>
             <h1 className={styles.heroTitle}>Masda Fight Nights</h1>
             <p>There is no tomorrow</p>
-
           </div>
         </div>
       </div>
@@ -178,15 +186,9 @@ export default function EventsPage({ eventsData, eventHighlights }) {
                 onClick={prevEvent}
                 disabled={activeEventIndex === 0}
                 className={styles.arrowButton}
-              >
-                ‹
-              </button>
+              >‹</button>
             )}
-
-            <div
-              ref={eventsWrapperRef}
-              className={styles.eventsCarouselWrapper}
-            >
+            <div ref={eventsWrapperRef} className={styles.eventsCarouselWrapper}>
               {upcoming.map((event, idx) => (
                 <div
                   key={event.id}
@@ -216,15 +218,12 @@ export default function EventsPage({ eventsData, eventHighlights }) {
                 </div>
               ))}
             </div>
-
             {!isMobile && hasEventOverflow && (
               <button
                 onClick={nextEvent}
                 disabled={activeEventIndex === upcoming.length - 1}
                 className={styles.arrowButton}
-              >
-                ›
-              </button>
+              >›</button>
             )}
           </div>
         </section>
@@ -238,15 +237,9 @@ export default function EventsPage({ eventsData, eventHighlights }) {
                 onClick={prevVideo}
                 disabled={activeVideoIndex === 0}
                 className={styles.arrowButton}
-              >
-                ‹
-              </button>
+              >‹</button>
             )}
-
-            <div
-              ref={videoWrapperRef}
-              className={styles.eventsCarouselWrapper}
-            >
+            <div ref={videoWrapperRef} className={styles.eventsCarouselWrapper}>
               {eventHighlights.map((video, idx) => (
                 <div
                   key={video.id}
@@ -265,20 +258,16 @@ export default function EventsPage({ eventsData, eventHighlights }) {
                 </div>
               ))}
             </div>
-
-            {!isMobile &&   (
+            {!isMobile && (
               <button
                 onClick={nextVideo}
                 disabled={activeVideoIndex === eventHighlights.length - 1}
                 className={styles.arrowButton}
-              >
-                ›
-              </button>
+              >›</button>
             )}
           </div>
         </section>
       </main>
-
       <Footer />
     </>
   )
