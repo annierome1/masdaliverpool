@@ -159,18 +159,25 @@ export default function TheGymPage({ gymPlaybackIds }) {
 
   {/* Therapy Clinic */}
   <section className={styles.section}>
-    <h2 className={styles.sectionTitle}>Therapy Clinic & Recovery</h2>
-    <div className={styles.twoColumn}>
-      <p className={styles.paragraph}>
-        The clinic supports your health journey with a range of recovery treatments for physical therapy, injury prevention, and holistic wellbeing.
-      </p>
+  <h2 className={styles.sectionTitle}>Therapy Clinic & Recovery</h2>
+  <div className={styles.twoColumn}>
+    <p className={styles.paragraph}>
+      The clinic supports your health journey with a range of recovery treatments for physical therapy, injury prevention, and holistic wellbeing.
+    </p>
+    <a 
+      href="https://concordiaclinic.com/" 
+      target="_blank" 
+      rel="noopener noreferrer"
+    >
       <img
         src="/thegym/clinic.png"
         alt="Clinic"
-        className={styles.sectionImage}
+        className={styles.corncordiaSectionImage}
       />
-    </div>
-  </section>
+    </a>
+  </div>
+</section>
+
 
   {/* Coaches */}
   <section className={styles.sectionAlt}>
