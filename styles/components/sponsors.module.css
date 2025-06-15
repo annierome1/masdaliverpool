@@ -17,7 +17,7 @@
 .heading::after {
   content: '';
   display: block;
-  width: 40%;
+  width: 25%;
   height: 3px;
   background: #ed1c28;
   /* background: #4650DC; */
@@ -28,8 +28,8 @@
 .subheading {
   max-width: 700px;
   margin: 0 auto 2rem;
-  color: #fff;
-  font-size: 1.1rem;
+  color: #ed1c28;
+  font-size: 1.3rem;
   
 }
 
