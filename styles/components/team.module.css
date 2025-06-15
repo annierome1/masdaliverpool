@@ -32,6 +32,7 @@
   .heroTitle {
     font-size: clamp(1.5rem, 5vw, 2.5rem);
     text-align: center;
+
     margin-bottom: 0rem;
     
     

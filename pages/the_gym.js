@@ -111,7 +111,7 @@ export default function TheGymPage({ gymPlaybackIds }) {
             Welcome to Our World-Class Facility
           </h1>
           <p className={styles.heroSubtitle}>
-            Experience training in a state-of-the-art facility designed for fighters of all levels.
+            One Team. One Family
           </p>
           
         </div>

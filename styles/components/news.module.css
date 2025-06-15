@@ -1,26 +1,28 @@
 /* news.module.css */
+
+/* Base Styles */
 .main {
   background-color: #111;
   color: #eee;
   padding: 3rem 1rem;
   font-family: var(--font-cinzel);
 }
-
-/* Section titles */
 .sectionTitle {
   font-size: 1.75rem;
   margin-bottom: 1.5rem;
   text-align: center;
 }
 
-/* ── News Grid ── */
+/* News Grid */
 .newsSection {
   max-width: 1200px;
-  justify-self: center !important;
+  margin: 0 auto;
+  padding-bottom: 2rem;
 }
 .newsGrid {
   display: grid;
   gap: 1.5rem;
+  grid-template-columns: 1fr;
 }
 @media (min-width: 768px) {
   .newsGrid {
@@ -32,45 +34,15 @@
     grid-template-columns: repeat(4, 1fr);
   }
 }
-
 .newsCard {
   position: relative;
   background: #222;
   border-radius: 8px;
-  width: 275px;
   padding: 1.5rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
- 
 }
-
-.badge {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  padding: 0.25rem 0.75rem;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  color: #fff;
-}
-.badge.event   { background: #ed8936; } /* orange */
-.badge.update  { background: #48bb78; } /* green */
-.badge.spotlight { background: #d69e2e; } /* gold */
-
-.meta {
-  display: flex;
-  align-items: center;
-  font-size: 0.85rem;
-  color: #bbb;
-  margin-bottom: 0.75rem;
-}
-.meta .icon {
-  margin-right: 0.5rem;
-}
-
 .newsCard h3 {
   margin: 0.5rem 0;
   font-size: 1.1rem;
@@ -79,66 +51,64 @@
   flex: 1;
   color: #ccc;
 }
-.author {
+.newsCard .author {
   display: flex;
   align-items: center;
-  font-size: 0.9rem;
   margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #bbb;
 }
-.author .icon {
+.newsCard .author .icon {
   margin-right: 0.5rem;
-  font-size: 1.2rem;
   color: #48bb78;
 }
 .newsTitle a {
-  color: #fff; 
+  color: #fff;
   text-decoration: none;
-   transition: color 0.3s ease, transform 0.3s ease;
-  display: inline-block;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
-
 .newsTitle a:hover {
-  color: #ed1c28; 
+  color: #ed1c28;
   transform: scale(1.02);
 }
 
-
-/* ── Instagram Grid ── */
+/* Instagram Carousel */
 .instaSection {
-  max-width: 1200px;
+  max-width: 1700px;
   margin: 0 auto;
+  padding-top: 2rem;
+}
+.instaSection .sectionTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .instaIcon {
   margin-right: 0.5rem;
 }
-.instaGrid {
-  display: grid;
-  gap: 1rem;
+.instaCarousel {
+  overflow-x: auto;
+  overflow-y: visible;
+  width: 100%;
+  height: 450px;
 }
-@media (min-width: 640px) {
-  .instaGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media (min-width: 1024px) {
-  .instaGrid {
-    grid-template-columns: repeat(5, 1fr);
-  }
+.instaCarouselInner {
+  display: flex;
+  transition: transform 0.3s ease;
+  gap: 1.5rem;
 }
 
-.instaCard {
-  background: #222;
-  border-radius: 8px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
+.instaCard.active {
+  opacity: 1;
+  transform: scale(1);
 }
 .imageWrapper {
   position: relative;
   width: 100%;
-  padding-top: 100%; /* 1:1 square */
+  height: 20px;
+  padding-top: 100%; /* square */
   overflow: hidden;
-  background: #222;
+  border-radius: 8px;
 }
 .instaImage {
   position: absolute;
@@ -148,19 +118,132 @@
   height: 100%;
   object-fit: cover;
 }
-.cornerIcon {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 1rem;
-}
-.instaCard h4 {
-  margin: 0.75rem 1rem 0.25rem;
-  font-size: 1rem;
-}
+
+
+/* news.module.css */
+
 .caption {
-  margin: 0 1rem 1rem;
-  font-size: 0.85rem;
-  color: #ccc;
+  margin-top: 0.5rem;           
+  font-size: 0.9rem;         
+  color: #bbb;               
+  text-align: center;               
+  line-height: 1.4;                
+  
+}
+.instaSection {
+  overflow: visible;
+}
+.instaCarousel {
+  overflow-x: auto;            
+  overflow-y: visible !important; 
+}
+
+.instaCarouselInner {
+  overflow-y: visible !important;
+}
+.instaCardWrapper {
+  position: relative;
+  overflow: visible;
+  margin-top: 1rem;
+}
+
+.instaCardWrapper.active {
+  z-index: 10;
+  transform: scale(1.05);
+}
+
+.instaCardWrapper {
+  background: #222;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  flex: 0 0 300px;          /* width basis */
+  height: 400px;  
+  box-sizing: border-box;
+  transition: transform 0.3s, opacity 0.3s;
+  position: relative;
+  z-index: 1;
+}
+.instaCardWrapper {
+  position: relative;
+  overflow: visible;        
+  flex: 0 0 300px;
+  height: 420px;          
+  margin-bottom: 2rem; 
+  display: flex;
+  flex-direction: column;
+}
+.instaCardWrapper.active {
+  z-index: 10;          /* sit on top when scaled */
+  transform: scale(1.05);
+  opacity: 1;
+}
+.instaCard {
+  display: block;   
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  z-index: 10;
+}
+.arrow {
+  position: static;
+  top: auto;
+  transform: none;
+  margin: 0;
+}
+
+.carouselControls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.arrow {
+  background: rgba(0,0,0,0.5);
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  padding: 0.25rem 0.75rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.arrow:hover {
+  background: rgba(0,0,0,0.8);
+}
+
+.instaCarouselInner {
+  display: flex;
+  overflow-x: auto;           
+  scroll-behavior: smooth;  
+  -webkit-overflow-scrolling: touch; 
+  scrollbar-width: none;      
+  -ms-overflow-style: none;   
+}
+.instaCarouselInner::-webkit-scrollbar {
+  display: none;             
+}
+
+@media (max-width: 767px) {
+  .carouselControls { display: none; }
+}
+
+
+@media (max-width: 767px) {
+  .main { padding: 2rem 1rem; }
+  .sectionTitle { font-size: 1.5rem; margin-bottom: 1rem; }
+  .newsGrid { grid-template-columns: 1fr; }
+  .newsCard { padding: 1rem; }
+}
+
+
+@media (max-width: 767px) {
+  .instaCarouselInner {
+    /* turn on CSS scroll snapping */
+    scroll-snap-type: x mandatory;
+  }
+  .instaCardWrapper {
+    /* snap each card to the center of the container */
+    scroll-snap-align: center;
+  }
 }

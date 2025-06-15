@@ -109,7 +109,7 @@ export default function TeamPage() {
         <div className={styles.heroSection}>
           <div className={styles.heroOverlay}>
             <h1 className={styles.heroTitle}>Meet Our Team</h1>
-            <p className={styles.heroSubtitle}>Train Hard.  Fight Smart.  Elevate</p>
+            <p className={styles.heroSubtitle}>Train Hard. Fight Smart. Elevate</p>
           </div>
         </div>
       </div>
