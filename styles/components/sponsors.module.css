@@ -14,16 +14,7 @@
   margin-bottom: 0.5rem;
 }
 
-.heading::after {
-  content: '';
-  display: block;
-  width: 25%;
-  height: 3px;
-  background: #ed1c28;
-  /* background: #4650DC; */
-  margin: 0.5rem auto 0;
-  border-radius: 2px;
-}
+
 
 .subheading {
   max-width: 700px;

@@ -42,7 +42,7 @@ export default function SponsorsPage() {
         {/* Official Partners */}
         <h1 className={styles.heading}>Our Official Partners</h1>
         <p className={styles.subheading}>
-          No one suceeds alone
+          No one succeeds alone
         </p>
         <section className={styles.sponsorGrid}>
           {officialPartners.map(({ src, alt, name, desc, url }) => (
