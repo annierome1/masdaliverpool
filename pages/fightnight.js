@@ -65,7 +65,7 @@ export default function EventsPage({ eventsData, eventHighlights }) {
   const [activeEventIndex, setActiveEventIndex] = useState(0)
 
   const [activeVideoIndex, setActiveVideoIndex] = useState(0)
-
+  const [hasVideoOverflow, setHasVideoOverflow] = useState(false)
 
   // Handle mobile/desktop and overflow checks
   useEffect(() => {
@@ -76,6 +76,9 @@ export default function EventsPage({ eventsData, eventHighlights }) {
       const eventsEl = eventsWrapperRef.current
       setHasEventOverflow(eventsEl ? eventsEl.scrollWidth > eventsEl.clientWidth : false)
 
+      // Videos
+      const videosEl = videoWrapperRef.current
+      setHasVideoOverflow(videosEl ? videosEl.scrollWidth > videosEl.clientWidth : false)
     }
     recalc()
     window.addEventListener('resize', recalc)
@@ -140,6 +143,7 @@ export default function EventsPage({ eventsData, eventHighlights }) {
   // VIDEOS: Arrows
   const prevVideo = () => setActiveVideoIndex(i => Math.max(0, i - 1))
   const nextVideo = () => setActiveVideoIndex(i => Math.min(eventHighlights.length - 1, i + 1))
+  
   const onVideoEnded = () => {
     if (!isMobile) return
     setActiveVideoIndex(i => Math.min(eventHighlights.length - 1, i + 1))
@@ -260,7 +264,7 @@ export default function EventsPage({ eventsData, eventHighlights }) {
               ))}
             </div>
 
-            {!isMobile &&  (
+            {!isMobile &&   (
               <button
                 onClick={nextVideo}
                 disabled={activeVideoIndex === eventHighlights.length - 1}
