@@ -25,7 +25,7 @@ export default function ClassesPage() {
 
       <div className={styles.pageContainer}>
         {/* Schedule Section */}
-        <h1 className={styles.heading}>Weekly Class Schedule</h1>
+        <h1 className={styles.title}>Weekly Class Schedule</h1>
         <p className={styles.subheading}>
           The gym is where excuses go to die
         </p>
