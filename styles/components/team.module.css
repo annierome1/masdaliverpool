@@ -34,6 +34,10 @@
     text-align: center;
 
     margin-bottom: 0rem;
+    text-shadow:
+    0 2px 8px rgba(0,0,0,0.85),  
+    0 0 1px #fff,                
+    0 1px 2px #111;
     
     
   }
@@ -43,6 +47,11 @@
     max-width: 600px;
     margin-bottom: 7rem;
     text-align: center;
+    color: #ed1c28;
+    text-shadow:
+    0 2px 8px rgba(0,0,0,0.85),  
+    0 0 1px #ed1c28,                
+    0 1px 2px #111;
     
   }
 
