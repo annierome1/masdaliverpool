@@ -1,45 +1,44 @@
 // pages/news.js
-import { useState, useRef, useEffect} from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Head from 'next/head'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import styles from '../styles/components/news.module.css'
 import { FaInstagram, FaUserCircle } from 'react-icons/fa'
 import { useInstagramFeed } from '../utils/instaCache'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import { Navigation } from 'swiper/modules'
 
 export async function getStaticProps() {
-
   // change to use news.json 
-const newsItems = [
+  const newsItems = [
     {
-    id: 1,
-    title: 'MASDA Gym Liverpool Awarded Thai Fighter UK’s Gym of the Year 2024',
-    text:
-      'MASDA Gym Liverpool has been awarded the prestigious UK Gym of the Year 2024 by Thai Fighter UK. Their success across such a wide range of platforms has set a new standard for excellence in the sport.',
-    author: 'Fight Record',
-    url: 'https://fightrecord.co.uk/news/masda-gym-liverpool-awarded-thai-fighter-uks-gym-of-the-year-2024/',
-  },
-  {
-    id: 2,
-    title: 'MASDA Gym Fighters Take Over Bangkok’s Biggest Stages in Historic Week for UK Muay Thai',
-    text:
-      "MASDA Gym in Liverpool is set to make history, as eight of its fighters compete across the sport’s biggest global arenas in just eight days",
-    author: 'Fight Record',
-    url: 'https://fightrecord.co.uk/news/masda-gym-fighters-take-over-bangkoks-biggest-stages-in-historic-week-for-uk-muay-thai/',
-  },
-
-  {
-    id: 3,
-    title: 'Teen destined to be \'household name\' after becoming youngest champion',
-    text:
-      'Alfie Ponting, A passionate fighter who got off to a flying start in the art of Muay Thai boxing has become the youngest ever world champion at just 18-years-old.',
-    author: 'Liverpool Echo',
-    url: 'https://www.liverpoolecho.co.uk/news/liverpool-news/teen-destined-household-name-after-29243895',
-  },
-
-]
-  
-
+      id: 1,
+      title: 'MASDA Gym Liverpool Awarded Thai Fighter UK’s Gym of the Year 2024',
+      text:
+        'MASDA Gym Liverpool has been awarded the prestigious UK Gym of the Year 2024 by Thai Fighter UK. Their success across such a wide range of platforms has set a new standard for excellence in the sport.',
+      author: 'Fight Record',
+      url: 'https://fightrecord.co.uk/news/masda-gym-liverpool-awarded-thai-fighter-uks-gym-of-the-year-2024/',
+    },
+    {
+      id: 2,
+      title: 'MASDA Gym Fighters Take Over Bangkok’s Biggest Stages in Historic Week for UK Muay Thai',
+      text:
+        "MASDA Gym in Liverpool is set to make history, as eight of its fighters compete across the sport’s biggest global arenas in just eight days",
+      author: 'Fight Record',
+      url: 'https://fightrecord.co.uk/news/masda-gym-fighters-take-over-bangkoks-biggest-stages-in-historic-week-for-uk-muay-thai/',
+    },
+    {
+      id: 3,
+      title: 'Teen destined to be \'household name\' after becoming youngest champion',
+      text:
+        'Alfie Ponting, A passionate fighter who got off to a flying start in the art of Muay Thai boxing has become the youngest ever world champion at just 18-years-old.',
+      author: 'Liverpool Echo',
+      url: 'https://www.liverpoolecho.co.uk/news/liverpool-news/teen-destined-household-name-after-29243895',
+    },
+  ]
   return {
     props: { newsItems },
     revalidate: 300,
@@ -48,75 +47,30 @@ const newsItems = [
 
 export default function NewsPage({ newsItems }) {
   const { feed: instaPosts, error } = useInstagramFeed()
-  const [active, setActive] = useState(0)
-  const [isMobile, setIsMobile] = useState(false)
-  const carouselRef = useRef(null)
   const sectionRef = useRef(null)
-  const touchStartX = useRef(0)
 
-  // detect mobile
+  // Swiper and arrow refs
+  const prevRef = useRef(null)
+  const nextRef = useRef(null)
+  const swiperRef = useRef(null)
+
+
+  // Make sure Swiper navigation binds to DOM refs after mount
   useEffect(() => {
-    const onResize = () => setIsMobile(window.innerWidth < 768)
-    onResize()
-    window.addEventListener('resize', onResize)
-    return () => window.removeEventListener('resize', onResize)
-  }, [])
-
-  function centerCarouselSection() {
-  const sec = sectionRef.current
-  if (!sec) return
-
-  const rect  = sec.getBoundingClientRect()
-  const top   = window.pageYOffset || document.documentElement.scrollTop
-  const target =
-    rect.top + top               
-    - (window.innerHeight  / 2)   
-    + (rect.height         / 2)   
-
-  window.scrollTo({ top: target, behavior: 'smooth' })
-}
-
-
-function scrollCardIntoView(idx) {
-  const wr = carouselRef.current;
-  if (!wr) return;
-  const card = wr.children[idx];
-  if (!card) return;
-
-  // compute an offset so the card ends up centered
-  const offset = (wr.clientWidth - card.clientWidth) / 2;
-
-  wr.scrollTo({
-    left: card.offsetLeft - offset,
-    behavior: 'smooth'
-  });
-}
-
-
-const prev = () => {
-  const nextIdx = (active - 1 + instaPosts.length) % instaPosts.length
-  setActive(nextIdx)
-  scrollCardIntoView(nextIdx)
-  centerCarouselSection()
-}
-
-const next = () => {
-  const nextIdx = (active + 1) % instaPosts.length
-  setActive(nextIdx)
-  scrollCardIntoView(nextIdx)
-  centerCarouselSection()
-}
-
-
-  const onTouchStart = e => {
-    touchStartX.current = e.touches[0].clientX
-  }
-
-  const onTouchEnd = e => {
-    const delta = e.changedTouches[0].clientX - touchStartX.current
-    if (delta > 50) prev()
-    if (delta < -50) next()
-  }
+    if (
+      swiperRef.current &&
+      swiperRef.current.swiper &&
+      prevRef.current &&
+      nextRef.current
+    ) {
+      // Set navigation elements
+      swiperRef.current.swiper.params.navigation.prevEl = prevRef.current
+      swiperRef.current.swiper.params.navigation.nextEl = nextRef.current
+      swiperRef.current.swiper.navigation.destroy()
+      swiperRef.current.swiper.navigation.init()
+      swiperRef.current.swiper.navigation.update()
+    }
+  }, [instaPosts])
 
   return (
     <>
@@ -126,18 +80,17 @@ const next = () => {
       <Header />
 
       <main className={styles.main}>
+        <h2 className={styles.sectionTitle}>Latest News</h2>
         <section className={styles.newsSection}>
-          <h2 className={styles.sectionTitle}>Latest News</h2>
           <div className={styles.newsGrid}>
             {newsItems.map((item) => (
               <div key={item.id} className={styles.newsCard}>
-                <div className={styles.meta}>
-                </div>
+                <div className={styles.meta}></div>
                 <h3 className={styles.newsTitle}>
-                <a href={item.url} target="_blank" rel="noreferrer">
-                  {item.title}
-                </a>
-              </h3>
+                  <a href={item.url} target="_blank" rel="noreferrer">
+                    {item.title}
+                  </a>
+                </h3>
                 <p>{item.text}</p>
                 <div className={styles.author}>
                   <FaUserCircle className={styles.icon} />
@@ -148,40 +101,46 @@ const next = () => {
           </div>
         </section>
 
-
         {/* Instagram Feed Section */}
         <section ref={sectionRef} className={styles.instaSection}>
           <h2 className={styles.sectionTitle}>
             <FaInstagram className={styles.instaIcon} /> Instagram Feed
           </h2>
-
           {error && <p className={styles.error}>Error loading Instagram feed.</p>}
 
           {!instaPosts ? (
             <p>Loading Instagram…</p>
           ) : (
-            <>
-              <div
-                className={styles.instaCarousel}
-                onTouchStart={isMobile ? onTouchStart : undefined}
-                onTouchEnd={isMobile ? onTouchEnd : undefined}
+            <div className={styles.instaSwiperWrapper}>
+              {/* Custom Arrows */}
+              <button ref={prevRef} className={styles.customArrow + ' ' + styles.leftArrow}>
+                &#8249;
+              </button>
+              <Swiper
+                ref={swiperRef}
+                modules={[Navigation]}
+                spaceBetween={80}
+                slidesPerView={1} // default is 1 card for mobile
+                breakpoints={{
+                  640: { slidesPerView: 2 },
+                  1000: { slidesPerView: 2},
+                  1150: { slidesPerView: 3 },
+                  1400: { slidesPerView: 4 }, 
+                }}
+                              navigation={{
+                  prevEl: prevRef.current,
+                  nextEl: nextRef.current,
+                }}
+                loop
+                className={styles.instaSwiper}
               >
-                <div className={styles.instaCarouselInner} ref={carouselRef}>
-                  {instaPosts.map((post, idx) => (
-                    <div 
-                      key ={post.id}
-                      className={`${styles.instaCardWrapper} ${
-                        idx === active ? styles.active : ''
-                      }`}
-                    >
+                {instaPosts.map((post, idx) => (
+                  <SwiperSlide key={post.id + '_' + idx}>
                     <a
-                      key={post.id}
                       href={post.permalink}
                       target="_blank"
                       rel="noreferrer"
-                      className={`${styles.instaCard} ${
-                        idx === active ? styles.active : ''
-                      }`}
+                      className={styles.instaCard}
                     >
                       <div className={styles.imageWrapper}>
                         <img
@@ -198,26 +157,16 @@ const next = () => {
                         {post.caption?.split('\n')[0]?.slice(0, 100)}…
                       </p>
                     </a>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {!isMobile && (
-                <div className={styles.carouselControls}>
-                  <button className={styles.arrow} onClick={prev}>
-                    ‹
-                  </button>
-                  <button className={styles.arrow} onClick={next}>
-                    ›
-                  </button>
-                </div>
-              )}
-            </>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+              <button ref={nextRef} className={styles.customArrow + ' ' + styles.rightArrow}>
+                &#8250;
+              </button>
+            </div>
           )}
         </section>
       </main>
-
       <Footer />
     </>
   )

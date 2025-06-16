@@ -1,4 +1,3 @@
-// pages/api/instagram.js
 export default async function handler(req, res) {
   const token = process.env.INSTA_LONG_LIVED_TOKEN;
   const fields = [
@@ -7,15 +6,18 @@ export default async function handler(req, res) {
     'media_url',
     'permalink',
     'thumbnail_url',
-    'media_type'
+    'media_type',
+    'timestamp'      // Add timestamp!
   ].join(',');
-  const url = `https://graph.instagram.com/me/media?fields=${fields}&access_token=${token}`;
+  const url = `https://graph.instagram.com/me/media?fields=${fields}&access_token=${token}&limit=25`;
 
   const igRes = await fetch(url);
   if (!igRes.ok) {
     return res.status(igRes.status).json({ error: 'Instagram fetch failed' });
   }
   const json = await igRes.json();
-  // Take first 8 posts (or whatever)
-  res.status(200).json(json.data.slice(0, 10));
+
+  // Sort by most recent
+  const posts = json.data.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+  res.status(200).json(posts.slice(0, 15));
 }

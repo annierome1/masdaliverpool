@@ -13,18 +13,23 @@
   text-align: center;
 }
 
-
-
-/* News Grid */
+/* News Section */
 .newsSection {
   max-width: 1200px;
   margin: 0 auto;
   padding-bottom: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
 }
+
 .newsGrid {
   display: grid;
   gap: 1.5rem;
   grid-template-columns: 1fr;
+  justify-items: center; 
+  margin-left: 10rem !important ; 
+  margin-right: -10rem !important;
 }
 @media (min-width: 768px) {
   .newsGrid {
@@ -36,6 +41,20 @@
     grid-template-columns: repeat(4, 1fr);
   }
 }
+
+
+@media (min-width: 600px) {
+  .newsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .newsGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
 .newsCard {
   position: relative;
   background: #222;
@@ -44,15 +63,22 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 320px;
+  min-width: 0;
+  box-sizing: border-box;
 }
+
 .newsCard h3 {
   margin: 0.5rem 0;
   font-size: 1.1rem;
 }
+
 .newsCard p {
   flex: 1;
   color: #ccc;
 }
+
 .newsCard .author {
   display: flex;
   align-items: center;
@@ -60,23 +86,26 @@
   font-size: 0.9rem;
   color: #bbb;
 }
+
 .newsCard .author .icon {
   margin-right: 0.5rem;
   color: #48bb78;
 }
+
 .newsTitle a {
   color: #fff;
   text-decoration: none;
-  transition: color 0.3s ease, transform 0.3s ease;
+  transition: color 0.3s, transform 0.3s;
 }
 .newsTitle a:hover {
   color: #ed1c28;
   transform: scale(1.02);
 }
 
-/* Instagram Carousel */
+
+/* Instagram Carousel using Swiper */
 .instaSection {
-  max-width: 1700px;
+  max-width: 1900px;
   margin: 0 auto;
   padding-top: 2rem;
 }
@@ -88,164 +117,168 @@
 .instaIcon {
   margin-right: 0.5rem;
 }
-.instaCarousel {
-  overflow-x: auto;
-  overflow-y: visible;
-  width: 100%;
-  height: 450px;
+
+.swiper-wrapper {
+  align-items: stretch;
 }
-.instaCarouselInner {
-  display: flex;
-  transition: transform 0.3s ease;
-  gap: 1.5rem;
+.swiper-slide {
+  display: flex !important;
+  justify-content: center;
+  align-items: stretch;
+  height: 800px;
+  background: transparent;
 }
 
-.instaCard.active {
-  opacity: 1;
-  transform: scale(1);
+.instaCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #1b1b1b;
+  border-radius: 18px;
+  padding: 1.25rem;
+  min-height: 370px;
+  max-height: 400px;
+  max-width: 500px;
+  margin-top: 2rem !important;
+  margin-bottom: 2rem !important;
+  width: 100%;
+  box-shadow: 0 2px 18px #0006;
+  text-align: center;
+  transition: box-shadow 0.2s, transform 0.2s;
+  margin: 0 auto;
 }
+.instaCard:hover {
+  box-shadow: 0 4px 28px #1b1b1b;
+  transform: scale(1.04);
+}
+
 .imageWrapper {
   position: relative;
   width: 100%;
-  height: 20px;
-  padding-top: 100%; /* square */
+  aspect-ratio: 1/1;
+  border-radius: 12px;
   overflow: hidden;
-  border-radius: 8px;
+  margin-bottom: 1rem;
 }
 .instaImage {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  width: 120%;
+  height: 120%;
   object-fit: cover;
+  border-radius: 12px;
+  background: #181818;
 }
-
-
-/* news.module.css */
 
 .caption {
-  margin-top: 0.5rem;           
-  font-size: 0.9rem;         
-  color: #bbb;               
-  text-align: center;               
-  line-height: 1.4;                
-  
-}
-.instaSection {
-  overflow: visible;
-}
-.instaCarousel {
-  overflow-x: auto;            
-  overflow-y: visible !important; 
-}
-
-.instaCarouselInner {
-  overflow-y: visible !important;
-}
-.instaCardWrapper {
-  position: relative;
-  overflow: visible;
-  margin-top: 1rem;
-}
-
-.instaCardWrapper.active {
-  z-index: 10;
-  transform: scale(1.05);
-}
-
-.instaCardWrapper {
-  background: #222;
-  border-radius: 8px;
-  padding: 1rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  flex: 0 0 300px;          /* width basis */
-  height: 400px;  
-  box-sizing: border-box;
-  transition: transform 0.3s, opacity 0.3s;
-  position: relative;
-  z-index: 1;
-}
-.instaCardWrapper {
-  position: relative;
-  overflow: visible;        
-  flex: 0 0 300px;
-  height: 420px;          
-  margin-bottom: 2rem; 
-  display: flex;
-  flex-direction: column;
-}
-.instaCardWrapper.active {
-  z-index: 10;          /* sit on top when scaled */
-  transform: scale(1.05);
-  opacity: 1;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #bbb;
+  text-align: center;
+  line-height: 1.4;
+  flex: 1;
+  text-decoration: none !important;
 }
 .instaCard {
-  display: block;   
-  text-decoration: none;
+  text-decoration: none;      
+  color: inherit;  
+  height: 400px;  
+  width: 300px;        
+}
+.instaCard * {
+  text-decoration: none !important;
   color: inherit;
-  width: 100%;
-  z-index: 10;
-}
-.arrow {
-  position: static;
-  top: auto;
-  transform: none;
-  margin: 0;
 }
 
-.carouselControls {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.arrow {
-  background: rgba(0,0,0,0.5);
-  border: none;
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: #b1151e;
   color: #fff;
-  font-size: 2rem;
-  padding: 0.25rem 0.75rem;
-  cursor: pointer;
-  transition: background 0.2s;
 }
-.arrow:hover {
-  background: rgba(0,0,0,0.8);
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 2.5rem;
 }
 
-.instaCarouselInner {
-  display: flex;
-  overflow-x: auto;           
-  scroll-behavior: smooth;  
-  -webkit-overflow-scrolling: touch; 
-  scrollbar-width: none;      
-  -ms-overflow-style: none;   
-}
-.instaCarouselInner::-webkit-scrollbar {
-  display: none;             
+.swiper-pagination-bullets {
+  display: none; /* Hide default pagination for a cleaner look */
 }
 
 @media (max-width: 767px) {
-  .carouselControls { display: none; }
-}
-
-
-@media (max-width: 767px) {
-  .main { padding: 2rem 1rem; }
-  .sectionTitle { font-size: 1.5rem; margin-bottom: 1rem; }
+  .main { padding: 2rem 0.5rem; }
+  .sectionTitle { font-size: 1.3rem; margin-bottom: 1rem; }
   .newsGrid { grid-template-columns: 1fr; }
   .newsCard { padding: 1rem; }
+  .instaCard {
+    padding: 0.75rem;
+    min-height: 260px;
+    max-width: 94vw;
+  }
+  .swiper-slide {
+    height: 300px;
+  }
+  .swiper-button-next,
+  .swiper-button-prev {
+    padding: 0.3rem 0.6rem;
+    font-size: 1.5rem;
+    top: 38%;
+  }
+
+  .newsGrid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+  justify-items: center; 
+  margin-left: 0rem !important ; 
+  margin-right: 0rem !important;
+}
+
+  .customArrow {
+  display: none;
+}
+}
+
+@media (max-width: 500px) {
+  .instaCard {
+    min-height: 180px;
+    font-size: 0.94rem;
+  }
+  .imageWrapper {
+    margin-bottom: 0.6rem;
+  }
+}
+
+.instaSwiperWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  max-width: 1700px;   /* wider than before! */
+  width: 100%;
+  margin: 0 auto;
+  gap: 0.5rem;
+  /* Optionally: add padding for arrows on mobile */
+  padding: 0 24px;
+  box-sizing: border-box;
 }
 
 
-@media (max-width: 767px) {
-  .instaCarouselInner {
-    /* turn on CSS scroll snapping */
-    scroll-snap-type: x mandatory;
-  }
-  .instaCardWrapper {
-    /* snap each card to the center of the container */
-    scroll-snap-align: center;
-  }
+.instaSwiper {
+  flex: 1 1 auto;
 }
+
+.customArrow {
+  position: relative;
+  background: rgba(0,0,0,0.35);
+  border: none;
+  color: #fff;
+  font-size: 2.2rem;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 2px 8px #0007;
+  transition: background 0.2s;
+}
+
+.customArrow:hover {
+  color: #ed1c28;
+}
+.leftArrow { margin-right: 0.5rem; }
+.rightArrow { margin-left: 0.5rem; }

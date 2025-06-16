@@ -5,13 +5,10 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import styles from '../../styles/components/team.module.css';
 import { FaInstagram, FaTiktok } from 'react-icons/fa';
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import Select from 'react-select';
-// import your JSON data
+import { client } from '../../lib/sanity';
 import teamData from '../../public/data/team.json';
-
-const names = [...new Set(teamData.map(member => member.name))].sort();
-const weightClasses = [...new Set(teamData.map(member => member.role))].sort();
 
 // Custom styling for react-select
 const customSelectStyles = {
@@ -58,43 +55,71 @@ const customSelectStyles = {
 };
 
 export default function TeamPage() {
-  const router = useRouter()
-  const { slug } = router.query
+  const router = useRouter();
+  const { slug } = router.query;
 
-  const [selectedMember, setSelectedMember] = useState(null);
+  // State for Sanity overrides
+  const [statsOverrides, setStatsOverrides] = useState([]);
+  // State for dropdown filters
   const [selectedName, setSelectedName] = useState('');
   const [selectedWeightClass, setSelectedWeightClass] = useState('');
 
-
+  // Fetch overrides from Sanity (runs once on mount)
   useEffect(() => {
-    if (!router.isReady) return    
-    if (!slug) return              
+    client
+      .fetch(`*[_type == "fighterStats"]{
+        name,
+        totalFights,
+        record,
+        accomplishments
+      }`)
+      .then(setStatsOverrides)
+      .catch(console.error);
+  }, []);
 
-    const name = slug.replace(/_/g, ' ')
-    const member = teamData.find(m => m.name === name)
-    if (member) {
-      setSelectedMember(member)
-    }
-  }, [router.isReady, slug])
+  // Merge overrides into JSON data
+  const getFighterWithOverrides = (member) => {
+    const override = statsOverrides.find(o => o.name === member.name);
+    return {
+      ...member,
+      ...(override && {
+        totalFights: override.totalFights ?? member.totalFights,
+        record: override.record ?? member.record,
+        accomplishments: override.accomplishments?.length
+          ? override.accomplishments
+          : member.accomplishments,
+      }),
+    };
+  };
+
+  const fighters = teamData.map(getFighterWithOverrides);
+
+  // Names & weight classes for filters (from merged data)
+  const names = [...new Set(fighters.map(member => member.name))].sort();
+  const weightClasses = [...new Set(fighters.map(member => member.role))].sort();
+
+  // Filtered fighters for display
   const filteredFighters = selectedName
-    ? teamData.filter(member => member.name === selectedName)
+    ? fighters.filter(member => member.name === selectedName)
     : selectedWeightClass
-    ? teamData.filter(member => member.role === selectedWeightClass)
-    : teamData;
+    ? fighters.filter(member => member.role === selectedWeightClass)
+    : fighters;
 
-    
+  // Modal member is derived from slug and merged fighters array
+  const modalMember = (() => {
+    if (!slug) return null;
+    const name = slug.replace(/_/g, ' ');
+    return fighters.find(m => m.name === name) || null;
+  })();
 
   const handleCardClick = (member) => {
-    const slugged = member.name.replace(/ /g, '_')
-    setSelectedMember(member)
-    router.push(`/team/${slugged}`, undefined, { shallow: true })
-  }
-
+    const slugged = member.name.replace(/ /g, '_');
+    router.push(`/team/${slugged}`, undefined, { shallow: true });
+  };
 
   const closeModal = () => {
-    setSelectedMember(null)
-    router.push('/team', undefined, { shallow: true })
-  }
+    router.push('/team', undefined, { shallow: true });
+  };
 
   return (
     <>
@@ -105,7 +130,7 @@ export default function TeamPage() {
 
       <Header />
 
-      <div className={`${styles.heroWrapper} ${selectedMember ? styles.blurBackground : ''}`}>
+      <div className={`${styles.heroWrapper} ${modalMember ? styles.blurBackground : ''}`}>
         <div className={styles.heroSection}>
           <div className={styles.heroOverlay}>
             <h1 className={styles.heroTitle}>Meet Our Team</h1>
@@ -114,7 +139,7 @@ export default function TeamPage() {
         </div>
       </div>
 
-      <main className={`${styles.mainContent} ${selectedMember ? styles.blurBackground : ''}`}>
+      <main className={`${styles.mainContent} ${modalMember ? styles.blurBackground : ''}`}>
         <section className={styles.teamSection}>
           <h2 className={styles.sectionTitle}>Team</h2>
 
@@ -191,7 +216,7 @@ export default function TeamPage() {
         </section>
       </main>
 
-      {selectedMember && <Modal member={selectedMember} onClose={closeModal} />}
+      {modalMember && <Modal member={modalMember} onClose={closeModal} />}
       <Footer />
     </>
   );

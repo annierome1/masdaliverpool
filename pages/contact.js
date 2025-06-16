@@ -16,6 +16,27 @@ import {
 import styles from '../styles/components/contact.module.css'
 
 export default function ContactPage() {
+  // Handler to open mail app with user input
+  function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const subject = form.subject.value;
+    const message = form.message.value;
+
+    // Change this to your actual target email:
+    const recipient = 'info@masdaliverpool.com';
+
+    // Build the mailto URL
+    const mailto = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\n\n${message}`
+    )}`;
+
+    // Open the user's mail client
+    window.location.href = mailto;
+  }
+
   return (
     <>
       <Head>
@@ -38,7 +59,7 @@ export default function ContactPage() {
           {/* ——— Left Card: Form ——— */}
           <div className={`${styles.card} ${styles.formCard}`}>
             <h2>Send Us a Message</h2>
-            <form className={styles.contactForm}>
+            <form className={styles.contactForm} onSubmit={handleSubmit}>
               <div className={styles.twoColRow}>
                 <input
                   type="text"
@@ -99,9 +120,18 @@ export default function ContactPage() {
                 <span>info@masdaliverpool.com</span>
               </li>
               <li>
-                <FaMapMarkerAlt />
-                <span>MASDA Gym Liverpool, Nexum Centre 64 St Anne Street, Liverpool L3 3DY</span>
-              </li>
+              <FaMapMarkerAlt />
+              <span>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=MASDA+Gym+Liverpool,+Nexum+Centre+64+St+Anne+Street,+Liverpool+L3+3DY"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: "inherit" }}
+                >
+                  MASDA Gym Liverpool, Nexum Centre 64 St Anne Street, Liverpool L3 3DY
+                </a>
+              </span>
+            </li>
             </ul>
 
             <h3>Connect With Us</h3>
@@ -116,8 +146,8 @@ export default function ContactPage() {
                 <FaYoutube />
               </Link>
               <Link href="https://www.tiktok.com/@masdagym" target="_blank" rel="noopener noreferrer">
-              <FaTiktok />
-            </Link>
+                <FaTiktok />
+              </Link>
             </div>
           </div>
         </div>
