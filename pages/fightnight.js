@@ -242,21 +242,25 @@ const nextVideo = () => {
             <div ref={videoWrapperRef} className={styles.eventsCarouselWrapper}>
               {eventHighlights.map((video, idx) => (
                 <div
-                  key={video.id}
-                  className={`${styles.videoCard} ${idx === activeVideoIndex ? styles.active : ''}`}
-                >
-                  <video
-                    ref={el => (videoRefs.current[idx] = el)}
-                    src={video.url}
-                    controls
-                    preload="metadata"
-                    muted
-                    playsInline
-                    onEnded={onVideoEnded}
-                    className={styles.videoPlayer}
-                  />
-                </div>
-              ))}
+                key={video.id}
+                className={`${styles.videoCard} ${idx === activeVideoIndex ? styles.active : ''}`}
+              >
+                <video
+                  ref={el => (videoRefs.current[idx] = el)}
+                  src={video.url}
+                  controls
+                  preload="metadata"
+                  muted
+                  playsInline
+                  onEnded={onVideoEnded}
+                  className={styles.videoPlayer}
+                  // New onClick handler:
+                  onClick={() => setActiveVideoIndex(idx)}
+                  style={{ cursor: 'pointer' }}
+                />
+              </div>
+            ))}
+
             </div>
             {!isMobile && (
               <button
