@@ -67,7 +67,6 @@ export default function Home({ homepagePlaybackId }) {
           content="Train hard, fight smart, and elevate at Masda Liverpool."
         />
       </Head>
-
       <Header />
 
       <main className={styles.main}>
