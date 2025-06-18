@@ -43,20 +43,8 @@ export default function Footer() {
 
         {/* Logo & Tagline */}
         <div className={`${styles.column} ${styles.logo}`} ref={logoRef}>
-          {hasPlayed && !videoEnded ? (
-            <video
-              src="/masda_animation.mov"
-              width={270}
-              height={150}
-              autoPlay
-              muted
-              playsInline
-              onEnded={() => setVideoEnded(true)}
-              style={{ display: 'block', maxWidth: '250px', height: 'auto' }}
-            />
-          ) : (
-            <Image src="/masda_logo_color_wt.png" alt="Logo" width={180} height={110} />
-          )}
+            <Image src="/masda_logo.png" alt="Logo" width={200} height={90} />
+          
           <p className={styles.tagline}>
             Train Hard. Fight Smart. Elevate.
           </p>

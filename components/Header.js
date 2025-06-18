@@ -37,26 +37,13 @@ export default function Header() {
     <header className={styles.header}>
       {/* Logo */}
       <Link href="/" className={styles.logoBox} ref={logoRef}>
-        {hasPlayed && !videoEnded ? (
-          <video
-            src="/masda_animation.mov"
-            width={200}
-            height={140}
-            autoPlay
-            muted
-            playsInline
-            onEnded={() => setVideoEnded(true)}
-            style={{ objectFit: 'fill', display: 'block', maxWidth: '400px', height: 'auto', }}
-          />
-        ) : (
           <Image
             src="/masda_logo_color_wt.png"
             alt="Masda Liverpool Logo"
-            width={175}
-            height={80}
+            width={180}
+            height={90}
             style={{ objectFit: 'contain' }}
           />
-        )}
       </Link>
 
       {/* Hamburger toggle (visible <768px) */}

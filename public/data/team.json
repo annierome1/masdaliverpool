@@ -491,7 +491,7 @@
     "totalFights": 3,
     "role": "Featherweight",
     "weight": "126lbs / 57.1kg",
-    "image": "",
+    "image": "/team/tyler_danns.jpeg",
     "gallery": [],
     "record": "1-2-0",
     "accomplishments": [
@@ -507,14 +507,11 @@
     "name": "Issac King",
     "role": "Super Welterweight",
     "weight": "154lbs / 69.8kg",
-    "image": "",
+    "image": "/team/isaac.jpeg",
+    "totalFights": 0,
     "gallery": [],
-    "record": "2-0-1",
+    "record": "0-0-0",
     "accomplishments": [
-      "National Champion – WBC Muay Thai",
-      "Developed multiple amateur champions from the ground up",
-      "Fought professionally more than 50 times worldwide",
-      "Selected to corner athletes at the iconic Lumpinee Stadium"
     ],
     "social": {
       "instagram": " ",
@@ -526,14 +523,10 @@
     "name": "Rhys McHugh",
     "role": "Super Featherweight",
     "weight": "130lbs / 58.9kg",
-    "image": "",
+    "image": "/team/rhys.jpeg",
     "gallery": [],
     "record": "2-0-1",
     "accomplishments": [
-      "National Champion – WBC Muay Thai",
-      "Developed multiple amateur champions from the ground up",
-      "Fought professionally more than 50 times worldwide",
-      "Selected to corner athletes at the iconic Lumpinee Stadium"
     ],
     "social": {
       "instagram": " ",
@@ -545,14 +538,11 @@
     "name": "Stefan Abreu",
     "role": "Super Featherweight",
     "weight": "130lbs / 58.9kg",
-    "image": "",
+    "image": "/team/stefan.jpeg",
     "gallery": [],
-    "record": "2-0-1",
+    "record": "0-0-0",
+    "totalFights": 0,
     "accomplishments": [
-      "National Champion – WBC Muay Thai",
-      "Developed multiple amateur champions from the ground up",
-      "Fought professionally more than 50 times worldwide",
-      "Selected to corner athletes at the iconic Lumpinee Stadium"
     ],
     "social": {
       "instagram": " ",
@@ -623,10 +613,6 @@
     ],
     "record": "2-0-1",
     "accomplishments": [
-      "National Champion – WBC Muay Thai",
-      "Developed multiple amateur champions from the ground up",
-      "Fought professionally more than 50 times worldwide",
-      "Selected to corner athletes at the iconic Lumpinee Stadium"
     ],
     "social": {
       "instagram": "https://www.instagram.com/cainjones_masda/",
@@ -639,14 +625,10 @@
     "role": "Lightweight",
     "age": "20",
     "weight": "135lbs / 61.2kg",
-    "image": "",
+    "image": "/team/mik.jpeg",
     "gallery": [],
     "record": "2-0-1",
-    "accomplishments": [
-      "National Champion – WBC Muay Thai",
-      "Developed multiple amateur champions from the ground up",
-      "Fought professionally more than 50 times worldwide",
-      "Selected to corner athletes at the iconic Lumpinee Stadium"
+    "accomplishments": [ " "
     ],
     "social": {
       "instagram": " ",
@@ -657,16 +639,16 @@
     "id": 27,
     "name": "Oscar Forman",
     "role": "",
-    "age": "20",
+    "style": "Muay Femur",
+    "stance": "Orthodox",
+    "age": "13",
+    "totalFights": 13,
     "weight": "57kg",
     "image": "/team/oscar.jpg",
     "gallery": [],
-    "record": "2-0-1",
+    "record": "3-3-0",
     "accomplishments": [
-      "National Champion – WBC Muay Thai",
-      "Developed multiple amateur champions from the ground up",
-      "Fought professionally more than 50 times worldwide",
-      "Selected to corner athletes at the iconic Lumpinee Stadium"
+
     ],
     "social": {
       "instagram": "https://www.instagram.com/oscarforman_masda/",
@@ -677,16 +659,16 @@
     "id": 28,
     "name": "Jake Mckenna",
     "role": "",
-    "age": "20",
+    "age": "13",
+    "stance": "Orthodox",
+    "style":"Muay Femur",
+    "totalFights": 14,
     "weight": "40kg",
-    "image": "",
+    "image": "/team/jake_mckenna.jpeg",
     "gallery": [],
-    "record": "2-0-1",
+    "record": "9-5-0",
     "accomplishments": [
-      "National Champion – WBC Muay Thai",
-      "Developed multiple amateur champions from the ground up",
-      "Fought professionally more than 50 times worldwide",
-      "Selected to corner athletes at the iconic Lumpinee Stadium"
+      "ISKA Junior English Title"
     ],
     "social": {
       "instagram": "https://www.instagram.com/jakemac_masda?igsh=YmhmMnRnNmY1M3B5",

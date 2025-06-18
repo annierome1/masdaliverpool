@@ -71,7 +71,8 @@ export default function TeamPage() {
         name,
         totalFights,
         record,
-        accomplishments
+        accomplishments,
+        age
       }`)
       .then(setStatsOverrides)
       .catch(console.error);
@@ -88,6 +89,7 @@ export default function TeamPage() {
         accomplishments: override.accomplishments?.length
           ? override.accomplishments
           : member.accomplishments,
+        age: override.age ?? member.age,
       }),
     };
   };
