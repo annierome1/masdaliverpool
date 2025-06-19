@@ -239,7 +239,7 @@ export default function FoundationPage() {
             </p>
             <ul className={styles.bulletList}>
               <li>
-                <strong>Private:</strong> The Scott Rome Trust.
+                <strong>Private Funding</strong>
               </li>
               <li>
                 <strong>Donations:</strong> Contributions from individuals,
