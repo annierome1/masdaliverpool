@@ -7,7 +7,7 @@ import { useRef, useEffect, useState } from 'react'
 export default function Footer() {
   const logoRef = useRef(null)
   const [hasPlayed, setHasPlayed] = useState(false)
-  const [videoEnded, setVideoEnded] = useState(false)
+  //const [videoEnded, setVideoEnded] = useState(false)
 
   useEffect(() => {
     if (!logoRef.current) return

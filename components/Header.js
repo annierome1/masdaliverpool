@@ -12,7 +12,6 @@ export default function Header() {
   // Animation state for logo
   const logoRef = useRef(null);
   const [hasPlayed, setHasPlayed] = useState(false);
-  const [videoEnded, setVideoEnded] = useState(false);
 
   useEffect(() => {
     if (!logoRef.current) return;
