@@ -28,15 +28,39 @@ export default function FoundationPage() {
           </div>
         </section>
 
+        
+
       <div className={styles.logoWrapper}>
-          <img
-            src="/masdaff_transparent.png" 
-            alt="Masda Fighter Foundation Logo"
-            className={styles.foundationLogo}
-          />
-        </div>
+        <img
+          src="/masdaff_transparent.png"
+          alt="Masda Fighter Foundation Logo"
+          className={styles.foundationLogo}
+        />
+      </div>
+        <section className={styles.sectionAlt}>
+          <h2 className={styles.sectionHeading}>How it Began</h2>
+          <div className={styles.sectionAltContent}>
+            <div className={styles.sectionAltImage}>
+              <img
+                src="/scott_alex.jpg" 
+                alt="How Masda Foundation Began"
+              />
+            </div>
+            <div className={styles.textBlock}>
+              <p>
+                Scott Rome, an American entrepreneur, first connected with Masda Gym when he observed the fighters' extraordinary dedication and passion. Day after day, they sharpened their combat skills with unwavering focus and their commitment to excellence which resonated with Scott’s own business work ethic. Inspired to make a difference, he partnered with Masda Gym’s founder, owner, and coach, Alex Forman, to chart a revitalised strategic direction.
+              </p>
+              <p>
+                As Scott immersed himself in the gym’s community, he identified a critical gap prevalent not only at Masda but also at combat sports academies worldwide. While Masda and others provide exceptional training and guidance during fighters’ competitive prime, they offer little support for life after their careers. Because of this, Scott and Alex decided to define a broader purpose for Masda’s unique team, crafting a vision that supports fighters not only in the ring but also in building sustainable futures beyond it. This commitment laid the foundation for the gym’s mission to empower athletes for the long term and led to the establishment of the Masda Fighter Foundation.
+              </p>
+            </div>
+          </div>
+        </section>
+
+
         {/* Mission & Vision */}
         <section className={styles.section}>
+          
           <h2 className={styles.sectionHeading}>Mission &amp; Vision</h2>
           <div className={styles.textBlock}>
             <h3>Mission</h3>

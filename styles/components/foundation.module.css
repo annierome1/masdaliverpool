@@ -40,12 +40,12 @@
   justify-content: center;
   align-items: center;
   margin-top: 2rem;
-  background-color: #111111;
+
 }
 
 .foundationLogo {
   margin-top: 0;
-  width: 300px;
+  width: 200px;
   height: auto;
   object-fit: contain;
 }
@@ -279,9 +279,54 @@
   }
 
  .bulletList {
-  list-style-position: outside;  /* bullets outside the text block */
-  padding-left: 1.5rem;          /* indent the whole list */
-  margin-left: 0;                /* remove any extra left margin */
-  text-align: left;              /* force left‐alignment */
+  list-style-position: outside;  
+  padding-left: 1.5rem;       
+  margin-left: 0;                
+  text-align: left;              
 }
+}
+
+.sectionAltContent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0rem;
+  margin-top: 1.5rem;
+}
+
+.sectionAltImage {
+  display: flex;
+  justify-content: center;
+  margin-left: 7rem;
+}
+
+.sectionAltImage img {
+  width: 270px;           /* Desktop: fixed width for consistency */
+  max-width: 100%;        /* Don't overflow container */
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-top: -4rem;
+}
+
+@media (max-width: 900px) {
+  .sectionAltContent {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .sectionAltImage {
+    margin-left: 0;
+    margin-bottom: 1rem;
+    width: 100%;
+    justify-content: center;
+  }
+  .sectionAltImage img {
+    width: 100%;           /* Mobile: image fills container width */
+    max-width: 300px;      /* But never gets bigger than 400px */
+    margin-top: 0;         /* Remove negative margin for mobile */
+  }
+  .textBlock {
+    width: 100%;
+    padding: 0 1rem;
+    box-sizing: border-box;
+  }
 }
