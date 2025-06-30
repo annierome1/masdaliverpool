@@ -1,3 +1,4 @@
+// components/Modal.js
 import styles from '../styles/components/modal.module.css';
 
 export default function Modal({ member, onClose }) {
@@ -19,12 +20,8 @@ export default function Modal({ member, onClose }) {
   ];
 
   const galleryClass = hasRecord
-  ? styles.gallery
-  : `${styles.gallery} ${styles.noRecordGallery}`
-
-  
-  
-
+    ? styles.gallery
+    : `${styles.gallery} ${styles.noRecordGallery}`;
 
   return (
     <div className={styles.overlay} onClick={onClose}>
@@ -43,8 +40,6 @@ export default function Modal({ member, onClose }) {
             {member.stance && <p className={styles.stance}>{member.stance}</p>}
             {member.style && <p className={styles.style}>{member.style}</p>}
           </div>
-
-          {/* Age & Weight */}
           <div className={styles.bottomRow}>
             {member.age != null && (
               <p className={styles.ageBox}>{member.age} yrs</p>
@@ -58,42 +53,35 @@ export default function Modal({ member, onClose }) {
         {/* Gallery */}
         <div className={galleryClass}>
           {member.gallery?.length > 0 ? (
-            member.gallery.map((img, index) => (
+            member.gallery.map((src, i) => (
               <img
-                key={index}
-                src={img}
-                alt={`${member.name} gallery ${index + 1}`}
+                key={i}
+                src={src}
+                alt={`${member.name} gallery ${i + 1}`}
                 className={styles.galleryImage}
               />
             ))
           ) : (
-            <p className={styles.comingSoon}>{/*PLACEHOLDER*/}</p>
+            <p className={styles.comingSoon}>Coming soon</p>
           )}
         </div>
 
         {/* Bio, Record & Accomplishments */}
         <div className={styles.bioAccomplishmentsContainer}>
-          {/* Bio Section */}
           {hasBio && (
             <div className={styles.bioWrapper}>
               <h3 className={styles.bioTitle}>Bio</h3>
               <p
-              className={styles.bioText}
-              dangerouslySetInnerHTML={{
-                __html: member.bio.replace(/\n/g, '<br/>')
-              }}
-            />
+                className={styles.bioText}
+                dangerouslySetInnerHTML={{ __html: member.bio }}
+              />
             </div>
           )}
 
-          {/* Record Section */}
           {hasRecord && hasTotalFights && (
             <div className={styles.recordWrapper}>
               <h3 className={styles.recordTitle}>
-                Record{' '}
-                <span className={styles.totalFightsInline}>
-                  ({member.totalFights} fights)
-                </span>
+                Record <span className={styles.totalFightsInline}>({member.totalFights} fights)</span>
               </h3>
               <ul className={styles.record}>
                 {recordStats.map(({ label, value, type }) => (
@@ -106,17 +94,14 @@ export default function Modal({ member, onClose }) {
             </div>
           )}
 
-          {/* Accomplishments Section */}
           {hasAccomplishments && (
             <div className={styles.accomplishmentsWrapper}>
-              <div className={styles.accomplishments}>
-                <h3>Accomplishments</h3>
-                <ul>
-                  {member.accomplishments.map((item, index) => (
-                    <li key={index}>{item}</li>
-                  ))}
-                </ul>
-              </div>
+              <h3>Accomplishments</h3>
+              <ul className={styles.accomplishments}>
+                {member.accomplishments.map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </ul>
             </div>
           )}
         </div>
