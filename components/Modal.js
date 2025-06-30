@@ -1,11 +1,14 @@
-// components/Modal.js
 import styles from '../styles/components/modal.module.css';
 
 export default function Modal({ member, onClose }) {
+  // Safely default arrays
+  const gallery = Array.isArray(member.gallery) ? member.gallery : [];
+  const accomplishments = Array.isArray(member.accomplishments) ? member.accomplishments : [];
+
   // Determine which fields are present
   const hasRecord = typeof member.record === 'string' && member.record.trim() !== '';
   const hasTotalFights = member.totalFights != null;
-  const hasAccomplishments = Array.isArray(member.accomplishments) && member.accomplishments.length > 0;
+  const hasAccomplishments = accomplishments.length > 0;
   const hasBio = typeof member.bio === 'string' && member.bio.trim() !== '';
 
   // Parse wins, losses, draws only if record exists
@@ -40,6 +43,8 @@ export default function Modal({ member, onClose }) {
             {member.stance && <p className={styles.stance}>{member.stance}</p>}
             {member.style && <p className={styles.style}>{member.style}</p>}
           </div>
+
+          {/* Age & Weight */}
           <div className={styles.bottomRow}>
             {member.age != null && (
               <p className={styles.ageBox}>{member.age} yrs</p>
@@ -52,12 +57,12 @@ export default function Modal({ member, onClose }) {
 
         {/* Gallery */}
         <div className={galleryClass}>
-          {member.gallery?.length > 0 ? (
-            member.gallery.map((src, i) => (
+          {gallery.length > 0 ? (
+            gallery.map((src, idx) => (
               <img
-                key={i}
+                key={idx}
                 src={src}
-                alt={`${member.name} gallery ${i + 1}`}
+                alt={`${member.name} gallery ${idx + 1}`}
                 className={styles.galleryImage}
               />
             ))
@@ -98,8 +103,8 @@ export default function Modal({ member, onClose }) {
             <div className={styles.accomplishmentsWrapper}>
               <h3>Accomplishments</h3>
               <ul className={styles.accomplishments}>
-                {member.accomplishments.map((item, i) => (
-                  <li key={i}>{item}</li>
+                {accomplishments.map((item, idx) => (
+                  <li key={idx}>{item}</li>
                 ))}
               </ul>
             </div>
