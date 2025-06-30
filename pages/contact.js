@@ -17,25 +17,35 @@ import styles from '../styles/components/contact.module.css'
 
 export default function ContactPage() {
   // Handler to open mail app with user input
-  function handleSubmit(e) {
-    e.preventDefault();
-    const form = e.target;
-    const name = form.name.value;
-    const email = form.email.value;
-    const subject = form.subject.value;
-    const message = form.message.value;
+  async function handleSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const name = form.name.value;
+  const email = form.email.value;
+  const subject = form.subject.value;
+  const message = form.message.value;
 
-    // Change this to your actual target email:
-    const recipient = 'info@masdaliverpool.com';
+  try {
+    const res = await fetch('/api/email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, subject, message }),
+    });
 
-    // Build the mailto URL
-    const mailto = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\n\n${message}`
-    )}`;
+    const result = await res.json();
 
-    // Open the user's mail client
-    window.location.href = mailto;
+    if (result.success) {
+      alert('Message sent successfully! We’ll get back to you soon.');
+      form.reset();
+    } else {
+      alert('There was an error sending your message. Please try again later.');
+    }
+  } catch (error) {
+    console.error('Error submitting contact form:', error);
+    alert('Unexpected error. Please try again later.');
   }
+}
+
 
   return (
     <>

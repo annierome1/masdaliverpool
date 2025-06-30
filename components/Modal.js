@@ -1,10 +1,14 @@
 import styles from '../styles/components/modal.module.css';
 
 export default function Modal({ member, onClose }) {
+  // Safely default arrays
+  const gallery = Array.isArray(member.gallery) ? member.gallery : [];
+  const accomplishments = Array.isArray(member.accomplishments) ? member.accomplishments : [];
+
   // Determine which fields are present
   const hasRecord = typeof member.record === 'string' && member.record.trim() !== '';
   const hasTotalFights = member.totalFights != null;
-  const hasAccomplishments = Array.isArray(member.accomplishments) && member.accomplishments.length > 0;
+  const hasAccomplishments = accomplishments.length > 0;
   const hasBio = typeof member.bio === 'string' && member.bio.trim() !== '';
 
   // Parse wins, losses, draws only if record exists
@@ -19,12 +23,8 @@ export default function Modal({ member, onClose }) {
   ];
 
   const galleryClass = hasRecord
-  ? styles.gallery
-  : `${styles.gallery} ${styles.noRecordGallery}`
-
-  
-  
-
+    ? styles.gallery
+    : `${styles.gallery} ${styles.noRecordGallery}`;
 
   return (
     <div className={styles.overlay} onClick={onClose}>
@@ -57,43 +57,36 @@ export default function Modal({ member, onClose }) {
 
         {/* Gallery */}
         <div className={galleryClass}>
-          {member.gallery?.length > 0 ? (
-            member.gallery.map((img, index) => (
+          {gallery.length > 0 ? (
+            gallery.map((src, idx) => (
               <img
-                key={index}
-                src={img}
-                alt={`${member.name} gallery ${index + 1}`}
+                key={idx}
+                src={src}
+                alt={`${member.name} gallery ${idx + 1}`}
                 className={styles.galleryImage}
               />
             ))
           ) : (
-            <p className={styles.comingSoon}>{/*PLACEHOLDER*/}</p>
+            <p className={styles.comingSoon}>Coming soon</p>
           )}
         </div>
 
         {/* Bio, Record & Accomplishments */}
         <div className={styles.bioAccomplishmentsContainer}>
-          {/* Bio Section */}
           {hasBio && (
             <div className={styles.bioWrapper}>
               <h3 className={styles.bioTitle}>Bio</h3>
               <p
-              className={styles.bioText}
-              dangerouslySetInnerHTML={{
-                __html: member.bio.replace(/\n/g, '<br/>')
-              }}
-            />
+                className={styles.bioText}
+                dangerouslySetInnerHTML={{ __html: member.bio }}
+              />
             </div>
           )}
 
-          {/* Record Section */}
           {hasRecord && hasTotalFights && (
             <div className={styles.recordWrapper}>
               <h3 className={styles.recordTitle}>
-                Record{' '}
-                <span className={styles.totalFightsInline}>
-                  ({member.totalFights} fights)
-                </span>
+                Record <span className={styles.totalFightsInline}>({member.totalFights} fights)</span>
               </h3>
               <ul className={styles.record}>
                 {recordStats.map(({ label, value, type }) => (
@@ -106,17 +99,14 @@ export default function Modal({ member, onClose }) {
             </div>
           )}
 
-          {/* Accomplishments Section */}
           {hasAccomplishments && (
             <div className={styles.accomplishmentsWrapper}>
-              <div className={styles.accomplishments}>
-                <h3>Accomplishments</h3>
-                <ul>
-                  {member.accomplishments.map((item, index) => (
-                    <li key={index}>{item}</li>
-                  ))}
-                </ul>
-              </div>
+              <h3>Accomplishments</h3>
+              <ul className={styles.accomplishments}>
+                {accomplishments.map((item, idx) => (
+                  <li key={idx}>{item}</li>
+                ))}
+              </ul>
             </div>
           )}
         </div>
