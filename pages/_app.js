@@ -1,8 +1,11 @@
+// pages/_app.js
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 import Head from 'next/head'
-import { Roboto } from 'next/font/google';
-import { Cinzel } from 'next/font/google';
+import { Roboto } from 'next/font/google'
+import { Cinzel } from 'next/font/google'
 import "../styles/global.css"
-import '@mux/mux-player' 
+import '@mux/mux-player'
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -16,7 +19,32 @@ const cinzel = Cinzel({
   variable: '--font-cinzel',
 });
 
+// Your GA4 Measurement ID
+const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
+
+// helper to send pageviews
+function pageview(url) {
+  if (window.gtag) {
+    window.gtag('config', GA_ID, {
+      page_path: url,
+    })
+  }
+}
+
 export default function App({ Component, pageProps }) {
+  const router = useRouter()
+
+  useEffect(() => {
+    // track route changes
+    const handleRouteChange = (url) => {
+      pageview(url)
+    }
+    router.events.on('routeChangeComplete', handleRouteChange)
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router.events])
+
   return (
     <>
       <Head>

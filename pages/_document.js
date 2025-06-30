@@ -1,7 +1,7 @@
 // pages/_document.js
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
+const GA_ID = process.env.GA_MEASUREMENT_ID
 
 class MyDocument extends Document {
   render() {
