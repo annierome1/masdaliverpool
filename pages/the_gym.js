@@ -83,7 +83,11 @@ export default function TheGymPage({ gymPlaybackIds }) {
         />
       </Head>
 
+        
+
       <Header />
+
+      
 
       {/* Hero Section */}
       <div className={styles.heroSection}>
