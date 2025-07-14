@@ -8,6 +8,7 @@ export default function Modal({ member, onClose }) {
   // Determine which fields are present
   const hasRecord = typeof member.record === 'string' && member.record.trim() !== '';
   const hasTotalFights = member.totalFights != null;
+  
   const hasAccomplishments = accomplishments.length > 0;
   const hasBio = typeof member.bio === 'string' && member.bio.trim() !== '';
 
@@ -22,6 +23,7 @@ export default function Modal({ member, onClose }) {
     { label: 'Draws', value: draws, type: 'draws' },
   ];
 
+  const totalFights = wins + losses + draws;
   const galleryClass = hasRecord
     ? styles.gallery
     : `${styles.gallery} ${styles.noRecordGallery}`;
@@ -86,7 +88,7 @@ export default function Modal({ member, onClose }) {
           {hasRecord && hasTotalFights && (
             <div className={styles.recordWrapper}>
               <h3 className={styles.recordTitle}>
-                Record <span className={styles.totalFightsInline}>({member.totalFights} fights)</span>
+                Record <span className={styles.totalFightsInline}>({totalFights} fights)</span>
               </h3>
               <ul className={styles.record}>
                 {recordStats.map(({ label, value, type }) => (

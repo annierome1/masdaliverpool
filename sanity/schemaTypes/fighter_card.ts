@@ -39,11 +39,6 @@ export default defineType({
       description: 'Age in years',
     }),
     defineField({
-      name: 'totalFights',
-      title: 'Total Fights',
-      type: 'number',
-    }),
-    defineField({
       name: 'weight',
       title: 'Weight',
       type: 'string',
@@ -72,12 +67,6 @@ export default defineType({
       title: 'Accomplishments',
       type: 'array',
       of: [{ type: 'string' }],
-    }),
-    defineField({
-      name: 'bio',
-      title: 'Bio',
-      type: 'text',
-      description: 'Rich text is supported in Studio',
     }),
     defineField({
       name: 'social',
