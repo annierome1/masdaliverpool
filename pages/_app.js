@@ -45,20 +45,22 @@ export default function App({ Component, pageProps }) {
     }
   }, [router.events])
 
-  return (
-    <>
-      <Head>
-        <link
-          rel="prefetch"
-          href="https://pdfwebsite.s3.us-east-2.amazonaws.com/masdabrouchurer.pdf"
-          as="document"
-          crossOrigin="anonymous"
-        />
-      </Head>
+return (
+  <>
+    <Head>
+      {/* your favicon */}
+      <link rel="icon" href="/Logo-MASDA.png" />
+      <link
+        rel="prefetch"
+        href="https://pdfwebsite.s3.us-east-2.amazonaws.com/masdabrouchurer.pdf"
+        as="document"
+        crossOrigin="anonymous"
+      />
+    </Head>
 
-      <div className={`${roboto.variable} ${cinzel.variable}`}>
-        <Component {...pageProps} />
-      </div>
-    </>
-  )
+    <div className={`${roboto.variable} ${cinzel.variable}`}>
+      <Component {...pageProps} />
+    </div>
+  </>
+)
 }
