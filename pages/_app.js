@@ -6,6 +6,7 @@ import { Roboto } from 'next/font/google'
 import { Cinzel } from 'next/font/google'
 import "../styles/global.css"
 import '@mux/mux-player'
+import PrivacyBanner from '../components/PrivacyBanner'
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -60,6 +61,7 @@ return (
 
     <div className={`${roboto.variable} ${cinzel.variable}`}>
       <Component {...pageProps} />
+      <PrivacyBanner />
     </div>
   </>
 )

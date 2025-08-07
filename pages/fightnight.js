@@ -5,7 +5,7 @@ import Footer from '../components/Footer'
 import { useRef, useState, useEffect, useCallback } from 'react'
 import styles from '../styles/components/fightnight.module.css'
 import AWS from 'aws-sdk'
-import { client, urlFor } from '../lib/sanity'
+import { publicClient as client, urlFor } from '../lib/sanity'
 
 // --- DATA FETCHING ---
 export async function getStaticProps() {

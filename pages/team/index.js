@@ -7,7 +7,7 @@ import styles from '../../styles/components/team.module.css';
 import { FaInstagram, FaTiktok } from 'react-icons/fa';
 import { useState } from 'react';
 import Select from 'react-select';
-import { client } from '../../lib/sanity';
+import { publicClient as client } from '../../lib/sanity'
 
 // Custom styling for react-select
 const customSelectStyles = {

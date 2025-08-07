@@ -6,27 +6,27 @@ export default function Modal({ member, onClose }) {
   const accomplishments = Array.isArray(member.accomplishments) ? member.accomplishments : [];
 
   // Determine which fields are present
-  const hasRecord = typeof member.record === 'string' && member.record.trim() !== '';
-  const hasTotalFights = member.totalFights != null;
-  
+  const rawRecord = typeof member.record === 'string' ? member.record.trim() : '';
+  const hasRecord = rawRecord.length > 0;
   const hasAccomplishments = accomplishments.length > 0;
   const hasBio = typeof member.bio === 'string' && member.bio.trim() !== '';
 
-  // Parse wins, losses, draws only if record exists
-  const [wins, losses, draws] = hasRecord
-    ? member.record.split('-').map(n => parseInt(n, 10) || 0)
-    : [0, 0, 0];
+  // Parse "W-L[-D]" robustly, tolerate spaces, missing draws
+  const parts = hasRecord ? rawRecord.replace(/\s+/g, '').split('-') : [];
+  const w = parts[0] ? parseInt(parts[0], 10) || 0 : 0;
+  const l = parts[1] ? parseInt(parts[1], 10) || 0 : 0;
+  const d = parts[2] ? parseInt(parts[2], 10) || 0 : 0;
 
   const recordStats = [
-    { label: 'Wins', value: wins, type: 'wins' },
-    { label: 'Losses', value: losses, type: 'losses' },
-    { label: 'Draws', value: draws, type: 'draws' },
+    { label: 'Wins', value: w, type: 'wins' },
+    { label: 'Losses', value: l, type: 'losses' },
+    { label: 'Draws', value: d, type: 'draws' },
   ];
 
-  const totalFights = wins + losses + draws;
-  const galleryClass = hasRecord
-    ? styles.gallery
-    : `${styles.gallery} ${styles.noRecordGallery}`;
+  // Always compute from parsed values so we don't depend on a separate field
+  const totalFights = w + l + d;
+
+  const galleryClass = hasRecord ? styles.gallery : `${styles.gallery} ${styles.noRecordGallery}`;
 
   return (
     <div className={styles.overlay} onClick={onClose}>
@@ -48,12 +48,8 @@ export default function Modal({ member, onClose }) {
 
           {/* Age & Weight */}
           <div className={styles.bottomRow}>
-            {member.age != null && (
-              <p className={styles.ageBox}>{member.age} yrs</p>
-            )}
-            {member.weight && (
-              <p className={styles.weight}>{member.weight}</p>
-            )}
+            {member.age != null && <p className={styles.ageBox}>{member.age} yrs</p>}
+            {member.weight && <p className={styles.weight}>{member.weight}</p>}
           </div>
         </div>
 
@@ -61,12 +57,7 @@ export default function Modal({ member, onClose }) {
         <div className={galleryClass}>
           {gallery.length > 0 ? (
             gallery.map((src, idx) => (
-              <img
-                key={idx}
-                src={src}
-                alt={`${member.name} gallery ${idx + 1}`}
-                className={styles.galleryImage}
-              />
+              <img key={idx} src={src} alt={`${member.name} gallery ${idx + 1}`} className={styles.galleryImage} />
             ))
           ) : (
             <p className={styles.comingSoon}>Coming soon</p>
@@ -78,14 +69,11 @@ export default function Modal({ member, onClose }) {
           {hasBio && (
             <div className={styles.bioWrapper}>
               <h3 className={styles.bioTitle}>Bio</h3>
-              <p
-                className={styles.bioText}
-                dangerouslySetInnerHTML={{ __html: member.bio }}
-              />
+              <p className={styles.bioText} dangerouslySetInnerHTML={{ __html: member.bio }} />
             </div>
           )}
 
-          {hasRecord && hasTotalFights && (
+          {hasRecord && (
             <div className={styles.recordWrapper}>
               <h3 className={styles.recordTitle}>
                 Record <span className={styles.totalFightsInline}>({totalFights} fights)</span>
@@ -105,9 +93,7 @@ export default function Modal({ member, onClose }) {
             <div className={styles.accomplishmentsWrapper}>
               <h3>Accomplishments</h3>
               <ul className={styles.accomplishments}>
-                {accomplishments.map((item, idx) => (
-                  <li key={idx}>{item}</li>
-                ))}
+                {accomplishments.map((item, idx) => <li key={idx}>{item}</li>)}
               </ul>
             </div>
           )}
