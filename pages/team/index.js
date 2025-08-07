@@ -7,7 +7,7 @@ import styles from '../../styles/components/team.module.css';
 import { FaInstagram, FaTiktok } from 'react-icons/fa';
 import { useState } from 'react';
 import Select from 'react-select';
-import { publicClient as client } from '../../lib/sanity'
+import { serverClient } from '../../lib/sanity'
 
 // Custom styling for react-select
 const customSelectStyles = {
@@ -27,7 +27,7 @@ const customSelectStyles = {
 
 export async function getStaticProps() {
   // Fetch fighter cards and stats overrides from Sanity
-  const fighters = await client.fetch(`
+  const fighters = await serverClient.fetch(`
     *[_type == "fighter_card"] | order(id asc) {
       id,
       name,
@@ -46,7 +46,7 @@ export async function getStaticProps() {
     }
   `);
 
-  const statsOverrides = await client.fetch(`
+  const statsOverrides = await serverClient.fetch(`
     *[_type == "fighterStats"] {
       name,
       totalFights,
