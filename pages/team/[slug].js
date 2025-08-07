@@ -1,6 +1,6 @@
 // pages/team/[slug].js
 import TeamPage, { getStaticProps } from './index';
-import { publicClient as client } from '../../lib/sanity'
+import { serverClient as client } from '../../lib/sanity'
 
 export default TeamPage;
 export { getStaticProps };
