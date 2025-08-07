@@ -6,42 +6,40 @@ export default async function handler(req, res) {
       return res.status(401).json({ message: 'Invalid secret' });
     }
 
-    // Sanity sends payload as JSON. Try to get the doc.
+    const paths = new Set();
+
+    // Always refresh the team index (with and without trailing slash)
+    paths.add('/team');
+    paths.add('/team/');
+
+    // Try to refresh the changed fighter's slug page from payload (name -> underscores)
     const body = req.body || {};
     const mutation = body?.mutations?.[0];
-    const doc = mutation?.document || body; // be defensive
-
-    const pathsToRevalidate = new Set();
-
-    // Always refresh team index
-    pathsToRevalidate.add('/team');
-
-    // If the changed doc looks like a fighter, refresh its slug page too
-    const name =
+    const doc = mutation?.document || body;
+    const changedName =
       doc?.name ||
       mutation?.patch?.set?.name ||
       mutation?.create?.name ||
       null;
 
-    // replicate your slug logic (space -> underscore)
-    const slugFromName = (n) => (typeof n === 'string' ? n.replace(/ /g, '_') : null);
-    const fighterSlug = slugFromName(name);
-    if (fighterSlug) {
-      pathsToRevalidate.add(`/team/${fighterSlug}`);
+    if (typeof changedName === 'string') {
+      const slug = changedName.replace(/ /g, '_');
+      paths.add(`/team/${slug}`);
+      paths.add(`/team/${slug}/`);
     }
 
-    // Allow manual override: /api/revalidate?secret=...&path=/foo&path=/bar
-    if (path) {
-      const arr = Array.isArray(path) ? path : [path];
-      arr.forEach((p) => pathsToRevalidate.add(p));
-    }
+    // Allow manual: ?path=/team&path=/team/Foo_Bar
+    const extra = Array.isArray(path) ? path : path ? [path] : [];
+    extra.forEach(p => paths.add(p));
 
-    for (const p of pathsToRevalidate) {
+    const done = [];
+    for (const p of paths) {
       await res.revalidate(p);
+      done.push(p);
       console.log('[revalidate]', p, new Date().toISOString());
     }
 
-    return res.status(200).json({ revalidated: true, paths: [...pathsToRevalidate] });
+    return res.status(200).json({ revalidated: true, paths: done });
   } catch (err) {
     console.error('[revalidate] error:', err);
     return res.status(500).json({ message: err.message });
