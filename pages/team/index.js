@@ -1,3 +1,4 @@
+// pages/team/index.js
 import Modal from '../../components/Modal';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -7,28 +8,26 @@ import styles from '../../styles/components/team.module.css';
 import { FaInstagram, FaTiktok } from 'react-icons/fa';
 import { useState } from 'react';
 import Select from 'react-select';
-import { client } from '../../lib/sanity';
+import { serverClient } from '../../lib/sanity'; // ⬅️ use serverClient only
 
-// Custom styling for react-select
+// react-select styles
 const customSelectStyles = {
   control: base => ({ ...base, backgroundColor: '#333', color: 'white', border: 'none', borderRadius: 8, padding: '2px 4px', boxShadow: 'none' }),
   menu: base => ({ ...base, backgroundColor: '#333', borderRadius: 8, zIndex: 20 }),
-  option: (base, state) => ({
-    ...base,
-    backgroundColor: state.isSelected ? '#b1151e' : state.isFocused ? '#555' : 'transparent',
-    color: 'white',
-    cursor: 'pointer',
-  }),
+  option: (base, state) => ({ ...base, backgroundColor: state.isSelected ? '#b1151e' : state.isFocused ? '#555' : 'transparent', color: 'white', cursor: 'pointer' }),
   singleValue: base => ({ ...base, color: 'white' }),
   dropdownIndicator: base => ({ ...base, color: 'white' }),
   input: base => ({ ...base, color: 'white' }),
   indicatorSeparator: () => ({ display: 'none' }),
 };
 
-export async function getStaticProps() {
-  // Fetch fighter cards and stats overrides from Sanity
-  const fighters = await client.fetch(`
-    *[_type == "fighter_card"] | order(id asc) {
+// ✅ Always fetch fresh from Sanity (no CDN), exclude drafts, and disable HTTP caching
+export async function getServerSideProps({ res }) {
+  // Make sure responses aren't cached by Vercel/clients
+  res.setHeader('Cache-Control', 'no-store, max-age=0');
+
+  const fighters = await serverClient.fetch(`
+    *[_type == "fighter_card" && !(_id in path("drafts.**"))] | order(id asc) {
       id,
       name,
       role,
@@ -46,52 +45,28 @@ export async function getStaticProps() {
     }
   `);
 
-  const statsOverrides = await client.fetch(`
-    *[_type == "fighterStats"] {
-      name,
-      totalFights,
-      record,
-      accomplishments,
-      age
-    }
-  `);
-
-  return {
-    props: { fighters, statsOverrides },
-    revalidate: 60,
-  };
+  return { props: { fighters, _generatedAt: new Date().toISOString() } };
 }
 
-export default function TeamPage({ fighters, statsOverrides }) {
+export default function TeamPage({ fighters }) {
   const router = useRouter();
   const { slug } = router.query;
 
   const [selectedName, setSelectedName] = useState('');
   const [selectedWeightClass, setSelectedWeightClass] = useState('');
 
-  // Merge overrides
-  const merged = fighters.map(member => {
-    const override = statsOverrides.find(o => o.name === member.name);
-    return override ? {
-      ...member,
-      totalFights: override.totalFights ?? member.totalFights,
-      record: override.record ?? member.record,
-      accomplishments: override.accomplishments?.length ? override.accomplishments : member.accomplishments,
-      age: override.age ?? member.age,
-    } : member;
-  });
-
-  const names = [...new Set(merged.map(m => m.name))].sort();
-  const weightClasses = [...new Set(merged.map(m => m.role))].sort();
+  // 🔥 Use fighters exactly as stored in Sanity (no merges)
+  const names = [...new Set(fighters.map(m => m.name))].sort();
+  const weightClasses = [...new Set(fighters.map(m => m.role))].sort();
 
   const filtered = selectedName
-    ? merged.filter(m => m.name === selectedName)
+    ? fighters.filter(m => m.name === selectedName)
     : selectedWeightClass
-      ? merged.filter(m => m.role === selectedWeightClass)
-      : merged;
+    ? fighters.filter(m => m.role === selectedWeightClass)
+    : fighters;
 
   const modalMember = slug
-    ? merged.find(m => m.name.replace(/ /g, '_') === slug)
+    ? fighters.find(m => m.name.replace(/ /g, '_') === slug)
     : null;
 
   const handleCardClick = member => {
@@ -119,7 +94,7 @@ export default function TeamPage({ fighters, statsOverrides }) {
         </div>
       </div>
 
-      <main className={`${styles.mainContent} ${modalMember ? styles.blurBackground : ''}`}>      
+      <main className={`${styles.mainContent} ${modalMember ? styles.blurBackground : ''}`}>
         <section className={styles.filterControls}>
           <Select
             styles={customSelectStyles}
@@ -139,9 +114,9 @@ export default function TeamPage({ fighters, statsOverrides }) {
           />
         </section>
 
-        <section className={`${styles.teamGrid} ${filtered.length === 1 ? styles.centerSingle : ''}`}>        
+        <section className={`${styles.teamGrid} ${filtered.length === 1 ? styles.centerSingle : ''}`}>
           {filtered.map(member => (
-            <div key={member.id} className={styles.teamCard} onClick={() => handleCardClick(member)}>
+            <div key={member.id ?? member._id ?? member.name} className={styles.teamCard} onClick={() => handleCardClick(member)}>
               <div className={styles.imageWrapper}>
                 <img src={member.image || '/team/profile_placeholder_white.png'} alt={member.name} className={styles.indivImage} />
               </div>
