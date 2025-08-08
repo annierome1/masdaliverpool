@@ -1,4 +1,3 @@
-// pages/team/index.js
 import Modal from '../../components/Modal';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -8,7 +7,7 @@ import styles from '../../styles/components/team.module.css';
 import { FaInstagram, FaTiktok } from 'react-icons/fa';
 import { useState } from 'react';
 import Select from 'react-select';
-import { serverClient as client } from '../../lib/sanity';
+import { client } from '../../lib/sanity';
 
 // Custom styling for react-select
 const customSelectStyles = {
@@ -26,10 +25,10 @@ const customSelectStyles = {
   indicatorSeparator: () => ({ display: 'none' }),
 };
 
-// ✅ Always fetch fresh from Sanity
-export async function getServerSideProps() {
+export async function getStaticProps() {
+  // Fetch fighter cards and stats overrides from Sanity
   const fighters = await client.fetch(`
-    *[_type == "fighter_card" && !(_id in path("drafts.**"))] | order(id asc) {
+    *[_type == "fighter_card"] | order(id asc) {
       id,
       name,
       role,
@@ -48,7 +47,7 @@ export async function getServerSideProps() {
   `);
 
   const statsOverrides = await client.fetch(`
-    *[_type == "fighterStats" && !(_id in path("drafts.**"))]{
+    *[_type == "fighterStats"] {
       name,
       totalFights,
       record,
@@ -57,52 +56,42 @@ export async function getServerSideProps() {
     }
   `);
 
-  const hasNonEmpty = v => typeof v === 'string' && v.trim() !== '';
-  const hasArray = a => Array.isArray(a) && a.length > 0;
-
-  const merged = fighters.map(member => {
-    const override = statsOverrides.find(o => o.name === member.name);
-    if (!override) return member;
-
-    return {
-      ...member,
-      totalFights:
-        typeof override.totalFights === 'number' ? override.totalFights : member.totalFights,
-      record: hasNonEmpty(override.record) ? override.record.trim() : member.record,
-      accomplishments: hasArray(override.accomplishments)
-        ? override.accomplishments
-        : member.accomplishments,
-      age: typeof override.age === 'number' ? override.age : member.age,
-    };
-  });
-
   return {
-    props: {
-      fighters: merged,
-      _generatedAt: new Date().toISOString(),
-      statsOverrides
-    }
+    props: { fighters, statsOverrides },
+    revalidate: 60,
   };
 }
 
-export default function TeamPage({ fighters, _generatedAt }) {
+export default function TeamPage({ fighters, statsOverrides }) {
   const router = useRouter();
   const { slug } = router.query;
 
   const [selectedName, setSelectedName] = useState('');
   const [selectedWeightClass, setSelectedWeightClass] = useState('');
 
-  const names = [...new Set(fighters.map(m => m.name))].sort();
-  const weightClasses = [...new Set(fighters.map(m => m.role))].sort();
+  // Merge overrides
+  const merged = fighters.map(member => {
+    const override = statsOverrides.find(o => o.name === member.name);
+    return override ? {
+      ...member,
+      totalFights: override.totalFights ?? member.totalFights,
+      record: override.record ?? member.record,
+      accomplishments: override.accomplishments?.length ? override.accomplishments : member.accomplishments,
+      age: override.age ?? member.age,
+    } : member;
+  });
+
+  const names = [...new Set(merged.map(m => m.name))].sort();
+  const weightClasses = [...new Set(merged.map(m => m.role))].sort();
 
   const filtered = selectedName
-    ? fighters.filter(m => m.name === selectedName)
+    ? merged.filter(m => m.name === selectedName)
     : selectedWeightClass
-      ? fighters.filter(m => m.role === selectedWeightClass)
-      : fighters;
+      ? merged.filter(m => m.role === selectedWeightClass)
+      : merged;
 
   const modalMember = slug
-    ? fighters.find(m => m.name.replace(/ /g, '_') === slug)
+    ? merged.find(m => m.name.replace(/ /g, '_') === slug)
     : null;
 
   const handleCardClick = member => {
@@ -130,12 +119,7 @@ export default function TeamPage({ fighters, _generatedAt }) {
         </div>
       </div>
 
-      <main className={`${styles.mainContent} ${modalMember ? styles.blurBackground : ''}`}>
-        {/* tiny debug stamp so you can confirm it’s fresh */}
-        <div style={{ opacity: 0.3, fontSize: 12, textAlign: 'center', marginTop: 8 }}>
-          Built: {_generatedAt}
-        </div>
-
+      <main className={`${styles.mainContent} ${modalMember ? styles.blurBackground : ''}`}>      
         <section className={styles.filterControls}>
           <Select
             styles={customSelectStyles}
@@ -155,25 +139,17 @@ export default function TeamPage({ fighters, _generatedAt }) {
           />
         </section>
 
-        <section className={`${styles.teamGrid} ${filtered.length === 1 ? styles.centerSingle : ''}`}>
+        <section className={`${styles.teamGrid} ${filtered.length === 1 ? styles.centerSingle : ''}`}>        
           {filtered.map(member => (
             <div key={member.id} className={styles.teamCard} onClick={() => handleCardClick(member)}>
               <div className={styles.imageWrapper}>
-                <img
-                  src={member.image || '/team/profile_placeholder_white.png'}
-                  alt={member.name}
-                  className={styles.indivImage}
-                />
+                <img src={member.image || '/team/profile_placeholder_white.png'} alt={member.name} className={styles.indivImage} />
               </div>
               <h3>{member.name}</h3>
               <p className={styles.indivRole}>{member.role}</p>
               <div className={styles.socialIcons}>
-                {member.social?.instagram && (
-                  <a href={member.social.instagram} target="_blank" rel="noreferrer"><FaInstagram /></a>
-                )}
-                {member.social?.tiktok && (
-                  <a href={member.social.tiktok} target="_blank" rel="noreferrer"><FaTiktok /></a>
-                )}
+                {member.social?.instagram && <a href={member.social.instagram} target="_blank" rel="noreferrer"><FaInstagram/></a>}
+                {member.social?.tiktok && <a href={member.social.tiktok} target="_blank" rel="noreferrer"><FaTiktok/></a>}
               </div>
               <p className={styles.moreInfo}>Click for more info</p>
             </div>
