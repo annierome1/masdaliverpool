@@ -10,10 +10,6 @@ import { useState } from 'react';
 import Select from 'react-select';
 import { serverClient as client } from '../../lib/sanity';
 
-// ---- helpers ----
-const hasNonEmpty = v => typeof v === 'string' && v.trim() !== '';
-const hasArray = a => Array.isArray(a) && a.length > 0;
-
 // Custom styling for react-select
 const customSelectStyles = {
   control: base => ({ ...base, backgroundColor: '#333', color: 'white', border: 'none', borderRadius: 8, padding: '2px 4px', boxShadow: 'none' }),
@@ -30,8 +26,8 @@ const customSelectStyles = {
   indicatorSeparator: () => ({ display: 'none' }),
 };
 
-export async function getStaticProps() {
-  // Pull only published docs (no drafts) and build image/gallery URLs
+// ✅ Always fetch fresh from Sanity
+export async function getServerSideProps() {
   const fighters = await client.fetch(`
     *[_type == "fighter_card" && !(_id in path("drafts.**"))] | order(id asc) {
       id,
@@ -61,24 +57,21 @@ export async function getStaticProps() {
     }
   `);
 
-  // Merge overrides safely — only use override fields when they're actually set
+  const hasNonEmpty = v => typeof v === 'string' && v.trim() !== '';
+  const hasArray = a => Array.isArray(a) && a.length > 0;
+
   const merged = fighters.map(member => {
     const override = statsOverrides.find(o => o.name === member.name);
-
     if (!override) return member;
 
     return {
       ...member,
-      // Only override if the override value is a number
       totalFights:
         typeof override.totalFights === 'number' ? override.totalFights : member.totalFights,
-      // Only override record if it's a non-empty string (avoid overriding with "")
       record: hasNonEmpty(override.record) ? override.record.trim() : member.record,
-      // Only override accomplishments if non-empty array
       accomplishments: hasArray(override.accomplishments)
         ? override.accomplishments
         : member.accomplishments,
-      // Only override age if it's a number
       age: typeof override.age === 'number' ? override.age : member.age,
     };
   });
@@ -86,10 +79,9 @@ export async function getStaticProps() {
   return {
     props: {
       fighters: merged,
-      _generatedAt: new Date().toISOString(), 
+      _generatedAt: new Date().toISOString(),
       statsOverrides
-    },
-    revalidate: 60,
+    }
   };
 }
 
@@ -139,7 +131,7 @@ export default function TeamPage({ fighters, _generatedAt }) {
       </div>
 
       <main className={`${styles.mainContent} ${modalMember ? styles.blurBackground : ''}`}>
-        {/* tiny debug stamp so you can confirm revalidation */}
+        {/* tiny debug stamp so you can confirm it’s fresh */}
         <div style={{ opacity: 0.3, fontSize: 12, textAlign: 'center', marginTop: 8 }}>
           Built: {_generatedAt}
         </div>
