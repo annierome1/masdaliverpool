@@ -5,10 +5,7 @@ import { serverClient as client } from '../../lib/sanity';
 export default TeamPage;
 
 // ✅ Always fetch fresh slug data directly from Sanity
-export async function getServerSideProps(context) {
-  const { slug } = context.params;
-  const fighterName = slug.replace(/_/g, ' ');
-
+export async function getServerSideProps() {
   const fighters = await client.fetch(`
     *[_type == "fighter_card" && !(_id in path("drafts.**"))] | order(id asc) {
       id,
