@@ -126,21 +126,25 @@
 }
   
 .imageWrapper {
-  height: 400px;            
-  width: fit-content;        
-  max-width: 100%;          
-  margin: 0 auto 1rem;      
-  overflow: hidden;
+  height: 400px;
+  width: fit-content;
+  min-width: 80%;
+  margin: 0 auto 1rem;
+  overflow: hidden;          /* crop outside area */
   border-radius: 8px;
   background: #1a1a1a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .indivImage {
-  display: block;            
-  height: 100%;               
-  width: auto;            
+  height: 100%;
+  width: 120%;                /* widen */
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
 }
-
 
   
   .teamCard h3 {
