@@ -125,25 +125,23 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
   
- .imageWrapper {
-  position: relative;
-  width: 100%;
-  height: 400px;   
+.imageWrapper {
+  height: 400px;            
+  width: fit-content;        
+  max-width: 100%;          
+  margin: 0 auto 1rem;      
   overflow: hidden;
   border-radius: 8px;
-  margin-bottom: 1rem;
-  background: #1a1a1a;   
+  background: #1a1a1a;
 }
 
 .indivImage {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; 
-  object-position: top center;     
+  display: block;            
+  height: 100%;               
+  width: auto;            
 }
+
+
   
   .teamCard h3 {
     font-size: 1.25rem;
