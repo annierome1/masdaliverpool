@@ -8,9 +8,15 @@ import styles from '../../styles/components/team.module.css';
 import { FaInstagram, FaTiktok } from 'react-icons/fa';
 import { useState } from 'react';
 import Select from 'react-select';
-import { serverClient } from '../../lib/sanity'; // ⬅️ use serverClient only
+import { serverClient } from '../../lib/sanity';
 
-// react-select styles
+// --- helpers ---
+const slugify = (s = '') =>
+  s.toString().trim().toLowerCase()
+    .replace(/['"]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+
 const customSelectStyles = {
   control: base => ({ ...base, backgroundColor: '#333', color: 'white', border: 'none', borderRadius: 8, padding: '2px 4px', boxShadow: 'none' }),
   menu: base => ({ ...base, backgroundColor: '#333', borderRadius: 8, zIndex: 20 }),
@@ -21,25 +27,13 @@ const customSelectStyles = {
   indicatorSeparator: () => ({ display: 'none' }),
 };
 
-// ✅ Always fetch fresh from Sanity (no CDN), exclude drafts, and disable HTTP caching
 export async function getServerSideProps({ res }) {
-  // Make sure responses aren't cached by Vercel/clients
   res.setHeader('Cache-Control', 'no-store, max-age=0');
 
   const fighters = await serverClient.fetch(`
     *[_type == "fighter_card" && !(_id in path("drafts.**"))] | order(id asc) {
-      id,
-      name,
-      role,
-      stance,
-      style,
-      age,
-      totalFights,
-      weight,
-      record,
-      accomplishments[],
-      bio,
-      social,
+      id, name, role, stance, style, age, totalFights, weight, record,
+      accomplishments[], bio, social,
       "image": image.asset->url,
       "gallery": gallery[].asset->url
     }
@@ -55,7 +49,6 @@ export default function TeamPage({ fighters }) {
   const [selectedName, setSelectedName] = useState('');
   const [selectedWeightClass, setSelectedWeightClass] = useState('');
 
-  // 🔥 Use fighters exactly as stored in Sanity (no merges)
   const names = [...new Set(fighters.map(m => m.name))].sort();
   const weightClasses = [...new Set(fighters.map(m => m.role))].sort();
 
@@ -65,13 +58,17 @@ export default function TeamPage({ fighters }) {
     ? fighters.filter(m => m.role === selectedWeightClass)
     : fighters;
 
+  // Find modal member by name slug (fallback to id for old links)
   const modalMember = slug
-    ? fighters.find(m => m.name.replace(/ /g, '_') === slug)
+    ? fighters.find(m =>
+        slugify(m.name) === String(slug).toLowerCase() ||
+        String(m.id) === String(slug)
+      )
     : null;
 
-  const handleCardClick = member => {
-    const slugged = member.name.replace(/ /g, '_');
-    router.push(`/team?slug=${slugged}`, undefined, { shallow: true });
+  const handleCardClick = (member) => {
+    const s = slugify(member.name);
+    router.push(`/team/${s}`, undefined, { shallow: true });
   };
 
   const closeModal = () => router.push('/team', undefined, { shallow: true });
@@ -116,9 +113,13 @@ export default function TeamPage({ fighters }) {
 
         <section className={`${styles.teamGrid} ${filtered.length === 1 ? styles.centerSingle : ''}`}>
           {filtered.map(member => (
-            <div key={member.id ?? member._id ?? member.name} className={styles.teamCard} onClick={() => handleCardClick(member)}>
+            <div key={slugify(member.name)} className={styles.teamCard} onClick={() => handleCardClick(member)}>
               <div className={styles.imageWrapper}>
-                <img src={member.image || '/team/profile_placeholder_white.png'} alt={member.name} className={styles.indivImage} />
+                <img
+                  src={member.image || '/team/profile_placeholder_white.png'}
+                  alt={member.name}
+                  className={styles.indivImage}
+                />
               </div>
               <h3>{member.name}</h3>
               <p className={styles.indivRole}>{member.role}</p>
@@ -133,6 +134,7 @@ export default function TeamPage({ fighters }) {
       </main>
 
       {modalMember && <Modal member={modalMember} onClose={closeModal} />}
+
       <Footer />
     </>
   );
