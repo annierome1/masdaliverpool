@@ -4,43 +4,20 @@ import { serverClient as client } from '../../lib/sanity';
 
 export default TeamPage;
 
-// Keep SSR fresh for deep links like /team/alfie-ponting
-export async function getServerSideProps() {
-  const fighters = await client.fetch(`
-    *[_type == "fighter_card" && !(_id in path("drafts.**"))] | order(id asc) {
+export async function getServerSideProps({ res }) {
+  // prevent any edge/proxy/browser caching
+  res.setHeader('Cache-Control', 'no-store, max-age=0');
+
+  const fighters = await client.fetch(
+    `*[_type == "fighter_card" && !(_id in path("drafts.**"))] | order(id asc){
       id, name, role, stance, style, age, totalFights, weight, record,
       accomplishments[], bio, social,
       "image": image.asset->url,
       "gallery": gallery[].asset->url
-    }
-  `);
+    }`,
+    {},
+    { perspective: 'published' }
+  );
 
-  // optional overrides merge (unchanged)
-  const statsOverrides = await client.fetch(`
-    *[_type == "fighterStats" && !(_id in path("drafts.**"))]{
-      name, totalFights, record, accomplishments, age
-    }
-  `);
-
-  const hasNonEmpty = v => typeof v === 'string' && v.trim() !== '';
-  const hasArray = a => Array.isArray(a) && a.length > 0;
-
-  const merged = fighters.map(member => {
-    const override = statsOverrides.find(o => o.name === member.name);
-    if (!override) return member;
-    return {
-      ...member,
-      totalFights: typeof override.totalFights === 'number' ? override.totalFights : member.totalFights,
-      record: hasNonEmpty(override.record) ? override.record.trim() : member.record,
-      accomplishments: hasArray(override.accomplishments) ? override.accomplishments : member.accomplishments,
-      age: typeof override.age === 'number' ? override.age : member.age,
-    };
-  });
-
-  return {
-    props: {
-      fighters: merged,
-      _generatedAt: new Date().toISOString(),
-    }
-  };
+  return { props: { fighters, _generatedAt: new Date().toISOString() } };
 }
