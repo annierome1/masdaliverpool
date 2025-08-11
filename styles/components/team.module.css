@@ -249,6 +249,7 @@
   .teamCard {
     width: 100%;
     max-width: 500px;
+    max-height: 500px;
     height: auto;
     padding: 1rem;
     
@@ -256,7 +257,7 @@
 
   /* Shrink image wrapper */
   .imageWrapper {
-    height: 250px;
+    height: 350px;
   }
 
   .teamCard h3 {
