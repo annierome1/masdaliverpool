@@ -1,46 +1,96 @@
+/* --- Mobile-first banner --- */
 .banner {
   position: fixed;
   bottom: 0;
-  width: 100%;
+  left: 0;
+  right: 0;                         /* ensures no overflow from width + padding */
   background: #222;
   color: #fff;
-  text-align: center;
-  padding: 12px;
-  font-size: 14px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
   z-index: 9999;
+  box-shadow: 0 -6px 16px rgba(0, 0, 0, 0.25);
+  overflow-x: hidden;
+
+  display: flex;
+  flex-direction: column;
+  padding-block: 10px max(10px, env(safe-area-inset-bottom));
+  font-size: clamp(10px, 2vw, 10px);
+  line-height: 1.4;
 }
 
-.banner a {
-  color: #ed1c28;;
+.inner {
+  max-width: 1120px;
+  width: 100%;
+  margin: 0 auto;
+  padding-inline: 12px;             /* keep horizontal padding inside max-width */
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  box-sizing: border-box;
+}
+
+.content a {
+  color: #ed1c28;
   text-decoration: underline;
+  overflow-wrap: anywhere;
+  font-size: 14px;
 }
 
-.banner button {
-  background: #ed1c28;;
-  border: none;
-  padding: 6px 12px;
-  margin-left: 8px;
+.actions {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.button {
+  appearance: none;
+  background: #ed1c28;
+  border: 0;
+  padding: 10px 14px;
   color: #000;
-  font-weight: bold;
+  font-weight: 700;
+  border-radius: 6px;
   cursor: pointer;
-  border-radius: 4px;
+
+  width: 100%;
+  max-width: 100%;                  /* keeps button inside container */
+  box-sizing: border-box;
 }
 
-@media (max-width: 600px) {
+.button:focus-visible,
+.content a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
   .banner {
-    flex-direction: column;
-    align-items: stretch;
-    font-size: 13px;
-    padding: 10px 4px;
-    gap: 4px;
+    transition: none;
   }
-  .banner button {
-    margin-left: 0;
-    margin-top: 6px;
-    width: 100%;
+}
+
+/* --- ≥600px: inline layout --- */
+@media (min-width: 600px) {
+  .inner {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 14px;
+    padding-inline: 16px;
+  }
+  .actions {
+    width: auto;
+  }
+  .button {
+    width: auto;
+  }
+}
+
+/* --- ≥900px --- */
+@media (min-width: 900px) {
+  .banner {
+    text-align: center;
+  }
+  .inner {
+    gap: 16px;
   }
 }

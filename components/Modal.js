@@ -90,13 +90,13 @@ export default function Modal({ member, onClose }) {
           )}
 
           {hasAccomplishments && (
-            <div className={styles.accomplishmentsWrapper}>
-              <h3>Accomplishments</h3>
-              <ul className={styles.accomplishments}>
-                {accomplishments.map((item, idx) => <li key={idx}>{item}</li>)}
-              </ul>
-            </div>
-          )}
+          <div className={styles.accomplishmentsWrapper}>
+            <h3 className={styles.accomplishmentsTitle}>Accomplishments</h3>
+            <ul className={styles.accomplishments}>
+              {accomplishments.map((item, idx) => <li key={idx}>{item}</li>)}
+            </ul>
+          </div>
+        )}
         </div>
       </div>
     </div>

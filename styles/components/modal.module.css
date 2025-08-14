@@ -1,12 +1,12 @@
-/* modal.module.css */
-
+/* ===========================
+   Modal Overlay & Shell
+=========================== */
 .overlay {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0,0,0,.6);
   backdrop-filter: blur(5px);
   display: flex;
   justify-content: center;
@@ -14,18 +14,19 @@
   z-index: 1000;
 }
 
-.modal {
-  background: #222;
-  padding: 2rem;
-  border-radius: 12px;
-  max-width: 1200px;
-  width: 90%;
-  max-height: 95%;
-  position: relative;
-  font-family: var(--font-cinzel);
-  color: #ccc;
-  text-transform: none;
 
+.modal {
+  position: relative;
+  background: #222;
+  color: #ccc;
+  font-family: var(--font-cinzel);
+  text-transform: none;
+  border-radius: 12px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 1200px;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .closeButton {
@@ -33,37 +34,38 @@
   top: 12px;
   right: 16px;
   background: transparent;
-  border: none;
+  border: 0;
   font-size: 1.5rem;
-  cursor: pointer;
   color: #ed1c28;
+  cursor: pointer;
 }
 
+/* ===========================
+   Header / Name / Role
+=========================== */
 .name h2 {
-  font-weight: 800;
+  margin: 0 0 .5rem 0;
   text-align: center;
-  margin-bottom: 0.5rem;
+  font-weight: 800;
   font-size: 1.8rem;
   position: relative;
-  margin-top: 0;
 }
 .name h2::after {
   content: '';
   display: block;
   width: 30%;
   height: 3px;
+  margin: .5rem auto 0;
   background: #ed1c28;
-  /* background: #4650DC; */
-  margin: 0.5rem auto 0;
   border-radius: 2px;
 }
+
 .roleWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0rem;
-  margin-bottom: 0rem;
-  margin-top: -0.5rem;
+  gap: 0;
+  margin: -.5rem 0 0 0;
 }
 
 .topRow {
@@ -71,160 +73,316 @@
   gap: 1.5rem;
   align-items: baseline;
 }
+
 .role {
   text-align: center;
-  margin-bottom: 0rem;
+  margin: 0;
   font-size: 1.2rem;
   font-weight: 600;
 }
+
 .totalFightsInline {
-  font-weight: 400;
+  margin-left: .5rem;
   font-size: 1rem;
+  font-weight: 400;
   color: #aaa;
-  margin-left: 0.5rem;
 }
 
+/* ===========================
+   Meta Badges (weight/age)
+=========================== */
 .weightWrapper {
-  padding: 0rem;
+  padding: 0;
   border-radius: 10px;
   text-align: center;
-
 }
+
 .bottomRow {
   display: flex;
   gap: 1rem;
   align-items: center;
   margin-top: -1rem;
-
 }
 
-
-.weight, .ageBox {
+.weight,
+.ageBox {
   font-size: 1rem;
+  font-weight: 500;
   background: #1a1a1a;
-  padding: 0.5rem 1rem;
+  padding: .5rem 1rem;
   border-radius: 6px;
   text-align: center;
   width: fit-content;
-  font-weight: 500;
 }
 
+/* ===========================
+   Gallery
+=========================== */
 .gallery {
   display: flex;
-  gap: 2rem;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 2rem;
   margin-bottom: 2rem;
 }
-.comingSoon {
-  color: #ccc;
-  font-style: italic;
-  text-align: center;
-  padding: 1rem 0;
-  font-size: 1.5rem;
-}
+
 .galleryImage {
   width: 275px;
   height: 250px;
   object-fit: cover;
   border-radius: 8px;
   cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.2s;
+  transition: transform .3s, box-shadow .2s;
 }
 
 .galleryImage:hover {
   transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0,0,0,.15);
 }
 
+.comingSoon {
+  padding: 1rem 0;
+  text-align: center;
+  font-size: 1.5rem;
+  font-style: italic;
+  color: #ccc;
+}
+
+/* ===========================
+   Bio & Accomplishments
+=========================== */
 .bioAccomplishmentsContainer {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-
-
-
-
-/* ---------- card row ---------- */
-.record {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-
-
-
-  .accomplishmentsWrapper {
-    flex: 1;
-    background-color: #1a1a1a;
+.accomplishmentsWrapper {
+  flex: 1;
+  width: 80%;
+  align-self: center;
+  background: #1a1a1a;
   border-radius: 8px;
   padding: 1.5rem;
-  width: 80%;
-  align-self: center
-  }
+}
 
-
-
-
-.record, .accomplishments {
+.record,
+.accomplishments {
   margin: 0;
   color: #ccc;
   line-height: 1.7;
 }
 
 .accomplishments h3 {
-    margin-top: 0rem;
-  margin-bottom: 1rem;
+  margin: 0 0 1rem 0;
   font-size: 1.2rem;
   color: #ccc;
-  text-align: center;
-
+  text-align: center !important;
 }
-.accomplishments h3::after{
+.accomplishments h3::after {
   content: '';
   display: block;
-  margin: 0.5rem auto 0;
   width: 0%;
   height: 2px;
+  margin: .5rem auto 0;
   background: #ed1c28;
-  transition: width 0.4s ease;
+  transition: width .4s ease;
 }
-
 .accomplishmentsWrapper:hover h3::after {
   width: 50%;
 }
 
+.accomplishments ul,
+.record ul {
+  list-style: disc inside;
+  margin: 0;
+  padding: 0;
+}
+
+.accomplishments li {
+  position: relative;
+  list-style: none;
+  margin-bottom: .5rem;
+  background: #2b2b2b;
+  border-left: 3px solid #ed1c28;
+  padding: .75rem 1rem .75rem 2.5rem;
+  border-radius: 6px;
+}
+.accomplishments li::before {
+  content: '';
+  position: absolute;
+  left: .75rem;
+  top: .6rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+/* ===========================
+   Record Cards
+=========================== */
+.recordWrapper {
+  width: 40%;
+  margin: 0 auto 2rem;
+  background: #1a1a1a;
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.recordTitle {
+  margin: 0;
+  text-align: center;
+  color: #ccc;
+  font-weight: 700;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.record {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: nowrap;
+  width: 80%;
+  height: 100px;
+}
+
+.stat {
+  list-style: none;
+  flex: 0 1 110px;
+  text-align: center;
+  background: #2b2b2b;
+  border-radius: 8px;
+  padding: 1rem .75rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform .25s ease;
+}
+.stat:hover { transform: translateY(-4px); }
+
+.stat::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #ed1c28;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .35s ease;
+  z-index: 0;
+}
+.stat:hover::before { transform: scaleX(1); }
+
+.value,
+.label { position: relative; z-index: 1; }
+.value { display: block; color: #ccc; font: 700 1.9rem/1.2 var(--font-cinzel, sans-serif); }
+.label { color: #888; font-size: .85rem; text-transform: uppercase; letter-spacing: .03em; }
+
+/* ===========================
+   Bio block (styled like accomplishments)
+=========================== */
+.bioWrapper {
+  flex: 1;
+  width: 80%;
+  align-self: center;
+  background: #1a1a1a;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+.bioWrapper .bioTitle {
+  margin: 0 0 1rem 0;
+  color: #ccc;
+  font-size: 1.2rem;
+  text-align: center;
+  position: relative;
+}
+.bioWrapper .bioTitle::after {
+  content: '';
+  display: block;
+  width: 0%;
+  height: 2px;
+  margin: .5rem auto 0;
+  background: #ed1c28;
+  transition: width .4s ease;
+}
+.bioWrapper:hover .bioTitle::after { width: 50%; }
+
+.bioWrapper .bioText {
+  color: #ccc;
+  line-height: 1.7;
+  background: #2b2b2b;
+  border-left: 3px solid #ed1c28;
+  padding: .75rem 1rem .75rem 2.5rem;
+  border-radius: 6px;
+  margin-bottom: .5rem;
+}
+
+/* Optional: when record is absent */
+.noRecordGallery {
+  margin: 3rem -1rem 0;
+  gap: 1.2rem;
+}
+
+.overlay { overscroll-behavior: contain; }
+.modal   { overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+
+/* ===========================
+   Touch devices: disable hover
+=========================== */
+@media (hover: none) and (pointer: coarse) {
+  .galleryImage { transition: none; }
+  .galleryImage:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* ===========================
+   Mobile (≤767px)
+=========================== */
 @media (max-width: 767px) {
+  /* Overlay and modal centering */
   .overlay {
-    padding: 1rem;
-    align-items: flex-start;
-    z-index: 1000;
-    
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    overscroll-behavior: contain;
+    touch-action: none;
   }
 
   .modal {
-    width: 90%;
-    padding: 1rem;
-    margin-right: 2rem;
-   justify-self: center !important;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: min(94vw, 720px);
+    max-height: calc(100dvh - 24px);
+    padding: 3rem 1rem 1rem;
+    margin: 0;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
   }
 
   .closeButton {
-    top: 8px;
-    right: 8px;
-    font-size: 1.25rem;
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    font-size: 2rem;
+    z-index: 2;
   }
 
-  .name h2 {
-    font-size: 1.5rem;
-  }
+  .name h2 { font-size: 1.5rem; }
 
   .roleWrapper {
-    flex-direction: column;
     gap: 0.5rem;
     margin-bottom: 1rem;
   }
@@ -237,18 +395,20 @@
   }
 
   .stance,
-  .style
-  {
-    font-size: 0.8rem;
-  }
+  .style { font-size: 0.8rem; }
+
   .weight,
   .ageBox {
     font-size: 0.9rem;
     padding: 0.5rem;
   }
 
+  /* Gallery */
   .gallery {
     flex-direction: column;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-content: flex-start;
     gap: 1rem;
     margin-bottom: 1rem;
   }
@@ -256,228 +416,73 @@
   .galleryImage {
     width: 100%;
     height: auto;
-    max-height: 200px;
+    max-height: 320px;
+    display: block;
+    object-position: center 20%; /* lowered slightly */
+    align-self: flex-start;
   }
 
+  /* Bio & accomplishments container */
   .bioAccomplishmentsContainer {
     gap: 1rem;
-    margin-right: -1.5rem;
-    margin-left: -1.5rem;
+    margin: 0; /* remove negative margins */
   }
 
+  /* Record section */
   .recordWrapper {
-    width: 80% !important;
+    width: 80%;
     padding: 1rem;
     margin-bottom: 1rem;
-    justify-items: center;
   }
 
   .record {
     flex-wrap: wrap;
     gap: 0.5rem;
-    justify-items: center !important;
+    width: 250px;
     height: auto;
-    width: 250px !important;
-    margin-right: 2rem;
   }
 
-  .stat {
-    flex: 0 1 90px;
-    padding: 0.5rem 0.25rem;
-   
-  }
+  .stat { flex: 0 1 90px; padding: 0.5rem 0.25rem; }
+  .value { font-size: 1.5rem; }
+  .label { font-size: 0.75rem; }
 
-  .value {
-    font-size: 1.5rem;
-  }
-
-  .label {
-    font-size: 0.75rem;
-  }
-
+  /* Accomplishments section */
   .accomplishmentsWrapper {
-    width: 85%;
-    padding: 1rem;
-    margin-bottom: 2.5rem !important;
-    margin-left: 1rem;
-    
+    width: 100%;                /* full width */
+    margin: 0;                  /* no extra margin */
+    padding: 1rem 0;            /* no side padding */
+    align-self: flex-start;
+    box-sizing: border-box;
   }
 
-  .accomplishments h3 {
+  .accomplishmentsWrapper h3 {
     font-size: 1.25rem;
     margin-bottom: 0.75rem;
+    text-align: center !important;
   }
-  .closeButton {
-  font-size: 2rem;
-}
+
+  .accomplishments {
+    margin-left: 1rem;
+    padding: 0;
+    width: 90%;
+  }
 
   .accomplishments li {
-    padding: 0.5rem 1rem 0.5rem 2rem;
+    width: 100%;
+    margin: 0 0 0.5rem 0;
+    padding: 0.5rem 1rem;
     font-size: 0.9rem;
+    text-align: left;
+    box-sizing: border-box;
   }
+
+  /* Bio section */
   .bioWrapper {
-    width: 340px !important;
+    width: 100%;
+    max-width: 340px;
     padding: 1rem;
-    max-width: 100%;
   }
-  .bioWrapper .bioTitle {
-    font-size: 1rem;
-  }
-  .bioWrapper .bioText {
-    font-size: 0.97rem;
-    padding: 1rem !important;
-  }
-}
-
-
-
-
-
-
-.accomplishments ul, .record ul {
-  list-style: disc inside;
-  margin: 0;
-  padding: 0;
-}
-
-.recordWrapper {
-  background: #1a1a1a;
-  border-radius: 8px;
-  padding: 1.5rem;
-  width: 40%;           
-  margin: 0 auto 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
-
-.recordTitle {
-  margin: 0;
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #ccc;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  text-align: center;
-}
-
-
-.record {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: nowrap;   
-  width: 80%;
-  height: 100px;
-}
-
-/* individual stat card */
-.stat {
-  list-style: none;
-  flex: 0 1 110px;
-  text-align: center;
-  background: #2b2b2b;
-  border-radius: 8px;
-  padding: 1rem 0.75rem;
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.25s ease;
-}
-
-.stat:hover { transform: translateY(-4px); }
-
-/* red swipe bar */
-.stat::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: #ed1c28;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.35s ease;
-  z-index: 0;
-}
-
-.stat:hover::before { transform: scaleX(1); }
-
-/* text layers */
-.value, .label { position: relative; z-index: 1; }
-.value  { display: block; font: 700 1.9rem/1.2 var(--font-cinzel, sans-serif); color: #ccc; }
-.label  { font-size: 0.85rem; text-transform: uppercase; letter-spacing: .03em; color: #888; }
-
-
-.accomplishments li {
-  position: relative; 
-  background: #2b2b2b;
-  border-left: 3px solid #ed1c28;
-  padding: 0.75rem 1rem 0.75rem 2.5rem;
-  border-radius: 6px;
-  margin-bottom: 0.5rem;
-  list-style: none;
-}
-
-.accomplishments li::before {
-  position: absolute;
-  left: 0.75rem;
-  top: 0.6rem;
-  width: 1rem;
-  height: 1rem;
-}
-
-
-
-
-
-.modal {
-  max-height: 90vh;
-  overflow-y: auto;
-}
-
-/* Bio section styled like accomplishments */
-.bioWrapper {
-  flex: 1;
-  background-color: #1a1a1a;
-  border-radius: 8px;
-  padding: 1.5rem;
-  width: 80%;
-  align-self: center;
-}
-.bioWrapper .bioTitle {
-  margin-top: 0;
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
-  color: #ccc;
-  text-align: center;
-  position: relative;
-}
-.bioWrapper .bioTitle::after {
-  content: '';
-  display: block;
-  margin: 0.5rem auto 0;
-  width: 0%;
-  height: 2px;
-  background: #ed1c28;
-  transition: width 0.4s ease;
-}
-.bioWrapper:hover .bioTitle::after {
-  width: 50%;
-}
-.bioWrapper .bioText {
-  color: #ccc;
-  line-height: 1.7;
-  background: #2b2b2b;
-  border-left: 3px solid #ed1c28;
-  padding: 0.75rem 1rem 0.75rem 2.5rem;
-  border-radius: 6px;
-  margin-bottom: 0.5rem;
-}
-
-.noRecordGallery {
-  margin-left: -1rem;
-  margin-right: -1rem;
-  margin-top: 3rem;  
-  gap: 1.2rem;    
-                
+  .bioWrapper .bioTitle { font-size: 1rem; }
+  .bioWrapper .bioText { font-size: 0.97rem; padding: 1rem; }
 }
 
