@@ -1,17 +1,51 @@
+// components/Modal.js
+
+import { useEffect, useMemo, useState } from 'react';
 import styles from '../styles/components/modal.module.css';
+import { client as sanityClient } from '../lib/sanity';
+
+const DETAILS_QUERY = `
+*[_type=="fighter_card" && (id==$id || name==$name)][0]{
+  _id, id, name, role, stance, style, age, weight, record, bio, accomplishments,
+  // keep using raw asset URLs for your <img> usage
+  "image": image.asset->url,
+  "gallery": gallery[].asset->url
+}
+`;
 
 export default function Modal({ member, onClose }) {
+  const [full, setFull] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch full details once the modal has mounted (published only)
+  useEffect(() => {
+    let alive = true;
+    setLoading(true);
+    sanityClient
+      .fetch(DETAILS_QUERY, { id: member.id, name: member.name }, { perspective: 'published' })
+      .then(doc => {
+        if (!alive) return;
+        setFull(doc || null);
+        setLoading(false);
+      })
+      .catch(() => { if (alive) setLoading(false); });
+    return () => { alive = false; };
+  }, [member.id, member.name]);
+
+  // Use preview values immediately; replace with full once loaded
+  const merged = useMemo(() => ({ ...member, ...(full || {}) }), [member, full]);
+
   // Safely default arrays
-  const gallery = Array.isArray(member.gallery) ? member.gallery : [];
-  const accomplishments = Array.isArray(member.accomplishments) ? member.accomplishments : [];
+  const gallery = Array.isArray(merged.gallery) ? merged.gallery : [];
+  const accomplishments = Array.isArray(merged.accomplishments) ? merged.accomplishments : [];
 
   // Determine which fields are present
-  const rawRecord = typeof member.record === 'string' ? member.record.trim() : '';
+  const rawRecord = typeof merged.record === 'string' ? merged.record.trim() : '';
   const hasRecord = rawRecord.length > 0;
   const hasAccomplishments = accomplishments.length > 0;
-  const hasBio = typeof member.bio === 'string' && member.bio.trim() !== '';
+  const hasBio = typeof merged.bio === 'string' && merged.bio.trim() !== '';
 
-  // Parse "W-L[-D]" robustly, tolerate spaces, missing draws
+  // Parse "W-L[-D]" robustly
   const parts = hasRecord ? rawRecord.replace(/\s+/g, '').split('-') : [];
   const w = parts[0] ? parseInt(parts[0], 10) || 0 : 0;
   const l = parts[1] ? parseInt(parts[1], 10) || 0 : 0;
@@ -22,11 +56,16 @@ export default function Modal({ member, onClose }) {
     { label: 'Losses', value: l, type: 'losses' },
     { label: 'Draws', value: d, type: 'draws' },
   ];
-
-  // Always compute from parsed values so we don't depend on a separate field
   const totalFights = w + l + d;
 
   const galleryClass = hasRecord ? styles.gallery : `${styles.gallery} ${styles.noRecordGallery}`;
+
+  // Lock background scroll while open (nice on mobile)
+  useEffect(() => {
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = prev; };
+  }, []);
 
   return (
     <div className={styles.overlay} onClick={onClose}>
@@ -35,29 +74,43 @@ export default function Modal({ member, onClose }) {
 
         {/* Name */}
         <div className={styles.name}>
-          <h2>{member.name}</h2>
+          <h2>{merged.name}</h2>
         </div>
 
-        {/* Role, Stance, Style */}
+        {/* Role, Stance, Style (render what we have; fills in when full loads) */}
         <div className={styles.roleWrapper}>
           <div className={styles.topRow}>
-            {member.role && <p className={styles.role}>{member.role}</p>}
-            {member.stance && <p className={styles.stance}>{member.stance}</p>}
-            {member.style && <p className={styles.style}>{member.style}</p>}
+            {merged.role && <p className={styles.role}>{merged.role}</p>}
+            {merged.stance && <p className={styles.stance}>{merged.stance}</p>}
+            {merged.style && <p className={styles.style}>{merged.style}</p>}
           </div>
 
           {/* Age & Weight */}
           <div className={styles.bottomRow}>
-            {member.age != null && <p className={styles.ageBox}>{member.age} yrs</p>}
-            {member.weight && <p className={styles.weight}>{member.weight}</p>}
+            {merged.age != null && <p className={styles.ageBox}>{merged.age} yrs</p>}
+            {merged.weight && <p className={styles.weight}>{merged.weight}</p>}
           </div>
         </div>
+
+        {/* Loading hint (optional) */}
+        {loading && (
+          <div className={styles.loading} aria-live="polite">
+            Loading details…
+          </div>
+        )}
 
         {/* Gallery */}
         <div className={galleryClass}>
           {gallery.length > 0 ? (
             gallery.map((src, idx) => (
-              <img key={idx} src={src} alt={`${member.name} gallery ${idx + 1}`} className={styles.galleryImage} />
+              // Keep your original <img> handling
+              <img
+                key={idx}
+                src={src}
+                alt={`${merged.name} gallery ${idx + 1}`}
+                className={styles.galleryImage}
+                loading="lazy"
+              />
             ))
           ) : (
             <p className={styles.comingSoon}>Coming soon</p>
@@ -69,7 +122,10 @@ export default function Modal({ member, onClose }) {
           {hasBio && (
             <div className={styles.bioWrapper}>
               <h3 className={styles.bioTitle}>Bio</h3>
-              <p className={styles.bioText} dangerouslySetInnerHTML={{ __html: member.bio }} />
+              <p
+                className={styles.bioText}
+                dangerouslySetInnerHTML={{ __html: merged.bio }}
+              />
             </div>
           )}
 
@@ -90,13 +146,13 @@ export default function Modal({ member, onClose }) {
           )}
 
           {hasAccomplishments && (
-          <div className={styles.accomplishmentsWrapper}>
-            <h3 className={styles.accomplishmentsTitle}>Accomplishments</h3>
-            <ul className={styles.accomplishments}>
-              {accomplishments.map((item, idx) => <li key={idx}>{item}</li>)}
-            </ul>
-          </div>
-        )}
+            <div className={styles.accomplishmentsWrapper}>
+              <h3 className={styles.accomplishmentsTitle}>Accomplishments</h3>
+              <ul className={styles.accomplishments}>
+                {accomplishments.map((item, idx) => <li key={idx}>{item}</li>)}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -1,14 +1,14 @@
 // pages/team/index.js
-import Modal from '../../components/Modal';
+import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 import styles from '../../styles/components/team.module.css';
 import { FaInstagram, FaTiktok } from 'react-icons/fa';
-import { useState } from 'react';
 import Select from 'react-select';
-import { serverClient } from '../../lib/sanity';
+import { serverClient as sanityServer } from '../../lib/sanity';
 
 // --- helpers ---
 const slugify = (s = '') =>
@@ -16,6 +16,9 @@ const slugify = (s = '') =>
     .replace(/['"]/g, '')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
+
+// Lazily load the Modal component (no SSR) so it doesn't block first paint
+const Modal = dynamic(() => import('../../components/Modal'), { ssr: false });
 
 const customSelectStyles = {
   control: base => ({ ...base, backgroundColor: '#333', color: 'white', border: 'none', borderRadius: 8, padding: '2px 4px', boxShadow: 'none' }),
@@ -28,16 +31,17 @@ const customSelectStyles = {
 };
 
 export async function getServerSideProps({ res }) {
+  // Keep your SSR, but fetch only what the grid displays to make the page light.
   res.setHeader('Cache-Control', 'no-store, max-age=0');
 
-  const fighters = await serverClient.fetch(`
+  const fighters = await sanityServer.fetch(`
     *[_type == "fighter_card" && !(_id in path("drafts.**"))] | order(id asc) {
-      id, name, role, stance, style, age, totalFights, weight, record,
-      accomplishments[], bio, social,
+      _id, id, name, role,
+      // only what's needed on the grid; keep your original <img> usage
       "image": image.asset->url,
-      "gallery": gallery[].asset->url
+      social
     }
-  `);
+  `, {}, { perspective: 'published' });
 
   return { props: { fighters, _generatedAt: new Date().toISOString() } };
 }
@@ -58,7 +62,7 @@ export default function TeamPage({ fighters }) {
     ? fighters.filter(m => m.role === selectedWeightClass)
     : fighters;
 
-  // Find modal member by name slug (fallback to id for old links)
+  // Find the preview object for the modal by slug or id (lightweight)
   const modalMember = slug
     ? fighters.find(m =>
         slugify(m.name) === String(slug).toLowerCase() ||
@@ -68,10 +72,10 @@ export default function TeamPage({ fighters }) {
 
   const handleCardClick = (member) => {
     const s = slugify(member.name);
-    router.push(`/team/${s}`, undefined, { shallow: true });
+    router.push(`/team/${s}`, undefined, { shallow: true, scroll: false });
   };
 
-  const closeModal = () => router.push('/team', undefined, { shallow: true });
+  const closeModal = () => router.push('/team', undefined, { shallow: true, scroll: false });
 
   return (
     <>
@@ -91,7 +95,7 @@ export default function TeamPage({ fighters }) {
         </div>
       </div>
 
-      <main className={`${styles.mainContent} ${modalMember ? styles.blurBackground : ''}`}>
+      <main className={styles.mainContent}>
         <section className={styles.filterControls}>
           <Select
             styles={customSelectStyles}
@@ -115,10 +119,12 @@ export default function TeamPage({ fighters }) {
           {filtered.map(member => (
             <div key={slugify(member.name)} className={styles.teamCard} onClick={() => handleCardClick(member)}>
               <div className={styles.imageWrapper}>
+                {/* Keep your original <img> handling */}
                 <img
                   src={member.image || '/team/profile_placeholder_white.png'}
                   alt={member.name}
                   className={styles.indivImage}
+                  loading="lazy"
                 />
               </div>
               <h3>{member.name}</h3>
@@ -133,8 +139,8 @@ export default function TeamPage({ fighters }) {
         </section>
       </main>
 
+      {/* Lazy modal: ships only when opened; it will fetch the heavy fields after mount */}
       {modalMember && <Modal member={modalMember} onClose={closeModal} />}
-
       <Footer />
     </>
   );
