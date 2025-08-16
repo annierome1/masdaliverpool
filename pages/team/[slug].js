@@ -6,7 +6,7 @@ export default TeamPage;
 
 export async function getServerSideProps({ res }) {
   // prevent any edge/proxy/browser caching
-  res.setHeader('Cache-Control', 'no-store, max-age=0');
+  res.setHeader('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=86400');
 
   const fighters = await client.fetch(
     `*[_type == "fighter_card" && !(_id in path("drafts.**"))] | order(id asc){

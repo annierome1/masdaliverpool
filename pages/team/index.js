@@ -17,7 +17,6 @@ const slugify = (s = '') =>
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
 
-// Lazily load the Modal component (no SSR) so it doesn't block first paint
 const Modal = dynamic(() => import('../../components/Modal'), { ssr: false });
 
 const customSelectStyles = {
@@ -31,8 +30,7 @@ const customSelectStyles = {
 };
 
 export async function getServerSideProps({ res }) {
-  // Keep your SSR, but fetch only what the grid displays to make the page light.
-  res.setHeader('Cache-Control', 'no-store, max-age=0');
+  res.setHeader('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=86400');
 
   const fighters = await sanityServer.fetch(`
     *[_type == "fighter_card" && !(_id in path("drafts.**"))] | order(id asc) {
@@ -119,12 +117,10 @@ export default function TeamPage({ fighters }) {
           {filtered.map(member => (
             <div key={slugify(member.name)} className={styles.teamCard} onClick={() => handleCardClick(member)}>
               <div className={styles.imageWrapper}>
-                {/* Keep your original <img> handling */}
                 <img
                   src={member.image || '/team/profile_placeholder_white.png'}
                   alt={member.name}
                   className={styles.indivImage}
-                  loading="lazy"
                 />
               </div>
               <h3>{member.name}</h3>
@@ -138,8 +134,6 @@ export default function TeamPage({ fighters }) {
           ))}
         </section>
       </main>
-
-      {/* Lazy modal: ships only when opened; it will fetch the heavy fields after mount */}
       {modalMember && <Modal member={modalMember} onClose={closeModal} />}
       <Footer />
     </>
