@@ -1,6 +1,7 @@
 // pages/team/index.js
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
+import Link from 'next/link';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { useRouter } from 'next/router';
@@ -16,6 +17,18 @@ const slugify = (s = '') =>
     .replace(/['"]/g, '')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
+
+// --- dynamic import for modal to avoid SSR issues ---// tiny helper if you’re using raw asset URLs from Sanity
+const build = (base, params) => {
+  const u = new URL(base);
+  Object.entries(params).forEach(([k,v]) => u.searchParams.set(k, v));
+  return u.toString();
+};
+
+// 320px card, crisp on 1x and 2x screens:
+const srcSet = (url) =>
+  `${build(url, { w:'400', h:'400', crop:'focalpoint', focalPointX:0.5, focalPointY:0.2, q:'85', auto:'format' })} 1x, ` +
+  `${build(url, { w:'400', h:'400', crop:'focalpoint', focalPointX:0.5, focalPointY:0.2, q:'85', auto:'format', dpr:'2' })} 2x`;
 
 const Modal = dynamic(() => import('../../components/Modal'), { ssr: false });
 
@@ -80,6 +93,9 @@ export default function TeamPage({ fighters }) {
       <Head>
         <title>Meet Our Team | Masda Liverpool</title>
         <meta name="description" content="Team at Masda Gym Liverpool" />
+        <link rel="preconnect" href="https://cdn.sanity.io" crossorigin/>
+        <link rel="dns-prefetch" href="https://cdn.sanity.io"/>
+
       </Head>
 
       <Header />
@@ -120,10 +136,14 @@ export default function TeamPage({ fighters }) {
                 <img
                   src={member.image || '/team/profile_placeholder_white.png'}
                   alt={member.name}
+                  srcSet={srcSet(member.image)}
+                  sizes="(max-width: 480px) 45vw, (max-width: 1024px) 25vw, 320px"
+                  loading="lazy"
+                  decoding="async"
                   className={styles.indivImage}
                 />
               </div>
-              <h3>{member.name}</h3>
+              <h3 className={styles.memberName}>{member.name}</h3>
               <p className={styles.indivRole}>{member.role}</p>
               <div className={styles.socialIcons}>
                 {member.social?.instagram && <a href={member.social.instagram} target="_blank" rel="noreferrer"><FaInstagram/></a>}

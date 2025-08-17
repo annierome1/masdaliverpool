@@ -95,9 +95,13 @@
 }
 
   .indivRole{
-    margin-bottom: 0.5rem;
-    margin-top: 0rem;
+    margin-bottom: -0rem;
+    margin-top: -1rem;
     color: #e53e3e;
+  }
+
+  .memberName{
+    margin-top: 0rem;
   }
   
   .indivBio {
@@ -128,8 +132,8 @@
 }
   
 .imageWrapper {
-  height: 400px;
-  width: fit-content;
+  height: 420px;
+  width: 100%;
   min-width: 80%;
   margin: 0 auto 1rem;
   overflow: hidden;          /* crop outside area */
@@ -142,11 +146,14 @@
 
 .indivImage {
   height: 100%;
-  width: 120%;                /* widen */
+  width: 100%;                /* widen */
   object-fit: cover;
   object-position: center 30%;
   display: block;
 }
+
+
+
 
   
   .teamCard h3 {
@@ -258,6 +265,7 @@
   /* Shrink image wrapper */
   .imageWrapper {
     height: 350px;
+    position: relative;
   }
 
   .teamCard h3 {
