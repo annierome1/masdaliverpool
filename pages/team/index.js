@@ -1,7 +1,6 @@
 // pages/team/index.js
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import Link from 'next/link';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { useRouter } from 'next/router';
