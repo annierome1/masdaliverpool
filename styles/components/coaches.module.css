@@ -1,0 +1,287 @@
+/* Hero Section */
+.heroSection {
+  position: relative;
+  width: 100%;
+  min-height: 60vh;
+  background: linear-gradient(135deg, #111 0%, #1a1a1a 50%, #111 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: var(--font-cinzel);
+  overflow: hidden;
+}
+
+.heroSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('/Team.jpeg') no-repeat center;
+  background-size: cover;
+  opacity: 0.1;
+  z-index: 1;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 2rem;
+}
+
+.heroTitle {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #fff;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.heroSubtitle {
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  color: #ed1c28;
+  margin-bottom: 2rem;
+  font-weight: 500;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+}
+
+/* Main Content */
+.mainContent {
+  background-color: #0a0a0a;
+  color: #fff;
+  font-family: var(--font-cinzel);
+}
+
+/* Coaches Section */
+.coachesSection {
+  padding: 4rem 2rem;
+}
+
+.coachesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 3rem;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* Optimize grid for 7 coaches - 3 columns on large screens, 2 on medium, 1 on small */
+@media (min-width: 1400px) {
+  .coachesGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1399px) {
+  .coachesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 899px) {
+  .coachesGrid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+  }
+}
+
+.coachCard {
+  background: linear-gradient(145deg, #1a1a1a 0%, #222 100%);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  border: 1px solid #333;
+  /* Removed all transitions and hover effects for maximum performance */
+}
+
+/* Remove hover effects completely */
+.coachCard:hover {
+  box-shadow: 0 15px 50px rgba(0,0,0,0.4);
+  border-color: #ed1c28;
+}
+
+.imageContainer {
+  position: relative;
+  height: 500px;
+  overflow: hidden;
+}
+
+.coachImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  /* No transitions or transforms - maximum performance */
+}
+
+.coachInfo {
+  padding: 2rem;
+  text-align: center;
+}
+
+.coachName {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.coachRole {
+  font-size: 1.1rem;
+  color: #ed1c28;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.experienceBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba(237, 28, 40, 0.1);
+  color: #ed1c28;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid rgba(237, 28, 40, 0.3);
+  margin-bottom: 1.5rem;
+}
+
+.coachBio {
+  color: #ccc;
+  line-height: 1.7;
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.socialIcons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.socialIcons a {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(237, 28, 40, 0.9);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  text-decoration: none;
+  /* No transitions or transforms - maximum performance */
+}
+
+.socialIcons a:hover {
+  background-color: #ed1c28;
+  /* Simple color change only - no animations */
+}
+
+/* Call to Action Section */
+.ctaSection {
+  background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
+  padding: 4rem 2rem;
+  text-align: center;
+  border-top: 1px solid #333;
+}
+
+.ctaContent h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #fff;
+  font-weight: 700;
+}
+
+.ctaContent p {
+  font-size: 1.2rem;
+  color: #ccc;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ctaButton {
+  background: linear-gradient(135deg, #ed1c28 0%, #b3151e 100%);
+  color: #fff;
+  border: none;
+  padding: 1rem 3rem;
+  font-size: 1.1rem;
+  border-radius: 50px;
+  font-family: var(--font-cinzel);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 20px rgba(237, 28, 40, 0.3);
+}
+
+.ctaButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(237, 28, 40, 0.4);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .heroSection {
+    min-height: 50vh;
+  }
+
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+
+  .coachesSection {
+    padding: 2rem 1rem;
+  }
+
+  .coachesGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .coachCard {
+    margin: 0 0.5rem;
+  }
+
+  .imageContainer {
+    height: 400px; /* Slightly smaller on mobile but still prominent */
+  }
+
+  .coachInfo {
+    padding: 1.5rem;
+  }
+
+  .coachName {
+    font-size: 1.5rem;
+  }
+
+  .ctaSection {
+    padding: 3rem 1rem;
+  }
+
+  .ctaContent h2 {
+    font-size: 2rem;
+  }
+
+  .ctaContent p {
+    font-size: 1rem;
+  }
+}

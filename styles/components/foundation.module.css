@@ -330,3 +330,43 @@
     box-sizing: border-box;
   }
 }
+
+/* Advisory Committee Section */
+.advisorySection {
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, #0a0a0a 0%, #111 100%);
+  text-align: center;
+}
+
+.advisoryContent {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.advisoryText {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #ccc;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.advisoryButton {
+  display: inline-block;
+  background-color: #e53e3e;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  text-transform: none;
+  letter-spacing: 0.5px;
+  min-width: 180px;
+}
+
+.advisoryButton:hover {
+  background-color: #2f3490;
+  color: #fff;
+}

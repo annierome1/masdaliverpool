@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import styles from '../styles/components/foundation.module.css'
+import Link from 'next/link'
 
 export default function FoundationPage() {
   return (
@@ -57,7 +58,18 @@ export default function FoundationPage() {
           </div>
         </section>
 
-
+        {/* Advisory Committee Button */}
+        <section className={styles.advisorySection}>
+          <div className={styles.advisoryContent}>
+            <h2 className={styles.sectionHeading}>Advisory Committee</h2>
+            <p className={styles.advisoryText}>
+              Meet the dedicated professionals who guide our foundation's strategic direction and ensure we're making the greatest possible impact on fighters' lives.
+            </p>
+            <Link href="/committee" className={styles.advisoryButton}>
+              Meet Our Committee
+            </Link>
+          </div>
+        </section>
 
         {/* Mission & Vision */}
         <section className={styles.section}>
