@@ -91,7 +91,7 @@ export default function Home({ homepagePlaybackId }) {
           <p>Where champions are made and lives are changed</p>
           <div className={styles.deskButton}>
             <Link href="/team" className={buttonStyles.rbutton}>Meet the team</Link>
-            <Link href="/coaches" className={buttonStyles.rbuttonInverted}>Meet the coaches</Link>
+            <Link href="/coaches" className={buttonStyles.rbutton}>Meet the coaches</Link>
           </div>
         </div>
       </main>

@@ -63,9 +63,9 @@ export default function FoundationPage() {
           <div className={styles.advisoryContent}>
             <h2 className={styles.sectionHeading}>Advisory Committee</h2>
             <p className={styles.advisoryText}>
-              Meet the dedicated professionals who guide our foundation's strategic direction and ensure we're making the greatest possible impact on fighters' lives.
+            Meet the dedicated professionals who guide our foundation&apos;s strategic direction and ensure we&apos;re making the greatest possible impact on fighters&apos; lives.
             </p>
-            <Link href="/committee" className={styles.advisoryButton}>
+            <Link href="/commitee" className={styles.advisoryButton}>
               Meet Our Committee
             </Link>
           </div>
