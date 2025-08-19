@@ -11,7 +11,7 @@ const coachesData = [
     id: 1,
     name: "Alex Forman",
     role: "",
-    image: "/coaches/alex.jpeg",
+    image: "/coaches/Alex.jpeg",
     bio: "Scott is the founder and head coach of MASDA Gym Liverpool. With over 20 years of experience in Muay Thai and MMA, he has trained numerous champions and built MASDA into one of the UK's premier combat sports academies.",
     experience: "20+ years",
     social: {
@@ -22,7 +22,7 @@ const coachesData = [
     id: 2,
     name: "Alfie Ponting",
     role: "",
-    image: "/coaches/alfie.jpeg",
+    image: "/coaches/Alfie.jpeg",
     bio: "Alex is our senior Muay Thai coach with extensive experience in traditional Thai boxing. He has competed at the highest levels and brings authentic Muay Thai techniques to every training session.",
     experience: "15+ years",
     social: {
@@ -33,7 +33,7 @@ const coachesData = [
     id: 3,
     name: "Owen Gillis",
     role: "",
-    image: "/coaches/owen.jpeg",
+    image: "/coaches/Owen.jpeg",
     bio: "Sarah specializes in strength and conditioning for combat sports athletes. She designs personalized training programs that enhance performance, prevent injuries, and build the physical foundation needed for success.",
     experience: "12+ years",
     social: {
@@ -44,7 +44,7 @@ const coachesData = [
     id: 4,
     name: "Marc Campbell",
     role: "",
-    image: "/coaches/marc.jpeg",
+    image: "/coaches/Marc.jpeg",
     bio: "Mike is our boxing specialist with a background in amateur and professional boxing. He focuses on developing proper technique, footwork, and boxing strategy for all skill levels.",
     experience: "18+ years",
     social: {
@@ -55,7 +55,7 @@ const coachesData = [
     id: 5,
     name: "Kenny Carey",
     role: "",
-    image: "/coaches/kenny.jpeg",
+    image: "/coaches/Kenny.jpeg",
     bio: "Emma specializes in MMA and grappling techniques. She brings a comprehensive approach to mixed martial arts, combining striking and ground fighting skills.",
     experience: "14+ years",
     social: {
@@ -66,7 +66,7 @@ const coachesData = [
     id: 6,
     name: "Hassan Imran",
     role: "",
-    image: "/coaches/hassan.jpeg",
+    image: "/coaches/Hassan.jpeg",
     bio: "David focuses on kickboxing techniques and fitness training. He creates dynamic workouts that improve cardiovascular fitness while teaching effective striking combinations.",
     experience: "16+ years",
     social: {
@@ -77,7 +77,7 @@ const coachesData = [
     id: 7,
     name: "Jacob Charnock",
     role: "",
-    image: "/coaches/jacob.jpeg",
+    image: "/coaches/Jacob.jpeg",
     bio: "Lisa specializes in working with youth and beginner students. She creates a supportive environment that builds confidence and develops fundamental martial arts skills.",
     experience: "10+ years",
     social: {

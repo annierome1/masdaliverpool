@@ -33,7 +33,7 @@
 }
 
 .heroTitle {
-  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 700;
   margin-bottom: 1rem;
   color: #fff;
@@ -43,7 +43,7 @@
 }
 
 .heroSubtitle {
-  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
   color: #ed1c28;
   margin-bottom: 2rem;
   font-weight: 500;

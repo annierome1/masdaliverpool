@@ -10,37 +10,37 @@ const committeeMembers = [
     id: 1,
     name: "Alex Forman",
     role: "Founder & Chairman",
-    image: "/commitee/alex.jpeg"
+    image: "/commitee/Alex.jpeg"
   },
   {
     id: 2,
     name: "Scott Rome",
     role: "Co-Founder & Director",
-    image: "/commitee/scott.jpeg"
+    image: "/commitee/Scott.jpeg"
   },
   {
     id: 3,
     name: "Rob Aspell",
     role: "Education & Career Development",
-    image:  "/commitee/rob.jpeg"
+    image:  "/commitee/Rob.jpeg"
   },
   {
     id: 4,
     name: "John Fairbrother",
     role: "Financial & Investment Advisor",
-    image: "/commitee/john.jpeg"
+    image: "/commitee/John.jpeg"
   },
   {
     id: 5,
     name: "Levi Bailey",
     role: "Mental Health & Wellness",
-    image:  "/commitee/levi.jpeg"
+    image:  "/commitee/Levi.jpeg"
   },
   {
     id: 6,
     name: "Evi Hitchen",
     role: "Community Outreach & Partnerships",
-    image:  "/commitee/evie.jpg"
+    image:  "/commitee/Evie.jpg"
   }
 ];
 
