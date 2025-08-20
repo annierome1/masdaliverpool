@@ -296,7 +296,7 @@ export default function FoundationPage() {
             </p>
             <div className={styles.downloadWrapper}>
   <a
-    href="https://masdaliverpool.s3.us-east-2.amazonaws.com/masdabrouchurer.pdf"
+    href="https://masdaliverpool.s3.us-east-2.amazonaws.com/masdabrochure_revised.pdf"
     target="_blank"
     rel="noopener noreferrer"
     download

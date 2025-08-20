@@ -20,6 +20,17 @@ const coachesData = [
   },
   {
     id: 2,
+    name: "Tony Moran",
+    role: "",
+    image: "/coaches/Tony.jpeg",
+    bio: "Scott is the founder and head coach of MASDA Gym Liverpool. With over 20 years of experience in Muay Thai and MMA, he has trained numerous champions and built MASDA into one of the UK's premier combat sports academies.",
+    experience: "20+ years",
+    social: {
+      instagram: "",
+    }
+  },
+  {
+    id: 3,
     name: "Alfie Ponting",
     role: "",
     image: "/coaches/Alfie.jpeg",
@@ -30,7 +41,7 @@ const coachesData = [
     }
   },
   {
-    id: 3,
+    id: 4,
     name: "Owen Gillis",
     role: "",
     image: "/coaches/Owen.jpeg",
@@ -41,7 +52,7 @@ const coachesData = [
     }
   },
   {
-    id: 4,
+    id: 5,
     name: "Marc Campbell",
     role: "",
     image: "/coaches/Marc.jpeg",
@@ -52,7 +63,7 @@ const coachesData = [
     }
   },
   {
-    id: 5,
+    id: 6,
     name: "Kenny Carey",
     role: "",
     image: "/coaches/Kenny.jpeg",
@@ -63,7 +74,7 @@ const coachesData = [
     }
   },
   {
-    id: 6,
+    id: 7,
     name: "Hassan Imran",
     role: "",
     image: "/coaches/Hassan.jpeg",
@@ -74,7 +85,7 @@ const coachesData = [
     }
   },
   {
-    id: 7,
+    id: 8,
     name: "Jacob Charnock",
     role: "",
     image: "/coaches/Jacob.jpeg",
@@ -124,11 +135,11 @@ export default function Coaches() {
                 
                 <div className={styles.coachInfo}>
                   <h3 className={styles.coachName}>{coach.name}</h3>
-                  <p className={styles.coachRole}>{coach.role}</p>
-                  <div className={styles.experienceBadge}>
+                  {/* <p className={styles.coachRole}>{coach.role}</p> */}
+                  {/* <div className={styles.experienceBadge}>
                     <span>{coach.experience} Experience</span>
-                  </div>
-                  <p className={styles.coachBio}>{coach.bio}</p>
+                  </div> */}
+                 {/* <p className={styles.coachBio}>{coach.bio}</p> */}
                   <div className={styles.socialIcons}>
                     {coach.social.instagram && (
                       <a href={coach.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">

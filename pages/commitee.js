@@ -41,6 +41,12 @@ const committeeMembers = [
     name: "Evi Hitchen",
     role: "Community Outreach & Partnerships",
     image:  "/commitee/Evie.jpg"
+  },
+  {
+    id: 7,
+    name: "Tony Moran",
+    role: "Community Outreach & Partnerships",
+    image:  "/commitee/Tony.jpeg"
   }
 ];
 
@@ -88,7 +94,7 @@ export default function CommitteePage() {
                 </div>
                 <div className={styles.memberInfo}>
                   <h3 className={styles.memberName}>{member.name}</h3>
-                  <p className={styles.memberRole}>{member.role}</p>
+                  {/* <p className={styles.memberRole}>{member.role}</p> */}
                 </div>
               </div>
             ))}
