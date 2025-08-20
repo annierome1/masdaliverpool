@@ -37,7 +37,7 @@ export default function Footer() {
             <Link href="/classes" className={styles.link}>Classes</Link>
             <Link href="/coaches" className={styles.link}>Coaches</Link>
             <Link href="/sponsors" className={styles.link}>Sponsors</Link>
-            <Link href="/Contact Us" className={styles.link}>Contact Us</Link>
+            <Link href="/contact" className={styles.link}>Contact Us</Link>
             <Link href="/news_social" className={styles.link}>News & Social</Link>
           </ul>
         </div>
