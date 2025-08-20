@@ -106,7 +106,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center 25%;
 }
 
 .memberInfo {
@@ -250,6 +250,10 @@
     height: 350px;
   }
   
+  .memberPhoto {
+    object-position: center 30%;
+  }
+  
   .memberInfo {
     padding: 1.5rem;
   }
@@ -308,6 +312,10 @@
   
   .memberImage {
     height: 300px;
+  }
+  
+  .memberPhoto {
+    object-position: center 30%;
   }
   
   .memberInfo {
