@@ -32,160 +32,205 @@
   line-height: 1.5;
 }
 
-/* ─── Grid Layout ─── */
+/* Contact Grid Layout */
 .contactGrid {
-  max-width: 100%;
-  align-items: center;
   display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
 }
 
-/* two columns on medium+ */
-@media (min-width: 768px) {
-  .contactGrid {
-    grid-template-columns: 2fr 1fr;
-  }
-}
-
-/* ─── Card Style ─── */
+/* Card Styling - Unified Design */
 .card {
-  background-color: #1a1a1a;
-  border-radius: 8px;
-  padding: 2rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(145deg, #1a1a1a 0%, #222 100%);
+  border-radius: 20px;
+  padding: 2.5rem;
+  border: 1px solid #333;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+  border-color: #ed1c28;
 }
 
 .card h2 {
-  margin-bottom: 1.25rem;
-  font-size: 1.5rem;
-  color: #e53e3e;
+  color: #fff;
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 600;
 }
 
-.card h3 {
-  margin-top: 5rem;
-  margin-bottom: 1.25rem;
-  font-size: 1.5rem;
-  color: #e53e3e;
+/* Form Card Specific */
+.formCard, .bookingCard {
+  /* Inherits from .card */
 }
-/* ─── Form Card ─── */
+
+/* Contact Info Section - Full Width Below */
+.contactInfoSection {
+  margin-bottom: 3rem;
+}
+
+.infoCard {
+  max-width: 100%;
+  text-align: center;
+}
+
+.infoCard h2 {
+  margin-bottom: 2rem;
+}
+
+.infoCard h3 {
+  color: #ed1c28;
+  font-size: 1.4rem;
+  margin: 2rem 0 1rem;
+  font-weight: 600;
+}
+
+/* Contact List Styling */
+.contactList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+}
+
+.contactList li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  color: #ccc;
+  font-size: 1.1rem;
+  justify-content: center;
+}
+
+.contactList li svg {
+  color: #ed1c28;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.contactList li a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.contactList li a:hover {
+  color: #ed1c28;
+}
+
+/* Social Links */
+.socialLinks {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.socialLinks a {
+  width: 50px;
+  height: 50px;
+  background-color: rgba(237, 28, 40, 0.1);
+  color: #ed1c28;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  border: 2px solid rgba(237, 28, 40, 0.3);
+}
+
+.socialLinks a:hover {
+  background-color: #ed1c28;
+  color: #fff;
+  border-color: #ed1c28;
+  transform: translateY(-2px);
+}
+
+/* Form Styling - Unified */
 .contactForm {
-  display: grid;
-  gap: 1.2rem;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
 
+.formRow, .formRowFull {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
-.formCard{
-  width: 70%;
-  height: 90%;
-  margin-left: 4rem;
+
+.formRow label, .formRowFull label {
+  color: #ed1c28;
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
+
 .twoColRow {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-@media (min-width: 480px) {
-  .twoColRow {
-    flex-direction: row;
-  }
-  .twoColRow > input {
-    flex: 1;
-  }
-}
-
-.formRow,
-.formRowFull {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.infoCard{
-  width: 300px;
-  height: 400px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
 }
 
 .inputField {
-  padding: 0.75rem;
-  border: 1px solid #444;
-  border-radius: 4px;
-  background-color: #222;
+  padding: 1rem;
+  border: 2px solid #333;
+  border-radius: 10px;
+  background-color: #1a1a1a;
   color: #fff;
-  font-size: 0.95rem;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  font-family: inherit;
+}
+
+.inputField:focus {
+  outline: none;
+  border-color: #ed1c28;
 }
 
 .inputField::placeholder {
   color: #666;
 }
 
-.inputField:focus {
-  outline: none;
-  border-color: #e53e3e;
-  box-shadow: 0 0 0 2px rgba(229, 62, 62, 0.3);
-}
-
-/* Send Button */
+/* Button Styling - More Subtle */
 .sendButton {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  justify-self: center;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
-  padding: 0.9rem 1.5rem;
-  background-color: #e53e3e;
+  background: #ed1c28;
   color: #fff;
   border: none;
-  border-radius: 4px;
-  font-weight: 600;
+  padding: 0.875rem 1.75rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  font-weight: 500;
   cursor: pointer;
-  width: 60%;
-  transition: background-color 0.2s;
+  transition: all 0.2s ease;
+  text-transform: none;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(237, 28, 40, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  font-family: inherit;
+  width: auto;
+  min-width: 140px;
 }
 
 .sendButton:hover {
-  background-color: #c53030;
+  background: #b3151e;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(237, 28, 40, 0.3);
 }
 
 .sendIcon {
-  font-size: 1rem;
-}
-
-/* ─── Info Card ─── */
-.contactList {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 2rem;
-}
-
-.contactList li {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
-  color: #ccc;
-}
-
-.contactList li svg {
-  color: #e53e3e;
-  flex-shrink: 0;
-}
-
-/* Social Links */
-.socialLinks {
-  display: flex;
-  gap: 1rem;
-}
-
-.socialLinks a {
-  font-size: 1.3rem;
-  color: #ccc;
-
-  transition: color 0.2s;
-}
-
-.socialLinks a:hover {
-  color: #e53e3e;
+  font-size: 0.9rem;
 }
 
 /* ─── Map Card ─── */
@@ -206,76 +251,203 @@
   
 }
 
-@media (max-width: 767px) {
-  /* Overall padding/text */
-  .mainContent {
-    padding: 2rem 1rem;
-  }
-  .heading {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  .subtitle {
-    font-size: 1rem;
-    max-width: 100%;
-    margin-bottom: 1.5rem;
-    line-height: 1.4;
-  }
+/* Book Session Section */
+.bookSessionSection {
+  margin: 3rem 0;
+  padding: 0 2rem;
+}
 
-  /* Grid → single column */
+.bookSessionCard {
+  background: linear-gradient(145deg, #1a1a1a 0%, #222 100%);
+  border-radius: 20px;
+  padding: 2.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+  border: 1px solid #333;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.bookSessionCard h2 {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.bookSessionSubtitle {
+  color: #ccc;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.bookingForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.bookSessionButton {
+  background: linear-gradient(135deg, #ed1c28 0%, #b3151e 100%);
+  color: #fff;
+  border: none;
+  padding: 1rem 3rem;
+  font-size: 1.1rem;
+  border-radius: 50px;
+  font-family: var(--font-cinzel);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 20px rgba(237, 28, 40, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.bookSessionButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(237, 28, 40, 0.4);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 1024px) {
   .contactGrid {
-    display: grid;
-    grid-template-columns: 1fr;  /* always one column */
-    gap: 1.5rem;                 /* breathing room */
-    padding: 0 1rem;
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
   
-
-  /* Card adjustments */
   .card {
-    padding: 1rem;
+    padding: 2rem;
   }
-  .card h2,
-  .card h3 {
-    font-size: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .mainContent {
+    padding: 1.5rem 1rem;
+  }
+  
+  .heading {
+    font-size: 1.8rem;
     margin-bottom: 0.75rem;
   }
-
-  /* Form card & inputs */
-  .formCard {
-    width: 90%;
-    margin: 0 auto 1.5rem;
-  }
-  .contactForm {
-    gap: 1rem;
-  }
-  .inputField {
-    width: 90%;
-    padding: 0.6rem;
-  }
-  .twoColRow {
-    flex-direction: column;
-  }
-
-
-  .sendButton {
-    width: 100%;
-    padding: 0.75rem;
-    font-size: 0.95rem;
-  }
-
-
-  .infoCard {
-    width: 90%;
-    height: auto;
+  
+  .subtitle {
+    font-size: 1rem;
     margin-bottom: 1.5rem;
   }
-
-  .mapCard {
-    width: 100%;
-    margin-top: 2rem;
+  
+  .contactGrid {
+    gap: 1.5rem;
+    margin-bottom: 2rem;
   }
+  
+  .card {
+    padding: 1.5rem;
+  }
+  
+  .card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .twoColRow {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .inputField {
+    padding: 0.875rem;
+    font-size: 0.95rem;
+  }
+  
+  .sendButton {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+    min-width: 120px;
+    margin-top: 0.75rem;
+  }
+  
+  .contactInfoSection {
+    margin-bottom: 2rem;
+  }
+  
+  .infoCard h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .infoCard h3 {
+    font-size: 1.2rem;
+    margin: 1.5rem 0 0.75rem;
+  }
+  
+  .contactList li {
+    font-size: 0.95rem;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .socialLinks {
+    gap: 1rem;
+    margin-top: 0.75rem;
+  }
+  
+  .socialLinks a {
+    width: 42px;
+    height: 42px;
+    font-size: 1.1rem;
+  }
+  
+  .mapCard {
+    margin-top: 1.5rem;
+  }
+  
   .mapEmbed {
     height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainContent {
+    padding: 1rem 0.75rem;
+  }
+  
+  .card {
+    padding: 1.25rem;
+  }
+  
+  .card h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .inputField {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+  
+  .sendButton {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+    min-width: 100px;
+  }
+  
+  .contactList li {
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .socialLinks a {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
   }
 }

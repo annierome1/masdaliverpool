@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "resize-images": "node scripts/resize-images.js"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.812.0",
@@ -29,6 +30,7 @@
     "react-textarea-autosize": "^8.5.9",
     "resend": "^4.6.0",
     "sass": "^1.89.0",
+    "sharp": "^0.34.3",
     "swiper": "^11.2.8"
   },
   "devDependencies": {
