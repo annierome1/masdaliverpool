@@ -38,7 +38,7 @@ const committeeMembers = [
   },
   {
     id: 6,
-    name: "Evi Hitchen",
+    name: "Evie Hitchen",
     role: "Community Outreach & Partnerships",
     image:  "/commitee/Evie.jpg"
   },
