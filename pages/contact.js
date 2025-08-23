@@ -185,6 +185,7 @@ export default function ContactPage() {
                 <select id="coach" name="coach" className={styles.inputField} required>
                   <option value="">Choose a coach...</option>
                   <option value="Alex Forman">Alex Forman</option>
+                  <option value="Tony Moran">Tony Moran</option>
                   <option value="Alfie Ponting">Alfie Ponting</option>
                   <option value="Owen Gillis">Owen Gillis</option>
                   <option value="Marc Campbell">Marc Campbell</option>

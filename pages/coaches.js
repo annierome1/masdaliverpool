@@ -37,7 +37,7 @@ const coachesData = [
     bio: "Alex is our senior Muay Thai coach with extensive experience in traditional Thai boxing. He has competed at the highest levels and brings authentic Muay Thai techniques to every training session.",
     experience: "15+ years",
     social: {
-      instagram: "https://instagram.com/coachalex",
+      instagram: "https://www.instagram.com/alfiepono_masda/",
     }
   },
   {
