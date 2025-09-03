@@ -1,5 +1,5 @@
 // pages/news.js
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { useEffect, useRef, useState} from 'react'
 import Head from 'next/head'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -49,8 +49,10 @@ export default function NewsPage({ newsItems }) {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [isMobile, setIsMobile] = useState(false)
+  const [mediaDimensions, setMediaDimensions] = useState({})
   const swiperRef = useRef(null)
   const videoRefs = useRef({})
+  const imageRefs = useRef({})
 
   // Simple Instagram API call
   useEffect(() => {
@@ -177,6 +179,24 @@ export default function NewsPage({ newsItems }) {
     }
   }
 
+  // Handle media dimension detection
+  const handleMediaLoad = (postId, mediaType) => {
+    return (event) => {
+      const media = event.target
+      const aspectRatio = media.videoWidth ? media.videoWidth / media.videoHeight : media.naturalWidth / media.naturalHeight
+      
+      setMediaDimensions(prev => ({
+        ...prev,
+        [postId]: {
+          aspectRatio,
+          mediaType,
+          width: media.videoWidth || media.naturalWidth,
+          height: media.videoHeight || media.naturalHeight
+        }
+      }))
+    }
+  }
+
   return (
     <>
       <Head>
@@ -266,14 +286,25 @@ export default function NewsPage({ newsItems }) {
               >
                 {instagramPosts.map((post, idx) => (
                   <SwiperSlide key={post.id + '_' + idx}>
-                    <div className={styles.instaCard}>
-                      <a
-                        href={post.permalink}
-                        target="_blank"
-                        rel="noreferrer"
-                        className={styles.cardLink}
+                                          <div 
+                        className={styles.instaCard}
+                        style={{
+                          maxWidth: mediaDimensions[post.id]?.aspectRatio > 1.5 ? '500px' : 
+                                   mediaDimensions[post.id]?.aspectRatio < 0.8 ? '300px' : '400px'
+                        }}
                       >
-                        <div className={styles.mediaContainer}>
+                        <a
+                          href={post.permalink}
+                          target="_blank"
+                          rel="noreferrer"
+                          className={styles.cardLink}
+                        >
+                        <div 
+                          className={styles.mediaContainer}
+                          style={{
+                            aspectRatio: mediaDimensions[post.id]?.aspectRatio || '1/1'
+                          }}
+                        >
                           {post.media_type === 'VIDEO' ? (
                             <div className={styles.videoContainer}>
                               <video
@@ -286,6 +317,7 @@ export default function NewsPage({ newsItems }) {
                                 muted
                                 loop
                                 playsInline
+                                onLoadedMetadata={handleMediaLoad(post.id, 'VIDEO')}
                                 onMouseEnter={(e) => {
                                   if (!isMobile) e.target.play()
                                 }}
@@ -301,9 +333,13 @@ export default function NewsPage({ newsItems }) {
                             </div>
                           ) : (
                             <img
+                              ref={(el) => {
+                                if (el) imageRefs.current[post.id] = el
+                              }}
                               src={post.media_url}
                               alt={post.caption?.slice(0, 100) || 'Instagram post'}
                               className={styles.instaImage}
+                              onLoad={handleMediaLoad(post.id, 'IMAGE')}
                             />
                           )}
                         </div>
