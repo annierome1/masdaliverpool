@@ -6,7 +6,10 @@ const CACHE_KEY = 'instagramFeedCache'
 
 async function fetchInstagramFeed() {
   const res = await fetch(`/api/instagram`)
-  if (!res.ok) throw new Error('Instagram fetch failed')
+  if (!res.ok) {
+    const errorData = await res.json().catch(() => ({}))
+    throw new Error(errorData.message || `Instagram fetch failed (${res.status})`)
+  }
   // assume the API returns an **array** of posts, not {data:…}
   return res.json()
 }

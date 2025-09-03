@@ -1,11 +1,10 @@
 // pages/news.js
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import Head from 'next/head'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import styles from '../styles/components/news.module.css'
-import { FaInstagram, FaUserCircle } from 'react-icons/fa'
-import { useInstagramFeed } from '../utils/instaCache'
+import { FaInstagram, FaUserCircle, FaPlay } from 'react-icons/fa'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -46,31 +45,137 @@ export async function getStaticProps() {
 }
 
 export default function NewsPage({ newsItems }) {
-  const { feed: instaPosts, error } = useInstagramFeed()
-  const sectionRef = useRef(null)
-
-  // Swiper and arrow refs
-  const prevRef = useRef(null)
-  const nextRef = useRef(null)
+  const [instagramPosts, setInstagramPosts] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+  const [isMobile, setIsMobile] = useState(false)
   const swiperRef = useRef(null)
+  const videoRefs = useRef({})
 
-
-  // Make sure Swiper navigation binds to DOM refs after mount
+  // Simple Instagram API call
   useEffect(() => {
-    if (
-      swiperRef.current &&
-      swiperRef.current.swiper &&
-      prevRef.current &&
-      nextRef.current
-    ) {
-      // Set navigation elements
-      swiperRef.current.swiper.params.navigation.prevEl = prevRef.current
-      swiperRef.current.swiper.params.navigation.nextEl = nextRef.current
-      swiperRef.current.swiper.navigation.destroy()
-      swiperRef.current.swiper.navigation.init()
-      swiperRef.current.swiper.navigation.update()
+    async function fetchInstagramPosts() {
+      try {
+        setLoading(true)
+        const response = await fetch('/api/instagram')
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`)
+        }
+        
+        const posts = await response.json()
+        setInstagramPosts(posts)
+      } catch (err) {
+        console.error('Instagram fetch error:', err)
+        setError('Instagram feed is currently unavailable. Please check back later.')
+        setInstagramPosts([])
+      } finally {
+        setLoading(false)
+      }
     }
-  }, [instaPosts])
+
+    fetchInstagramPosts()
+  }, [])
+
+  // Check if mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.innerWidth <= 768
+      console.log('Mobile detection:', mobile, 'Width:', window.innerWidth)
+      setIsMobile(mobile)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  // Auto-play videos on mobile when they come into view
+  useEffect(() => {
+    if (!isMobile || loading) return
+
+    console.log('Setting up mobile video auto-play, videos:', Object.keys(videoRefs.current))
+
+    // Test: Auto-play first video immediately
+    const firstVideo = Object.values(videoRefs.current)[0]
+    if (firstVideo) {
+      console.log('Testing auto-play on first video:', firstVideo.src)
+      firstVideo.play().catch((error) => {
+        console.log('First video play error:', error)
+      })
+    }
+
+    // Try Intersection Observer first
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const video = entry.target
+            console.log('Video intersection:', entry.isIntersecting, video.src)
+            if (entry.isIntersecting) {
+              video.play().catch((error) => {
+                console.log('Video play error:', error)
+              })
+            } else {
+              video.pause()
+            }
+          })
+        },
+        {
+          threshold: 0.3,
+          rootMargin: '0px'
+        }
+      )
+
+      const timeoutId = setTimeout(() => {
+        Object.values(videoRefs.current).forEach((video) => {
+          if (video) {
+            console.log('Observing video:', video.src)
+            observer.observe(video)
+          }
+        })
+      }, 500)
+
+      return () => {
+        clearTimeout(timeoutId)
+        observer.disconnect()
+      }
+    } else {
+      // Fallback: simple scroll-based approach
+      const handleScroll = () => {
+        Object.values(videoRefs.current).forEach((video) => {
+          if (video) {
+            const rect = video.getBoundingClientRect()
+            const isVisible = rect.top < window.innerHeight && rect.bottom > 0
+            if (isVisible) {
+              video.play().catch(console.error)
+            } else {
+              video.pause()
+            }
+          }
+        })
+      }
+
+      window.addEventListener('scroll', handleScroll)
+      handleScroll() // Check initial state
+
+      return () => {
+        window.removeEventListener('scroll', handleScroll)
+      }
+    }
+  }, [instagramPosts, isMobile, loading])
+
+  // Handle navigation clicks
+  const handlePrevClick = () => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slidePrev()
+    }
+  }
+
+  const handleNextClick = () => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slideNext()
+    }
+  }
 
   return (
     <>
@@ -102,65 +207,123 @@ export default function NewsPage({ newsItems }) {
         </section>
 
         {/* Instagram Feed Section */}
-        <section ref={sectionRef} className={styles.instaSection}>
-          <h2 className={styles.sectionTitle}>
-            <FaInstagram className={styles.instaIcon} /> Instagram Feed
-          </h2>
-          {error && <p className={styles.error}>Error loading Instagram feed.</p>}
-
-          {!instaPosts ? (
-            <p>Loading Instagram…</p>
+        <section className={styles.instaSection}>
+          <div className={styles.instaTitleWrapper}>
+            <h2 className={styles.instaTitle}>
+              <FaInstagram className={styles.instaIcon} /> Instagram Feed
+            </h2>
+          </div>
+          
+          {loading ? (
+            <div className={styles.loadingContainer}>
+              <p>Loading Instagram posts...</p>
+            </div>
+          ) : error ? (
+            <div className={styles.unavailableContainer}>
+              <div className={styles.unavailableIcon}>
+                <FaInstagram />
+              </div>
+              <h3>Instagram Feed Unavailable</h3>
+              <p>{error}</p>
+              <p className={styles.unavailableSubtext}>
+                Follow us on Instagram for the latest updates and content!
+              </p>
+            </div>
+          ) : instagramPosts.length === 0 ? (
+            <div className={styles.unavailableContainer}>
+              <div className={styles.unavailableIcon}>
+                <FaInstagram />
+              </div>
+              <h3>No Posts Available</h3>
+              <p>No Instagram posts found at this time.</p>
+              <p className={styles.unavailableSubtext}>
+                Follow us on Instagram for the latest updates and content!
+              </p>
+            </div>
           ) : (
-            <div className={styles.instaSwiperWrapper}>
-              {/* Custom Arrows */}
-              <button ref={prevRef} className={styles.customArrow + ' ' + styles.leftArrow}>
+            <div className={styles.instaContainer}>
+              <button 
+                className={styles.navButton + ' ' + styles.prevButton}
+                onClick={handlePrevClick}
+                aria-label="Previous posts"
+              >
                 &#8249;
               </button>
+              
               <Swiper
                 ref={swiperRef}
                 modules={[Navigation]}
-                spaceBetween={80}
-                slidesPerView={1} // default is 1 card for mobile
+                spaceBetween={20}
+                slidesPerView={1}
                 breakpoints={{
                   640: { slidesPerView: 2 },
                   1000: { slidesPerView: 2},
                   1150: { slidesPerView: 3 },
                   1400: { slidesPerView: 4 }, 
                 }}
-                              navigation={{
-                  prevEl: prevRef.current,
-                  nextEl: nextRef.current,
-                }}
-                loop
+                loop={instagramPosts.length > 4}
                 className={styles.instaSwiper}
               >
-                {instaPosts.map((post, idx) => (
+                {instagramPosts.map((post, idx) => (
                   <SwiperSlide key={post.id + '_' + idx}>
-                    <a
-                      href={post.permalink}
-                      target="_blank"
-                      rel="noreferrer"
-                      className={styles.instaCard}
-                    >
-                      <div className={styles.imageWrapper}>
-                        <img
-                          src={
-                            post.media_type === 'VIDEO'
-                              ? post.thumbnail_url
-                              : post.media_url
-                          }
-                          alt={post.caption?.slice(0, 100) || 'Instagram post'}
-                          className={styles.instaImage}
-                        />
-                      </div>
-                      <p className={styles.caption}>
-                        {post.caption?.split('\n')[0]?.slice(0, 100)}…
-                      </p>
-                    </a>
+                    <div className={styles.instaCard}>
+                      <a
+                        href={post.permalink}
+                        target="_blank"
+                        rel="noreferrer"
+                        className={styles.cardLink}
+                      >
+                        <div className={styles.mediaContainer}>
+                          {post.media_type === 'VIDEO' ? (
+                            <div className={styles.videoContainer}>
+                              <video
+                                ref={(el) => {
+                                  if (el) videoRefs.current[post.id] = el
+                                }}
+                                className={styles.instaVideo}
+                                poster={post.thumbnail_url}
+                                preload="metadata"
+                                muted
+                                loop
+                                playsInline
+                                onMouseEnter={(e) => {
+                                  if (!isMobile) e.target.play()
+                                }}
+                                onMouseLeave={(e) => {
+                                  if (!isMobile) e.target.pause()
+                                }}
+                              >
+                                <source src={post.media_url} type="video/mp4" />
+                              </video>
+                              <div className={styles.playIcon}>
+                                <FaPlay />
+                              </div>
+                            </div>
+                          ) : (
+                            <img
+                              src={post.media_url}
+                              alt={post.caption?.slice(0, 100) || 'Instagram post'}
+                              className={styles.instaImage}
+                            />
+                          )}
+                        </div>
+                        <div className={styles.cardContent}>
+                          <p className={styles.caption}>
+                            {post.caption?.split('\n')[0]?.slice(0, 120)}
+                            {post.caption?.length > 120 ? '...' : ''}
+                          </p>
+                        </div>
+                      </a>
+                    </div>
                   </SwiperSlide>
                 ))}
               </Swiper>
-              <button ref={nextRef} className={styles.customArrow + ' ' + styles.rightArrow}>
+              
+              <button 
+                className={styles.navButton + ' ' + styles.nextButton}
+                onClick={handleNextClick}
+                aria-label="Next posts"
+              >
                 &#8250;
               </button>
             </div>
