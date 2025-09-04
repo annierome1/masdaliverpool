@@ -103,95 +103,272 @@
 }
 
 
-/* Instagram Carousel using Swiper */
+/* Instagram Feed Section */
 .instaSection {
-  max-width: 1900px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding-top: 2rem;
-}
-.instaSection .sectionTitle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.instaIcon {
-  margin-right: 0.5rem;
+  padding: 4rem 1.5rem;
+  background: #111;
+  border-top: 1px solid #222;
+  border-bottom: 1px solid #222;
 }
 
-.swiper-wrapper {
-  align-items: stretch;
-}
-.swiper-slide {
-  display: flex !important;
-  justify-content: center;
-  align-items: stretch;
-  height: 800px;
-  background: transparent;
+.instaTitleWrapper {
+  text-align: center;
+  margin-bottom: 3rem;
 }
 
-.instaCard {
+.instaTitle {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #1b1b1b;
-  border-radius: 18px;
-  padding: 1.25rem;
-  min-height: 370px;
-  max-height: 400px;
-  max-width: 500px;
-  margin-top: 2rem !important;
-  margin-bottom: 2rem !important;
-  width: 100%;
-  box-shadow: 0 2px 18px #0006;
-  text-align: center;
-  transition: box-shadow 0.2s, transform 0.2s;
-  margin: 0 auto;
-}
-.instaCard:hover {
-  box-shadow: 0 4px 28px #1b1b1b;
-  transform: scale(1.04);
+  font-size: 2.25rem;
+  font-family: var(--font-cinzel);
+  color: #ddd;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
-.imageWrapper {
+.instaTitle::after {
+  content: '';
+  display: block;
+  width: 40%;
+  height: 3px;
+  background: #ed1c28;
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+}
+
+.instaIcon {
+  margin-bottom: 0.5rem;
+  color: #ed1c28;
+  font-size: 2rem;
+}
+
+.error {
+  text-align: center;
+  color: #ed1c28;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: rgba(237, 28, 40, 0.1);
+  border: 1px solid rgba(237, 28, 40, 0.3);
+  border-radius: 8px;
+}
+
+.fallbackNotice {
+  text-align: center;
+  color: #888;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+.loadingContainer {
+  text-align: center;
+  padding: 3rem;
+  color: #ccc;
+}
+
+.unavailableContainer {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #ccc;
+  background: linear-gradient(145deg, #1a1a1a, #222);
+  border-radius: 16px;
+  border: 1px solid #333;
+  margin: 2rem 0;
+}
+
+.unavailableIcon {
+  font-size: 4rem;
+  color: #ed1c28;
+  margin-bottom: 1.5rem;
+  opacity: 0.7;
+}
+
+.unavailableContainer h3 {
+  font-size: 1.5rem;
+  color: #ddd;
+  margin-bottom: 1rem;
+  font-family: var(--font-cinzel);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.unavailableContainer p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: #bbb;
+}
+
+.unavailableSubtext {
+  font-size: 0.9rem;
+  color: #888;
+  font-style: italic;
+}
+
+.instaContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+}
+
+.navButton {
+  background: linear-gradient(145deg, #1a1a1a, #222);
+  border: 1px solid #333;
+  color: #fff;
+  font-size: 1.5rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.navButton:hover {
+  background: linear-gradient(145deg, #ed1c28, #c53030);
+  border-color: #ed1c28;
+  transform: scale(1.1);
+}
+
+.navButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.instaSwiper {
+  flex: 1;
+  overflow: visible;
+}
+
+.instaCard {
+  background: #222;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+  height: auto;
+  min-height: 300px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.instaCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+}
+
+.cardLink {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+
+.mediaContainer {
   position: relative;
   width: 100%;
-  aspect-ratio: 1/1;
-  border-radius: 12px;
+  flex: 1;
   overflow: hidden;
-  margin-bottom: 1rem;
+  min-height: 200px;
+  max-height: 500px;
 }
+
 .instaImage {
-  width: 120%;
-  height: 120%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 12px;
-  background: #181818;
+  transition: transform 0.3s ease;
+}
+
+.instaCard:hover .instaImage {
+  transform: scale(1.05);
+}
+
+.videoContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.instaVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.instaCard:hover .instaVideo {
+  transform: scale(1.05);
+}
+
+.playIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.videoContainer:hover .playIcon {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .playIcon {
+    opacity: 0.4;
+    transition: opacity 0.3s ease;
+  }
+  
+  .videoContainer:hover .playIcon {
+    opacity: 0.6;
+  }
+}
+
+.cardContent {
+  padding: 1rem;
+  flex-shrink: 0;
 }
 
 .caption {
-  margin-top: 0.5rem;
-  font-size: 1rem;
-  color: #bbb;
-  text-align: center;
+  color: #ccc;
+  font-size: 0.9rem;
   line-height: 1.4;
-  flex: 1;
-  text-decoration: none !important;
-}
-.instaCard {
-  text-decoration: none;      
-  color: inherit;  
-  height: 400px;  
-  width: 300px;        
-}
-.instaCard * {
-  text-decoration: none !important;
-  color: inherit;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
-  background: #b1151e;
+  background: #ed1c28;
   color: #fff;
+  transform: scale(1.1);
 }
 .swiper-button-next::after,
 .swiper-button-prev::after {
@@ -207,78 +384,130 @@
   .sectionTitle { font-size: 1.3rem; margin-bottom: 1rem; }
   .newsGrid { grid-template-columns: 1fr; }
   .newsCard { padding: 1rem; }
+  
+  .instaSection {
+    padding: 2rem 1rem;
+    max-width: 100%;
+  }
+  
   .instaCard {
-    padding: 0.75rem;
-    min-height: 260px;
-    max-width: 94vw;
+    max-width: 90vw;
   }
-  .swiper-slide {
-    height: 300px;
+  
+  .instaTitle {
+    font-size: 1.75rem;
   }
-  .swiper-button-next,
-  .swiper-button-prev {
-    padding: 0.3rem 0.6rem;
+  
+  .instaIcon {
     font-size: 1.5rem;
-    top: 38%;
+  }
+  
+  .instaContainer {
+    gap: 0.5rem;
+  }
+  
+  .navButton {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+  
+  .cardContent {
+    padding: 0.75rem;
+  }
+  
+  .caption {
+    font-size: 0.85rem;
+    -webkit-line-clamp: 2;
+  }
+  
+  .unavailableContainer {
+    padding: 2rem 1rem;
+    margin: 1rem 0;
+  }
+  
+  .unavailableIcon {
+    font-size: 3rem;
+  }
+  
+  .unavailableContainer h3 {
+    font-size: 1.25rem;
+  }
+  
+  .mediaContainer {
+    min-height: 150px;
+    max-height: 400px;
+  }
+  
+  .instaCard {
+    min-height: 250px;
+    max-width: 350px;
   }
 
   .newsGrid {
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: 1fr;
-  justify-items: center; 
-  margin-left: 0rem !important ; 
-  margin-right: 0rem !important;
-}
-
-  .customArrow {
-  display: none;
-}
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+    justify-items: center; 
+    margin-left: 0rem !important ; 
+    margin-right: 0rem !important;
+  }
 }
 
 @media (max-width: 500px) {
+  .instaSection {
+    padding: 1.5rem 0.5rem;
+    max-width: 100%;
+  }
+  
   .instaCard {
-    min-height: 180px;
-    font-size: 0.94rem;
+    max-width: 95vw;
   }
-  .imageWrapper {
-    margin-bottom: 0.6rem;
+  
+  .instaTitle {
+    font-size: 1.5rem;
+  }
+  
+  .instaIcon {
+    font-size: 1.25rem;
+  }
+  
+  .navButton {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+  
+  .cardContent {
+    padding: 0.5rem;
+  }
+  
+  .caption {
+    font-size: 0.8rem;
+    -webkit-line-clamp: 2;
+  }
+  
+  .unavailableContainer {
+    padding: 1.5rem 0.5rem;
+  }
+  
+  .unavailableIcon {
+    font-size: 2.5rem;
+  }
+  
+  .unavailableContainer h3 {
+    font-size: 1.1rem;
+  }
+  
+  .mediaContainer {
+    min-height: 120px;
+    max-height: 300px;
+  }
+  
+  .instaCard {
+    min-height: 200px;
+    max-width: 280px;
   }
 }
 
-.instaSwiperWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  max-width: 1700px;   /* wider than before! */
-  width: 100%;
-  margin: 0 auto;
-  gap: 0.5rem;
-  /* Optionally: add padding for arrows on mobile */
-  padding: 0 24px;
-  box-sizing: border-box;
-}
 
-
-.instaSwiper {
-  flex: 1 1 auto;
-}
-
-.customArrow {
-  position: relative;
-  background: rgba(0,0,0,0.35);
-  border: none;
-  color: #fff;
-  font-size: 2.2rem;
-  cursor: pointer;
-  z-index: 10;
-  box-shadow: 0 2px 8px #0007;
-  transition: background 0.2s;
-}
-
-.customArrow:hover {
-  color: #ed1c28;
-}
-.leftArrow { margin-right: 0.5rem; }
-.rightArrow { margin-left: 0.5rem; }
