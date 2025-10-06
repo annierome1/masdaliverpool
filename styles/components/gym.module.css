@@ -207,6 +207,25 @@
   .ctaButton:hover {
     background-color: #c53030;
   }
+
+  .coachesButton {
+    background-color: transparent;
+    color: #e53e3e;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid #e53e3e;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .coachesButton:hover {
+    background-color: #e53e3e;
+    color: #fff;
+  }
   
 .modalOverlay {
   position: fixed;
