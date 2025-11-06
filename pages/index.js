@@ -198,19 +198,32 @@ export default function Home({ homepagePlaybackId, thumbnailUrl }) {
               controls={false}
               poster={thumbnailUrl || undefined}
             />
-          ) : videoFailed && thumbnailUrl ? (
-            // Fallback to thumbnail image if video fails
-            <img
-              src={thumbnailUrl}
-              alt="MASDA Gym"
+          ) : videoFailed ? (
+            // Fallback to MASDA logo if video fails
+            <div 
               className={`${styles.videoBg} ${styles.videoVisible}`}
               style={{ 
-                objectFit: 'cover',
+                background: '#000',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
                 minHeight: '100%',
                 width: '100%',
                 height: '100%'
               }}
-            />
+            >
+              <img
+                src="/masda_logo.png"
+                alt="MASDA Gym"
+                style={{ 
+                  maxWidth: '60%',
+                  maxHeight: '60%',
+                  width: 'auto',
+                  height: 'auto',
+                  objectFit: 'contain'
+                }}
+              />
+            </div>
           ) : null}
         </div>
 
