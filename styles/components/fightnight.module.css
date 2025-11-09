@@ -128,8 +128,8 @@
 }
 
 .eventCard {
-  flex: 0 0 400px;  
-  height: 100%;    
+  flex: 0 0 400px;
+  height: 620px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
   border-radius: 0.75rem;
@@ -137,12 +137,10 @@
   background: #222;
   position: relative;
   box-shadow: 0 6px 12px rgba(0,0,0,0.5);
-      background-color: #222;
-    border: 1px solid #333;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+  border: 1px solid #333;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
 }
 .eventCard:hover {
   box-shadow: 0 12px 24px rgba(0,0,0,0.7);
@@ -167,7 +165,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  height: 650px;
+  height: 680px;
   margin-top: 2rem;
 }
 
@@ -177,41 +175,41 @@
   overflow-x: auto;
   overflow-y: visible;
   gap: 1.5rem;
-  padding: 1rem 0;
+  padding: 1rem 3rem;
   flex: 1;
   justify-content: flex-start;
   align-items: stretch;
   scroll-behavior: smooth;
-}
-.eventHighlights{
-  text-align: center;
-
+  scroll-padding-left: 3rem;
+  scroll-padding-right: 3rem;
 }
 
-  .eventImage {
-    width: 100%;
-    height: 385px;
-    object-fit: contain;
-    background-color: #000;
-  }
-  
-  .eventInfo {
-    padding: 1rem;
-  }
-.eventLocation {
-  font-size: 0.9rem;
-  color: #ccc;
-  font-style: italic;
-  margin: 0 0 0.75rem;
+.eventImage {
+  width: 100%;
+  height: 385px;
+  object-fit: contain;
+  background-color: #000;
 }
-
 
 .eventInfo {
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex: 1;
   padding: 1rem;
   text-align: center;
+}
+
+.eventHighlights{
+  text-align: center;
+
+}
+
+.eventLocation {
+  font-size: 0.9rem;
+  color: #ccc;
+  font-style: italic;
+  margin: 0 0 0.75rem;
 }
 
 /* 1. Big, bold title */
@@ -369,9 +367,9 @@
   margin-bottom: 1.5rem;
 }
 .eventCard {
-    flex: 0 0 90%;      /* about 90% of screen width */
-    max-width: 500px; 
-    max-height: 600px;  /* don’t get wider than this */
+    flex: 0 0 90%;
+    max-width: 500px;
+    height: auto;
   }
 
 
