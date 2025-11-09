@@ -10,7 +10,7 @@ import { serverClient as client, urlFor } from '../lib/sanity'
 // --- DATA FETCHING ---
 export async function getStaticProps() {
   const upcoming = await client.fetch(`
-    *[_type == "upcomingEvent"]
+    *[_type == "upcomingEvent" && dateTime >= now()]
     | order(dateTime asc){
       "id": _id,
       title,
@@ -48,6 +48,7 @@ export async function getStaticProps() {
 
 export default function EventsPage({ eventsData, eventHighlights }) {
   const { upcoming } = eventsData
+  const hasUpcomingEvents = Array.isArray(upcoming) && upcoming.length > 0
 
   // Carousels
   const eventsWrapperRef = useRef(null)
@@ -180,52 +181,59 @@ const nextVideo = () => {
         {/* Upcoming Events */}
         <section className={styles.upcomingEvents}>
           <h2>Upcoming Events</h2>
-          <div className={styles.eventsCarouselContainer}>
-            {!isMobile && hasEventOverflow && (
-              <button
-                onClick={prevEvent}
-                disabled={activeEventIndex === 0}
-                className={styles.arrowButton}
-              >‹</button>
-            )}
-            <div ref={eventsWrapperRef} className={styles.eventsCarouselWrapper}>
-              {upcoming.map((event, idx) => (
-                <div
-                  key={event.id}
-                  ref={el => eventCardRefs.current[idx] = el}
-                  className={`${styles.eventCard} ${idx === activeEventIndex ? styles.active : ''}`}
-                >
-                  <img
-                    src={urlFor(event.image).width(600).url()}
-                    alt={`${event.fighterA} vs. ${event.fighterB}`}
-                    className={styles.eventImage}
-                  />
-                  <div className={styles.eventInfo}>
-                    <h4 className={styles.eventFightTitle}>{event.fightTitle}</h4>
-                    <p className={styles.eventLocation}>{event.location}</p>
-                    <p className={styles.eventFighters}>
-                      {event.fighterA} <span className={styles.vs}>vs.</span> {event.fighterB}
-                    </p>
-                    <p className={styles.eventDate}>
-                      {new Date(event.dateTime).toLocaleString()}
-                    </p>
-                    {event.link && (
-                      <Link href={event.link} className={styles.eventButton}>
-                        {event.buttonText || 'Learn More'}
-                      </Link>
-                    )}
+          {hasUpcomingEvents ? (
+            <div className={styles.eventsCarouselContainer}>
+              {!isMobile && hasEventOverflow && (
+                <button
+                  onClick={prevEvent}
+                  disabled={activeEventIndex === 0}
+                  className={styles.arrowButton}
+                >‹</button>
+              )}
+              <div ref={eventsWrapperRef} className={styles.eventsCarouselWrapper}>
+                {upcoming.map((event, idx) => (
+                  <div
+                    key={event.id}
+                    ref={el => eventCardRefs.current[idx] = el}
+                    className={`${styles.eventCard} ${idx === activeEventIndex ? styles.active : ''}`}
+                  >
+                    <img
+                      src={urlFor(event.image).width(600).url()}
+                      alt={`${event.fighterA} vs. ${event.fighterB}`}
+                      className={styles.eventImage}
+                    />
+                    <div className={styles.eventInfo}>
+                      <h4 className={styles.eventFightTitle}>{event.fightTitle}</h4>
+                      <p className={styles.eventLocation}>{event.location}</p>
+                      <p className={styles.eventFighters}>
+                        {event.fighterA} <span className={styles.vs}>vs.</span> {event.fighterB}
+                      </p>
+                      <p className={styles.eventDate}>
+                        {new Date(event.dateTime).toLocaleString()}
+                      </p>
+                      {event.link && (
+                        <Link href={event.link} className={styles.eventButton}>
+                          {event.buttonText || 'Learn More'}
+                        </Link>
+                      )}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+              {!isMobile && hasEventOverflow && (
+                <button
+                  onClick={nextEvent}
+                  disabled={activeEventIndex === upcoming.length - 1}
+                  className={styles.arrowButton}
+                >›</button>
+              )}
             </div>
-            {!isMobile && hasEventOverflow && (
-              <button
-                onClick={nextEvent}
-                disabled={activeEventIndex === upcoming.length - 1}
-                className={styles.arrowButton}
-              >›</button>
-            )}
-          </div>
+          ) : (
+            <div className={styles.noEventsPlaceholder}>
+              <h3>No Upcoming Events</h3>
+              <p>Check back soon for our next fight night announcement.</p>
+            </div>
+          )}
         </section>
 
         {/* Highlight Reel */}
