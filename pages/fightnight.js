@@ -136,6 +136,13 @@ useEffect(() => {
     return () => wr && wr.removeEventListener('scroll', handleVideosScroll)
   }, [handleVideosScroll])
 
+  // Ensure the events carousel starts at the beginning
+  useEffect(() => {
+    if (eventsWrapperRef.current) {
+      eventsWrapperRef.current.scrollTo({ left: 0 })
+    }
+  }, [upcoming])
+
   // --- VIDEOS: Arrows ---
   const prevVideo = () => {
   setUserInteractedVideo(true);

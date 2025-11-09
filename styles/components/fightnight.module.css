@@ -178,10 +178,11 @@
   overflow-x: auto;
   overflow-y: visible;
   gap: 1.5rem;
-  padding: 1rem 2rem;
+  padding: 1rem 0;
   flex: 1;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: stretch;
+  scroll-behavior: smooth;
 }
 .eventHighlights{
   text-align: center;
