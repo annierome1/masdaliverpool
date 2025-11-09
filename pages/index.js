@@ -6,59 +6,21 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import styles from '../styles/components/home.module.css'
 import buttonStyles from '../styles/components/buttons.module.scss'
-import '@mux/mux-player'
-
 export async function getStaticProps() {
-  const auth = Buffer.from(
-    `${process.env.MUX_TOKEN_ID}:${process.env.MUX_TOKEN_SECRET}`
-  ).toString('base64')
-
-  try {
-    const res = await fetch(
-      `https://api.mux.com/video/v1/assets/${process.env.ASSET_ID}`,
-      { headers: { Authorization: `Basic ${auth}` } }
-    )
-    
-    if (!res.ok) {
-      throw new Error(`Mux API error: ${res.status}`)
-    }
-    
-    const { data: asset } = await res.json()
-    
-    if (!asset?.playback_ids?.[0]?.id) {
-      throw new Error('No playback ID found in asset')
-    }
-    
-    const playbackId = asset.playback_ids[0].id
-    // Generate thumbnail URL from Mux
-    const thumbnailUrl = `https://image.mux.com/${playbackId}/thumbnail.jpg?time=1`
-    
-    return {
-      props: { 
-        homepagePlaybackId: playbackId,
-        thumbnailUrl: thumbnailUrl,
-      },
-      revalidate: 60,
-    }
-  } catch (error) {
-    console.error('Error fetching Mux asset:', error)
-    return {
-      props: { 
-        homepagePlaybackId: null,
-        thumbnailUrl: null,
-      },
-      revalidate: 60,
-    }
+  return {
+    props: {
+      heroVideoUrl: process.env.HERO_VIDEO_URL ?? null,
+      heroPosterUrl: process.env.HERO_POSTER_URL ?? null,
+    },
+    revalidate: 60,
   }
 }
 
-export default function Home({ homepagePlaybackId, thumbnailUrl }) {
+export default function Home({ heroVideoUrl, heroPosterUrl }) {
   const playerRef = useRef(null)
   const [showVideo, setShowVideo] = useState(false)
   const [videoFailed, setVideoFailed] = useState(false)
-  const [retryCount, setRetryCount] = useState(0)
-
-
+  const [hasTriedPlay, setHasTriedPlay] = useState(false)
 
   // Video fade-in after a short delay
   useEffect(() => {
@@ -66,93 +28,46 @@ export default function Home({ homepagePlaybackId, thumbnailUrl }) {
     return () => clearTimeout(t)
   }, [])
 
-  // Reset retry count when playback ID changes
+  // Reset when video URL changes
   useEffect(() => {
-    setRetryCount(0)
     setVideoFailed(false)
-  }, [homepagePlaybackId])
-
-  // Retry on decode errors with exponential backoff
-  useEffect(() => {
-    const el = playerRef.current
-    if (!el || !homepagePlaybackId || videoFailed) return
-
-    const onError = (e) => {
-      console.error('Video error:', e)
-      
-      // Check if it's a decode error (multiple ways to detect)
-      const error = e.detail?.error || e.target?.error
-      const errorCode = error?.code
-      const errorMessage = error?.message || ''
-      
-      const isDecodeError = 
-        errorCode === -12909 || // macOS Safari decode error
-        errorCode === 4 || // MEDIA_ERR_DECODE
-        errorMessage.toLowerCase().includes('decode') ||
-        errorMessage.toLowerCase().includes('pipeline')
-      
-      if (isDecodeError && retryCount < 3) {
-        // Exponential backoff: 250ms, 500ms, 1000ms (capped at 2000ms)
-        const delay = Math.min(250 * Math.pow(2, retryCount), 2000)
-        console.warn(`Decode error detected, retrying in ${delay}ms (attempt ${retryCount + 1}/3)`)
-        
-        setTimeout(() => {
-          try {
-            if (el && typeof el.load === 'function') {
-              el.load() // reload playlist
-              const p = el.play?.()
-              if (p && typeof p.catch === 'function') {
-                p.catch(() => {})
-              }
-              setRetryCount(prev => prev + 1)
-            }
-          } catch (err) {
-            console.warn('Video reload failed:', err)
-            setVideoFailed(true)
-          }
-        }, delay)
-      } else if (isDecodeError && retryCount >= 3) {
-        // Give up after 3 retries, show fallback
-        console.warn('Video decode failed after 3 retries, showing fallback image')
-        setVideoFailed(true)
-      } else {
-        // For non-decode errors, log but don't retry aggressively
-        console.warn('Non-decode video error:', error)
-      }
-    }
-
-    el.addEventListener('error', onError)
-    return () => {
-      el.removeEventListener('error', onError)
-    }
-  }, [homepagePlaybackId, retryCount, videoFailed])
+    setHasTriedPlay(false)
+  }, [heroVideoUrl])
 
   // Auto-play when visible
   useEffect(() => {
-    if (showVideo && playerRef.current && !videoFailed) {
-      const player = playerRef.current
-      
-      const handleCanPlay = () => {
-        if (player && typeof player.play === 'function') {
-          player.play().catch((err) => {
-            console.warn('Video play failed:', err)
+    if (!showVideo || videoFailed || hasTriedPlay) return
+    const el = playerRef.current
+    if (!el) return
+
+    const attemptPlay = () => {
+      const playPromise = el.play()
+      if (playPromise && typeof playPromise.then === 'function') {
+        playPromise
+          .then(() => setHasTriedPlay(true))
+          .catch(() => {
+            setVideoFailed(true)
           })
-        }
-      }
-      
-      // Check if video is already ready
-      const videoElement = player.video || player
-      if (videoElement && videoElement.readyState >= 2) {
-        handleCanPlay()
       } else {
-        player.addEventListener('canplay', handleCanPlay, { once: true })
-      }
-      
-      return () => {
-        player.removeEventListener('canplay', handleCanPlay)
+        setHasTriedPlay(true)
       }
     }
-  }, [showVideo, videoFailed])
+    attemptPlay()
+  }, [showVideo, videoFailed, hasTriedPlay])
+
+  // Handle playback errors
+  useEffect(() => {
+    const el = playerRef.current
+    if (!el) return
+
+    const onError = (event) => {
+      console.error('Hero video error:', event?.target?.error ?? event)
+      setVideoFailed(true)
+    }
+
+    el.addEventListener('error', onError)
+    return () => el.removeEventListener('error', onError)
+  }, [])
 
   // Spacebar toggles play/pause
   useEffect(() => {
@@ -181,50 +96,46 @@ export default function Home({ homepagePlaybackId, thumbnailUrl }) {
 
       <main className={styles.main}>
         <div className={styles.videoCropper}>
-          {homepagePlaybackId && !videoFailed ? (
-            <mux-player
+          {heroVideoUrl && !videoFailed ? (
+            <video
               ref={playerRef}
               className={`${styles.videoBg} ${
                 showVideo ? styles.videoVisible : ''
               }`}
-              playback-id={homepagePlaybackId}
-              stream-type="on-demand"
-              autoplay
+              src={heroVideoUrl}
+              poster={heroPosterUrl || undefined}
+              autoPlay
               loop
               muted
-              playsinline
-              prefer-native
+              playsInline
               preload="metadata"
-              controls={false}
-              poster={thumbnailUrl || undefined}
             />
-          ) : videoFailed ? (
-            // Fallback to MASDA logo if video fails
-            <div 
+          ) : (
+            <div
               className={`${styles.videoBg} ${styles.videoVisible}`}
-              style={{ 
+              style={{
                 background: '#000',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 minHeight: '100%',
                 width: '100%',
-                height: '100%'
+                height: '100%',
               }}
             >
               <img
                 src="/masda_logo.png"
                 alt="MASDA Gym"
-                style={{ 
+                style={{
                   maxWidth: '60%',
                   maxHeight: '60%',
                   width: 'auto',
                   height: 'auto',
-                  objectFit: 'contain'
+                  objectFit: 'contain',
                 }}
               />
             </div>
-          ) : null}
+          )}
         </div>
 
         <div className={styles.overlay} />
@@ -267,3 +178,4 @@ export default function Home({ homepagePlaybackId, thumbnailUrl }) {
     </>
   )
 }
+
