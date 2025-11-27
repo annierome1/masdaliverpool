@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 import { Roboto } from 'next/font/google'
 import { Cinzel } from 'next/font/google'
+import { Cormorant_Garamond } from 'next/font/google'
 import "../styles/global.css"
 import '@mux/mux-player'
 import PrivacyBanner from '../components/PrivacyBanner'
@@ -19,6 +20,13 @@ const cinzel = Cinzel({
   weight: ['400', '700'],
   variable: '--font-cinzel',
 });
+
+const cormorantGaramond = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['400', '600'],
+  variable: '--font-cormorant-garamond',
+});
+
 
 // Your GA4 Measurement ID
 const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
@@ -59,7 +67,7 @@ return (
       />
     </Head>
 
-    <div className={`${roboto.variable} ${cinzel.variable}`}>
+    <div className={`${roboto.variable} ${cinzel.variable} ${cormorantGaramond.variable}`}>
       <Component {...pageProps} />
       <PrivacyBanner />
     </div>

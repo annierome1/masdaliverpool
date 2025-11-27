@@ -49,10 +49,10 @@ export default function FoundationPage() {
             </div>
             <div className={styles.textBlock}>
               <p>
-                Scott Rome, an American entrepreneur, first connected with Masda Gym when he observed the fighters&apos; extraordinary dedication and passion. Day after day, they sharpened their combat skills with unwavering focus and their commitment to excellence which resonated with Scott&apos;s own business work ethic. Inspired to make a difference, he partnered with Masda Gym&apos;s founder, owner, and coach, Alex Forman, to chart a revitalised strategic direction.
+              Scott Rome, an American entrepreneur, first connected with Masda Gym after witnessing the fighters&apos; exceptional dedication and passion—qualities that echoed his own work ethic. Inspired to contribute, he partnered with Masda&apos;s founder and coach, Alex Forman, to help shape a revitalized strategic direction for the gym.
               </p>
               <p>
-                As Scott immersed himself in the gym&apos;s community, he identified a critical gap prevalent not only at Masda but also at combat sports academies worldwide. While Masda and others provide exceptional training and guidance during fighters&apos; competitive prime, they offer little support for life after their careers. Because of this, Scott and Alex decided to define a broader purpose for Masda&apos;s unique team, crafting a vision that supports fighters not only in the ring but also in building sustainable futures beyond it. This commitment laid the foundation for the gym&apos;s mission to empower athletes for the long term and led to the establishment of the Masda Fighter Foundation.
+              As Scott became more involved with the Masda community, he recognized a gap common across combat sports: while fighters receive world-class training during their competitive years, they often lack support once their careers end. Scott and Alex set out to change that, expanding Masda&apos;s mission to empower athletes both in the ring and long after. This vision ultimately led to the creation of the Masda Fighter Foundation.
               </p>
             </div>
           </div>
@@ -150,7 +150,7 @@ export default function FoundationPage() {
               </li>
               <li>
                 <strong>Mental Health & Wellness:</strong> Provide access to
-                counseling and wellness programs to support fighters’ mental
+                counseling and wellness programs to support fighters&apos; mental
                 and emotional health during their transition.
               </li>
               <li>
@@ -255,7 +255,7 @@ export default function FoundationPage() {
                   awareness and offer strategic support.
                 </li>
                 <li>
-                  <strong>Mental Health Charities:</strong> To support fighters’
+                  <strong>Mental Health Charities:</strong> To support fighters&apos;
                   emotional well-being.
                 </li>
               </ul>
