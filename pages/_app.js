@@ -65,6 +65,37 @@ return (
         as="document"
         crossOrigin="anonymous"
       />
+      
+      {/* Default SEO Meta Tags for UK/Liverpool */}
+      <meta name="locale" content="en_GB" />
+      <meta property="og:locale" content="en_GB" />
+      <meta name="twitter:card" content="summary_large_image" />
+      
+      {/* Structured Data for Organization */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SportsActivityLocation",
+            "name": "MASDA Gym Liverpool",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Liverpool",
+              "addressRegion": "Merseyside",
+              "addressCountry": "GB"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": "53.4084",
+              "longitude": "-2.9916"
+            },
+            "timezone": "Europe/London",
+            "url": process.env.NEXT_PUBLIC_SITE_URL || "https://masdaliverpool.com",
+            "description": "World-class combat sports academy in Liverpool, UK. Training amateur and professional fighters in Muay Thai, MMA, and Boxing."
+          })
+        }}
+      />
     </Head>
 
     <div className={`${roboto.variable} ${cinzel.variable} ${cormorantGaramond.variable}`}>

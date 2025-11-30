@@ -6,8 +6,16 @@ const GA_ID = process.env.GA_MEASUREMENT_ID
 class MyDocument extends Document {
   render() {
     return (
-      <Html>
+      <Html lang="en-GB">
         <Head>
+          {/* SEO Meta Tags for UK/Liverpool */}
+          <meta httpEquiv="content-language" content="en-GB" />
+          <meta name="geo.region" content="GB-LIV" />
+          <meta name="geo.placename" content="Liverpool" />
+          <meta name="geo.position" content="53.4084;-2.9916" />
+          <meta name="ICBM" content="53.4084, -2.9916" />
+          <meta name="timezone" content="Europe/London" />
+          
           {/* gtag.js */}
           <script
             async
