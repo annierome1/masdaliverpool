@@ -69,12 +69,14 @@
   color: #e53e3e;
   max-width: 1100px;
   margin: 0 auto 2rem;
+  border-radius: 12px;
 }
 .sectionAlt {
   background-color: #111111;
   padding: 3rem 1.5rem;
   max-width: 1100px;
   margin: 0 auto 2rem;
+  border-radius: 12px;
 }
 .sectionHeading {
   text-align: center;
@@ -152,6 +154,14 @@
   border-radius: 8px;
   object-fit: cover;
   max-height: 420px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+.sectionImageCP {
+  width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+  max-height: 560px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* Programs Grid */
@@ -163,19 +173,44 @@
 }
 .programCard {
   background: #111111;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 1.25rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 1.75rem;
+  border: 1px solid rgba(229, 62, 62, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.programCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #e53e3e, #ed1c28);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.programCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(229, 62, 62, 0.3), 0 4px 8px rgba(0, 0, 0, 0.4);
+  border-color: rgba(229, 62, 62, 0.3);
+}
+.programCard:hover::before {
+  opacity: 1;
 }
 .programCard h4 {
   margin-top: 0;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
   color: #e53e3e;
   text-transform: none;
   font-family: var(--font-logo);
+  font-size: 1.25rem;
 }
 .programCard p {
   color: white;
+  line-height: 1.7;
 }
 
 /* Layout for Community & Partnerships */
@@ -185,9 +220,14 @@
 .sectionAlt .textAndImage .imageWrapper {
   max-width: 450px;
 }
+.coreObjectives {
+  margin-top: 2.5rem;
+}
 .coreObjectives h3 {
   color: #e53e3e;
-  margin-left: 3rem;
+  margin-left: 0;
+  margin-top: 0;
+  margin-bottom: 1rem;
 }
 /* Footer spacing */
 .footer {
@@ -208,11 +248,12 @@
   text-decoration: none;
   font-weight: 600;
   font-size: 1rem;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .downloadButton:hover {
   background-color: #e53e3e;
+  transform: translateY(-2px);
 }
 @media (max-width: 767px) {
   /* Hero */
@@ -280,7 +321,7 @@
     margin: 2rem 0;
   }
   .programCard {
-    padding: 1rem;
+    padding: 1.25rem;
   }
 
   /* Footer & downloads */
@@ -306,20 +347,21 @@
   align-items: flex-start;
   gap: clamp(1rem, 3vw, 2.5rem);
   margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .sectionAltImage {
   display: flex;
   justify-content: center;
   margin-left: clamp(0rem, 5vw, 7rem);
+  flex-shrink: 0;
 }
 
-.sectionAltImage img {
-  width: 100%;
-  max-width: 320px;        /* keep image manageable */
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+.firstImage {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
   margin-top: -2rem;
+  object-fit: contain;
 }
 
 @media (max-width: 900px) {
@@ -334,10 +376,11 @@
     width: 100%;
     justify-content: center;
   }
-  .sectionAltImage img {
-    width: 100%;           /* Mobile: image fills container width */
-    max-width: 300px;      /* But never gets bigger than 400px */
-    margin-top: 0;         /* Remove negative margin for mobile */
+  .firstImage {
+    max-width: 100%;
+    width: 300px;
+    height: auto;
+    margin-top: 0;
   }
   .textBlock {
     width: 100%;
@@ -351,6 +394,9 @@
   padding: 3rem 2rem;
   background: linear-gradient(135deg, #0a0a0a 0%, #111 100%);
   text-align: center;
+  margin: 0;
+  width: 100%;
+  border-radius: 12px;
 }
 
 .advisoryContent {
@@ -375,7 +421,7 @@
   border-radius: 8px;
   font-weight: 600;
   text-decoration: none;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
   text-transform: none;
   letter-spacing: 0.5px;
   min-width: 180px;
@@ -384,4 +430,5 @@
 .advisoryButton:hover {
   background-color: #2f3490;
   color: #fff;
+  transform: translateY(-2px);
 }

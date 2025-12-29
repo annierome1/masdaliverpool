@@ -51,6 +51,7 @@ export default function FoundationPage() {
                 alt="How Masda Foundation Began"
                 width={320}
                 height={400}
+                className={styles.firstImage}
                 loading="lazy"
                 sizes="(max-width: 768px) 100vw, 320px"
               />
@@ -243,8 +244,8 @@ export default function FoundationPage() {
                 src="/foundation2.jpg"
                 alt="Community partnership"
                 width={420}
-                height={420}
-                className={styles.sectionImage}
+                height={560}
+                className={styles.sectionImageCP}
                 loading="lazy"
                 sizes="(max-width: 768px) 100vw, 420px"
               />
