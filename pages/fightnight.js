@@ -189,6 +189,51 @@ const nextVideo = () => {
         <meta name="twitter:description" content="Upcoming fight nights and events at MASDA Gym Liverpool. Watch our fighters compete on the biggest stages in combat sports." />
         <meta name="twitter:image" content={`${baseUrl}/masda_logo_color_wt.png`} />
       </Head>
+      
+      {/* Event Structured Data for SEO */}
+      {hasUpcomingEvents && upcoming.map((event) => (
+        <script
+          key={event.id}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SportsEvent",
+              "name": event.fightTitle || `${event.fighterA} vs ${event.fighterB}`,
+              "startDate": event.dateTime,
+              "location": {
+                "@type": "Place",
+                "name": event.location,
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": "Liverpool",
+                  "addressRegion": "Merseyside",
+                  "addressCountry": "GB"
+                }
+              },
+              "competitor": [
+                {
+                  "@type": "Person",
+                  "name": event.fighterA
+                },
+                {
+                  "@type": "Person",
+                  "name": event.fighterB
+                }
+              ],
+              "organizer": {
+                "@type": "Organization",
+                "name": "MASDA Gym Liverpool",
+                "url": baseUrl
+              },
+              ...(event.image && {
+                "image": urlFor(event.image).width(1200).url()
+              })
+            })
+          }}
+        />
+      ))}
+      
       <Header />
 
       <div className={styles.heroWrapper}>
