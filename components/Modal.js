@@ -38,10 +38,10 @@ export default function Modal({ member, onClose }) {
           <h2>{member.name}</h2>
         </div>
 
-        {/* Role, Stance, Style */}
+        {/* Specialty, Stance, Style */}
         <div className={styles.roleWrapper}>
           <div className={styles.topRow}>
-            {member.role && <p className={styles.role}>{member.role}</p>}
+            {member.specialty && <p className={styles.role}>{member.specialty}</p>}
             {member.stance && <p className={styles.stance}>{member.stance}</p>}
             {member.style && <p className={styles.style}>{member.style}</p>}
           </div>

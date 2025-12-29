@@ -55,7 +55,7 @@ export async function getServerSideProps({ res }) {
 
   const fighters = await sanityServer.fetch(`
     *[_type == "fighter_card" && !(_id in path("drafts.**"))] | order(id asc) {
-      _id, id, name, role,
+      _id, id, name, specialty,
       // only what's needed on the grid; keep your original <img> usage
       "image": image.asset->url,
       social
@@ -73,12 +73,12 @@ export default function TeamPage({ fighters }) {
   const [selectedWeightClass, setSelectedWeightClass] = useState('');
 
   const names = [...new Set(fighters.map(m => m.name))].sort();
-  const weightClasses = [...new Set(fighters.map(m => m.role))].sort();
+  const weightClasses = [...new Set(fighters.map(m => m.specialty))].sort();
 
   const filtered = selectedName
     ? fighters.filter(m => m.name === selectedName)
     : selectedWeightClass
-    ? fighters.filter(m => m.role === selectedWeightClass)
+    ? fighters.filter(m => m.specialty === selectedWeightClass)
     : fighters;
 
   // Find the preview object for the modal by slug or id (lightweight)
@@ -152,7 +152,7 @@ export default function TeamPage({ fighters }) {
                 />
               </div>
               <h3 className={styles.memberName}>{member.name}</h3>
-              <p className={styles.indivRole}>{member.role}</p>
+              <p className={styles.indivRole}>{member.specialty}</p>
               <div className={styles.socialIcons}>
                 {member.social?.instagram && <a href={member.social.instagram} target="_blank" rel="noreferrer"><FaInstagram/></a>}
                 {member.social?.tiktok && <a href={member.social.tiktok} target="_blank" rel="noreferrer"><FaTiktok/></a>}
