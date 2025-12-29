@@ -124,6 +124,7 @@
     width: 400px;
     transition: transform 0.3s, box-shadow 0.2s;
     cursor: pointer;
+    position: relative;
   }
 
   .teamCard:hover {
@@ -142,6 +143,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .indivImage {
@@ -201,6 +203,32 @@
   font-size: 0.85rem;
   color: #777;
   font-style: italic;
+}
+
+.websiteLink {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.7rem;
+  background-color: rgba(237, 28, 40, 0.1);
+  color: #ed1c28;
+  border: 1px solid rgba(237, 28, 40, 0.3);
+  border-radius: 20px;
+  font-size: 0.7rem;
+  text-decoration: none;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+  font-weight: 500;
+  z-index: 10;
+  white-space: nowrap;
+}
+
+.websiteLink:hover {
+  background-color: rgba(237, 28, 40, 0.2);
+  border-color: #ed1c28;
+  color: #fff;
 }
 
 .filterControls {

@@ -114,5 +114,11 @@ export default defineType({
         }),
       ],
     }),
+    defineField({
+      name: 'website',
+      title: 'Personal Website',
+      type: 'url',
+      description: 'Personal website URL (optional)',
+    }),
   ],
 })

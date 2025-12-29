@@ -6,7 +6,7 @@ import Footer from '../../components/Footer';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import styles from '../../styles/components/team.module.css';
-import { FaInstagram, FaTiktok } from 'react-icons/fa';
+import { FaInstagram, FaTiktok, FaExternalLinkAlt } from 'react-icons/fa';
 import Select from 'react-select';
 import { serverClient as sanityServer } from '../../lib/sanity';
 
@@ -56,7 +56,7 @@ export async function getServerSideProps({ res }) {
   const fighters = await sanityServer.fetch(`
     *[_type == "fighter_card" && !(_id in path("drafts.**"))] | order(id asc) {
       _id, id, name, role, specialty, isCoach, stance, style, age, weight, record,
-      accomplishments[], bio, social,
+      accomplishments[], bio, social, website,
       "image": image.asset->url,
       "gallery": gallery[].asset->url
     }
@@ -156,6 +156,18 @@ export default function TeamPage({ fighters }) {
           {filtered.map(member => (
             <div key={slugify(member.name)} className={styles.teamCard} onClick={() => handleCardClick(member)}>
               <div className={styles.imageWrapper}>
+                {member.website && (
+                  <a 
+                    href={member.website} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className={styles.websiteLink}
+                    onClick={(e) => e.stopPropagation()}
+                    aria-label="Visit website"
+                  >
+                    <FaExternalLinkAlt /> Visit Website
+                  </a>
+                )}
                 <img
                   src={member.image || '/team/profile_placeholder_white.png'}
                   alt={member.name}

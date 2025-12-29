@@ -3,7 +3,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Image from 'next/image';
 import styles from '../styles/components/coaches.module.css';
-import { FaInstagram, FaTiktok, FaFacebook, FaTwitter, FaLinkedin } from 'react-icons/fa';
+import { FaInstagram, FaTiktok, FaFacebook, FaTwitter, FaLinkedin, FaExternalLinkAlt } from 'react-icons/fa';
 import Link from 'next/link';
 
 // Sample coach data - you can replace this with Sanity data later
@@ -149,6 +149,17 @@ export default function Coaches() {
             {coachesData.map(coach => (
               <article key={coach.id} className={styles.coachCard}>
                 <div className={styles.imageContainer}>
+                  {coach.website && (
+                    <a 
+                      href={coach.website} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className={styles.websiteLink}
+                      aria-label="Visit website"
+                    >
+                      <FaExternalLinkAlt /> Visit Website
+                    </a>
+                  )}
                   <Image
                     src={coach.image}
                     alt={coach.name}

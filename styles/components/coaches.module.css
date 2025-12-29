@@ -96,6 +96,7 @@
   overflow: hidden;
   box-shadow: 0 10px 40px rgba(0,0,0,0.3);
   border: 1px solid #333;
+  position: relative;
   /* Removed all transitions and hover effects for maximum performance */
 }
 
@@ -186,6 +187,32 @@
 .socialIcons a:hover {
   background-color: #ed1c28;
   /* Simple color change only - no animations */
+}
+
+.websiteLink {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.8rem;
+  background-color: rgba(237, 28, 40, 0.1);
+  color: #ed1c28;
+  border: 1px solid rgba(237, 28, 40, 0.3);
+  border-radius: 20px;
+  font-size: 0.75rem;
+  text-decoration: none;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+  font-weight: 500;
+  z-index: 10;
+  white-space: nowrap;
+}
+
+.websiteLink:hover {
+  background-color: rgba(237, 28, 40, 0.2);
+  border-color: #ed1c28;
+  color: #fff;
 }
 
 /* Call to Action Section */
