@@ -38,19 +38,23 @@ export default function Modal({ member, onClose }) {
           <h2>{member.name}</h2>
         </div>
 
-        {/* Specialty, Stance, Style */}
+        {/* Role/Specialty, Stance, Style */}
         <div className={styles.roleWrapper}>
           <div className={styles.topRow}>
-            {member.specialty && <p className={styles.role}>{member.specialty}</p>}
-            {member.stance && <p className={styles.stance}>{member.stance}</p>}
-            {member.style && <p className={styles.style}>{member.style}</p>}
+            {(member.isCoach ? member.specialty : member.role) && (
+              <p className={styles.role}>{member.isCoach ? member.specialty : member.role}</p>
+            )}
+            {!member.isCoach && member.stance && <p className={styles.stance}>{member.stance}</p>}
+            {!member.isCoach && member.style && <p className={styles.style}>{member.style}</p>}
           </div>
 
-          {/* Age & Weight */}
-          <div className={styles.bottomRow}>
-            {member.age != null && <p className={styles.ageBox}>{member.age} yrs</p>}
-            {member.weight && <p className={styles.weight}>{member.weight}</p>}
-          </div>
+          {/* Age & Weight (only for fighters) */}
+          {!member.isCoach && (
+            <div className={styles.bottomRow}>
+              {member.age != null && <p className={styles.ageBox}>{member.age} yrs</p>}
+              {member.weight && <p className={styles.weight}>{member.weight}</p>}
+            </div>
+          )}
         </div>
 
         {/* Gallery */}
