@@ -83,6 +83,8 @@ export default function Home({ heroVideoUrl, heroPosterUrl }) {
     return () => window.removeEventListener('keydown', onKey)
   }, [])
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://masdaliverpool.com'
+
   return (
     <>
       <Head>
@@ -91,6 +93,20 @@ export default function Home({ heroVideoUrl, heroPosterUrl }) {
           name="description"
           content="Train hard, fight smart, and elevate at Masda Liverpool."
         />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="MASDA Gym Liverpool - World-Class Combat Sports Academy" />
+        <meta property="og:description" content="World-class combat sports academy in Liverpool, UK. Training amateur and professional fighters in Muay Thai, MMA, and Boxing. UK Gym of the Year 2024." />
+        <meta property="og:image" content={`${baseUrl}/masda_logo_color_wt.png`} />
+        <meta property="og:url" content={baseUrl} />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="MASDA Liverpool" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="MASDA Gym Liverpool - World-Class Combat Sports Academy" />
+        <meta name="twitter:description" content="World-class combat sports academy in Liverpool, UK. Training amateur and professional fighters in Muay Thai, MMA, and Boxing." />
+        <meta name="twitter:image" content={`${baseUrl}/masda_logo_color_wt.png`} />
       </Head>
       <Header />
 

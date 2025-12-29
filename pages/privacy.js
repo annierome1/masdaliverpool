@@ -6,15 +6,28 @@ import styles from "../styles/components/privacy.module.css";
 
 export default function Privacy() {
   const lastUpdated = "August 7, 2025";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://masdaliverpool.com'
 
   return (
     <>
       <Head>
-        <title>Privacy Policy</title>
+        <title>Privacy Policy | MASDA Gym Liverpool</title>
         <meta
           name="description"
           content="Privacy policy describing how we use Google Analytics and cookies."
         />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="Privacy Policy | MASDA Gym Liverpool" />
+        <meta property="og:description" content="Privacy policy describing how we use Google Analytics and cookies." />
+        <meta property="og:image" content={`${baseUrl}/masda_logo_color_wt.png`} />
+        <meta property="og:url" content={`${baseUrl}/privacy`} />
+        <meta property="og:type" content="website" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:title" content="Privacy Policy | MASDA Gym Liverpool" />
+        <meta name="twitter:description" content="Privacy policy describing how we use Google Analytics and cookies." />
+        <meta name="twitter:image" content={`${baseUrl}/masda_logo_color_wt.png`} />
       </Head>
       <Header />
 

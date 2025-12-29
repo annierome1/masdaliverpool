@@ -74,6 +74,8 @@ export default function TheGymPage({ gymPlaybackIds }) {
     ? gymPlaybackIds.slice(0, 4)
     : gymPlaybackIds
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://masdaliverpool.com'
+
   return (
     <>
       <Head>
@@ -82,6 +84,18 @@ export default function TheGymPage({ gymPlaybackIds }) {
           name="description"
           content="Explore our state-of-the-art facility designed for fighters of all levels."
         />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="Our Facility | MASDA Gym Liverpool" />
+        <meta property="og:description" content="Explore our state-of-the-art facility in Liverpool. 3000 ft² of training mat, 3 boxing rings, and world-class equipment for fighters of all levels." />
+        <meta property="og:image" content={`${baseUrl}/masda_logo_color_wt.png`} />
+        <meta property="og:url" content={`${baseUrl}/the_gym`} />
+        <meta property="og:type" content="website" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:title" content="Our Facility | MASDA Gym Liverpool" />
+        <meta name="twitter:description" content="Explore our state-of-the-art facility in Liverpool. 3000 ft² of training mat, 3 boxing rings, and world-class equipment." />
+        <meta name="twitter:image" content={`${baseUrl}/masda_logo_color_wt.png`} />
       </Head>
 
         

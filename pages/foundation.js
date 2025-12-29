@@ -7,6 +7,8 @@ import styles from '../styles/components/foundation.module.css'
 import Link from 'next/link'
 
 export default function FoundationPage() {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://masdaliverpool.com'
+
   return (
     <>
       <Head>
@@ -15,6 +17,18 @@ export default function FoundationPage() {
           name="description"
           content="Learn about the Masda Fighter Foundation: mission, vision, programs, and how you can get involved."
         />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="Masda Fighter Foundation | MASDA Gym Liverpool" />
+        <meta property="og:description" content="Learn about the Masda Fighter Foundation: supporting fighters' transition into post-fighting careers through financial, educational, and professional resources." />
+        <meta property="og:image" content={`${baseUrl}/masda_logo_color_wt.png`} />
+        <meta property="og:url" content={`${baseUrl}/foundation`} />
+        <meta property="og:type" content="website" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:title" content="Masda Fighter Foundation | MASDA Gym Liverpool" />
+        <meta name="twitter:description" content="Learn about the Masda Fighter Foundation: supporting fighters' transition into post-fighting careers through financial, educational, and professional resources." />
+        <meta name="twitter:image" content={`${baseUrl}/masda_logo_color_wt.png`} />
       </Head>
 
       <Header />

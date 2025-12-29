@@ -110,11 +110,25 @@ const coachesData = [
 ];
 
 export default function Coaches() {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://masdaliverpool.com'
+
   return (
     <>
       <Head>
         <title>Meet Our Coaches | Masda Liverpool</title>
         <meta name="description" content="Meet the expert coaches at Masda Gym Liverpool - Muay Thai, MMA, Boxing, and Strength & Conditioning specialists" />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="Meet Our Coaches | MASDA Gym Liverpool" />
+        <meta property="og:description" content="Meet the expert coaches at MASDA Gym Liverpool - Muay Thai, MMA, Boxing, and Strength & Conditioning specialists with years of experience." />
+        <meta property="og:image" content={`${baseUrl}/masda_logo_color_wt.png`} />
+        <meta property="og:url" content={`${baseUrl}/coaches`} />
+        <meta property="og:type" content="website" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:title" content="Meet Our Coaches | MASDA Gym Liverpool" />
+        <meta name="twitter:description" content="Meet the expert coaches at MASDA Gym Liverpool - Muay Thai, MMA, Boxing, and Strength & Conditioning specialists." />
+        <meta name="twitter:image" content={`${baseUrl}/masda_logo_color_wt.png`} />
       </Head>
       
       <Header />

@@ -87,6 +87,8 @@ export default function ContactPage() {
   }
 
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://masdaliverpool.com'
+
   return (
     <>
       <Head>
@@ -95,6 +97,18 @@ export default function ContactPage() {
           name="description"
           content="Get in touch with us at Masda Liverpool for any inquiries or class information."
         />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="Contact Us | MASDA Gym Liverpool" />
+        <meta property="og:description" content="Get in touch with MASDA Gym Liverpool for inquiries, class information, or to book a training session. Located in Liverpool, UK." />
+        <meta property="og:image" content={`${baseUrl}/masda_logo_color_wt.png`} />
+        <meta property="og:url" content={`${baseUrl}/contact`} />
+        <meta property="og:type" content="website" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:title" content="Contact Us | MASDA Gym Liverpool" />
+        <meta name="twitter:description" content="Get in touch with MASDA Gym Liverpool for inquiries, class information, or to book a training session." />
+        <meta name="twitter:image" content={`${baseUrl}/masda_logo_color_wt.png`} />
       </Head>
 
       <Header />

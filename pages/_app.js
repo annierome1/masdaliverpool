@@ -54,43 +54,67 @@ export default function App({ Component, pageProps }) {
     }
   }, [router.events])
 
-return (
-  <>
-    <Head>
-      {/* your favicon */}
-      <link rel="icon" href="/Logo-MASDA.png" />
-      
-      {/* Default SEO Meta Tags for UK/Liverpool */}
-      <meta name="locale" content="en_GB" />
-      <meta property="og:locale" content="en_GB" />
-      <meta name="twitter:card" content="summary_large_image" />
-      
-      {/* Structured Data for Organization */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "SportsActivityLocation",
-            "name": "MASDA Gym Liverpool",
-            "address": {
-              "@type": "PostalAddress",
-              "addressLocality": "Liverpool",
-              "addressRegion": "Merseyside",
-              "addressCountry": "GB"
-            },
-            "geo": {
-              "@type": "GeoCoordinates",
-              "latitude": "53.4084",
-              "longitude": "-2.9916"
-            },
-            "timezone": "Europe/London",
-            "url": process.env.NEXT_PUBLIC_SITE_URL || "https://masdaliverpool.com",
-            "description": "World-class combat sports academy in Liverpool, UK. Training amateur and professional fighters in Muay Thai, MMA, and Boxing."
-          })
-        }}
-      />
-    </Head>
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://masdaliverpool.com'
+  const canonicalUrl = `${baseUrl}${router.asPath.split('?')[0]}`
+
+  return (
+    <>
+      <Head>
+        {/* your favicon */}
+        <link rel="icon" href="/Logo-MASDA.png" />
+        
+        {/* Canonical URL */}
+        <link rel="canonical" href={canonicalUrl} />
+        
+        {/* Default SEO Meta Tags for UK/Liverpool */}
+        <meta name="locale" content="en_GB" />
+        <meta property="og:locale" content="en_GB" />
+        <meta name="twitter:card" content="summary_large_image" />
+        
+        {/* Enhanced Structured Data for Organization */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SportsActivityLocation",
+              "@id": `${baseUrl}#organization`,
+              "name": "MASDA Gym Liverpool",
+              "alternateName": "MASDA Liverpool",
+              "url": baseUrl,
+              "logo": `${baseUrl}/masda_logo_color_wt.png`,
+              "image": `${baseUrl}/masda_logo_color_wt.png`,
+              "description": "World-class combat sports academy in Liverpool, UK. Training amateur and professional fighters in Muay Thai, MMA, and Boxing. UK Gym of the Year 2024.",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Nexum Centre 64 St Anne Street",
+                "addressLocality": "Liverpool",
+                "addressRegion": "Merseyside",
+                "postalCode": "L3 3DY",
+                "addressCountry": "GB"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": "53.4084",
+                "longitude": "-2.9916"
+              },
+              "telephone": "+44 1234 567 890",
+              "email": "info@masdaliverpool.com",
+              "openingHours": "Mo-Su 09:00-21:00",
+              "priceRange": "££",
+              "sport": ["Muay Thai", "MMA", "Boxing", "Kickboxing", "Brazilian Jiu Jitsu"],
+              "award": "UK Gym of the Year 2024 - Thai Fighter UK",
+              "timezone": "Europe/London",
+              "sameAs": [
+                "https://www.instagram.com/masdagym/",
+                "https://www.facebook.com/masdagym/",
+                "https://www.youtube.com/c/MasdaGymLiverpool",
+                "https://www.tiktok.com/@masdagym"
+              ]
+            })
+          }}
+        />
+      </Head>
 
     <div className={`${roboto.variable} ${cinzel.variable} ${cormorantGaramond.variable}`}>
       <Component {...pageProps} />

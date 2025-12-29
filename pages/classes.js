@@ -9,6 +9,7 @@ import styles from '../styles/components/classes.module.css';
 
 
 export default function ClassesPage() {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://masdaliverpool.com'
 
   return (
     <>
@@ -18,6 +19,18 @@ export default function ClassesPage() {
           name="description"
           content="View our class offerings, membership plans, and weekly schedule."
         />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="Classes & Membership | MASDA Gym Liverpool" />
+        <meta property="og:description" content="Join MASDA Gym Liverpool classes. Muay Thai, MMA, Boxing, and fitness training for all levels. Flexible membership plans from £45/month." />
+        <meta property="og:image" content={`${baseUrl}/masda_logo_color_wt.png`} />
+        <meta property="og:url" content={`${baseUrl}/classes`} />
+        <meta property="og:type" content="website" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:title" content="Classes & Membership | MASDA Gym Liverpool" />
+        <meta name="twitter:description" content="Join MASDA Gym Liverpool classes. Muay Thai, MMA, Boxing, and fitness training for all levels. Flexible membership plans from £45/month." />
+        <meta name="twitter:image" content={`${baseUrl}/masda_logo_color_wt.png`} />
       </Head>
 
       <Header />

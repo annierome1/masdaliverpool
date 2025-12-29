@@ -51,6 +51,8 @@ const committeeMembers = [
 ];
 
 export default function CommitteePage() {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://masdaliverpool.com'
+
   return (
     <>
       <Head>
@@ -59,6 +61,18 @@ export default function CommitteePage() {
           name="description" 
           content="Meet the Advisory Committee of the Masda Fighter Foundation - dedicated professionals guiding our mission to support fighters' futures." 
         />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="Advisory Committee | Masda Fighter Foundation" />
+        <meta property="og:description" content="Meet the Advisory Committee of the Masda Fighter Foundation - dedicated professionals guiding our mission to support fighters' futures." />
+        <meta property="og:image" content={`${baseUrl}/masda_logo_color_wt.png`} />
+        <meta property="og:url" content={`${baseUrl}/commitee`} />
+        <meta property="og:type" content="website" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:title" content="Advisory Committee | Masda Fighter Foundation" />
+        <meta name="twitter:description" content="Meet the Advisory Committee of the Masda Fighter Foundation - dedicated professionals guiding our mission to support fighters' futures." />
+        <meta name="twitter:image" content={`${baseUrl}/masda_logo_color_wt.png`} />
       </Head>
 
       <Header />

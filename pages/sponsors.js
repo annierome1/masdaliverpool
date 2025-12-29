@@ -26,6 +26,8 @@ const mediaPartners = [
 ]
 
 export default function SponsorsPage() {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://masdaliverpool.com'
+
   return (
     <>
       <Head>
@@ -34,6 +36,18 @@ export default function SponsorsPage() {
           name="description"
           content="Meet the proud sponsors of Masda Liverpool. We thank them for their support in building our fight community."
         />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="Our Partners & Sponsors | MASDA Gym Liverpool" />
+        <meta property="og:description" content="Meet the proud sponsors and partners of MASDA Liverpool. We thank them for their support in building our fight community." />
+        <meta property="og:image" content={`${baseUrl}/masda_logo_color_wt.png`} />
+        <meta property="og:url" content={`${baseUrl}/sponsors`} />
+        <meta property="og:type" content="website" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:title" content="Our Partners & Sponsors | MASDA Gym Liverpool" />
+        <meta name="twitter:description" content="Meet the proud sponsors and partners of MASDA Liverpool. We thank them for their support in building our fight community." />
+        <meta name="twitter:image" content={`${baseUrl}/masda_logo_color_wt.png`} />
       </Head>
 
       <Header />

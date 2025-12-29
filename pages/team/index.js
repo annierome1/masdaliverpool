@@ -98,6 +98,8 @@ export default function TeamPage({ fighters }) {
 
   const closeModal = () => router.push('/team', undefined, { shallow: true, scroll: false });
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://masdaliverpool.com'
+
   return (
     <>
       <Head>
@@ -105,7 +107,18 @@ export default function TeamPage({ fighters }) {
         <meta name="description" content="Team at Masda Gym Liverpool" />
         <link rel="preconnect" href="https://cdn.sanity.io" crossorigin/>
         <link rel="dns-prefetch" href="https://cdn.sanity.io"/>
-
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="Meet Our Team | MASDA Gym Liverpool" />
+        <meta property="og:description" content="Meet the fighters and coaches at MASDA Gym Liverpool. Professional and amateur athletes training in Muay Thai, MMA, and Boxing." />
+        <meta property="og:image" content={`${baseUrl}/masda_logo_color_wt.png`} />
+        <meta property="og:url" content={`${baseUrl}/team`} />
+        <meta property="og:type" content="website" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:title" content="Meet Our Team | MASDA Gym Liverpool" />
+        <meta name="twitter:description" content="Meet the fighters and coaches at MASDA Gym Liverpool. Professional and amateur athletes training in Muay Thai, MMA, and Boxing." />
+        <meta name="twitter:image" content={`${baseUrl}/masda_logo_color_wt.png`} />
       </Head>
 
       <Header />

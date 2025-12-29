@@ -169,10 +169,25 @@ const nextVideo = () => {
 }, [activeVideoIndex, isMobile, userInteractedVideo]);
 
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://masdaliverpool.com'
+
   return (
     <>
       <Head>
         <title>Events | Masda Liverpool</title>
+        <meta name="description" content="Upcoming fight nights and events at MASDA Gym Liverpool. Watch our fighters compete on the biggest stages in combat sports." />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="Fight Nights & Events | MASDA Gym Liverpool" />
+        <meta property="og:description" content="Upcoming fight nights and events at MASDA Gym Liverpool. Watch our fighters compete on the biggest stages in combat sports." />
+        <meta property="og:image" content={`${baseUrl}/masda_logo_color_wt.png`} />
+        <meta property="og:url" content={`${baseUrl}/fightnight`} />
+        <meta property="og:type" content="website" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:title" content="Fight Nights & Events | MASDA Gym Liverpool" />
+        <meta name="twitter:description" content="Upcoming fight nights and events at MASDA Gym Liverpool. Watch our fighters compete on the biggest stages in combat sports." />
+        <meta name="twitter:image" content={`${baseUrl}/masda_logo_color_wt.png`} />
       </Head>
       <Header />
 

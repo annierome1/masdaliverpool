@@ -186,10 +186,25 @@ export default function NewsPage({ newsItems }) {
     }
   }
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://masdaliverpool.com'
+
   return (
     <>
       <Head>
         <title>News & Social | Masda Liverpool</title>
+        <meta name="description" content="Latest news, updates, and social media content from MASDA Gym Liverpool. Stay connected with our fighters, coaches, and community." />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="News & Social Media | MASDA Gym Liverpool" />
+        <meta property="og:description" content="Latest news, updates, and social media content from MASDA Gym Liverpool. Stay connected with our fighters, coaches, and community." />
+        <meta property="og:image" content={`${baseUrl}/masda_logo_color_wt.png`} />
+        <meta property="og:url" content={`${baseUrl}/news_social`} />
+        <meta property="og:type" content="website" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:title" content="News & Social Media | MASDA Gym Liverpool" />
+        <meta name="twitter:description" content="Latest news, updates, and social media content from MASDA Gym Liverpool. Stay connected with our fighters, coaches, and community." />
+        <meta name="twitter:image" content={`${baseUrl}/masda_logo_color_wt.png`} />
       </Head>
       <Header />
 
