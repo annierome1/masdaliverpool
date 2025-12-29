@@ -59,12 +59,6 @@ return (
     <Head>
       {/* your favicon */}
       <link rel="icon" href="/Logo-MASDA.png" />
-      <link
-        rel="prefetch"
-        href="https://pdfwebsite.s3.us-east-2.amazonaws.com/masdabrouchurer.pdf"
-        as="document"
-        crossOrigin="anonymous"
-      />
       
       {/* Default SEO Meta Tags for UK/Liverpool */}
       <meta name="locale" content="en_GB" />

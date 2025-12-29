@@ -17,17 +17,26 @@ const slugify = (s = '') =>
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
 
-// --- dynamic import for modal to avoid SSR issues ---// tiny helper if you’re using raw asset URLs from Sanity
+// --- dynamic import for modal to avoid SSR issues ---// tiny helper if you're using raw asset URLs from Sanity
 const build = (base, params) => {
-  const u = new URL(base);
-  Object.entries(params).forEach(([k,v]) => u.searchParams.set(k, v));
-  return u.toString();
+  if (!base || typeof base !== 'string') return '';
+  try {
+    const u = new URL(base);
+    Object.entries(params).forEach(([k,v]) => u.searchParams.set(k, v));
+    return u.toString();
+  } catch (e) {
+    return base; // Return original URL if it's invalid
+  }
 };
 
 // 320px card, crisp on 1x and 2x screens:
-const srcSet = (url) =>
-  `${build(url, { w:'400', h:'400', crop:'focalpoint', focalPointX:0.5, focalPointY:0.2, q:'85', auto:'format' })} 1x, ` +
-  `${build(url, { w:'400', h:'400', crop:'focalpoint', focalPointX:0.5, focalPointY:0.2, q:'85', auto:'format', dpr:'2' })} 2x`;
+const srcSet = (url) => {
+  if (!url || typeof url !== 'string') return '';
+  const base1x = build(url, { w:'400', h:'400', crop:'focalpoint', focalPointX:0.5, focalPointY:0.2, q:'85', auto:'format' });
+  const base2x = build(url, { w:'400', h:'400', crop:'focalpoint', focalPointX:0.5, focalPointY:0.2, q:'85', auto:'format', dpr:'2' });
+  if (!base1x || !base2x) return '';
+  return `${base1x} 1x, ${base2x} 2x`;
+};
 
 const Modal = dynamic(() => import('../../components/Modal'), { ssr: false });
 
@@ -135,7 +144,7 @@ export default function TeamPage({ fighters }) {
                 <img
                   src={member.image || '/team/profile_placeholder_white.png'}
                   alt={member.name}
-                  srcSet={srcSet(member.image)}
+                  srcSet={member.image ? srcSet(member.image) : undefined}
                   sizes="(max-width: 480px) 45vw, (max-width: 1024px) 25vw, 320px"
                   loading="lazy"
                   decoding="async"
