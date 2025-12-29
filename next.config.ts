@@ -3,7 +3,6 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
 
   // Ensures ISR works — do NOT set output: 'export'
   trailingSlash: false,
@@ -20,12 +19,25 @@ const nextConfig: NextConfig = {
           { key: "Access-Control-Allow-Headers", value: "Content-Type, Authorization" },
         ],
       },
+      {
+        source: "/studio/:path*",
+        headers: [
+          { key: "Access-Control-Allow-Origin", value: "*" },
+          { key: "Access-Control-Allow-Methods", value: "GET,POST,OPTIONS" },
+          { key: "Access-Control-Allow-Headers", value: "Content-Type, Authorization" },
+        ],
+      },
     ];
   },
 
   // Optional: so you can fetch images directly from Sanity
   images: {
-    domains: ["cdn.sanity.io"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+      },
+    ],
   },
 
   // Ensure dynamic routes like /team/[slug] can revalidate without a rebuild

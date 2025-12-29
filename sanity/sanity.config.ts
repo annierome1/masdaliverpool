@@ -10,6 +10,13 @@ export default defineConfig({
 
   projectId: 'c7pvjyjf',
   dataset: 'production',
+  basePath: '/studio',
+
+  // API configuration for embedded studio
+  api: {
+    projectId: 'c7pvjyjf',
+    dataset: 'production',
+  },
 
   plugins: [structureTool({structure: deskStructure}), visionTool()],
 
