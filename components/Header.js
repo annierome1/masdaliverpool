@@ -41,6 +41,7 @@ export default function Header() {
             alt="Masda Liverpool Logo"
             width={180}
             height={90}
+            priority
             style={{ objectFit: 'contain' }}
           />
       </Link>

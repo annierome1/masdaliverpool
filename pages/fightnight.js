@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import Image from 'next/image'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { useRef, useState, useEffect, useCallback } from 'react'
@@ -204,10 +205,14 @@ const nextVideo = () => {
                   ref={el => eventCardRefs.current[idx] = el}
                   className={`${styles.eventCard} ${idx === activeEventIndex ? styles.active : ''}`}
                 >
-                  <img
+                  <Image
                     src={urlFor(event.image).width(600).url()}
                     alt={`${event.fighterA} vs. ${event.fighterB}`}
+                    width={400}
+                    height={385}
                     className={styles.eventImage}
+                    loading="lazy"
+                    sizes="(max-width: 768px) 100vw, 400px"
                   />
                   <div className={styles.eventInfo}>
                     <h4 className={styles.eventFightTitle}>{event.fightTitle}</h4>

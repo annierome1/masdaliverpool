@@ -1,6 +1,7 @@
 // pages/thegym.js
 import '@mux/mux-player'            
 import Head from 'next/head'
+import Image from 'next/image'
 import Link from 'next/link'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -133,10 +134,14 @@ export default function TheGymPage({ gymPlaybackIds }) {
         <li><strong>10</strong> bag stations</li>
         <li>Cardio & free weights area</li>
       </ul>
-      <img
+      <Image
         src="/thegym/gym_machines.jpg"
         alt="Training Mat Area"
+        width={450}
+        height={400}
         className={styles.sectionImage}
+        loading="lazy"
+        sizes="(max-width: 768px) 100vw, 450px"
       />
     </div>
   </section>
@@ -153,10 +158,14 @@ export default function TheGymPage({ gymPlaybackIds }) {
         <li>Brazilian Jiu Jitsu & Grappling</li>
         <li>Fitness & Conditioning</li>
       </ul>
-      <img
+      <Image
         src="/thegym/masda_mat.jpg"
         alt="Training Equipment"
+        width={450}
+        height={400}
         className={styles.sectionImage}
+        loading="lazy"
+        sizes="(max-width: 768px) 100vw, 450px"
       />
     </div>
   </section>
@@ -173,10 +182,14 @@ export default function TheGymPage({ gymPlaybackIds }) {
       target="_blank" 
       rel="noopener noreferrer"
     >
-      <img
+      <Image
         src="/thegym/clinic.png"
         alt="Clinic"
+        width={450}
+        height={400}
         className={styles.corncordiaSectionImage}
+        loading="lazy"
+        sizes="(max-width: 768px) 100vw, 450px"
       />
     </a>
   </div>

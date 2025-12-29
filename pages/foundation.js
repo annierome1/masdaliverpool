@@ -1,5 +1,6 @@
 // pages/foundation.js
 import Head from 'next/head'
+import Image from 'next/image'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import styles from '../styles/components/foundation.module.css'
@@ -32,19 +33,26 @@ export default function FoundationPage() {
         
 
       <div className={styles.logoWrapper}>
-        <img
+        <Image
           src="/masdaff_transparent.png"
           alt="Masda Fighter Foundation Logo"
+          width={200}
+          height={200}
           className={styles.foundationLogo}
+          priority
         />
       </div>
         <section className={styles.sectionAlt}>
           <h2 className={styles.sectionHeading}>How it Began</h2>
           <div className={styles.sectionAltContent}>
             <div className={styles.sectionAltImage}>
-              <img
+              <Image
                 src="/scott_alex.jpg" 
                 alt="How Masda Foundation Began"
+                width={320}
+                height={400}
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 320px"
               />
             </div>
             <div className={styles.textBlock}>
@@ -132,10 +140,14 @@ export default function FoundationPage() {
               </ul>
             </div>
             <div className={styles.imageWrapper}>
-              <img
+              <Image
                 src="/foundation.png"
                 alt="Fighter training"
+                width={420}
+                height={420}
                 className={styles.sectionImage}
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 420px"
               />
             </div>
           </div>
@@ -227,10 +239,14 @@ export default function FoundationPage() {
           <h2 className={styles.sectionHeading}>Community &amp; Partnerships</h2>
           <div className={styles.textAndImage}>
             <div className={styles.imageWrapperCP}>
-              <img
+              <Image
                 src="/foundation2.jpg"
                 alt="Community partnership"
+                width={420}
+                height={420}
                 className={styles.sectionImage}
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 420px"
               />
             </div>
             <div className={styles.textBlock}>

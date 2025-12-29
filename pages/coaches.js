@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Image from 'next/image';
 import styles from '../styles/components/coaches.module.css';
 import { FaInstagram, FaTiktok, FaFacebook, FaTwitter, FaLinkedin } from 'react-icons/fa';
 import Link from 'next/link';
@@ -134,13 +135,13 @@ export default function Coaches() {
             {coachesData.map(coach => (
               <article key={coach.id} className={styles.coachCard}>
                 <div className={styles.imageContainer}>
-                  <img
+                  <Image
                     src={coach.image}
                     alt={coach.name}
+                    fill
                     className={styles.coachImage}
-                    loading="lazy"
-                    decoding="async"
-                    fetchPriority={coach.id <= 3 ? "high" : "low"}
+                    priority={coach.id <= 3}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
                 

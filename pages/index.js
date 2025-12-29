@@ -1,6 +1,7 @@
 // pages/index.js
 import Head from 'next/head'
 import { useState, useRef, useEffect } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -122,9 +123,11 @@ export default function Home({ heroVideoUrl, heroPosterUrl }) {
                 height: '100%',
               }}
             >
-              <img
+              <Image
                 src="/masda_logo.png"
                 alt="MASDA Gym"
+                width={400}
+                height={400}
                 style={{
                   maxWidth: '60%',
                   maxHeight: '60%',
