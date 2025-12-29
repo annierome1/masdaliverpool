@@ -60,8 +60,7 @@ export default function Home({ heroVideoUrl, heroPosterUrl }) {
     const el = playerRef.current
     if (!el) return
 
-    const onError = (event) => {
-      console.error('Hero video error:', event?.target?.error ?? event)
+    const onError = () => {
       setVideoFailed(true)
     }
 

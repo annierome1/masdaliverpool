@@ -68,7 +68,6 @@ export default function NewsPage({ newsItems }) {
         const posts = await response.json()
         setInstagramPosts(posts)
       } catch (err) {
-        console.error('Instagram fetch error:', err)
         setError('Instagram feed is currently unavailable. Please check back later.')
         setInstagramPosts([])
       } finally {
@@ -83,7 +82,6 @@ export default function NewsPage({ newsItems }) {
   useEffect(() => {
     const checkMobile = () => {
       const mobile = window.innerWidth <= 768
-      console.log('Mobile detection:', mobile, 'Width:', window.innerWidth)
       setIsMobile(mobile)
     }
     checkMobile()
@@ -95,15 +93,10 @@ export default function NewsPage({ newsItems }) {
   useEffect(() => {
     if (!isMobile || loading) return
 
-    console.log('Setting up mobile video auto-play, videos:', Object.keys(videoRefs.current))
-
     // Test: Auto-play first video immediately
     const firstVideo = Object.values(videoRefs.current)[0]
     if (firstVideo) {
-      console.log('Testing auto-play on first video:', firstVideo.src)
-      firstVideo.play().catch((error) => {
-        console.log('First video play error:', error)
-      })
+      firstVideo.play().catch(() => {})
     }
 
     // Try Intersection Observer first
@@ -112,11 +105,8 @@ export default function NewsPage({ newsItems }) {
         (entries) => {
           entries.forEach((entry) => {
             const video = entry.target
-            console.log('Video intersection:', entry.isIntersecting, video.src)
             if (entry.isIntersecting) {
-              video.play().catch((error) => {
-                console.log('Video play error:', error)
-              })
+              video.play().catch(() => {})
             } else {
               video.pause()
             }
@@ -131,7 +121,6 @@ export default function NewsPage({ newsItems }) {
       const timeoutId = setTimeout(() => {
         Object.values(videoRefs.current).forEach((video) => {
           if (video) {
-            console.log('Observing video:', video.src)
             observer.observe(video)
           }
         })
@@ -149,7 +138,7 @@ export default function NewsPage({ newsItems }) {
             const rect = video.getBoundingClientRect()
             const isVisible = rect.top < window.innerHeight && rect.bottom > 0
             if (isVisible) {
-              video.play().catch(console.error)
+              video.play().catch(() => {})
             } else {
               video.pause()
             }

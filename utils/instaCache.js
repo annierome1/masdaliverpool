@@ -40,7 +40,6 @@ export function useInstagramFeed() {
         )
         if (isMounted) setFeed(fresh)
       } catch (err) {
-        console.error(err)
         if (isMounted) setError(err)
       }
     }

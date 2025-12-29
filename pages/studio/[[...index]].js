@@ -36,20 +36,6 @@ export default function StudioPage() {
         }
       }
       
-      // Also check console errors
-      const originalError = console.error
-      console.error = (...args) => {
-        const errorMsg = args.join(' ')
-        if (
-          errorMsg.includes('CORS') || 
-          errorMsg.includes('Access-Control-Allow-Credentials') ||
-          errorMsg.includes('credentials mode')
-        ) {
-          setCorsError(true)
-        }
-        originalError.apply(console, args)
-      }
-      
       window.addEventListener('error', handleError)
       window.addEventListener('unhandledrejection', handleError)
       
@@ -92,10 +78,10 @@ export default function StudioPage() {
           marginBottom: '1.5rem'
         }}>
           <p style={{fontWeight: 'bold', marginBottom: '0.5rem', color: '#856404'}}>
-            The error shows: "Access-Control-Allow-Credentials header must be 'true'"
+            The error shows: &quot;Access-Control-Allow-Credentials header must be &apos;true&apos;&quot;
           </p>
           <p style={{color: '#856404', lineHeight: '1.6'}}>
-            This means your origin is added, but <strong>"Allow credentials"</strong> is not enabled.
+            This means your origin is added, but <strong>&quot;Allow credentials&quot;</strong> is not enabled.
           </p>
         </div>
         <div style={{
@@ -142,9 +128,9 @@ export default function StudioPage() {
             </li>
             <li>
               <strong style={{color: '#e74c3c'}}>CRITICAL:</strong> Make sure the checkbox/toggle for 
-              <strong style={{color: '#e74c3c'}}> "Allow credentials"</strong> is <strong style={{color: '#e74c3c'}}>ENABLED/CHECKED</strong>
+              <strong style={{color: '#e74c3c'}}> &quot;Allow credentials&quot;</strong> is <strong style={{color: '#e74c3c'}}>ENABLED/CHECKED</strong>
             </li>
-            <li>Click <strong>"Save"</strong> or <strong>"Update"</strong></li>
+            <li>Click <strong>&quot;Save&quot;</strong> or <strong>&quot;Update&quot;</strong></li>
             <li>Wait 10-30 seconds for changes to propagate</li>
             <li>Come back here and click the refresh button below</li>
           </ol>
@@ -157,7 +143,7 @@ export default function StudioPage() {
           fontSize: '0.9rem',
           color: '#666'
         }}>
-          <strong>💡 Tip:</strong> If you already added the origin, find it in the list and make sure "Allow credentials" is checked. 
+          <strong>💡 Tip:</strong> If you already added the origin, find it in the list and make sure &quot;Allow credentials&quot; is checked. 
           You may need to edit the existing entry rather than adding a new one.
         </div>
         <button
@@ -177,7 +163,7 @@ export default function StudioPage() {
             boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
           }}
         >
-          ✅ I've Enabled "Allow Credentials" - Refresh Now
+          ✅ I&apos;ve Enabled &quot;Allow Credentials&quot; - Refresh Now
         </button>
       </div>
     )

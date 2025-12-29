@@ -9,7 +9,6 @@ export default async function handler(req, res) {
     await res.revalidate('/team');
     return res.json({ revalidated: true, path: '/team' });
   } catch (err) {
-    console.error(err);
     return res.status(500).send('Error revalidating');
   }
 }

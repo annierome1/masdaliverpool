@@ -18,7 +18,6 @@ export default function FormSubmit({
     setStatus('sending');
 
     const data = Object.fromEntries(new FormData(e.target).entries());
-    console.log('📬 Sending payload:', { to, subject, formType, data });
 
     try {
       const res = await fetch('/api/email', {
@@ -29,16 +28,13 @@ export default function FormSubmit({
       const text = await res.text();
 
       if (!res.ok) {
-        console.error('❌ API error:', text);
         setStatus('error');
         return;            // **don't throw**—just bail out
       }
 
-      console.log('✅ API success:', text);
       setStatus('success');
       e.target.reset();
     } catch (err) {
-      console.error('🚨 Fetch failed:', err);
       setStatus('error');
     }
   };

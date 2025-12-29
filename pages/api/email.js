@@ -36,10 +36,8 @@ export default async function handler(req, res) {
       `,
     });
 
-    console.log('Message sent: %s', info.messageId);
     return res.status(200).json({ success: true, messageId: info.messageId });
   } catch (error) {
-    console.error('SMTP error:', error);
     return res.status(500).json({ success: false, error: error.message });
   }
 }

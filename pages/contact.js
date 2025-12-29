@@ -53,7 +53,6 @@ export default function ContactPage() {
           alert('There was an error sending your booking request. Please try again later.');
         }
       } catch (error) {
-        console.error('Error submitting booking form:', error);
         alert('Unexpected error. Please try again later.');
       }
     } else {
@@ -82,7 +81,6 @@ export default function ContactPage() {
           alert('There was an error sending your message. Please try again later.');
         }
       } catch (error) {
-        console.error('Error submitting contact form:', error);
         alert('Unexpected error. Please try again later.');
       }
     }

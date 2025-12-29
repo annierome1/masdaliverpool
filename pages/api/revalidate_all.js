@@ -31,7 +31,6 @@ export default async function handler(req, res) {
       pages: ['/team', ...slugs.map(slug => `/team/${slug}`)]
     });
   } catch (err) {
-    console.error(err);
     return res.status(500).send('Error revalidating');
   }
 }
