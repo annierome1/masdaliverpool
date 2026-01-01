@@ -65,6 +65,7 @@ export default function Header() {
         <ul className={styles.navListOverlay} onClick={e => e.stopPropagation()}>
           {[
             ['Classes', '/classes'],
+            ['Memberships', '/memberships'],
             ['Events', '/fightnight'],
             ['The Gym', '/the_gym'],
             ['Partners', '/sponsors'],
@@ -92,6 +93,9 @@ export default function Header() {
         <ul className={styles.navList}>
           <li>
             <Link href="/classes" className={`${styles.link} ${currentPath === '/classes' ? styles.active : ''}`}>Classes</Link>
+          </li>
+          <li>
+            <Link href="/memberships" className={`${styles.link} ${currentPath === '/memberships' ? styles.active : ''}`}>Memberships</Link>
           </li>
           <li>
             <Link href="/fightnight" className={`${styles.link} ${currentPath === '/fightnight' ? styles.active : ''}`}>Events</Link>

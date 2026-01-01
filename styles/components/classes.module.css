@@ -18,78 +18,6 @@
 
   }
   
-  /* MEMBERSHIP PLANS */
-  .membershipPlans {
-    display: grid;
-    gap: 2rem;
-    margin-bottom: 3rem;
-    
-  }
-  
-  @media (min-width: 768px) {
-    .membershipPlans {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-  
-  .planCard {
-    background-color: #222;
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    text-align: center;
-    border: 1px solid #333;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  /* Hover state: enlarge and add subtle shadow */
-  .planCard:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  }
-  
-  .planTitle {
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
-    font-weight: 600;
-  }
-  
-  .subHeading p {
-    margin: 0.25rem 0;
-    color: #ccc;
-  }
-  
-  .price {
-    font-size: 2rem;
-    margin: 1rem 0;
-    color: #e53e3e; 
-  }
-  
-  .planFeatures {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 1rem;
-  }
-  
-  .planFeatures li {
-    margin-bottom: 0.25rem;
-    color: #ccc;
-  }
-  
-  .planButton {
-    display: inline-block;
-    background-color: #e53e3e;
-    color: #fff;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.25rem;
-    text-decoration: none;
-    font-weight: 500;
-    transition: background-color 0.2s;
-  }
-  
-  .planButton:hover {
-    background-color: #c53030;
-  }
-  
   /* SCHEDULE */
   .scheduleToggle {
     display: block;
@@ -173,6 +101,8 @@
 .contactWrapper {
   display: flex;
   justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 @media (max-width: 767px) {
@@ -183,31 +113,6 @@
   .heading {
     font-size: 1.5rem;
     margin-bottom: 1rem;
-  }
-
-  .membershipPlans {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
-  .planCard {
-    padding: 1rem;
-  }
-  .planTitle {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-  }
-  .price {
-    font-size: 1.5rem;
-    margin: 0.75rem 0;
-  }
-  .planFeatures li {
-    margin-bottom: 0.25rem;
-    font-size: 0.9rem;
-  }
-  .planButton {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
   }
 
   .scheduleToggle {

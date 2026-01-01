@@ -164,6 +164,9 @@ export default function Home({ heroVideoUrl, heroPosterUrl }) {
             <Link href="/team" className={buttonStyles.rbutton}>Meet the team</Link>
             <Link href="/coaches" className={buttonStyles.rbutton}>Meet the coaches</Link>
           </div>
+          <div className={styles.deskButton}>
+            <Link href="/memberships" className={buttonStyles.rbuttonRed}>Join Today</Link>
+          </div>
         </div>
       </main>
 
