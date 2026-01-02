@@ -63,8 +63,12 @@ export default function Footer() {
         </div>
       </div>
 
+      <p className={styles.developerCredit}>
+        Developed by <Link href="https://annierome.dev" target="_blank" rel="noopener noreferrer">Annie Rome</Link>
+      </p>
+
       <div className={styles.footerBottom}>
-        © 2025 Masda Liverpool. All rights reserved.
+        <p>© 2026 Masda Liverpool. All rights reserved.</p>
       </div>
     </footer>
   )
