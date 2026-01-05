@@ -1,5 +1,5 @@
 function generateSiteMap() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://masdaliverpool.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.masdaliverpool.com';
   
   const staticPages = [
     '',

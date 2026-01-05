@@ -54,8 +54,20 @@ export default function App({ Component, pageProps }) {
     }
   }, [router.events])
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://masdaliverpool.com'
-  const canonicalUrl = `${baseUrl}${router.asPath.split('?')[0]}`
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.masdaliverpool.com'
+  
+  // Normalize pathname for canonical URL
+  // Remove query parameters and normalize /index to /
+  let pathname = router.asPath.split('?')[0]
+  if (pathname === '/index' || pathname === '/index/') {
+    pathname = '/'
+  }
+  // Remove trailing slash except for root
+  if (pathname !== '/' && pathname.endsWith('/')) {
+    pathname = pathname.slice(0, -1)
+  }
+  
+  const canonicalUrl = pathname === '/' ? baseUrl : `${baseUrl}${pathname}`
 
   return (
     <>

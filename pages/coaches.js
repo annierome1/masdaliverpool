@@ -110,13 +110,16 @@ const coachesData = [
 ];
 
 export default function Coaches() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://masdaliverpool.com'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.masdaliverpool.com'
 
   return (
     <>
       <Head>
         <title>Meet Our Coaches | Masda Liverpool</title>
         <meta name="description" content="Meet the expert coaches at Masda Gym Liverpool - Muay Thai, MMA, Boxing, and Strength & Conditioning specialists" />
+        
+        {/* Canonical URL - explicit for coaches page */}
+        <link rel="canonical" href={`${baseUrl}/coaches`} />
         
         {/* Open Graph */}
         <meta property="og:title" content="Meet Our Coaches | MASDA Gym Liverpool" />

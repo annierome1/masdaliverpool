@@ -7,6 +7,17 @@ const nextConfig: NextConfig = {
   // Ensures ISR works — do NOT set output: 'export'
   trailingSlash: false,
 
+  // Redirects to fix SEO issues
+  async redirects() {
+    return [
+      {
+        source: '/index',
+        destination: '/',
+        permanent: true,
+      },
+    ];
+  },
+
   // If you ever need to allow Sanity webhook calls from their servers
   // without CORS headaches for API routes
   async headers() {

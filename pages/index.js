@@ -83,7 +83,7 @@ export default function Home({ heroVideoUrl, heroPosterUrl }) {
     return () => window.removeEventListener('keydown', onKey)
   }, [])
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://masdaliverpool.com'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.masdaliverpool.com'
 
   return (
     <>
@@ -93,6 +93,9 @@ export default function Home({ heroVideoUrl, heroPosterUrl }) {
           name="description"
           content="Train hard, fight smart, and elevate at Masda Liverpool."
         />
+        
+        {/* Canonical URL - explicit for homepage */}
+        <link rel="canonical" href={baseUrl} />
         
         {/* Open Graph */}
         <meta property="og:title" content="MASDA Gym Liverpool - World-Class Combat Sports Academy" />

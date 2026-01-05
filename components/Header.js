@@ -8,6 +8,7 @@ export default function Header() {
   const router = useRouter();
   const currentPath = router.pathname;
   const [menuOpen, setMenuOpen] = useState(false);
+  const [gymDropdownOpen, setGymDropdownOpen] = useState(false);
 
   // Animation state for logo
   const logoRef = useRef(null);
@@ -91,17 +92,41 @@ export default function Header() {
       {/* Navigation */}
       <nav className={styles.nav}>
         <ul className={styles.navList}>
-          <li>
-            <Link href="/classes" className={`${styles.link} ${currentPath === '/classes' ? styles.active : ''}`}>Classes</Link>
-          </li>
-          <li>
-            <Link href="/memberships" className={`${styles.link} ${currentPath === '/memberships' ? styles.active : ''}`}>Memberships</Link>
+          <li 
+            className={styles.dropdownContainer}
+            onMouseEnter={() => setGymDropdownOpen(true)}
+            onMouseLeave={() => setGymDropdownOpen(false)}
+          >
+            <Link 
+              href="/the_gym" 
+              className={`${styles.link} ${styles.hasDropdown} ${currentPath === '/the_gym' ? styles.active : ''}`}
+            >
+              The Gym
+              <span className={styles.dropdownIndicator}>▼</span>
+            </Link>
+            {gymDropdownOpen && (
+              <ul className={styles.dropdown}>
+                <li>
+                  <Link 
+                    href="/classes" 
+                    className={`${styles.dropdownLink} ${currentPath === '/classes' ? styles.active : ''}`}
+                  >
+                    Classes
+                  </Link>
+                </li>
+                <li>
+                  <Link 
+                    href="/memberships" 
+                    className={`${styles.dropdownLink} ${currentPath === '/memberships' ? styles.active : ''}`}
+                  >
+                    Memberships
+                  </Link>
+                </li>
+              </ul>
+            )}
           </li>
           <li>
             <Link href="/fightnight" className={`${styles.link} ${currentPath === '/fightnight' ? styles.active : ''}`}>Events</Link>
-          </li>
-          <li>
-            <Link href="/the_gym" className={`${styles.link} ${currentPath === '/the_gym' ? styles.active : ''}`}>The Gym</Link>
           </li>
           <li>
             <Link href="/sponsors" className={`${styles.link} ${currentPath === '/sponsors' ? styles.active : ''}`}>Partners</Link>
