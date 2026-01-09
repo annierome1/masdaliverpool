@@ -1,7 +1,7 @@
 .footer {
   background-color: #000;
   color: #fff;
-  padding: 3rem 1.5rem 2rem;
+  padding: 2rem 1rem 1.5rem;
   border-top: 1px solid #2d3748;
   font-family: var(--font-cinzel);
 }
@@ -9,16 +9,21 @@
 .footerContent {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
   justify-items: center; 
 }
 
 @media (min-width: 768px) {
+  .footer {
+    padding: 3rem 1.5rem 2rem;
+  }
+
   .footerContent {
     grid-template-columns: repeat(3, 1fr);
     align-items: start;
+    gap: 2rem;
   }
 }
 
@@ -31,9 +36,16 @@
 
 .column h3 {
   font-weight: 600;
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
   text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  .column h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
 }
 
 .linkList {
@@ -48,8 +60,14 @@
 .linkList a {
   color: #a0aec0;
   text-decoration: none;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   transition: color 0.2s ease;
+}
+
+@media (min-width: 768px) {
+  .linkList a {
+    font-size: 0.95rem;
+  }
 }
 
 
@@ -63,19 +81,45 @@
   gap: 0.5rem;
 }
 
+.mainLogo {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .mainLogo {
+    max-width: 200px;
+  }
+}
+
 .tagline {
-  margin-top: 2rem;
-  font-size: 0.95rem;
+  margin-top: 1rem;
+  font-size: 0.9rem;
   color: #ccc;
+  margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .tagline {
+    margin-top: 2rem;
+    font-size: 0.95rem;
+  }
 }
 
 /* Social Icons */
 .socialIcons {
     display: flex;
     gap: 1rem;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: #a0aec0;
   }
+
+@media (min-width: 768px) {
+  .socialIcons {
+    font-size: 1.3rem;
+  }
+}
   
   .socialIcons a {
     color: #a0aec0;
@@ -106,9 +150,25 @@
 .developerCredit {
   text-align: center;
   color: #718096;
-  font-size: 0.75rem;
-  margin-top: 2.5rem;
-  margin-bottom: 1rem;
+  font-size: 0.7rem;
+  margin-top: 1rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+@media (min-width: 768px) {
+  .developerCredit {
+    font-size: 0.75rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+}
+
+.developerCredit p {
+  margin: 0;
 }
 
 .developerCredit a {
@@ -121,14 +181,47 @@
   color: #fff;
 }
 
+.propersonaLogo {
+  display: inline-block;
+  margin-top: 0.25rem;
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+  width: 80px;
+  height: 80px;
+}
+
+@media (min-width: 768px) {
+  .propersonaLogo {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+.propersonaLogo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.propersonaLogo:hover {
+  opacity: 1;
+}
+
 /* Bottom Bar */
 .footerBottom {
   text-align: center;
   color: #718096;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   border-top: 1px solid #2d3748;
   margin-top: 0;
-  padding-top: 1.5rem;
+  padding-top: 1rem;
+}
+
+@media (min-width: 768px) {
+  .footerBottom {
+    font-size: 0.75rem;
+    padding-top: 1.5rem;
+  }
 }
 
 .footerBottom p {

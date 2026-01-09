@@ -44,7 +44,7 @@ export default function Footer() {
 
         {/* Logo & Tagline */}
         <div className={`${styles.column} ${styles.logo}`} ref={logoRef}>
-            <Image src="/masda_logo.png" alt="Logo" width={200} height={90} />
+            <Image src="/masda_logo.png" alt="Logo" width={180} height={81} className={styles.mainLogo} />
           
           <p className={styles.tagline}>
             Train Hard. Fight Smart. Elevate.
@@ -63,9 +63,14 @@ export default function Footer() {
         </div>
       </div>
 
-      <p className={styles.developerCredit}>
-        Developed by <Link href="https://annierome.dev" target="_blank" rel="noopener noreferrer">Annie Rome</Link>
-      </p>
+      <div className={styles.developerCredit}>
+        <p>
+          Developed by <Link href="https://propersonastudios.com" target="_blank" rel="noopener noreferrer">propersona Studios</Link>
+        </p>
+        <Link href="https://propersonastudios.com" target="_blank" rel="noopener noreferrer" className={styles.propersonaLogo}>
+          <Image src="/4.png" alt="propersona Studios Logo" width={80} height={80} />
+        </Link>
+      </div>
 
       <div className={styles.footerBottom}>
         <p>© 2026 Masda Liverpool. All rights reserved.</p>
