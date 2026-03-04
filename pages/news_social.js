@@ -54,19 +54,19 @@ export default function NewsPage({ newsItems }) {
   const videoRefs = useRef({})
   const imageRefs = useRef({})
 
-  // Simple Instagram API call
+  // Instagram API call
   useEffect(() => {
     async function fetchInstagramPosts() {
       try {
         setLoading(true)
         const response = await fetch('/api/instagram')
-        
+
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`)
         }
-        
-        const posts = await response.json()
-        setInstagramPosts(posts)
+
+        const data = await response.json()
+        setInstagramPosts(data.media || [])
       } catch (err) {
         setError('Instagram feed is currently unavailable. Please check back later.')
         setInstagramPosts([])
@@ -309,14 +309,14 @@ export default function NewsPage({ newsItems }) {
                             aspectRatio: mediaDimensions[post.id]?.aspectRatio || '1/1'
                           }}
                         >
-                          {post.media_type === 'VIDEO' ? (
+                          {post.mediaType === 'VIDEO' ? (
                             <div className={styles.videoContainer}>
                               <video
                                 ref={(el) => {
                                   if (el) videoRefs.current[post.id] = el
                                 }}
                                 className={styles.instaVideo}
-                                poster={post.thumbnail_url}
+                                poster={post.thumbnailUrl}
                                 preload="metadata"
                                 muted
                                 loop
@@ -329,7 +329,7 @@ export default function NewsPage({ newsItems }) {
                                   if (!isMobile) e.target.pause()
                                 }}
                               >
-                                <source src={post.media_url} type="video/mp4" />
+                                <source src={post.mediaUrl} type="video/mp4" />
                               </video>
                               <div className={styles.playIcon}>
                                 <FaPlay />
@@ -340,7 +340,7 @@ export default function NewsPage({ newsItems }) {
                               ref={(el) => {
                                 if (el) imageRefs.current[post.id] = el
                               }}
-                              src={post.media_url}
+                              src={post.mediaUrl}
                               alt={post.caption?.slice(0, 100) || 'Instagram post'}
                               className={styles.instaImage}
                               onLoad={handleMediaLoad(post.id, 'IMAGE')}

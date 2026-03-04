@@ -1,56 +1,21 @@
 export default async function handler(req, res) {
-  const token = process.env.INSTA_LONG_LIVED_TOKEN;
-  
-  // Check if token exists
-  if (!token || token === 'your_instagram_long_lived_token_here') {
-    return res.status(500).json({ 
-      error: 'Instagram API not configured',
-      message: 'Please set up your Instagram Long-Lived Access Token in .env.local'
-    });
+  if (req.method !== 'GET') return res.status(405).end()
+
+  if (!process.env.INSTAGRAM_FEED_API_URL || !process.env.INSTAGRAM_FEED_API_KEY) {
+    return res.status(500).json({ ok: false, error: 'Instagram feed not configured' })
   }
 
-  const fields = [
-    'id',
-    'caption',
-    'media_url',
-    'permalink',
-    'thumbnail_url',
-    'media_type',
-    'timestamp'
-  ].join(',');
-  
-  const url = `https://graph.instagram.com/me/media?fields=${fields}&access_token=${token}&limit=25`;
-
   try {
-    const igRes = await fetch(url);
-    
-    if (!igRes.ok) {
-      const errorData = await igRes.json().catch(() => ({}));
-      
-      return res.status(igRes.status).json({ 
-        error: 'Instagram API error',
-        status: igRes.status,
-        details: errorData
-      });
-    }
-    
-    const json = await igRes.json();
-    
-    if (!json.data || !Array.isArray(json.data)) {
-      return res.status(500).json({ 
-        error: 'Invalid Instagram API response',
-        data: json
-      });
-    }
+    const upstream = await fetch(process.env.INSTAGRAM_FEED_API_URL, {
+      headers: {
+        Authorization: `Bearer ${process.env.INSTAGRAM_FEED_API_KEY}`,
+      },
+    })
 
-    // Sort by most recent
-    const posts = json.data.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-    res.status(200).json(posts.slice(0, 15));
-    
-  } catch (error) {
-    return res.status(500).json({ 
-      error: 'Failed to fetch Instagram feed',
-      message: error.message
-    });
+    const data = await upstream.json()
+    res.setHeader('Cache-Control', 'public, max-age=1800, s-maxage=1800')
+    return res.status(upstream.status).json(data)
+  } catch (err) {
+    return res.status(500).json({ ok: false, error: 'Failed to fetch Instagram feed' })
   }
 }

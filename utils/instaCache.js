@@ -1,17 +1,17 @@
-// utils/useInstagramCache.js
+// utils/instaCache.js
 import { useState, useEffect } from 'react'
 
-const CACHE_TTL = 1000 * 60 * 5   // 5 minutes
+const CACHE_TTL = 1000 * 60 * 30  // 30 minutes — matches the Socials SaaS cache TTL
 const CACHE_KEY = 'instagramFeedCache'
 
 async function fetchInstagramFeed() {
-  const res = await fetch(`/api/instagram`)
+  const res = await fetch('/api/instagram')
   if (!res.ok) {
     const errorData = await res.json().catch(() => ({}))
-    throw new Error(errorData.message || `Instagram fetch failed (${res.status})`)
+    throw new Error(errorData.error || `Instagram fetch failed (${res.status})`)
   }
-  // assume the API returns an **array** of posts, not {data:…}
-  return res.json()
+  const data = await res.json()
+  return data.media || []
 }
 
 export function useInstagramFeed() {
@@ -33,7 +33,6 @@ export function useInstagramFeed() {
         }
 
         const fresh = await fetchInstagramFeed()
-        // if your API returned a wrapper, you’d do fresh.data; here it’s the array itself
         localStorage.setItem(
           CACHE_KEY,
           JSON.stringify({ timestamp: Date.now(), data: fresh })
