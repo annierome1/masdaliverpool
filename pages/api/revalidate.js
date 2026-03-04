@@ -1,11 +1,15 @@
 // pages/api/revalidate.js
+// Trigger ISR revalidation for /team.
+// Call with: Authorization: Bearer <REVALIDATE_SECRET>
 export default async function handler(req, res) {
-  if (req.query.secret !== process.env.REVALIDATE_SECRET) {
+  const authHeader = req.headers['authorization'] || '';
+  const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : '';
+
+  if (!token || token !== process.env.REVALIDATE_SECRET) {
     return res.status(401).json({ message: 'Invalid secret' });
   }
 
   try {
-    // Only revalidate the /team page
     await res.revalidate('/team');
     return res.json({ revalidated: true, path: '/team' });
   } catch (err) {

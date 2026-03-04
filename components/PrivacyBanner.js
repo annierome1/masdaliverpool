@@ -5,14 +5,13 @@ export default function PrivacyBanner() {
   const [showBanner, setShowBanner] = useState(false);
 
   useEffect(() => {
-    // Only run on client
     try {
       const consent = localStorage.getItem("privacyConsent");
       if (!consent) setShowBanner(true);
     } catch {
+      // localStorage unavailable
     }
   }, []);
-
 
   useEffect(() => {
     if (showBanner) {
@@ -27,8 +26,25 @@ export default function PrivacyBanner() {
 
   const handleAccept = () => {
     try {
-      localStorage.setItem("privacyConsent", "true");
+      localStorage.setItem("privacyConsent", "accepted");
     } catch {}
+
+    // Grant analytics consent and fire the initial pageview
+    if (typeof window !== "undefined" && window.gtag) {
+      window.gtag("consent", "update", { analytics_storage: "granted" });
+      window.gtag("config", process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID, {
+        page_path: window.location.pathname,
+      });
+    }
+
+    setShowBanner(false);
+  };
+
+  const handleReject = () => {
+    try {
+      localStorage.setItem("privacyConsent", "rejected");
+    } catch {}
+    // Consent stays denied — no gtag update needed
     setShowBanner(false);
   };
 
@@ -42,8 +58,7 @@ export default function PrivacyBanner() {
     >
       <div className={styles.inner}>
         <p className={styles.content}>
-          We use Google Analytics to improve your experience. By continuing to
-          use this site, you agree to our{" "}
+          We use Google Analytics to improve your experience. Read our{" "}
           <a href="/privacy" target="_blank" rel="noopener noreferrer">
             Privacy Policy
           </a>
@@ -51,6 +66,9 @@ export default function PrivacyBanner() {
         </p>
 
         <div className={styles.actions}>
+          <button className={styles.buttonSecondary} onClick={handleReject}>
+            Reject
+          </button>
           <button className={styles.button} onClick={handleAccept}>
             Accept
           </button>

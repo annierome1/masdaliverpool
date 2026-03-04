@@ -1,7 +1,8 @@
 // pages/_document.js
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 
-const GA_ID = process.env.GA_MEASUREMENT_ID
+// NEXT_PUBLIC_ prefix is required for this to be inlined into the client bundle
+const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
 
 class MyDocument extends Document {
   render() {
@@ -15,8 +16,8 @@ class MyDocument extends Document {
           <meta name="geo.position" content="53.4084;-2.9916" />
           <meta name="ICBM" content="53.4084, -2.9916" />
           <meta name="timezone" content="Europe/London" />
-          
-          {/* gtag.js */}
+
+          {/* Load gtag.js — tracking is blocked until user grants consent below */}
           <script
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
@@ -26,10 +27,16 @@ class MyDocument extends Document {
               __html: `
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${GA_ID}', {
-                  page_path: window.location.pathname,
+
+                // Default to denied — no data is collected until the user accepts.
+                gtag('consent', 'default', {
+                  analytics_storage: 'denied',
+                  ad_storage: 'denied',
+                  wait_for_update: 500
                 });
+
+                gtag('js', new Date());
+                gtag('config', '${GA_ID}', { send_page_view: false });
               `,
             }}
           />

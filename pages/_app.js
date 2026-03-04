@@ -28,15 +28,17 @@ const cormorantGaramond = Cormorant_Garamond({
 });
 
 
-// Your GA4 Measurement ID
 const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
 
-// helper to send pageviews
+// Only fire pageviews if the user has explicitly accepted analytics
 function pageview(url) {
-  if (window.gtag) {
-    window.gtag('config', GA_ID, {
-      page_path: url,
-    })
+  try {
+    const consent = localStorage.getItem('privacyConsent')
+    if (consent === 'accepted' && window.gtag) {
+      window.gtag('config', GA_ID, { page_path: url })
+    }
+  } catch {
+    // localStorage unavailable (e.g. private browsing restrictions)
   }
 }
 

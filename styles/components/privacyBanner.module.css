@@ -45,7 +45,7 @@
 .button {
   appearance: none;
   background: #ed1c28;
-  border: 0;
+  border: 2px solid #ed1c28;
   padding: 10px 14px;
   color: #000;
   font-weight: 700;
@@ -57,7 +57,28 @@
   box-sizing: border-box;
 }
 
+.buttonSecondary {
+  appearance: none;
+  background: transparent;
+  border: 2px solid #888;
+  padding: 10px 14px;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 6px;
+  cursor: pointer;
+
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.buttonSecondary:hover {
+  border-color: #ccc;
+  color: #ccc;
+}
+
 .button:focus-visible,
+.buttonSecondary:focus-visible,
 .content a:focus-visible {
   outline: 2px solid #fff;
   outline-offset: 2px;

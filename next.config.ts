@@ -1,13 +1,29 @@
 // next.config.ts
 import type { NextConfig } from "next";
 
+const PRODUCTION_ORIGIN = 'https://www.masdaliverpool.com';
+
+// Content Security Policy — locks down script/style/media sources to known origins.
+// 'unsafe-inline' is required for Next.js inline scripts and CSS Modules; a nonce-based
+// approach would remove it but requires custom middleware.
+const CSP = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "img-src 'self' data: blob: https://cdn.sanity.io https://www.google-analytics.com https://www.googletagmanager.com https://*.amazonaws.com https://*.cdninstagram.com https://*.fbcdn.net",
+  "font-src 'self' data: https://fonts.gstatic.com",
+  "connect-src 'self' https://api.sanity.io https://cdn.sanity.io https://*.sanity.io https://www.google-analytics.com https://www.googletagmanager.com https://graph.instagram.com https://*.mux.com",
+  "media-src 'self' blob: https://*.amazonaws.com https://stream.mux.com https://*.mux.com",
+  "frame-src 'self' https://*.sanity.io https://*.sanity.studio",
+  "object-src 'none'",
+  "base-uri 'self'",
+].join('; ');
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
 
-  // Ensures ISR works — do NOT set output: 'export'
   trailingSlash: false,
 
-  // Redirects to fix SEO issues
   async redirects() {
     return [
       {
@@ -18,35 +34,56 @@ const nextConfig: NextConfig = {
     ];
   },
 
-  // If you ever need to allow Sanity webhook calls from their servers
-  // without CORS headaches for API routes
   async headers() {
     return [
+      // --- Security headers on every response ---
       {
-        source: "/api/:path*",
+        source: '/:path*',
         headers: [
-          { key: "Access-Control-Allow-Origin", value: "*" },
-          { key: "Access-Control-Allow-Methods", value: "GET,POST,OPTIONS" },
-          { key: "Access-Control-Allow-Headers", value: "Content-Type, Authorization" },
+          // Prevent clickjacking
+          { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+          // Prevent MIME-type sniffing
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          // Control referrer leakage
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          // Enforce HTTPS for 2 years, include subdomains
+          { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
+          // Restrict browser feature APIs
+          { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(), payment=()' },
+          // Content Security Policy
+          { key: 'Content-Security-Policy', value: CSP },
         ],
       },
+
+      // --- CORS for API routes: restrict to own origin only ---
+      // Only cross-origin callers (e.g. Sanity webhooks) need CORS headers.
+      // Same-origin requests from the site itself do not require them.
       {
-        source: "/studio/:path*",
+        source: '/api/:path*',
         headers: [
-          { key: "Access-Control-Allow-Origin", value: "*" },
-          { key: "Access-Control-Allow-Methods", value: "GET,POST,OPTIONS" },
-          { key: "Access-Control-Allow-Headers", value: "Content-Type, Authorization" },
+          { key: 'Access-Control-Allow-Origin', value: PRODUCTION_ORIGIN },
+          { key: 'Access-Control-Allow-Methods', value: 'GET,POST,OPTIONS' },
+          { key: 'Access-Control-Allow-Headers', value: 'Content-Type, Authorization' },
+        ],
+      },
+
+      // --- Sanity Studio: restrict CORS to own origin ---
+      {
+        source: '/studio/:path*',
+        headers: [
+          { key: 'Access-Control-Allow-Origin', value: PRODUCTION_ORIGIN },
+          { key: 'Access-Control-Allow-Methods', value: 'GET,POST,OPTIONS' },
+          { key: 'Access-Control-Allow-Headers', value: 'Content-Type, Authorization' },
         ],
       },
     ];
   },
 
-  // Image optimization configuration
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "cdn.sanity.io",
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
       },
     ],
     formats: ['image/avif', 'image/webp'],
@@ -55,10 +92,9 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 60,
   },
 
-  // Ensure dynamic routes like /team/[slug] can revalidate without a rebuild
   experimental: {
     workerThreads: false,
-    cpus: 1, // helps avoid ISR race conditions in some Vercel builds
+    cpus: 1,
   },
 };
 
