@@ -30,9 +30,9 @@ export default function ContactPage() {
         name: form.bookingName.value,
         email: form.bookingEmail.value,
         coach: form.coach.value,
-        sessionType: form.sessionType.value,
+        sessionType: form.sessionType?.value ?? '',
         preferredDate: form.preferredDate.value,
-        preferredTime: form.preferredTime.value,
+        preferredTime: form.preferredTime?.value ?? '',
         message: form.bookingMessage.value,
         type: 'booking'
       };
