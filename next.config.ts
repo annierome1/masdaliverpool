@@ -14,7 +14,8 @@ const CSP = [
   "font-src 'self' data: https://fonts.gstatic.com",
   "connect-src 'self' https://api.sanity.io https://cdn.sanity.io https://*.sanity.io https://www.google-analytics.com https://www.googletagmanager.com https://graph.instagram.com https://*.mux.com",
   "media-src 'self' blob: https://*.amazonaws.com https://stream.mux.com https://*.mux.com",
-  "frame-src 'self' https://*.sanity.io https://*.sanity.studio",
+  // Google Maps contact-page embed (maps.google.com / www.google.com/maps/embed)
+  "frame-src 'self' https://*.sanity.io https://*.sanity.studio https://www.google.com https://maps.google.com https://maps.googleapis.com",
   "object-src 'none'",
   "base-uri 'self'",
 ].join('; ');

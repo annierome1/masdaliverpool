@@ -40,6 +40,14 @@
   margin-bottom: 3rem;
 }
 
+/* Single column when booking form is hidden */
+.contactGridSingle {
+  grid-template-columns: 1fr;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* Card Styling - Unified Design */
 .card {
   background: linear-gradient(145deg, #1a1a1a 0%, #222 100%);

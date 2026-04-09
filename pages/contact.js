@@ -15,6 +15,8 @@ import {
 } from 'react-icons/fa'
 import styles from '../styles/components/contact.module.css'
 
+const SHOW_BOOK_TRAINING = false
+
 export default function ContactPage() {
   // Handler to open mail app with user input
   async function handleSubmit(e) {
@@ -119,7 +121,9 @@ export default function ContactPage() {
           Questions? Get in touch with us!
         </p>
 
-        <div className={styles.contactGrid}>
+        <div
+          className={`${styles.contactGrid}${SHOW_BOOK_TRAINING ? '' : ` ${styles.contactGridSingle}`}`}
+        >
           {/* ——— Left Card: Contact Form ——— */}
           <div className={`${styles.card} ${styles.formCard}`}>
             <h2>Send Us a Message</h2>
@@ -171,72 +175,72 @@ export default function ContactPage() {
             </form>
           </div>
 
-          {/* ——— Right Card: Booking Form ——— */}
-          <div className={`${styles.card} ${styles.bookingCard}`}>
-            <h2>Book a Training Session</h2>
-            <form className={styles.contactForm} onSubmit={handleSubmit}>
-              <div className={styles.twoColRow}>
-                <input
-                  type="text"
-                  name="bookingName"
-                  placeholder="Your Name"
-                  required
-                  className={styles.inputField}
-                />
-                <input
-                  type="email"
-                  name="bookingEmail"
-                  placeholder="you@yourmail.com"
-                  required
-                  className={styles.inputField}
-                />
-              </div>
+          {SHOW_BOOK_TRAINING && (
+            <div className={`${styles.card} ${styles.bookingCard}`}>
+              <h2>Book a Training Session</h2>
+              <form className={styles.contactForm} onSubmit={handleSubmit}>
+                <div className={styles.twoColRow}>
+                  <input
+                    type="text"
+                    name="bookingName"
+                    placeholder="Your Name"
+                    required
+                    className={styles.inputField}
+                  />
+                  <input
+                    type="email"
+                    name="bookingEmail"
+                    placeholder="you@yourmail.com"
+                    required
+                    className={styles.inputField}
+                  />
+                </div>
 
-              <div className={styles.formRow}>
-                <label htmlFor="coach">Select Coach</label>
-                <select id="coach" name="coach" className={styles.inputField} required>
-                  <option value="">Choose a coach...</option>
-                  <option value="Alex Forman">Alex Forman</option>
-                  <option value="Tony Moran">Tony Moran</option>
-                  <option value="Alfie Ponting">Alfie Ponting</option>
-                  <option value="Owen Gillis">Owen Gillis</option>
-                  <option value="Marc Campbell">Marc Campbell</option>
-                  <option value="Kenny Carey">Kenny Carey</option>
-                  <option value="Hassan Imran">Hassan Imran</option>
-                  <option value="Jacob Charnock">Jacob Charnock </option>
-                </select>
-              </div>
+                <div className={styles.formRow}>
+                  <label htmlFor="coach">Select Coach</label>
+                  <select id="coach" name="coach" className={styles.inputField} required>
+                    <option value="">Choose a coach...</option>
+                    <option value="Alex Forman">Alex Forman</option>
+                    <option value="Tony Moran">Tony Moran</option>
+                    <option value="Alfie Ponting">Alfie Ponting</option>
+                    <option value="Owen Gillis">Owen Gillis</option>
+                    <option value="Marc Campbell">Marc Campbell</option>
+                    <option value="Kenny Carey">Kenny Carey</option>
+                    <option value="Hassan Imran">Hassan Imran</option>
+                    <option value="Jacob Charnock">Jacob Charnock </option>
+                  </select>
+                </div>
 
+                <div className={styles.formRow}>
+                  <label htmlFor="preferredDate">Preferred Date</label>
+                  <input
+                    type="date"
+                    id="preferredDate"
+                    name="preferredDate"
+                    className={styles.inputField}
+                    required
+                  />
+                </div>
 
-              <div className={styles.formRow}>
-                <label htmlFor="preferredDate">Preferred Date</label>
-                <input
-                  type="date"
-                  id="preferredDate"
-                  name="preferredDate"
-                  className={styles.inputField}
-                  required
-                />
-              </div>
+                <div className={styles.formRowFull}>
+                  <label htmlFor="bookingMessage">Additional Details</label>
+                  <TextareaAutosize
+                    id="bookingMessage"
+                    name="bookingMessage"
+                    minRows={4}
+                    placeholder="Tell us about your experience level, goals, or any specific requirements..."
+                    className={styles.inputField}
+                    style={{ resize: 'none' }}
+                  />
+                </div>
 
-              <div className={styles.formRowFull}>
-                <label htmlFor="bookingMessage">Additional Details</label>
-                <TextareaAutosize
-                  id="bookingMessage"
-                  name="bookingMessage"
-                  minRows={4}
-                  placeholder="Tell us about your experience level, goals, or any specific requirements..."
-                  className={styles.inputField}
-                  style={{ resize: 'none' }}
-                />
-              </div>
-
-              <button type="submit" className={styles.sendButton}>
-                <FaPaperPlane className={styles.sendIcon} />
-                Book Session
-              </button>
-            </form>
-          </div>
+                <button type="submit" className={styles.sendButton}>
+                  <FaPaperPlane className={styles.sendIcon} />
+                  Book Session
+                </button>
+              </form>
+            </div>
+          )}
         </div>
 
         {/* ——— Full-width Contact Info Card ——— */}
