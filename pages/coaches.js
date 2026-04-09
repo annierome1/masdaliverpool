@@ -21,17 +21,6 @@ const coachesData = [
   },
   {
     id: 2,
-    name: "JP Gallacher",
-    role: "",
-    image: "/coaches/jp.jpg",
-    bio: "",
-    experience: "",
-    social: {
-      instagram: "https://www.instagram.com/jpgallacher/",
-    }
-  },
-  {
-    id: 3,
     name: "Tony Moran",
     role: "",
     image: "/coaches/Tony.jpeg",
@@ -42,7 +31,7 @@ const coachesData = [
     }
   },
   {
-    id: 4,
+    id: 3,
     name: "Alfie Ponting",
     role: "",
     image: "/coaches/Alfie.jpeg",
@@ -53,7 +42,7 @@ const coachesData = [
     }
   },
   {
-    id: 5,
+    id: 4,
     name: "Owen Gillis",
     role: "",
     image: "/coaches/Owen.jpeg",
@@ -64,7 +53,7 @@ const coachesData = [
     }
   },
   {
-    id: 6,
+    id: 5,
     name: "Marc Campbell",
     role: "",
     image: "/coaches/Marc.jpeg",
@@ -75,7 +64,7 @@ const coachesData = [
     }
   },
   {
-    id: 7,
+    id: 6,
     name: "Kenny Carey",
     role: "",
     image: "/coaches/Kenny.jpeg",
@@ -86,7 +75,7 @@ const coachesData = [
     }
   },
   {
-    id: 8,
+    id: 7,
     name: "Hassan Imran",
     role: "",
     image: "/coaches/Hassan.jpeg",
