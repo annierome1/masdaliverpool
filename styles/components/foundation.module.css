@@ -74,9 +74,13 @@
 .sectionAlt {
   background-color: #111111;
   padding: 3rem 1.5rem;
+  width: 100%;
+  margin: 0 0 2rem;
+}
+.sectionAlt > * {
   max-width: 1100px;
-  margin: 0 auto 2rem;
-  border-radius: 12px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .sectionHeading {
   text-align: center;
