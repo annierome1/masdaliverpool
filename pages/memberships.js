@@ -9,45 +9,10 @@ export default function MembershipsPage() {
 
   const membershipPlans = [
     {
-      title: 'Junior Membership',
-      price: '£45.00',
-      period: 'per month',
-      paymentType: 'Monthly - Direct Debit',
-      features: [
-        'Includes 1 secondary customer (2 total)',
-        '3-month minimum commitment',
-        '1-month notice to cancel after initial 2 months'
-      ],
-      link: 'https://simplyjoin.uk/?id=masda.membershippackagesonlinesignup'
-    },
-    {
-      title: 'Student Membership (Under 18)',
-      price: '£60.00',
-      period: 'per month',
-      paymentType: 'Monthly - Direct Debit',
-      features: [
-        'Includes 1 secondary customer (2 total)',
-        '3-month minimum commitment',
-        '1-month notice to cancel after initial 2 months'
-      ],
-      link: 'https://simplyjoin.uk/?id=masda.membershippackagesonlinesignup'
-    },
-    {
-      title: 'Student Membership (Over 18)',
-      price: '£60.00',
-      period: 'per month',
-      paymentType: 'Full - Card Payment',
-      features: [
-        '3-month minimum commitment',
-        '1-month notice to cancel after initial 2 months'
-      ],
-      link: 'https://simplyjoin.uk/?id=masda.membershippackagesonlinesignup'
-    },
-    {
       title: 'Adult Membership',
-      price: '£70.00',
+      price: '£90.00',
       period: 'per month',
-      paymentType: 'Monthly - Direct Debit',
+      paymentType: '18+',
       features: [
         '3-month minimum commitment',
         '1-month notice to cancel after initial 2 months'
@@ -55,13 +20,24 @@ export default function MembershipsPage() {
       link: 'https://simplyjoin.uk/?id=masda.membershippackagesonlinesignup'
     },
     {
-      title: 'Fully Paid Annual',
-      price: '£600.00',
-      period: 'up front',
-      paymentType: '12 months of adult membership',
+      title: 'Student Membership',
+      price: '£75.00',
+      period: 'per month',
+      paymentType: '18+ Student ID required',
       features: [
-        'Includes 2 months discount',
-        'No recurring payments'
+        '3-month minimum commitment',
+        '1-month notice to cancel after initial 2 months'
+      ],
+      link: 'https://simplyjoin.uk/?id=masda.membershippackagesonlinesignup'
+    },
+    {
+      title: 'Junior Membership',
+      price: '£75.00',
+      period: 'per month',
+      paymentType: 'Under 18',
+      features: [
+        '3-month minimum commitment',
+        '1-month notice to cancel after initial 2 months'
       ],
       link: 'https://simplyjoin.uk/?id=masda.membershippackagesonlinesignup'
     }
@@ -73,19 +49,19 @@ export default function MembershipsPage() {
         <title>Memberships | Masda Liverpool</title>
         <meta
           name="description"
-          content="Choose the perfect membership plan for your training journey. Flexible options from £45/month. Join MASDA Gym Liverpool today."
+          content="Choose the perfect membership plan for your training journey. Flexible options from £75/month. Join MASDA Gym Liverpool today."
         />
         
         {/* Open Graph */}
         <meta property="og:title" content="Membership Plans | MASDA Gym Liverpool" />
-        <meta property="og:description" content="Join MASDA Gym Liverpool with flexible membership plans. Options from £45/month for juniors, students, and adults. Start your training journey today." />
+        <meta property="og:description" content="Join MASDA Gym Liverpool with flexible membership plans. Options from £75/month for juniors, students, and adults. Start your training journey today." />
         <meta property="og:image" content={`${baseUrl}/masda_logo_color_wt.png`} />
         <meta property="og:url" content={`${baseUrl}/memberships`} />
         <meta property="og:type" content="website" />
         
         {/* Twitter Card */}
         <meta name="twitter:title" content="Membership Plans | MASDA Gym Liverpool" />
-        <meta name="twitter:description" content="Join MASDA Gym Liverpool with flexible membership plans. Options from £45/month for juniors, students, and adults." />
+        <meta name="twitter:description" content="Join MASDA Gym Liverpool with flexible membership plans. Options from £75/month for juniors, students, and adults." />
         <meta name="twitter:image" content={`${baseUrl}/masda_logo_color_wt.png`} />
       </Head>
 
