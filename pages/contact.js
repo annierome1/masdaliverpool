@@ -260,12 +260,12 @@ export default function ContactPage() {
               <FaMapMarkerAlt />
               <span>
                 <a
-                  href="https://www.google.com/maps/search/?api=1&query=MASDA+Gym+Liverpool,+Nexum+Centre+62+St+Anne+Street,+Liverpool+L3+3DY"
+                  href="https://www.google.com/maps/search/?api=1&query=MASDA+Gym+Liverpool,+62+St+Anne+Street,+Liverpool+L3+3DY"
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{ color: "inherit" }}
                 >
-                  MASDA Gym Liverpool, Nexum Centre 62 St Anne Street, Liverpool L3 3DY
+                  MASDA Gym Liverpool, 62 St Anne Street, Liverpool L3 3DY
                 </a>
               </span>
             </li>
