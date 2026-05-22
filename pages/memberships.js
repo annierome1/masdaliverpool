@@ -17,7 +17,7 @@ export default function MembershipsPage() {
         '3-month minimum commitment',
         '1-month notice to cancel after initial 2 months'
       ],
-      link: 'https://simplyjoin.uk/?id=masda.membershippackagesonlinesignup'
+      link: 'https://simplyjoin.uk?id=masdaliverpool.signups'
     },
     {
       title: 'Student Membership',
@@ -28,7 +28,7 @@ export default function MembershipsPage() {
         '3-month minimum commitment',
         '1-month notice to cancel after initial 2 months'
       ],
-      link: 'https://simplyjoin.uk/?id=masda.membershippackagesonlinesignup'
+      link: 'https://simplyjoin.uk?id=masdaliverpool.signups'
     },
     {
       title: 'Junior Membership',
@@ -39,7 +39,7 @@ export default function MembershipsPage() {
         '3-month minimum commitment',
         '1-month notice to cancel after initial 2 months'
       ],
-      link: 'https://simplyjoin.uk/?id=masda.membershippackagesonlinesignup'
+      link: 'https://simplyjoin.uk?id=masdaliverpool.signups'
     }
   ];
 
