@@ -40,6 +40,32 @@ export default function MembershipsPage() {
         '1-month notice to cancel after initial 2 months'
       ],
       link: 'https://simplyjoin.uk?id=masdaliverpool.signups'
+    },
+    {
+      title: 'Gym Use Only',
+      subscriptionType: 'Recurring Subscription - Direct Debit',
+      price: '£30.00',
+      period: 'per month',
+      note: 'Please note this membership does not include access to any classes.',
+      features: [
+        '3-payment minimum commitment',
+        'Initial period of 2 payments, followed by 1 payment notice to cancel'
+      ],
+      link: 'https://simplyjoin.uk?id=masdaliverpool.signups',
+      termsLink: '/terms'
+    },
+    {
+      title: 'Student Gym Use Only',
+      subscriptionType: 'Recurring Subscription - Direct Debit',
+      price: '£25.00',
+      period: 'per month',
+      note: 'Please note this membership does not include access to any classes.',
+      features: [
+        '3-payment minimum commitment',
+        'Initial period of 2 payments, followed by 1 payment notice to cancel'
+      ],
+      link: 'https://simplyjoin.uk?id=masdaliverpool.signups',
+      termsLink: '/terms'
     }
   ];
 
@@ -78,17 +104,30 @@ export default function MembershipsPage() {
         <section className={styles.membershipPlans}>
           {membershipPlans.map((plan, index) => (
             <div key={index} className={styles.planCard}>
+              {plan.subscriptionType && (
+                <p className={styles.subscriptionType}>{plan.subscriptionType}</p>
+              )}
               <h2 className={styles.planTitle}>{plan.title}</h2>
               <div className={styles.priceSection}>
                 <span className={styles.price}>{plan.price}</span>
                 <span className={styles.period}>{plan.period}</span>
               </div>
-              <p className={styles.paymentType}>{plan.paymentType}</p>
+              {plan.paymentType && (
+                <p className={styles.paymentType}>{plan.paymentType}</p>
+              )}
+              {plan.note && (
+                <p className={styles.planNote}>{plan.note}</p>
+              )}
               <ul className={styles.planFeatures}>
                 {plan.features.map((feature, idx) => (
                   <li key={idx}>{feature}</li>
                 ))}
               </ul>
+              {plan.termsLink && (
+                <Link href={plan.termsLink} className={styles.termsLink}>
+                  View Terms &amp; Conditions
+                </Link>
+              )}
               <Link href={plan.link} className={styles.planButton} target="_blank" rel="noopener noreferrer">
                 Choose Plan
               </Link>

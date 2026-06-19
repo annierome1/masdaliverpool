@@ -103,11 +103,41 @@
   display: block;
 }
 
+.subscriptionType {
+  color: #ed1c28;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+}
+
 .paymentType {
   color: #aaa;
   font-size: 0.95rem;
   margin-bottom: 1.5rem;
   font-style: italic;
+}
+
+.planNote {
+  color: #aaa;
+  font-size: 0.875rem;
+  font-style: italic;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.termsLink {
+  display: block;
+  color: #ed1c28;
+  font-size: 0.875rem;
+  text-decoration: underline;
+  margin-bottom: 1rem;
+  transition: color 0.2s ease;
+}
+
+.termsLink:hover {
+  color: #fff;
 }
 
 .planFeatures {
