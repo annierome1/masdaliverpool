@@ -127,19 +127,6 @@
   line-height: 1.5;
 }
 
-.termsLink {
-  display: block;
-  color: #ed1c28;
-  font-size: 0.875rem;
-  text-decoration: underline;
-  margin-bottom: 1rem;
-  transition: color 0.2s ease;
-}
-
-.termsLink:hover {
-  color: #fff;
-}
-
 .planFeatures {
   list-style: none;
   padding: 0;

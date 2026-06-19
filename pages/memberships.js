@@ -51,8 +51,7 @@ export default function MembershipsPage() {
         '3-payment minimum commitment',
         'Initial period of 2 payments, followed by 1 payment notice to cancel'
       ],
-      link: 'https://simplyjoin.uk?id=masdaliverpool.signups',
-      termsLink: '/terms'
+      link: 'https://simplyjoin.uk?id=masdaliverpool.signups'
     },
     {
       title: 'Student Gym Use Only',
@@ -64,8 +63,7 @@ export default function MembershipsPage() {
         '3-payment minimum commitment',
         'Initial period of 2 payments, followed by 1 payment notice to cancel'
       ],
-      link: 'https://simplyjoin.uk?id=masdaliverpool.signups',
-      termsLink: '/terms'
+      link: 'https://simplyjoin.uk?id=masdaliverpool.signups'
     }
   ];
 
@@ -123,12 +121,7 @@ export default function MembershipsPage() {
                   <li key={idx}>{feature}</li>
                 ))}
               </ul>
-              {plan.termsLink && (
-                <Link href={plan.termsLink} className={styles.termsLink}>
-                  View Terms &amp; Conditions
-                </Link>
-              )}
-              <Link href={plan.link} className={styles.planButton} target="_blank" rel="noopener noreferrer">
+<Link href={plan.link} className={styles.planButton} target="_blank" rel="noopener noreferrer">
                 Choose Plan
               </Link>
             </div>
