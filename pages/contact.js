@@ -62,6 +62,7 @@ export default function ContactPage() {
       const contactData = {
         name: form.name.value,
         email: form.email.value,
+        phone: form.phone.value,
         subject: form.subject.value,
         message: form.message.value,
         type: 'contact'
@@ -140,6 +141,16 @@ export default function ContactPage() {
                   type="email"
                   name="email"
                   placeholder="you@yourmail.com"
+                  required
+                  className={styles.inputField}
+                />
+              </div>
+
+              <div className={styles.formRow}>
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="Phone Number"
                   required
                   className={styles.inputField}
                 />

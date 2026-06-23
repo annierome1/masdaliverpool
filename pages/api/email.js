@@ -132,9 +132,9 @@ export default async function handler(req, res) {
         <p>${message ? escapeHtml(message).replace(/\n/g, '<br>') : '<em>(none)</em>'}</p>
       `;
   } else {
-    const { name, email, subject: userSubject, message } = body;
+    const { name, email, phone, subject: userSubject, message } = body;
 
-    if (!name || !email || !userSubject || !message) {
+    if (!name || !email || !phone || !userSubject || !message) {
       return res.status(400).json({ error: 'Missing required fields.' });
     }
 
@@ -151,6 +151,7 @@ export default async function handler(req, res) {
     html = `
         <p><strong>Name:</strong> ${escapeHtml(name)}</p>
         <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+        <p><strong>Phone:</strong> ${escapeHtml(phone)}</p>
         <p><strong>Subject:</strong> ${escapeHtml(userSubject)}</p>
         <p><strong>Message:</strong></p>
         <p>${escapeHtml(message).replace(/\n/g, '<br>')}</p>
