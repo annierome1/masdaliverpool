@@ -64,6 +64,7 @@ export default function ContactPage() {
         email: form.email.value,
         phone: form.phone.value,
         subject: form.subject.value,
+        referral: form.referral.value,
         message: form.message.value,
         type: 'contact'
       };
@@ -163,6 +164,19 @@ export default function ContactPage() {
                   <option>Membership</option>
                   <option>Classes</option>
                   <option>Personal Training</option>
+                </select>
+              </div>
+
+              <div className={styles.formRow}>
+                <label htmlFor="referral">How did you find us?</label>
+                <select id="referral" name="referral" className={styles.inputField} required>
+                  <option value="">Please select...</option>
+                  <option value="Friend Referral">Friend Referral</option>
+                  <option value="Instagram">Instagram</option>
+                  <option value="Facebook">Facebook</option>
+                  <option value="Other Social Media">Other Social Media</option>
+                  <option value="Newspaper">Newspaper</option>
+                  <option value="Leaflet">Leaflet</option>
                 </select>
               </div>
 
