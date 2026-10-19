@@ -210,18 +210,6 @@ export default function TheGymPage({ gymPlaybackIds }) {
 </section>
 
 
-  {/* Coaches */}
-  <section className={styles.sectionAlt}>
-    <h2 className={styles.sectionTitle}>Our Coaches</h2>
-    <p className={styles.paragraphCenter}>
-      Whether you&rsquo;re a beginner or a seasoned fighter, our coaches bring diverse expertise to meet your goals.
-    </p>
-     <div className={styles.ctaWrapper}>
-       <Link href="/coaches" className={styles.coachesButton}>
-         View All Coaches
-       </Link>
-     </div>
-  </section>
   <div className={styles.ctaWrapper}>
   <Link href="/classes" className={styles.ctaButton}>
             Start Your Journey

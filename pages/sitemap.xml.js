@@ -4,15 +4,10 @@ function generateSiteMap() {
   const staticPages = [
     '',
     '/team',
-    '/coaches',
     '/classes',
     '/fightnight',
     '/the_gym',
-    '/sponsors',
-    '/foundation',
-    '/news_social',
     '/contact',
-    '/commitee',
     '/privacy',
   ];
 

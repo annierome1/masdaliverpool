@@ -4,11 +4,18 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState, useEffect, useRef } from 'react';
 
+const navLinks = [
+  ['The Gym', '/the_gym'],
+  ['Classes', '/classes'],
+  ['Memberships', '/memberships'],
+  ['Events', '/fightnight'],
+  ['Contact Us', '/contact'],
+];
+
 export default function Header() {
   const router = useRouter();
   const currentPath = router.pathname;
   const [menuOpen, setMenuOpen] = useState(false);
-  const [gymDropdownOpen, setGymDropdownOpen] = useState(false);
 
   // Animation state for logo
   const logoRef = useRef(null);
@@ -64,16 +71,7 @@ export default function Header() {
         onClick={() => setMenuOpen(false)}
       >
         <ul className={styles.navListOverlay} onClick={e => e.stopPropagation()}>
-          {[
-            ['Classes', '/classes'],
-            ['Memberships', '/memberships'],
-            ['Events', '/fightnight'],
-            ['The Gym', '/the_gym'],
-            ['Partners', '/sponsors'],
-            ['Foundation', '/foundation'],
-            ['News & Social', '/news_social'],
-            ['Contact Us', '/contact'],
-          ].map(([label, href]) => (
+          {navLinks.map(([label, href]) => (
             <li key={href}>
               <Link
                 href={href}
@@ -92,54 +90,11 @@ export default function Header() {
       {/* Navigation */}
       <nav className={styles.nav}>
         <ul className={styles.navList}>
-          <li 
-            className={styles.dropdownContainer}
-            onMouseEnter={() => setGymDropdownOpen(true)}
-            onMouseLeave={() => setGymDropdownOpen(false)}
-          >
-            <Link 
-              href="/the_gym" 
-              className={`${styles.link} ${styles.hasDropdown} ${currentPath === '/the_gym' ? styles.active : ''}`}
-            >
-              The Gym
-              <span className={styles.dropdownIndicator}>▼</span>
-            </Link>
-            {gymDropdownOpen && (
-              <ul className={styles.dropdown}>
-                <li>
-                  <Link 
-                    href="/classes" 
-                    className={`${styles.dropdownLink} ${currentPath === '/classes' ? styles.active : ''}`}
-                  >
-                    Classes
-                  </Link>
-                </li>
-                <li>
-                  <Link 
-                    href="/memberships" 
-                    className={`${styles.dropdownLink} ${currentPath === '/memberships' ? styles.active : ''}`}
-                  >
-                    Memberships
-                  </Link>
-                </li>
-              </ul>
-            )}
-          </li>
-          <li>
-            <Link href="/fightnight" className={`${styles.link} ${currentPath === '/fightnight' ? styles.active : ''}`}>Events</Link>
-          </li>
-          <li>
-            <Link href="/sponsors" className={`${styles.link} ${currentPath === '/sponsors' ? styles.active : ''}`}>Partners</Link>
-          </li>
-          <li>
-            <Link href="/foundation" className={`${styles.link} ${currentPath === '/foundation' ? styles.active : ''}`}>Fighter Foundation</Link>
-          </li>
-          <li>
-            <Link href="/news_social" className={`${styles.link} ${currentPath === '/news_social' ? styles.active : ''}`}>News & Social</Link>
-          </li>
-          <li>
-            <Link href="/contact" className={`${styles.link} ${currentPath === '/contact' ? styles.active : ''}`}>Contact Us</Link>
-          </li>
+          {navLinks.map(([label, href]) => (
+            <li key={href}>
+              <Link href={href} className={`${styles.link} ${currentPath === href ? styles.active : ''}`}>{label}</Link>
+            </li>
+          ))}
         </ul>
       </nav>
     </header>
